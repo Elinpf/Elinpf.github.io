@@ -59,7 +59,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
       with:
-        persist-credentials: false
+        token: ${{ secrets.ACCESS_TOKEN }}
+        path: master
     - name: Install and Build
       run: |
         npm install
