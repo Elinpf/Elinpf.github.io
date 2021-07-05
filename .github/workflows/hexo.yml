@@ -14,11 +14,11 @@ jobs:
     - name: Install and Build
       run: |
         npm install
-        hexo generate
+        node_modules/hexo/bin/hexo generate
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
         FOLDER: public
-        BUILD_SCRIPT: npm install && hexo generate
+        BUILD_SCRIPT: npm install && node_modules/hexo/bin/hexo generate
