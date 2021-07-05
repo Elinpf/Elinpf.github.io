@@ -3,6 +3,8 @@ title: 使用 Github Pages 部署 Blog
 tags: 
 - github
 - docusaurus
+categories:
+- 前端技术
 ---
 
 # 使用 Github Pages 部署 Blog
@@ -59,8 +61,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
       with:
-        token: ${{ secrets.ACCESS_TOKEN }}
-        path: master
+        persist-credentials: false
     - name: Install and Build
       run: |
         npm install
