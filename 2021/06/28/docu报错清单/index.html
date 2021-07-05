@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Docusaurus 报错清单 | Elin 的空间</title>
+  <meta name="keywords" content=" docusaurus ">
+  <meta name="description" content="Docusaurus 报错清单 | Elin 的空间">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Docusaurus 实现搜索功能Docusaurus 官方给出了一个添加搜索的方式 Algolia DocSearch，但是这个搜索插件需要得到Algolia官方的认证，如果你的网站还处于建设阶段，那么就不会被允许使用。 在网上搜索后发现了search-local的插件，这个插件为本地离线搜索。  这里是关于离线搜索的讨论  docusaurus-lunr-search 使用方法安装方法yarn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docusaurus 实现搜索功能">
+<meta property="og:url" content="http://example.com/2021/06/28/docu%E5%AE%9E%E7%8E%B0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/index.html">
+<meta property="og:site_name" content="Elin 的空间">
+<meta property="og:description" content="Docusaurus 实现搜索功能Docusaurus 官方给出了一个添加搜索的方式 Algolia DocSearch，但是这个搜索插件需要得到Algolia官方的认证，如果你的网站还处于建设阶段，那么就不会被允许使用。 在网上搜索后发现了search-local的插件，这个插件为本地离线搜索。  这里是关于离线搜索的讨论  docusaurus-lunr-search 使用方法安装方法yarn">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-05T09:03:23.472Z">
+<meta property="article:author" content="Elin">
+<meta property="article:tag" content="docusaurus">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="false" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png"/>
+</a>
+<div class="author">
+    <span>Elin</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/Elinpf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(4)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="4">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docusaurus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>github</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 "
+           href="/2021/06/28/docu%E5%AE%9E%E7%8E%B0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/"
+           data-tag="docusaurus"
+           data-author="" >
+            <span class="post-title" title="Docusaurus 实现搜索功能">Docusaurus 实现搜索功能</span>
+            <span class="post-date" title="2021-06-29 00:00:00">2021/06/29</span>
+        </a>
+        
+        <a  class="全部文章 "
+           href="/2021/06/28/docu%E6%8A%A5%E9%94%99%E6%B8%85%E5%8D%95/"
+           data-tag="docusaurus"
+           data-author="" >
+            <span class="post-title" title="Docusaurus 报错清单">Docusaurus 报错清单</span>
+            <span class="post-date" title="2021-06-29 00:00:00">2021/06/29</span>
+        </a>
+        
+        <a  class="全部文章 "
+           href="/2021/06/23/docu-%E7%9A%84%E5%A4%9A%E5%AE%9E%E4%BE%8B%E6%96%87%E6%A1%A3/"
+           data-tag="docusaurus"
+           data-author="" >
+            <span class="post-title" title="Docusaurus 的多实例文档部署">Docusaurus 的多实例文档部署</span>
+            <span class="post-date" title="2021-06-24 00:00:00">2021/06/24</span>
+        </a>
+        
+        <a  class="全部文章 "
+           href="/2021/06/22/github-pages-%E9%83%A8%E7%BD%B2/"
+           data-tag="github,docusaurus"
+           data-author="" >
+            <span class="post-title" title="使用 Github Pages 部署 Blog">使用 Github Pages 部署 Blog</span>
+            <span class="post-date" title="2021-06-23 00:00:00">2021/06/23</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-docu报错清单" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Docusaurus 报错清单</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">docusaurus</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2021-07-05 17:03:23'>2021-06-29 00:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#gyp-ERR-stack-Error-EACCES"><span class="toc-text">gyp ERR! stack Error: EACCES</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="gyp-ERR-stack-Error-EACCES"><a href="#gyp-ERR-stack-Error-EACCES" class="headerlink" title="gyp ERR! stack Error: EACCES"></a>gyp ERR! stack Error: EACCES</h2><ul>
+<li>参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/52231289/gyp-err-stack-error-eacces-permission-denied-mkdir-var-www-project-name-no">这篇文章</a></li>
+</ul>
+<pre><code>apt install python3 
+
+npm install yarn -g
+ln -s /usr/lib/node-v14.17.1-linux-x64/bin/yarn /usr/local/bin/yarn
+ln -s /usr/lib/node-v14.17.1-linux-x64/bin/yarnpkg /usr/local/bin/yarnpkg
+
+yarn
+</code></pre>
+<p>尽量使用<code>yarn</code>作为包管理。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
