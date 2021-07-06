@@ -1,0 +1,91 @@
+/* 举例 */
+.eg {
+  color: #000;
+  border: solid 1px;
+  display: block;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border-color: #6ab0de;
+  background-color: #6ab0de;
+}
+.eg:before {
+  content: 'e.g.   ';
+  font-weight: bold;
+  padding-right: 10px;
+  font-size: 20px;
+  color: #fff;
+}
+.note {
+  color: #000;
+  border: solid 1px;
+  display: block;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border-color: #57b457;
+  background-color: #57b457;
+}
+.note:before {
+  content: 'NOTE';
+  font-weight: bold;
+  padding-right: 10px;
+  font-size: 16px;
+  color: #fff;
+}
+/* 提问 */
+.quest {
+  color: #008b8b;
+  border: solid 1px;
+  display: block;
+  padding: 10px 20px;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 0px;
+  background-color: #dff0d8;
+  font-weight: bold;
+}
+.quest:before {
+  content: 'Q: ';
+  font-size: 20px;
+  padding-right: 10px;
+  color: #000;
+}
+/* 回答 */
+.answer {
+  color: #008b8b;
+  border: solid 1px;
+  display: block;
+  padding: 10px 20px;
+  border-radius: 4px 4px 4px 4px;
+  border-color: #008b8b;
+  color: #000;
+}
+.answer:before {
+  content: 'A: ';
+  font-weight: bold;
+  font-size: 20px;
+  padding-right: 10px;
+  color: #000;
+}
+strong {
+  color: #c06a12;
+}
+/* 原斜体加强 */
+em {
+  font-style: normal;
+  border-radius: 5px;
+  background-color: #2285a2;
+  color: #fff;
+  padding: 1px 4px;
+}
+/* 公式 */
+svg {
+  padding-right: 3px;
+  padding-left: 3px;
+}
+#post .pjax article :not(pre) > code {
+  background-color: #f7f7f7;
+  color: #000;
+  font-size: 1em;
+}
+#post .pjax article table.green_title tr th {
+  border-right: 1px solid #a3c6bd;
+}
