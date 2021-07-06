@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>使用 Github Pages 部署 Blog | Elin 的空间</title>
-  <meta name="keywords" content=" github , docusaurus ">
-  <meta name="description" content="使用 Github Pages 部署 Blog | Elin 的空间">
+  <title>Docker 技术 | Elin 的空间</title>
+  <meta name="keywords" content=" docker ">
+  <meta name="description" content="Docker 技术 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="变量#!&#x2F;bin&#x2F;bash msg&#x3D;&quot;hello world&quot; echo $msg  变量名的命名须遵循如下规则：  命名只能使用英文字母，数字和下划线，首个字符不能以数字开头。 中间不能有空格，可以使用下划线（_）。 不能使用标点符号。 不能使用bash里的关键字（可用help命令查看保留关键字）。  传参#!&#x2F;bin&#x2F;bash echo &quot;执行的文件名：$0&amp;qu">
 <meta property="og:type" content="article">
@@ -293,9 +293,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-github-pages-部署" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-docker" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">使用 Github Pages 部署 Blog</h1>
+        <h1 class="article-title">Docker 技术</h1>
     
     <div class="article-meta">
         
@@ -305,7 +305,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="前端技术">前端技术</a>
+            <a  data-rel="工具">工具</a>
             
         </span>
         
@@ -313,16 +313,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">github</a>
-            
-            <a class="color1">docusaurus</a>
+            <a class="color2">docker</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-06 10:57:04'>2021-06-23 00:00</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-06 10:57:04'>2021-07-06 09:51</time>
         
     </div>
     <div class="article-meta">
@@ -344,7 +342,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Github-Pages-%E9%83%A8%E7%BD%B2-Blog"><span class="toc-text">使用 Github Pages 部署 Blog</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">Docker 是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">几个基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E5%9C%A8windows%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">docker 在windows下的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows%E4%B8%8B%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-text">windows下的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE"><span class="toc-text">修改存储位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Eimage%E5%88%B0%E5%BA%95%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-text">关于image到底存在哪里</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">docker 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-text">获取镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%95%9C%E5%83%8F"><span class="toc-text">创建自己的镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B"><span class="toc-text">查看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-text">容器执行命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-text">删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Commit%E5%AE%B9%E5%99%A8"><span class="toc-text">Commit容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-text">杂项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-%E5%AE%B9%E5%99%A8%E9%97%B4%E7%9A%84%E9%80%9A%E8%AE%AF"><span class="toc-text">Docker 容器间的通讯</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-Compose"><span class="toc-text">Docker Compose</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%80%E5%B7%A7"><span class="toc-text">技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E4%BF%AE%E6%94%B9"><span class="toc-text">Docker 容器的端口修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E8%BF%9E%E6%8E%A5-hackthebox"><span class="toc-text">docker 连接 hackthebox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-kali-connect-to-hackthebox"><span class="toc-text">Docker kali connect to hackthebox</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -360,71 +358,180 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="使用-Github-Pages-部署-Blog"><a href="#使用-Github-Pages-部署-Blog" class="headerlink" title="使用 Github Pages 部署 Blog"></a>使用 Github Pages 部署 Blog</h1><p>要使用 Github Pages 来部署博客，首先需要选择使用什么静态框架。</p>
-<p>这里我最终选择了<a target="_blank" rel="noopener" href="https://docusaurus.io/zh-CN/docs">Docusaurus</a></p>
-<p>开发与部署的简要流程如下：</p>
-<ol>
-<li><p>使用<code>Docusaurus</code>的脚手架创建初始项目</p>
-<pre><code>npx @docusaurus/init@latest init my-website classic
+        <h1 id="Docker-是什么"><a href="#Docker-是什么" class="headerlink" title="Docker 是什么"></a>Docker 是什么</h1><p>docker是可以以极低资源运行的一个独立于文件系统的一个空间</p>
+<h2 id="几个基本概念"><a href="#几个基本概念" class="headerlink" title="几个基本概念"></a>几个基本概念</h2><ul>
+<li><code>image</code>  镜像， 类似于类的概念</li>
+<li><code>container</code> 容器， 类似于实例的概念</li>
+</ul>
+<h2 id="docker-在windows下的使用"><a href="#docker-在windows下的使用" class="headerlink" title="docker 在windows下的使用"></a>docker 在windows下的使用</h2><p>docker一般是Linux系统下的工具，但是当windows出了个WSL后，docker就以一个WSL在windows下运行了。</p>
+<p>每一个WSL在windows中都是独立的<code>vhdx</code>文件</p>
+<p>可以通过<code>wsl -l -v</code> 查看docker文件， 通过<code>wsl -d docker-desktop</code>进入</p>
+<h3 id="windows下的配置"><a href="#windows下的配置" class="headerlink" title="windows下的配置"></a>windows下的配置</h3><h4 id="修改存储位置"><a href="#修改存储位置" class="headerlink" title="修改存储位置"></a>修改存储位置</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/austindev/article/details/110387609">参考</a>这篇文章</li>
+</ul>
+<p>原理是将docker<code>export</code>出来后，<code>import</code>到新的地方</p>
+<p>我保存的地方是<code>D:\Subsystem\docker-desktop-data</code></p>
+<h4 id="关于image到底存在哪里"><a href="#关于image到底存在哪里" class="headerlink" title="关于image到底存在哪里"></a>关于image到底存在哪里</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/where-are-docker-images-stored-docker-container-paths-explained/">这篇文章</a>讲述了image存放的问题。</li>
+</ul>
+<p>windows是按照虚拟机的方式存储，而要进入这个虚拟机是通过各个images，命令如下：</p>
+<p><code>docker run -it --privileged --pid=host &lt;image&gt; nsenter -t 1 -m -u -i bash</code></p>
+<p>而每个image其实是通过底下一层image叠加上来的，所以可以找到<code>/var/lib/docker/overlay2</code>中每一层叠加的内容</p>
+<h1 id="docker-常用命令"><a href="#docker-常用命令" class="headerlink" title="docker 常用命令"></a>docker 常用命令</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-command-manual.html">这里</a>是常用命令大全</li>
+</ul>
+<h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><p>在获取镜像前，可以通过<code>docker search</code> 来镜像查找相关内容。但是有的是需要特定版本的，这个需要先在<a target="_blank" rel="noopener" href="https://hub.docker.com/">hub.docker.com</a>上确认版本。</p>
+<ul>
+<li><code>docker pull &lt;镜像&gt;:&lt;版本&gt;</code></li>
+</ul>
+<h2 id="创建自己的镜像"><a href="#创建自己的镜像" class="headerlink" title="创建自己的镜像"></a>创建自己的镜像</h2><p>方法是使用<code>Dockerfile</code>，在里面写好后使用</p>
+<p><code>docker build -t &lt;image_name&gt; .</code> 创建</p>
+<h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><ul>
+<li><code>docker ps</code> 查看运行中的容器</li>
+<li><code>docker ps -a</code> 查看所有容器</li>
+<li><code>docker images</code> 查看存在的镜像</li>
+</ul>
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><p>以<code>docker run</code>开头</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>--name &lt;alias&gt;</code></td>
+<td align="center">容器别名</td>
+</tr>
+<tr>
+<td align="center"><code>-v &lt;主机文件&gt;:&lt;容器文件&gt;</code></td>
+<td align="center">挂载如果没有文件会自动创建</td>
+</tr>
+<tr>
+<td align="center"><code>-it</code></td>
+<td align="center">交互界面</td>
+</tr>
+<tr>
+<td align="center"><code>-d</code></td>
+<td align="center">后台运行</td>
+</tr>
+<tr>
+<td align="center"><code>-p &lt;主机端口&gt;:&lt;容器端口&gt;</code></td>
+<td align="center">将主机的端口映射到容器的端口中</td>
+</tr>
+<tr>
+<td align="center"><code>-e &lt;环境变量=Value&gt;</code></td>
+<td align="center">设置环境变量</td>
+</tr>
+</tbody></table>
+<p>例子：</p>
+<pre><code class="bash">docker run --name  myphp-fpm -v ~/nginx/www:/www  -d php:5.6-fpm
+</code></pre>
+<pre><code class="bash">docker run --name apache -v $PWD:/usr/local/apache2/htdocs -p 8088:80  -it httpd /bin/bash
+</code></pre>
+<pre><code class="bash">docker run -it httpd /bin/bash
+</code></pre>
+<p>像<code>php</code>这样的可能会立马就退出了，所以需要打开一个Shell来保活。</p>
+<pre><code class="bash">docker run -itd php bash
+</code></pre>
+<h2 id="容器执行命令"><a href="#容器执行命令" class="headerlink" title="容器执行命令"></a>容器执行命令</h2><p>以<code>docker exec</code> 开头</p>
+<ul>
+<li><code>-it</code> 交互</li>
+</ul>
+<p>例子：</p>
+<ul>
+<li><code>docker exec apache ls /usr/local/apache2/htdocs</code></li>
+<li><code>docker exec -it apache /bin/bash</code></li>
+</ul>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>当创建了容器后会一直保留，所以需要删除</p>
+<ul>
+<li><p>删除所有退出的容器</p>
+<pre><code class="bash">docker rm -v `docker ps -aq -f status=exited`
 </code></pre>
 </li>
-<li><p>修改<code>docusaurus.config.js</code>文件中3个重要内容</p>
-</li>
-</ol>
-<pre><code class="js">    url: &#39;https://elinpf.github.io&#39;,
-    organizationName: &#39;Elinpf&#39;, 
-    projectName: &#39;elinpf.github.io&#39;, 
+<li><p>删除镜像</p>
+<pre><code class="bash">docker rmi &lt;image ID&gt;
 </code></pre>
-<ol start="3">
-<li><p>在Github上创建同名仓库<code>Elinpf/Elinpf.github.io</code></p>
 </li>
-<li><p>发布<code>master</code>和<code>gh-pages</code>分支</p>
+</ul>
+<p>docker 提供了更为简单的方法</p>
+<pre><code>docker system prune #将对没有用的容器的网络进行删除
+docker container prune # 删除所有退出状态的容器
+docker volume prune # 删除未被使用的数据卷
+docker image prune # 删除 dangling 或所有未被使用的镜像
+</code></pre>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sparkdev/p/9177283.html">参考文章</a></li>
+</ul>
+<h2 id="Commit容器"><a href="#Commit容器" class="headerlink" title="Commit容器"></a>Commit容器</h2><h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><ul>
+<li><code>Ctrl + P + Q</code> 退出并后台运行</li>
+</ul>
+<h1 id="Docker-容器间的通讯"><a href="#Docker-容器间的通讯" class="headerlink" title="Docker 容器间的通讯"></a>Docker 容器间的通讯</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://my.oschina.net/thinwonton/blog/2993309">这里</a>是参考文章</li>
+</ul>
+<p>原理是docker内置了Bridge网桥组件，各个容器会分配IP地址，但是只有自定义的Bridge网络才能互相通讯</p>
+<ul>
+<li><p>创建自定义Bridge网络</p>
+<ul>
+<li><code>docker network create --driver bridge busybox_bridge</code></li>
+</ul>
+</li>
+<li><p>将容器绑定到自定义Bridge网络中</p>
+<ul>
+<li><code>docker run -itd --network busybox_bridge --name busybox5 busybox</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h1><p><code>docker-compose</code>是可以将多个镜像通过一套制定的规则统一运行起来的工具。极大的方便了每次启动docker需要麻烦配置的动作。</p>
+<p>使用<code>YAML</code>文件配置</p>
+<p><a target="_blank" rel="noopener" href="https://cch20094.medium.com/docker-compose%E6%9E%B6%E8%A8%ADphp-mysql-apache-710321374758">这篇</a>介绍了如何使用<code>docker-compose</code>来搭建<code>PHP + Apache + MySql</code>的环境</p>
+<h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><h2 id="Docker-容器的端口修改"><a href="#Docker-容器的端口修改" class="headerlink" title="Docker 容器的端口修改"></a>Docker 容器的端口修改</h2><ol>
+<li><p>关闭容器 <code>docker stop &lt;container&gt;</code></p>
+</li>
+<li><p>进入镜像的存储地方</p>
+<ul>
+<li><code>docker run -it --privileged --pid=host &lt;image&gt; nsenter -t 1 -m -u -i bash</code></li>
+</ul>
+</li>
+<li><p>找到存储的容器点</p>
+<ul>
+<li><code>cd /var/lib/docker/containers/&lt;contian ID&gt;</code></li>
+</ul>
+</li>
+<li><p>修改hostconfig.json 和 config.v2.json</p>
 </li>
 </ol>
-<pre><code class="bash">git remote add origin https://github.com/Elinpf/Elinpf.github.io.git
-git push origin master
-git branch -M gh-pages
-git push origin gh-pages
+<pre><code># vim hostconfig.json
+
+&quot;PortBindings&quot;:&#123;&quot;5711/tcp&quot;:[&#123;&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;5711&quot;&#125;]&#125;
+
+#vim config.v2.json
+
+&quot;ExposedPorts&quot;:&#123;&quot;5711/tcp&quot;:&#123;&#125;&#125;
+
+&quot;Ports&quot;:&#123;&quot;5711/tcp&quot;:[&#123;&quot;HostIp&quot;:&quot;0.0.0.0&quot;,&quot;HostPort&quot;:&quot;5711&quot;&#125;]&#125;
 </code></pre>
 <ol start="5">
-<li>将<code>Setting</code>中的Pages发布源改为<code>gh-pages</code>分支</li>
+<li>重启服务 <code>systemctl restart docker</code></li>
 </ol>
-<p><img src="/2021/06/22/github-pages-%E9%83%A8%E7%BD%B2/1.png"></p>
-<ol start="6">
-<li>将<code>Setting</code>中的<code>Secrets</code>添加一个<code>ACCESS_TOKEN</code>(这里的token就是用户授权的token值，<a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token">参考这里增加新的授权</a>)</li>
-</ol>
-<p><img src="/2021/06/22/github-pages-%E9%83%A8%E7%BD%B2/2.png"></p>
-<ol start="7">
-<li>在项目中添加文件<code>.github/workflows/docusaurus.yml</code>，来写Action用于自动部署（具体含义参考<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">这篇文章</a>）</li>
-</ol>
-<pre><code class="yaml">name: Deploy Github pages
-on:
-  push:
-    branches:
-      - master
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@master
-      with:
-        persist-credentials: false
-    - name: Install and Build
-      run: |
-        npm install
-        npm run-script build 
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: $&#123;&#123; secrets.ACCESS_TOKEN &#125;&#125;
-        BRANCH: gh-pages
-        FOLDER: build
-        BUILD_SCRIPT: npm install &amp;&amp; npm run build
+<h2 id="docker-连接-hackthebox"><a href="#docker-连接-hackthebox" class="headerlink" title="docker 连接 hackthebox"></a>docker 连接 hackthebox</h2><p>问题1：<br>/dev/net/tun: not the file</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/30547484/calling-openconnect-vpn-client-in-docker-container-shows-tunsetiff-failed-opera">解决连接</a></li>
+</ul>
+<pre><code>docker run -it --privileged mykali /bin/bash
 </code></pre>
-<ol start="8">
-<li>再次提交就可以了</li>
-</ol>
+<p>加入所有权限，或者只加入一个能力<code>--cap-add SYS_NET_ADMIN --device /dev/net/tun </code></p>
+<p>问题2：<br><code> Linux can&#39;t add IPv6 to interface tun0</code></p>
+<p>没有开启ipv6</p>
+<ul>
+<li><code>--sysctl net.ipv6.conf.all.disable_ipv6=0</code></li>
+</ul>
+<h2 id="Docker-kali-connect-to-hackthebox"><a href="#Docker-kali-connect-to-hackthebox" class="headerlink" title="Docker kali connect to hackthebox"></a>Docker kali connect to hackthebox</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://amar-laksh.github.io/2019/08/24/Setting-up-Kali-docker-for-HackTheBox.html">参考链接</a></li>
+</ul>
+<p>端口转发</p>
+<pre><code>socat TCP4-LISTEN:1633,reuseaddr,fork TCP4:10.10.10.28:80
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
