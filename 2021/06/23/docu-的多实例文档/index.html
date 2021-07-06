@@ -6,19 +6,36 @@
   <meta name="keywords" content=" docusaurus ">
   <meta name="description" content="Docusaurus 的多实例文档部署 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="变量#!&#x2F;bin&#x2F;bash msg&#x3D;&quot;hello world&quot; echo $msg  变量名的命名须遵循如下规则：  命名只能使用英文字母，数字和下划线，首个字符不能以数字开头。 中间不能有空格，可以使用下划线（_）。 不能使用标点符号。 不能使用bash里的关键字（可用help命令查看保留关键字）。  传参#!&#x2F;bin&#x2F;bash echo &quot;执行的文件名：$0&amp;qu">
+<meta name="description" content="概述量子力学是描述微观粒子的物质行为的物理学理论，量子力学是我们理解除了万有引力之外的所有基本力的一个基础。这些基本力包括了电磁相互作用、强相互作用和弱相互作用。 量子力学主要是用来描述粒子在微观尺度下的行为，所有的粒子现象无法用经典力学精确描述。 为什么要了解一下量子力学？我想，去了解一下这个世界上最聪明的那群人在思考些什么，这个事本身就非常有趣。 量子力学的前夜在经典力学完备的情况下，19世纪">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell 速查表">
-<meta property="og:url" content="http://example.com/2021/07/06/shell-%E9%80%9F%E6%9F%A5%E8%A1%A8/index.html">
+<meta property="og:title" content="量子力学">
+<meta property="og:url" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="变量#!&#x2F;bin&#x2F;bash msg&#x3D;&quot;hello world&quot; echo $msg  变量名的命名须遵循如下规则：  命名只能使用英文字母，数字和下划线，首个字符不能以数字开头。 中间不能有空格，可以使用下划线（_）。 不能使用标点符号。 不能使用bash里的关键字（可用help命令查看保留关键字）。  传参#!&#x2F;bin&#x2F;bash echo &quot;执行的文件名：$0&amp;qu">
+<meta property="og:description" content="概述量子力学是描述微观粒子的物质行为的物理学理论，量子力学是我们理解除了万有引力之外的所有基本力的一个基础。这些基本力包括了电磁相互作用、强相互作用和弱相互作用。 量子力学主要是用来描述粒子在微观尺度下的行为，所有的粒子现象无法用经典力学精确描述。 为什么要了解一下量子力学？我想，去了解一下这个世界上最聪明的那群人在思考些什么，这个事本身就非常有趣。 量子力学的前夜在经典力学完备的情况下，19世纪">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-06T02:18:44.000Z">
-<meta property="article:modified_time" content="2021-07-06T08:16:09.973Z">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/20210116123203.jpg">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/95b07a231f127e8656732a1396fab30.png">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/ebb011724d8c83747d5703f4412b942.png">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/8588f9399d49ecaebaa74b9af313276.png">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/3ccc9de8992d16efc2275924a9c7259.png">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/11af993e137cc9196dd1475e562ddc9.png">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/c34780b706571ea14ca0b34a798c5cd.png">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/aa96b3e5b76f2c313615001349d9fd6.png">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/aae536a7b0c30cb3717847ba22dffcf.png">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/fa666bc9763be81afa3be6deb4b701c.png">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/85e27b3308331e0c1f638db77af2f2f.png">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/f6cfe3f7150c3746d309dfeecff898b.jpg">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/59ea0217eeb68158caf0617fbe892bf.jpg">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/543f5e38435fbbe4689bf1d44d992d8.jpg">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/01177690293872659e441e2be78b309.jpg">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/ec47544409c42535bb276ed24b0738d.jpg">
+<meta property="og:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/b13faead4f0ba2aa96fe072d215ee51.png">
+<meta property="article:published_time" content="2021-07-06T08:28:22.000Z">
+<meta property="article:modified_time" content="2021-07-06T08:48:54.743Z">
 <meta property="article:author" content="Elin">
-<meta property="article:tag" content="linux">
-<meta property="article:tag" content="shell">
+<meta property="article:tag" content="量子力学">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/20210116123203.jpg">
 
 
 <link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
@@ -92,7 +109,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(7)</small>
+                <small>(8)</small>
             
         </div>
     </li>
@@ -104,6 +121,20 @@
                         
                         工具
                         <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="科学">
+                        
+                        科学
+                        <small>(1)</small>
                         
                     </div>
                     
@@ -138,7 +169,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="7">
+<input type="hidden" id="yelog_site_posts_number" value="8">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -185,6 +216,10 @@
     <div class="tag-wrapper">
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>量子力学</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>docker</a>
             </li>
         
@@ -218,6 +253,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 科学 "
+           href="/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/"
+           data-tag="量子力学"
+           data-author="" >
+            <span class="post-title" title="量子力学">量子力学</span>
+            <span class="post-date" title="2021-07-06 16:28:22">2021/07/06</span>
+        </a>
         
         <a  class="全部文章 工具 "
            href="/2021/07/06/shell-%E9%80%9F%E6%9F%A5%E8%A1%A8/"
@@ -320,7 +363,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-06 16:16:09'>2021-06-24 00:00</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-06 16:48:54'>2021-06-24 00:00</time>
         
     </div>
     <div class="article-meta">
