@@ -1,0 +1,90 @@
+/* 举例 */
+.eg
+  color: black
+  border: solid 1px
+  display: block
+  padding: 10px 20px
+  border-radius: 4px
+  border-color: #6ab0de
+  background-color: #6ab0de
+  &:before
+    content: 'e.g.   '
+    font-weight: bold
+    padding-right: 10px
+    font-size: 20px
+    color: white
+
+.note
+  color: black
+  border: solid 1px
+  display: block
+  padding: 10px 20px
+  border-radius: 4px
+  border-color: #57b457
+  background-color: #57b457
+  &:before
+    content: 'NOTE'
+    font-weight: bold
+    padding-right: 10px
+    font-size: 16px
+    color: white
+
+/* 提问 */
+.quest
+  color: darkcyan;
+  border: solid 1px;
+  display: block;
+  padding: 10px 20px;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 0px;
+  background-color: #dff0d8;
+  font-weight: bold;
+  &:before
+    content: 'Q: ';
+    font-size: 20px;
+    padding-right: 10px
+    color: black;
+
+/* 回答 */
+.answer 
+  color: darkcyan;
+  border: solid 1px;
+  display: block;
+  padding: 10px 20px;
+  border-radius: 4px 4px 4px 4px;
+  border-color: darkcyan;
+  color: black;
+  &:before
+    content: 'A: ';
+    font-weight: bold;
+    font-size: 20px;
+    padding-right: 10px
+    color: black;
+
+strong 
+  color: rgb(192, 106,18);
+
+/* 原斜体加强 */
+em 
+  font-style: normal;
+  border-radius: 5px;
+  background-color: #2285A2;
+  color: white;
+  padding: 1px 4px;
+
+/* 公式 */
+svg 
+  padding-right: 3px;
+  padding-left: 3px;
+
+#post
+  .pjax
+    article
+      :not(pre) > code 
+        background-color: #f7f7f7;
+        color: #000000;
+        font-size: 1em;
+      table
+        &.green_title
+          tr th
+            border-right: 1px solid #a3c6bd;
