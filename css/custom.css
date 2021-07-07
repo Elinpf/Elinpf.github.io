@@ -9,7 +9,7 @@
   background-color: #6ab0de;
 }
 .eg:before {
-  content: 'e.g.   ';
+  content: 'e.g.';
   font-weight: bold;
   padding-right: 10px;
   font-size: 20px;
@@ -21,8 +21,8 @@
   display: block;
   padding: 10px 20px;
   border-radius: 4px;
-  border-color: #57b457;
-  background-color: #57b457;
+  border-color: #53cc7c;
+  background-color: #53cc7c;
 }
 .note:before {
   content: 'NOTE';
