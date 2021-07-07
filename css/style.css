@@ -2146,3 +2146,7 @@ svg {
 #post .pjax article table.green_title tr th {
   border-right: 1px solid #a3c6bd;
 }
+#post .pjax article blockquote {
+  background-color: rgba(20,5,16,0.1);
+  border-left: 10px solid rgba(224,15,23,0.1);
+}
