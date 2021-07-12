@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>python encoding 字符串转换方法</title>
+      <title>python 一劳永逸的 decode 字符串转换方法</title>
       <link href="/2021/07/12/python-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2/"/>
       <url>/2021/07/12/python-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2/</url>
       
-        <content type="html"><![CDATA[<ul><li><a href="https://blog.csdn.net/jieli_/article/details/70166244">看这篇文章</a></li></ul><pre><code>import chardet   #需要导入这个模块，检测编码格式encode_type = chardet.detect(html)  html = html.decode(encode_type[&#39;encoding&#39;]) #进行相应解码，赋给原标识符（变量）从str到bytes:调用方法encode().编码是把Unicode字符串以各种方式编码成为机器能读懂的ASCII字符串从bytes到str:调用方法decode().</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="自动检测字符串类型并进行decode"><a href="#自动检测字符串类型并进行decode" class="headerlink" title="自动检测字符串类型并进行decode"></a>自动检测字符串类型并进行decode</h2><ul><li><a href="https://blog.csdn.net/jieli_/article/details/70166244">看这篇文章</a></li></ul><p>当不清楚字符串是什么类型的时候，比如html，此时可以使用<code>chardet</code>模块来进行识别</p><pre><code>import chardet   #需要导入这个模块，检测编码格式encode_type = chardet.detect(html)  html = html.decode(encode_type[&#39;encoding&#39;]) #进行相应解码，赋给原标识符（变量）从str到bytes:调用方法encode().编码是把Unicode字符串以各种方式编码成为机器能读懂的ASCII字符串从bytes到str:调用方法decode().</code></pre><h2 id="UnicodeDecodeError"><a href="#UnicodeDecodeError" class="headerlink" title="UnicodeDecodeError"></a>UnicodeDecodeError</h2><p>当出现<code>UnicodeDecodeError: &#39;gbk&#39; codec can&#39;t decode byte ...</code>，原因是文档中的特殊符号超过了gbk的字符集。</p><p>所以要么使用更广的<code>gb18030</code>要么忽略:</p><pre><code>open(path, encoding=&#39;gb18030&#39;)   # 更广的字符集open(path, encoding=&#39;gb18030&#39;, errors=&#39;ignore&#39;)   # 更广的字符集，并且错误的忽略</code></pre>]]></content>
       
       
       <categories>
@@ -22,7 +22,7 @@
       
         <tags>
             
-            <tag> python </tag>
+            <tag> decode </tag>
             
         </tags>
       

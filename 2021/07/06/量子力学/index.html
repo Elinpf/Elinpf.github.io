@@ -6,17 +6,17 @@
   <meta name="keywords" content=" 物理 ">
   <meta name="description" content="量子力学 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="看这篇文章  import chardet   #需要导入这个模块，检测编码格式 encode_type &#x3D; chardet.detect(html)   html &#x3D; html.decode(encode_type[&#39;encoding&#39;]) #进行相应解码，赋给原标识符（变量） 从str到bytes:调用方法encode(). 编码是把Unicode字符串以各种方式编码成为机器">
+<meta name="description" content="自动检测字符串类型并进行decode 看这篇文章  当不清楚字符串是什么类型的时候，比如html，此时可以使用chardet模块来进行识别 import chardet   #需要导入这个模块，检测编码格式 encode_type &#x3D; chardet.detect(html)   html &#x3D; html.decode(encode_type[&#39;encoding&#39;]) #进行相应解码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python encoding 字符串转换方法">
+<meta property="og:title" content="python 一劳永逸的 decode 字符串转换方法">
 <meta property="og:url" content="http://example.com/2021/07/12/python-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="看这篇文章  import chardet   #需要导入这个模块，检测编码格式 encode_type &#x3D; chardet.detect(html)   html &#x3D; html.decode(encode_type[&#39;encoding&#39;]) #进行相应解码，赋给原标识符（变量） 从str到bytes:调用方法encode(). 编码是把Unicode字符串以各种方式编码成为机器">
+<meta property="og:description" content="自动检测字符串类型并进行decode 看这篇文章  当不清楚字符串是什么类型的时候，比如html，此时可以使用chardet模块来进行识别 import chardet   #需要导入这个模块，检测编码格式 encode_type &#x3D; chardet.detect(html)   html &#x3D; html.decode(encode_type[&#39;encoding&#39;]) #进行相应解码">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-12T06:10:40.000Z">
-<meta property="article:modified_time" content="2021-07-12T06:13:45.504Z">
+<meta property="article:modified_time" content="2021-07-12T06:59:55.278Z">
 <meta property="article:author" content="Elin">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="decode">
 <meta name="twitter:card" content="summary">
 
 
@@ -237,6 +237,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>decode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>docker</a>
             </li>
         
@@ -257,10 +261,6 @@
             </li>
         
             <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>python</a>
-            </li>
-        
-            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>shell</a>
             </li>
         
@@ -277,9 +277,9 @@
         
         <a  class="全部文章 编程 python "
            href="/2021/07/12/python-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2/"
-           data-tag="python"
+           data-tag="decode"
            data-author="" >
-            <span class="post-title" title="python encoding 字符串转换方法">python encoding 字符串转换方法</span>
+            <span class="post-title" title="python 一劳永逸的 decode 字符串转换方法">python 一劳永逸的 decode 字符串转换方法</span>
             <span class="post-date" title="2021-07-12 14:10:40">2021/07/12</span>
         </a>
         
@@ -400,7 +400,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-12 14:13:45'>2021-07-06 16:28</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-12 14:59:55'>2021-07-06 16:28</time>
         
     </div>
     <div class="article-meta">
