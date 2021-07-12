@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>python encoding 字符串转换方法</title>
+      <link href="/2021/07/12/python-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2/"/>
+      <url>/2021/07/12/python-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2/</url>
+      
+        <content type="html"><![CDATA[<ul><li><a href="https://blog.csdn.net/jieli_/article/details/70166244">看这篇文章</a></li></ul><pre><code>import chardet   #需要导入这个模块，检测编码格式encode_type = chardet.detect(html)  html = html.decode(encode_type[&#39;encoding&#39;]) #进行相应解码，赋给原标识符（变量）从str到bytes:调用方法encode().编码是把Unicode字符串以各种方式编码成为机器能读懂的ASCII字符串从bytes到str:调用方法decode().</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>相对论</title>
       <link href="/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/"/>
       <url>/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/</url>

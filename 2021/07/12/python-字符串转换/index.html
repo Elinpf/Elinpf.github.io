@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Docusaurus 实现搜索功能 | Elin 的空间</title>
-  <meta name="keywords" content=" docusaurus ">
-  <meta name="description" content="Docusaurus 实现搜索功能 | Elin 的空间">
+  <title>python encoding 字符串转换方法 | Elin 的空间</title>
+  <meta name="keywords" content=" python ">
+  <meta name="description" content="python encoding 字符串转换方法 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="看这篇文章  import chardet   #需要导入这个模块，检测编码格式 encode_type &#x3D; chardet.detect(html)   html &#x3D; html.decode(encode_type[&#39;encoding&#39;]) #进行相应解码，赋给原标识符（变量） 从str到bytes:调用方法encode(). 编码是把Unicode字符串以各种方式编码成为机器">
 <meta property="og:type" content="article">
@@ -373,9 +373,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-docu实现搜索功能" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-python-字符串转换" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Docusaurus 实现搜索功能</h1>
+        <h1 class="article-title">python encoding 字符串转换方法</h1>
     
     <div class="article-meta">
         
@@ -385,7 +385,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="前端技术">前端技术</a>
+            <a  data-rel="编程">编程</a> > 
+            
+            <a  data-rel="编程&lt;---&gt;python">python</a>
             
         </span>
         
@@ -393,14 +395,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">docusaurus</a>
+            <a class="color2">python</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-12 14:13:45'>2021-06-29 00:00</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-12 14:13:45'>2021-07-12 14:10</time>
         
     </div>
     <div class="article-meta">
@@ -422,7 +424,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docusaurus-%E5%AE%9E%E7%8E%B0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD"><span class="toc-text">Docusaurus 实现搜索功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#docusaurus-lunr-search-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">docusaurus-lunr-search 使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95"><span class="toc-text">安装方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-text">最后</span></a></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -438,38 +440,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Docusaurus-实现搜索功能"><a href="#Docusaurus-实现搜索功能" class="headerlink" title="Docusaurus 实现搜索功能"></a>Docusaurus 实现搜索功能</h1><p>Docusaurus 官方给出了一个添加搜索的方式<a target="_blank" rel="noopener" href="https://docusaurus.io/zh-CN/docs/search"> Algolia DocSearch</a>，但是这个搜索插件需要得到Algolia官方的认证，如果你的网站还处于建设阶段，那么就不会被允许使用。</p>
-<p>在网上搜索后发现了<a target="_blank" rel="noopener" href="https://github.com/cmfcmf/docusaurus-search-local">search-local</a>的插件，这个插件为本地离线搜索。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://docusaurus.io/feedback/p/offline-search">这里</a>是关于离线搜索的讨论</li>
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/jieli_/article/details/70166244">看这篇文章</a></li>
 </ul>
-<h2 id="docusaurus-lunr-search-使用方法"><a href="#docusaurus-lunr-search-使用方法" class="headerlink" title="docusaurus-lunr-search 使用方法"></a>docusaurus-lunr-search 使用方法</h2><h3 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h3><pre><code>yarn add @cmfcmf/docusaurus-search-local
-</code></pre>
-<p>注意，在官方文档中是不支持中文搜索的。在查看源码后发现，这个插件使用的是<a target="_blank" rel="noopener" href="https://github.com/MihaiValentin/lunr-languages">lunr-language</a>来进行分词的，<br>在最新版本中已经包含了中文分词，并且依赖<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/nodejieba">nodejieba</a>。</p>
-<p>所以要再安装<code>nodejieba</code></p>
-<pre><code>yarn nodejieba
-</code></pre>
-<blockquote>
-<p><code>nodejieba</code>的安装依赖python，并且python的安装目录不能有中文<br>如果python已经安装到了中文目录，那么<code>npm install nodejieba</code>是可以安装的，然后<code>yarn install</code>。<br>千万别直接<code>yarn</code>。这将会导致代码框中的copy无法使用。</p>
-</blockquote>
-<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><pre><code>module.exports = &#123;
-  plugins: [
-    [
-      require.resolve(&#39;@cmfcmf/docusaurus-search-local&#39;),
-      &#123;
-        indexDocs: true,
-        indexBlog: true,
-        docsRouteBasePath: &#39;/doc&#39;,
-        blogRouteBasePath: &#39;/blog&#39;,
-        language: [&#39;en&#39;, &#39;zh&#39;],
-      &#125;
-    ],
-  ],
-&#125;
-</code></pre>
-<p>最后编译 <code>npm run build</code> 即可。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>这个插件只能在静态页面中生效，也就是部署了之后才能看到</p>
-<pre><code>yarn build
+<pre><code>import chardet   #需要导入这个模块，检测编码格式
+encode_type = chardet.detect(html)  
+html = html.decode(encode_type[&#39;encoding&#39;]) #进行相应解码，赋给原标识符（变量）
+从str到bytes:调用方法encode().
+编码是把Unicode字符串以各种方式编码成为机器能读懂的ASCII字符串
+从bytes到str:调用方法decode().
 </code></pre>
 
       

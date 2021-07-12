@@ -6,28 +6,18 @@
   <meta name="keywords" content=" github , git ">
   <meta name="description" content="hexo 部署 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="相对论的简单信念首先我们来讲一讲现代物理学的开始。故事要从伽利略发现日心说开始，那时候的人都相信所有的星星都是绕着地球做运动的。但是伽利略看破了红尘，他明白了地球和其他行星都是绕着太阳做运动。而且并没有什么精灵在推着行星做运动，只需要太阳施加一个吸引力就可以。第二个人是牛顿。牛顿的第一定律描述了，在没有外力的作用下，物体会保持静止或者匀速直线运动。 匀速直线运动和静止一样无需外力。牛顿的第二定律描">
+<meta name="description" content="看这篇文章  import chardet   #需要导入这个模块，检测编码格式 encode_type &#x3D; chardet.detect(html)   html &#x3D; html.decode(encode_type[&#39;encoding&#39;]) #进行相应解码，赋给原标识符（变量） 从str到bytes:调用方法encode(). 编码是把Unicode字符串以各种方式编码成为机器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="相对论">
-<meta property="og:url" content="http://example.com/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/index.html">
+<meta property="og:title" content="python encoding 字符串转换方法">
+<meta property="og:url" content="http://example.com/2021/07/12/python-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="相对论的简单信念首先我们来讲一讲现代物理学的开始。故事要从伽利略发现日心说开始，那时候的人都相信所有的星星都是绕着地球做运动的。但是伽利略看破了红尘，他明白了地球和其他行星都是绕着太阳做运动。而且并没有什么精灵在推着行星做运动，只需要太阳施加一个吸引力就可以。第二个人是牛顿。牛顿的第一定律描述了，在没有外力的作用下，物体会保持静止或者匀速直线运动。 匀速直线运动和静止一样无需外力。牛顿的第二定律描">
+<meta property="og:description" content="看这篇文章  import chardet   #需要导入这个模块，检测编码格式 encode_type &#x3D; chardet.detect(html)   html &#x3D; html.decode(encode_type[&#39;encoding&#39;]) #进行相应解码，赋给原标识符（变量） 从str到bytes:调用方法encode(). 编码是把Unicode字符串以各种方式编码成为机器">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/relativity_1.jpg">
-<meta property="og:image" content="http://example.com/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/relativity_2.jpg">
-<meta property="og:image" content="http://example.com/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/relativity_3.png">
-<meta property="og:image" content="http://example.com/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/relativity_5.jpg">
-<meta property="og:image" content="http://example.com/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/relativity_4.jpg">
-<meta property="og:image" content="http://example.com/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/relativity_6.jpg">
-<meta property="og:image" content="http://example.com/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/960631862.jpg">
-<meta property="og:image" content="http://example.com/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/52857151.jpg">
-<meta property="og:image" content="http://example.com/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/1225873056.jpg">
-<meta property="article:published_time" content="2021-07-06T08:50:54.000Z">
-<meta property="article:modified_time" content="2021-07-07T01:42:16.440Z">
+<meta property="article:published_time" content="2021-07-12T06:10:40.000Z">
+<meta property="article:modified_time" content="2021-07-12T06:13:45.504Z">
 <meta property="article:author" content="Elin">
-<meta property="article:tag" content="物理">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/relativity_1.jpg">
 
 
 <link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
@@ -101,7 +91,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(9)</small>
+                <small>(10)</small>
             
         </div>
     </li>
@@ -115,6 +105,37 @@
                         <small>(2)</small>
                         
                     </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="编程">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        编程
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="编程<--->python">
+                                        
+                                        python
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
                     
                 </li>
             
@@ -148,6 +169,10 @@
             
         
     
+        
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -161,7 +186,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="9">
+<input type="hidden" id="yelog_site_posts_number" value="10">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -232,6 +257,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>shell</a>
             </li>
         
@@ -245,6 +274,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/07/12/python-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python encoding 字符串转换方法">python encoding 字符串转换方法</span>
+            <span class="post-date" title="2021-07-12 14:10:40">2021/07/12</span>
+        </a>
         
         <a  class="全部文章 科学 "
            href="/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/"
@@ -365,7 +402,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-07 09:42:16'>2021-07-05 17:08</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-12 14:13:45'>2021-07-05 17:08</time>
         
     </div>
     <div class="article-meta">
