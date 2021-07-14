@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Docusaurus 的多实例文档部署 | Elin 的空间</title>
-  <meta name="keywords" content=" docusaurus ">
-  <meta name="description" content="Docusaurus 的多实例文档部署 | Elin 的空间">
+  <title>hexo highlight 插件编写 | Elin 的空间</title>
+  <meta name="keywords" content=" hexo ">
+  <meta name="description" content="hexo highlight 插件编写 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="思路是使用github的token来进行登录  参考这篇  git config --global credential.helper store   然后在push的时候输入的密码为token值">
 <meta property="og:type" content="article">
@@ -394,9 +394,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-docu-的多实例文档" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-hexo-highlight-插件编写" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Docusaurus 的多实例文档部署</h1>
+        <h1 class="article-title">hexo highlight 插件编写</h1>
     
     <div class="article-meta">
         
@@ -414,14 +414,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">docusaurus</a>
+            <a class="color5">hexo</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-14 15:21:05'>2021-06-24 00:00</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-14 15:21:05'>2021-07-13 16:47</time>
         
     </div>
     <div class="article-meta">
@@ -443,7 +443,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docusaurus-%E7%9A%84%E5%A4%9A%E5%AE%9E%E4%BE%8B%E6%96%87%E6%A1%A3%E9%83%A8%E7%BD%B2"><span class="toc-text">Docusaurus 的多实例文档部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="toc-text">修改文件</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%80%9D%E8%B7%AF"><span class="toc-text">插件编写思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E6%8F%92%E4%BB%B6%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">编写插件的准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E5%9D%97%E7%BB%93%E6%9E%84"><span class="toc-text">如何修改代码块结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E8%AF%95"><span class="toc-text">调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%B0npm"><span class="toc-text">发布到npm</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -459,53 +459,77 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Docusaurus-的多实例文档部署"><a href="#Docusaurus-的多实例文档部署" class="headerlink" title="Docusaurus 的多实例文档部署"></a>Docusaurus 的多实例文档部署</h1><p>要实现多实例文档部署其实非常简单，按照<a target="_blank" rel="noopener" href="https://docusaurus.io/zh-CN/docs/docs-multi-instance">官方文档</a>就可以操作。但是里面有一些坑需要回避。</p>
-<p>有两种部署方式：</p>
+        <h2 id="插件编写思路"><a href="#插件编写思路" class="headerlink" title="插件编写思路"></a>插件编写思路</h2><p>首先要编写hexo的插件需要浏览<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/">官方文档</a>。</p>
+<p>编写插件的初衷是因为hexo的代码块有以下几点不足：</p>
 <ol>
-<li>在<code>doc</code>文件夹内部再添加文件夹，这种方式可以控制版本。</li>
-<li>在根目录下添加文件夹，这种方式不能控制版本。</li>
+<li>对代码块标题的显示不够好</li>
+<li>代码块的高亮只能是<code>&#123;% codeblock mark:2%&#125;</code>的写法才可以，并不是通用写法。</li>
+<li>缺少代码中间添加<code>highlight-next-line</code>等注释可以高亮的功能</li>
+<li>代码块的html结构不够清晰。</li>
 </ol>
-<p>本篇讲述第2种方式。第一种方式可以参考<a target="_blank" rel="noopener" href="https://www.gitmemory.com/issue/facebook/docusaurus/3299/675409985">这篇文章</a>。</p>
-<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">docs/</span>
-<span class="line">- doc1.md</span>
-<span class="line">resources/</span>
-<span class="line">- doc2.md</span>
+<p>基于此，我们要做的要么是直接修改源码要么就是添加一个插件。</p>
+<h2 id="编写插件的准备工作"><a href="#编写插件的准备工作" class="headerlink" title="编写插件的准备工作"></a>编写插件的准备工作</h2><p>新创建一个<code>hexo</code>实例后，在<code>node_modules</code>文件夹下新建一个以<code>hexo-</code>开头的文件夹。我的为<code>hexo-highlight-mark</code>。<br>然后进入文件夹中执行<code>npm init</code>来初始化npm包，这里的问答可以直接一路回车，后面再在<code>package.json</code>中修改。</p>
+<p>新建<code>index.js</code>文件作为入口文件。</p>
+<p>在根目录中的<code>package.json</code>文件中添加插件的名称和版本号，此时插件就可以以最小单位运行了。</p>
+<h2 id="如何修改代码块结构"><a href="#如何修改代码块结构" class="headerlink" title="如何修改代码块结构"></a>如何修改代码块结构</h2><p>这个插件要修改代码块的结构，可以用到<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter">过滤器</a>。</p>
+<div class="codeBlockContainer"><div class="codeBlockTitle">index.js</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span>
+<span class="line"></span>
+<span class="line">hexo.extend.filter.register(<span class="string">&#x27;before_post_render&#x27;</span>, <span class="built_in">require</span>(<span class="string">&#x27;./lib/filter&#x27;</span>), <span class="number">8</span>);</span>
 </code></pre></div></div>
 
-<p>如上加入了<code>resources</code>文件夹，里面包含了<code>doc2.md</code>文件。</p>
-<h2 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h2><p>在<code>docusaurus.config.js</code>文件中需要做出如下<strong>最小</strong>修改：</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="built_in">module</span>.exports = &#123;</span>
-<span class="line">  <span class="attr">plugins</span>: [</span>
-<span class="line">    [</span>
-<span class="line">      <span class="string">&#x27;@docusaurus/plugin-content-docs&#x27;</span>,</span>
-<span class="line">      &#123;</span>
-<span class="line">        <span class="attr">id</span>: <span class="string">&#x27;resources&#x27;</span>,</span>
-<span class="line">        <span class="attr">path</span>: <span class="string">&#x27;resources&#x27;</span>,</span>
-<span class="line">        <span class="attr">routeBasePath</span>: <span class="string">&#x27;resources&#x27;</span>,</span>
-<span class="line">        <span class="attr">sidebarPath</span>: <span class="built_in">require</span>.resolve(<span class="string">&#x27;./sidebarsResources.js&#x27;</span>),</span>
-<span class="line">        <span class="comment">// ... 其他设置</span></span>
-<span class="line">      &#125;,</span>
-<span class="line">    ],</span>
-<span class="line">  ],</span>
-<span class="line">  <span class="attr">themeConfig</span>: &#123;</span>
-<span class="line">    <span class="attr">navbar</span>: &#123;</span>
-<span class="line">      <span class="attr">items</span>: [&#123;</span>
-<span class="line">      &#123;</span>
-<span class="line marked">        <span class="attr">to</span>: <span class="string">&#x27;/resources/doc2&#x27;</span>,   <span class="comment">// 这里要指定具体的index文档</span></span>
-<span class="line">        <span class="attr">activeBasePath</span>: <span class="string">&#x27;resources&#x27;</span>,</span>
-<span class="line">        <span class="attr">label</span>: <span class="string">&#x27;这里是文档2&#x27;</span>,</span>
-<span class="line">        <span class="attr">position</span>: <span class="string">&#x27;left&#x27;</span></span>
-<span class="line">      &#125;,</span>
-<span class="line">      &#125;]</span>
-<span class="line">    &#125;</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;;</span>
-</code></pre></div></div>
-
-<p>最后是对sidebars的调整</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="built_in">module</span>.exports = &#123;</span>
-<span class="line">    <span class="attr">resources</span>: [&#123; <span class="attr">type</span>: <span class="string">&#x27;autogenerated&#x27;</span>, <span class="attr">dirName</span>: <span class="string">&#x27;.&#x27;</span> &#125;],</span>
+<p><code>before_post_render</code>是过滤器在文章渲染之前就介入执行。</p>
+<div class="codeBlockContainer"><div class="codeBlockTitle">./lib/filter.js</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="keyword">const</span> rBacktick = <span class="regexp">/^((?:[^\S\r\n]*&gt;)&#123;0,3&#125;[^\S\r\n]*)(`&#123;3,&#125;|~&#123;3,&#125;)[^\S\r\n]*((?:.*?[^`\s])?)[^\S\r\n]*\n((?:[\s\S]*?\n)?)(?:(?:[^\S\r\n]*&gt;)&#123;0,3&#125;[^\S\r\n]*)\2[^\S\r\n]?(\n+|$)/gm</span>;</span>
+<span class="line"></span>
+<span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span>
+<span class="line">    <span class="keyword">const</span> dataContent = data.content;</span>
+<span class="line"></span>
+<span class="line">    <span class="keyword">if</span> ((!dataContent.includes(<span class="string">&#x27;```&#x27;</span>) &amp;&amp; !dataContent.includes(<span class="string">&#x27;~~~&#x27;</span>)) || (!hljsCfg.enable &amp;&amp; !prismCfg.enable)) <span class="keyword">return</span>;</span>
+<span class="line"></span>
+<span class="line marked">    data.content = dataContent.replace(rBacktick, <span class="function">(<span class="params">$<span class="number">0</span>, start, $<span class="number">2</span>, _args, _content, end</span>) =&gt;</span> &#123;</span>
+<span class="line marked">        <span class="comment">// do something</span></span>
+<span class="line marked">    &#125;</span>
 <span class="line">&#125;</span>
+</code></pre></div></div>
+
+<p>上面的代码就是将<code>data.content</code>中的代码块部分进行匹配并且自定义渲染并返回替换原内容。</p>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><p>配置调试文件如下：</p>
+<div class="codeBlockContainer"><div class="codeBlockTitle">.vscode/launch.json</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-json codeBlockLines"><span class="line">&#123;</span>
+<span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span>
+<span class="line">    <span class="attr">&quot;configurations&quot;</span>: [</span>
+<span class="line">        &#123;</span>
+<span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;pwa-node&quot;</span>,</span>
+<span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span>
+<span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Launch Program&quot;</span>,</span>
+<span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;\\node_modules\\hexo\\bin\\hexo&quot;</span>,</span>
+<span class="line">            <span class="attr">&quot;args&quot;</span>: [</span>
+<span class="line">                <span class="string">&quot;g&quot;</span>,</span>
+<span class="line">                <span class="string">&quot;--debug&quot;</span></span>
+<span class="line">            ],</span>
+<span class="line marked">            <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;npm: clean&quot;</span></span>
+<span class="line">        &#125;</span>
+<span class="line">    ]</span>
+<span class="line">&#125;</span>
+</code></pre></div></div>
+
+<p>配置前置任务，清除原有的数据</p>
+<div class="codeBlockContainer"><div class="codeBlockTitle">.vscode/tasks.json</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-json codeBlockLines"><span class="line">&#123;</span>
+<span class="line">	<span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span>
+<span class="line">	<span class="attr">&quot;tasks&quot;</span>: [</span>
+<span class="line">		&#123;</span>
+<span class="line">			<span class="attr">&quot;type&quot;</span>: <span class="string">&quot;npm&quot;</span>,</span>
+<span class="line marked">			<span class="attr">&quot;script&quot;</span>: <span class="string">&quot;clean&quot;</span>,  <span class="comment">// 名称必须相同，大小写敏感</span></span>
+<span class="line">			<span class="attr">&quot;problemMatcher&quot;</span>: [],</span>
+<span class="line">			<span class="attr">&quot;label&quot;</span>: <span class="string">&quot;npm: clean&quot;</span>,</span>
+<span class="line">			<span class="attr">&quot;detail&quot;</span>: <span class="string">&quot;hexo clean&quot;</span></span>
+<span class="line">		&#125;</span>
+<span class="line">	]</span>
+<span class="line">&#125;</span>
+</code></pre></div></div>
+
+<h2 id="发布到npm"><a href="#发布到npm" class="headerlink" title="发布到npm"></a>发布到npm</h2><p>要发布npm，需要注册<a href="www.npmjs.com">npm账号</a></p>
+<p>然后在插件文件夹修改好<code>package.json</code>然后运行登录和发布命令即可</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">npm login  <span class="comment"># 登录</span></span>
+<span class="line">npm publish  <span class="comment"># 发布文件</span></span>
 </code></pre></div></div>
 
       
