@@ -6,19 +6,19 @@
   <meta name="keywords" content=" decode ">
   <meta name="description" content="python 一劳永逸的 decode 字符串转换方法 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="思路是使用github的token来进行登录  参考这篇  git config --global credential.helper store   然后在push的时候输入的密码为token值">
+<meta name="description" content="javascript 的两种格式javascript 中有两种格式模块  Nodejs 的 CommonJS模块，简称CJS ES6模块，简称ESM  引入的方式区别如下：  CJS的导出都是exports，而ESM的导出都是export CJS 的引入使用两个文件来做测试，utils.js 和 test.js 1. module.exportsutils.jsconst a &#x3D; (x, y) &#x3D;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git push 免密执行">
-<meta property="og:url" content="http://example.com/2021/07/14/git-push-%E5%85%8D%E5%AF%86%E6%89%A7%E8%A1%8C/index.html">
+<meta property="og:title" content="javascript 的export导出方式">
+<meta property="og:url" content="http://example.com/2021/07/15/js-module-export/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="思路是使用github的token来进行登录  参考这篇  git config --global credential.helper store   然后在push的时候输入的密码为token值">
+<meta property="og:description" content="javascript 的两种格式javascript 中有两种格式模块  Nodejs 的 CommonJS模块，简称CJS ES6模块，简称ESM  引入的方式区别如下：  CJS的导出都是exports，而ESM的导出都是export CJS 的引入使用两个文件来做测试，utils.js 和 test.js 1. module.exportsutils.jsconst a &#x3D; (x, y) &#x3D;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-14T06:42:56.000Z">
-<meta property="article:modified_time" content="2021-07-14T07:21:05.970Z">
+<meta property="og:image" content="http://example.com/2021/07/15/js-module-export/1.png">
+<meta property="article:published_time" content="2021-07-15T01:26:54.000Z">
+<meta property="article:modified_time" content="2021-07-15T09:25:24.964Z">
 <meta property="article:author" content="Elin">
-<meta property="article:tag" content="github">
-<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/07/15/js-module-export/1.png">
 
 
 <link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
@@ -92,7 +92,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(12)</small>
+                <small>(13)</small>
             
         </div>
     </li>
@@ -118,11 +118,23 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         编程
-                        <small>(1)</small>
+                        <small>(2)</small>
                         
                     </div>
                     
                         <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="编程<--->javascript">
+                                        
+                                        javascript
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
                             
                                 <li>
                                     <div data-rel="编程<--->python">
@@ -174,6 +186,10 @@
             
         
     
+        
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -187,7 +203,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="12">
+<input type="hidden" id="yelog_site_posts_number" value="13">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -279,6 +295,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 编程 javascript "
+           href="/2021/07/15/js-module-export/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="javascript 的export导出方式">javascript 的export导出方式</span>
+            <span class="post-date" title="2021-07-15 09:26:54">2021/07/15</span>
+        </a>
         
         <a  class="全部文章 工具 "
            href="/2021/07/14/git-push-%E5%85%8D%E5%AF%86%E6%89%A7%E8%A1%8C/"
@@ -423,7 +447,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-14 15:21:05'>2021-07-12 14:10</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-15 17:25:24'>2021-07-12 14:10</time>
         
     </div>
     <div class="article-meta">
@@ -465,18 +489,18 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/jieli_/article/details/70166244">看这篇文章</a></li>
 </ul>
 <p>当不清楚字符串是什么类型的时候，比如html，此时可以使用<code>chardet</code>模块来进行识别</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">import chardet   #需要导入这个模块，检测编码格式</span>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> chardet   <span class="hljs-comment">#需要导入这个模块，检测编码格式</span></span>
 <span class="line">encode_type = chardet.detect(html)  </span>
-<span class="line">html = html.decode(encode_type[&#x27;encoding&#x27;]) #进行相应解码，赋给原标识符（变量）</span>
-<span class="line">从str到bytes:调用方法encode().</span>
+<span class="line">html = html.decode(encode_type[<span class="hljs-string">&#x27;encoding&#x27;</span>]) <span class="hljs-comment">#进行相应解码，赋给原标识符（变量）</span></span>
+<span class="line">从<span class="hljs-built_in">str</span>到<span class="hljs-built_in">bytes</span>:调用方法encode().</span>
 <span class="line">编码是把Unicode字符串以各种方式编码成为机器能读懂的ASCII字符串</span>
-<span class="line">从bytes到str:调用方法decode().</span>
+<span class="line">从<span class="hljs-built_in">bytes</span>到<span class="hljs-built_in">str</span>:调用方法decode().</span>
 </code></pre></div></div>
 
 <h2 id="UnicodeDecodeError"><a href="#UnicodeDecodeError" class="headerlink" title="UnicodeDecodeError"></a>UnicodeDecodeError</h2><p>当出现<code>UnicodeDecodeError: &#39;gbk&#39; codec can&#39;t decode byte ...</code>，原因是文档中的特殊符号超过了gbk的字符集。</p>
 <p>所以要么使用更广的<code>gb18030</code>要么忽略:</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">open(path, encoding=&#x27;gb18030&#x27;)   # 更广的字符集</span>
-<span class="line">open(path, encoding=&#x27;gb18030&#x27;, errors=&#x27;ignore&#x27;)   # 更广的字符集，并且错误的忽略</span>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-pgsql codeBlockLines"><span class="line"><span class="hljs-keyword">open</span>(<span class="hljs-type">path</span>, encoding=<span class="hljs-string">&#x27;gb18030&#x27;</span>)   # 更广的字符集</span>
+<span class="line"><span class="hljs-keyword">open</span>(<span class="hljs-type">path</span>, encoding=<span class="hljs-string">&#x27;gb18030&#x27;</span>, errors=<span class="hljs-string">&#x27;ignore&#x27;</span>)   # 更广的字符集，并且错误的忽略</span>
 </code></pre></div></div>
 
 

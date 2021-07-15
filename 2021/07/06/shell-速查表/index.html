@@ -6,19 +6,19 @@
   <meta name="keywords" content=" linux , shell ">
   <meta name="description" content="shell 速查表 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="思路是使用github的token来进行登录  参考这篇  git config --global credential.helper store   然后在push的时候输入的密码为token值">
+<meta name="description" content="javascript 的两种格式javascript 中有两种格式模块  Nodejs 的 CommonJS模块，简称CJS ES6模块，简称ESM  引入的方式区别如下：  CJS的导出都是exports，而ESM的导出都是export CJS 的引入使用两个文件来做测试，utils.js 和 test.js 1. module.exportsutils.jsconst a &#x3D; (x, y) &#x3D;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git push 免密执行">
-<meta property="og:url" content="http://example.com/2021/07/14/git-push-%E5%85%8D%E5%AF%86%E6%89%A7%E8%A1%8C/index.html">
+<meta property="og:title" content="javascript 的export导出方式">
+<meta property="og:url" content="http://example.com/2021/07/15/js-module-export/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="思路是使用github的token来进行登录  参考这篇  git config --global credential.helper store   然后在push的时候输入的密码为token值">
+<meta property="og:description" content="javascript 的两种格式javascript 中有两种格式模块  Nodejs 的 CommonJS模块，简称CJS ES6模块，简称ESM  引入的方式区别如下：  CJS的导出都是exports，而ESM的导出都是export CJS 的引入使用两个文件来做测试，utils.js 和 test.js 1. module.exportsutils.jsconst a &#x3D; (x, y) &#x3D;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-14T06:42:56.000Z">
-<meta property="article:modified_time" content="2021-07-14T07:21:05.970Z">
+<meta property="og:image" content="http://example.com/2021/07/15/js-module-export/1.png">
+<meta property="article:published_time" content="2021-07-15T01:26:54.000Z">
+<meta property="article:modified_time" content="2021-07-15T09:25:24.964Z">
 <meta property="article:author" content="Elin">
-<meta property="article:tag" content="github">
-<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/07/15/js-module-export/1.png">
 
 
 <link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
@@ -92,7 +92,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(12)</small>
+                <small>(13)</small>
             
         </div>
     </li>
@@ -118,11 +118,23 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         编程
-                        <small>(1)</small>
+                        <small>(2)</small>
                         
                     </div>
                     
                         <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="编程<--->javascript">
+                                        
+                                        javascript
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
                             
                                 <li>
                                     <div data-rel="编程<--->python">
@@ -174,6 +186,10 @@
             
         
     
+        
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -187,7 +203,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="12">
+<input type="hidden" id="yelog_site_posts_number" value="13">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -279,6 +295,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 编程 javascript "
+           href="/2021/07/15/js-module-export/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="javascript 的export导出方式">javascript 的export导出方式</span>
+            <span class="post-date" title="2021-07-15 09:26:54">2021/07/15</span>
+        </a>
         
         <a  class="全部文章 工具 "
            href="/2021/07/14/git-push-%E5%85%8D%E5%AF%86%E6%89%A7%E8%A1%8C/"
@@ -423,7 +447,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-14 15:21:05'>2021-07-06 10:18</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-15 17:25:24'>2021-07-06 10:18</time>
         
     </div>
     <div class="article-meta">
@@ -461,9 +485,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">msg=&quot;hello world&quot;</span>
-<span class="line">echo $msg</span>
+        <h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line">msg=<span class="hljs-string">&quot;hello world&quot;</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$msg</span></span>
 </code></pre></div></div>
 
 <p><strong>变量名的命名须遵循如下规则：</strong></p>
@@ -473,11 +497,11 @@
 <li>不能使用标点符号。</li>
 <li>不能使用bash里的关键字（可用help命令查看保留关键字）。</li>
 </ul>
-<h1 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h1><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">echo &quot;执行的文件名：$0&quot;;</span>
-<span class="line">echo &quot;第一个参数为：$1&quot;;</span>
-<span class="line">echo &quot;第二个参数为：$2&quot;;</span>
-<span class="line">echo &quot;第三个参数为：$3&quot;;</span>
+<h1 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h1><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;执行的文件名：<span class="hljs-variable">$0</span>&quot;</span>;</span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第一个参数为：<span class="hljs-variable">$1</span>&quot;</span>;</span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第二个参数为：<span class="hljs-variable">$2</span>&quot;</span>;</span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第三个参数为：<span class="hljs-variable">$3</span>&quot;</span>;</span>
 </code></pre></div></div>
 
 <p><strong>脚本内获取参数的格式为：</strong></p>
@@ -519,66 +543,66 @@
 <td align="left">显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。</td>
 </tr>
 </tbody></table>
-<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">my_array=(A B &quot;C&quot; D)</span>
-<span class="line">echo &quot;第一个元素为: $&#123;my_array[0]&#125;&quot;</span>
-<span class="line">echo &quot;第二个元素为: $&#123;my_array[1]&#125;&quot;</span>
-<span class="line">echo &quot;第三个元素为: $&#123;my_array[2]&#125;&quot;</span>
-<span class="line">echo &quot;第四个元素为: $&#123;my_array[3]&#125;&quot;</span>
-<span class="line"></span>
-<span class="line">echo &quot;数组的元素为: $&#123;my_array[*]&#125;&quot;</span>
-<span class="line">echo &quot;数组的元素为: $&#123;my_array[@]&#125;&quot;</span>
-<span class="line"></span>
-<span class="line">echo &quot;数组元素个数为: $&#123;#my_array[*]&#125;&quot;</span>
-<span class="line">echo &quot;数组元素个数为: $&#123;#my_array[@]&#125;&quot;</span>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line">my_array=(A B <span class="hljs-string">&quot;C&quot;</span> D)</span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第一个元素为: <span class="hljs-variable">$&#123;my_array[0]&#125;</span>&quot;</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第二个元素为: <span class="hljs-variable">$&#123;my_array[1]&#125;</span>&quot;</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第三个元素为: <span class="hljs-variable">$&#123;my_array[2]&#125;</span>&quot;</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第四个元素为: <span class="hljs-variable">$&#123;my_array[3]&#125;</span>&quot;</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;数组的元素为: <span class="hljs-variable">$&#123;my_array[*]&#125;</span>&quot;</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;数组的元素为: <span class="hljs-variable">$&#123;my_array[@]&#125;</span>&quot;</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;数组元素个数为: <span class="hljs-variable">$&#123;#my_array[*]&#125;</span>&quot;</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;数组元素个数为: <span class="hljs-variable">$&#123;#my_array[@]&#125;</span>&quot;</span></span>
 </code></pre></div></div>
 
 <h1 id="基本运算符"><a href="#基本运算符" class="headerlink" title="基本运算符"></a>基本运算符</h1><blockquote>
 <p>原生 bash 不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr，expr 最常用。</p>
 </blockquote>
 <p>expr 是一款表达式计算工具，使用它能完成表达式的求值操作。</p>
-<h2 id="1-算数运算符"><a href="#1-算数运算符" class="headerlink" title="1. 算数运算符"></a>1. 算数运算符</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">echo &quot;2加2等于&quot;`expr 2 + 2`</span>
-<span class="line">echo &quot;2减2等于&quot;`expr 2 - 2`</span>
-<span class="line">echo &quot;2乘2等于&quot;`expr 2 \* 2`</span>
-<span class="line">echo &quot;2除2等于&quot;`expr 2 / 2`</span>
-<span class="line">echo &quot;2除2取余&quot;`expr 2 % 2`</span>
+<h2 id="1-算数运算符"><a href="#1-算数运算符" class="headerlink" title="1. 算数运算符"></a>1. 算数运算符</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;2加2等于&quot;</span>`expr 2 + 2`</span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;2减2等于&quot;</span>`expr 2 - 2`</span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;2乘2等于&quot;</span>`expr 2 \* 2`</span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;2除2等于&quot;</span>`expr 2 / 2`</span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;2除2取余&quot;</span>`expr 2 % 2`</span>
 </code></pre></div></div>
 
-<h2 id="2-关系运算符"><a href="#2-关系运算符" class="headerlink" title="2. 关系运算符"></a>2. 关系运算符</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
+<h2 id="2-关系运算符"><a href="#2-关系运算符" class="headerlink" title="2. 关系运算符"></a>2. 关系运算符</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
 <span class="line">a=10</span>
 <span class="line">b=20</span>
-<span class="line">if [ $a -eq $b ] # 检测两个数是否相等，相等返回 true。</span>
-<span class="line">if [ $a -ne $b ] # 检测两个数是否不相等，不相等返回 true。</span>
-<span class="line">if [ $a -gt $b ] # 检测左边的数是否大于右边的，如果是，则返回 true。</span>
-<span class="line">if [ $a -lt $b ] # 检测左边的数是否小于右边的，如果是，则返回 true。</span>
-<span class="line">if [ $a -ge $b ] # 检测左边的数是否大于等于右边的，如果是，则返回 true。</span>
-<span class="line">if [ $a -le $b ] # 检测左边的数是否小于等于右边的，如果是，则返回 true。</span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> -eq <span class="hljs-variable">$b</span> ] <span class="hljs-comment"># 检测两个数是否相等，相等返回 true。</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> -ne <span class="hljs-variable">$b</span> ] <span class="hljs-comment"># 检测两个数是否不相等，不相等返回 true。</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> -gt <span class="hljs-variable">$b</span> ] <span class="hljs-comment"># 检测左边的数是否大于右边的，如果是，则返回 true。</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> -lt <span class="hljs-variable">$b</span> ] <span class="hljs-comment"># 检测左边的数是否小于右边的，如果是，则返回 true。</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> -ge <span class="hljs-variable">$b</span> ] <span class="hljs-comment"># 检测左边的数是否大于等于右边的，如果是，则返回 true。</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> -le <span class="hljs-variable">$b</span> ] <span class="hljs-comment"># 检测左边的数是否小于等于右边的，如果是，则返回 true。</span></span>
 </code></pre></div></div>
 
-<h2 id="3-布尔运算符"><a href="#3-布尔运算符" class="headerlink" title="3. 布尔运算符"></a>3. 布尔运算符</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">if [ ! false ]       # 非运算，返回 true</span>
-<span class="line">if [ true -o false ] # 或运算，返回 true</span>
-<span class="line">if [ true -a false ] # 与运算，返回 false</span>
+<h2 id="3-布尔运算符"><a href="#3-布尔运算符" class="headerlink" title="3. 布尔运算符"></a>3. 布尔运算符</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ ! <span class="hljs-literal">false</span> ]       <span class="hljs-comment"># 非运算，返回 true</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-literal">true</span> -o <span class="hljs-literal">false</span> ] <span class="hljs-comment"># 或运算，返回 true</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-literal">true</span> -a <span class="hljs-literal">false</span> ] <span class="hljs-comment"># 与运算，返回 false</span></span>
 </code></pre></div></div>
 
-<h2 id="4-逻辑运算符"><a href="#4-逻辑运算符" class="headerlink" title="4. 逻辑运算符"></a>4. 逻辑运算符</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
+<h2 id="4-逻辑运算符"><a href="#4-逻辑运算符" class="headerlink" title="4. 逻辑运算符"></a>4. 逻辑运算符</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
 <span class="line">a=10</span>
 <span class="line">b=20</span>
-<span class="line">if [[ $a -lt $b &amp;&amp; $a -gt $b ]]   # 逻辑的 AND, 返回 false</span>
-<span class="line">if [ $a -lt $b ] &amp;&amp; [ $a -gt $b ] # 逻辑的 AND, 返回 false</span>
-<span class="line">if [[ $a -lt $b || $a -gt $b ]]   # 逻辑的 OR, 返回 true</span>
-<span class="line">if [ $a -lt $b ] || [ $a -gt $b ] # 逻辑的 OR, 返回 true</span>
+<span class="line"><span class="hljs-keyword">if</span> [[ <span class="hljs-variable">$a</span> -lt <span class="hljs-variable">$b</span> &amp;&amp; <span class="hljs-variable">$a</span> -gt <span class="hljs-variable">$b</span> ]]   <span class="hljs-comment"># 逻辑的 AND, 返回 false</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> -lt <span class="hljs-variable">$b</span> ] &amp;&amp; [ <span class="hljs-variable">$a</span> -gt <span class="hljs-variable">$b</span> ] <span class="hljs-comment"># 逻辑的 AND, 返回 false</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [[ <span class="hljs-variable">$a</span> -lt <span class="hljs-variable">$b</span> || <span class="hljs-variable">$a</span> -gt <span class="hljs-variable">$b</span> ]]   <span class="hljs-comment"># 逻辑的 OR, 返回 true</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> -lt <span class="hljs-variable">$b</span> ] || [ <span class="hljs-variable">$a</span> -gt <span class="hljs-variable">$b</span> ] <span class="hljs-comment"># 逻辑的 OR, 返回 true</span></span>
 </code></pre></div></div>
 
-<h2 id="5-字符串运算符"><a href="#5-字符串运算符" class="headerlink" title="5. 字符串运算符"></a>5. 字符串运算符</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">a=&quot;abc&quot;</span>
-<span class="line">b=&quot;efg&quot;</span>
-<span class="line">if [ $a = $b ]   # 检测两个字符串是否相等，相等返回 true。</span>
-<span class="line">if [ $a != $b ]  # 检测两个字符串是否相等，不相等返回 true。</span>
-<span class="line">if [ -z $a ]     # 检测字符串长度是否为0，为0返回 true。</span>
-<span class="line">if [ -n &quot;$a&quot; ]   # 检测字符串长度是否为0，不为0返回 true。</span>
-<span class="line">if [ $a ]        # 检测字符串是否为空，不为空返回 true。</span>
+<h2 id="5-字符串运算符"><a href="#5-字符串运算符" class="headerlink" title="5. 字符串运算符"></a>5. 字符串运算符</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line">a=<span class="hljs-string">&quot;abc&quot;</span></span>
+<span class="line">b=<span class="hljs-string">&quot;efg&quot;</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> = <span class="hljs-variable">$b</span> ]   <span class="hljs-comment"># 检测两个字符串是否相等，相等返回 true。</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> != <span class="hljs-variable">$b</span> ]  <span class="hljs-comment"># 检测两个字符串是否相等，不相等返回 true。</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ -z <span class="hljs-variable">$a</span> ]     <span class="hljs-comment"># 检测字符串长度是否为0，为0返回 true。</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;<span class="hljs-variable">$a</span>&quot;</span> ]   <span class="hljs-comment"># 检测字符串长度是否为0，不为0返回 true。</span></span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> ]        <span class="hljs-comment"># 检测字符串是否为空，不为空返回 true。</span></span>
 </code></pre></div></div>
 
 <h2 id="6-文件测试运算符"><a href="#6-文件测试运算符" class="headerlink" title="6. 文件测试运算符"></a>6. 文件测试运算符</h2><p>文件测试运算符用于检测 Unix 文件的各种属性。</p>
@@ -642,68 +666,68 @@
 <td align="left">检测文件（包括目录）是否存在，如果是，则返回 true。</td>
 </tr>
 </tbody></table>
-<h1 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h1><h2 id="1-命令格式"><a href="#1-命令格式" class="headerlink" title="1. 命令格式"></a>1. 命令格式</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">echo &quot;It is a test&quot;</span>
-<span class="line">echo It is a test</span>
-<span class="line">echo &quot;\&quot;It is a test\&quot;&quot;      # 转义</span>
+<h1 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h1><h2 id="1-命令格式"><a href="#1-命令格式" class="headerlink" title="1. 命令格式"></a>1. 命令格式</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;It is a test&quot;</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> It is a <span class="hljs-built_in">test</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\&quot;It is a test\&quot;&quot;</span>      <span class="hljs-comment"># 转义</span></span>
 <span class="line">name=Chris</span>
-<span class="line">echo &quot;$name is handsome&quot;</span>
-<span class="line">echo -e &quot;OK! \n&quot;             # 显示换行 -e 开启转义</span>
-<span class="line">echo &quot;It is a test&quot; &gt; myfile # 显示结果定向至文件</span>
-<span class="line">echo &#x27;$name\&quot;&#x27;               # 原样输入字符串，不进行转义或取变量（使用单引号）</span>
-<span class="line">echo `date`                  # 显示命令执行结构</span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$name</span> is handsome&quot;</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;OK! \n&quot;</span>             <span class="hljs-comment"># 显示换行 -e 开启转义</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;It is a test&quot;</span> &gt; myfile <span class="hljs-comment"># 显示结果定向至文件</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;$name\&quot;&#x27;</span>               <span class="hljs-comment"># 原样输入字符串，不进行转义或取变量（使用单引号）</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> `date`                  <span class="hljs-comment"># 显示命令执行结构</span></span>
 </code></pre></div></div>
 
-<h2 id="2-颜色显示"><a href="#2-颜色显示" class="headerlink" title="2. 颜色显示"></a>2. 颜色显示</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">echo -e &quot;\033[字背景颜色；文字颜色m字符串\033[0m&quot;</span>
-<span class="line"></span>
-<span class="line">echo -e “\033[30m 黑色字 \033[0m”</span>
-<span class="line">echo -e “\033[31m 红色字 \033[0m”</span>
-<span class="line">echo -e “\033[32m 绿色字 \033[0m”</span>
-<span class="line">echo -e “\033[33m 黄色字 \033[0m”</span>
-<span class="line">echo -e “\033[34m 蓝色字 \033[0m”</span>
-<span class="line">echo -e “\033[35m 紫色字 \033[0m”</span>
-<span class="line">echo -e “\033[36m 天蓝字 \033[0m”</span>
-<span class="line">echo -e “\033[37m 白色字 \033[0m”</span>
-<span class="line"></span>
-<span class="line">echo -e “\033[40;37m 黑底白字 \033[0m”</span>
-<span class="line">echo -e “\033[41;37m 红底白字 \033[0m”</span>
-<span class="line">echo -e “\033[42;37m 绿底白字 \033[0m”</span>
-<span class="line">echo -e “\033[43;37m 黄底白字 \033[0m”</span>
-<span class="line">echo -e “\033[44;37m 蓝底白字 \033[0m”</span>
-<span class="line">echo -e “\033[45;37m 紫底白字 \033[0m”</span>
-<span class="line">echo -e “\033[46;37m 天蓝底白字 \033[0m”</span>
-<span class="line">echo -e “\033[47;30m 白底黑字 \033[0m”</span>
-<span class="line"></span>
-<span class="line">\33[0m 关闭所有属性</span>
-<span class="line">\33[1m 设置高亮度</span>
-<span class="line">\33[4m 下划线</span>
-<span class="line">\33[5m 闪烁</span>
-<span class="line">\33[7m 反显</span>
-<span class="line">\33[8m 消隐</span>
-<span class="line">\33[30m — \33[37m 设置前景色</span>
-<span class="line">\33[40m — \33[47m 设置背景色</span>
-<span class="line">\33[nA 光标上移n行</span>
-<span class="line">\33[nB 光标下移n行</span>
-<span class="line">\33[nC 光标右移n行</span>
-<span class="line">\33[nD 光标左移n行</span>
-<span class="line">\33[y;xH设置光标位置</span>
-<span class="line">\33[2J 清屏</span>
-<span class="line">\33[K 清除从光标到行尾的内容</span>
-<span class="line">\33[s 保存光标位置</span>
-<span class="line">\33[u 恢复光标位置</span>
-<span class="line">\33[?25l 隐藏光标</span>
-<span class="line">\33[?25h 显示光标</span>
+<h2 id="2-颜色显示"><a href="#2-颜色显示" class="headerlink" title="2. 颜色显示"></a>2. 颜色显示</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-taggerscript codeBlockLines"><span class="line">echo -e &quot;<span class="hljs-symbol">\0</span>33[字背景颜色；文字颜色m字符串<span class="hljs-symbol">\0</span>33[0m&quot;</span>
+<span class="line"></br></span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[30m 黑色字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[31m 红色字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[32m 绿色字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[33m 黄色字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[34m 蓝色字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[35m 紫色字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[36m 天蓝字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[37m 白色字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line"></br></span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[40;37m 黑底白字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[41;37m 红底白字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[42;37m 绿底白字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[43;37m 黄底白字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[44;37m 蓝底白字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[45;37m 紫底白字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[46;37m 天蓝底白字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line">echo -e “<span class="hljs-symbol">\0</span>33[47;30m 白底黑字 <span class="hljs-symbol">\0</span>33[0m”</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-symbol">\3</span>3[0m 关闭所有属性</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[1m 设置高亮度</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[4m 下划线</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[5m 闪烁</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[7m 反显</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[8m 消隐</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[30m — <span class="hljs-symbol">\3</span>3[37m 设置前景色</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[40m — <span class="hljs-symbol">\3</span>3[47m 设置背景色</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[nA 光标上移n行</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[nB 光标下移n行</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[nC 光标右移n行</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[nD 光标左移n行</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[y;xH设置光标位置</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[2J 清屏</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[K 清除从光标到行尾的内容</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[s 保存光标位置</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[u 恢复光标位置</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[?25l 隐藏光标</span>
+<span class="line"><span class="hljs-symbol">\3</span>3[?25h 显示光标</span>
 </code></pre></div></div>
 
-<h1 id="sprintf"><a href="#sprintf" class="headerlink" title="sprintf"></a>sprintf</h1><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">printf &quot;%-10s %-8s %-4s\n&quot; 姓名 性别 体重kg  </span>
-<span class="line">printf &quot;%-10s %-8s %-4.2f\n&quot; 郭靖 男 66.1234</span>
-<span class="line">printf &quot;%-10s %-8s %-4.2f\n&quot; 杨过 男 48.6543</span>
-<span class="line">printf &quot;%-10s %-8s %-4.2f\n&quot; 郭芙 女 47.9876</span>
+<h1 id="sprintf"><a href="#sprintf" class="headerlink" title="sprintf"></a>sprintf</h1><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line"><span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%-10s %-8s %-4s\n&quot;</span> 姓名 性别 体重kg  </span>
+<span class="line"><span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%-10s %-8s %-4.2f\n&quot;</span> 郭靖 男 66.1234</span>
+<span class="line"><span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%-10s %-8s %-4.2f\n&quot;</span> 杨过 男 48.6543</span>
+<span class="line"><span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%-10s %-8s %-4.2f\n&quot;</span> 郭芙 女 47.9876</span>
 </code></pre></div></div>
 
 <p>结果：</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">姓名     性别   体重kg</span>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" codeBlockLines"><span class="line">姓名     性别   体重kg</span>
 <span class="line">郭靖     男      66.12</span>
 <span class="line">杨过     男      48.65</span>
 <span class="line">郭芙     女      47.99</span>
@@ -713,156 +737,156 @@
 <p><code>%s %c %d %f</code> 都是格式替代符<br><code>d</code>: Decimal 十进制整数 – 对应位置参数必须是十进制整数，否则报错！<br><code>s</code>: String 字符串 – 对应位置参数必须是字符串或者字符型，否则报错！<br><code>c</code>: Char 字符 – 对应位置参数必须是字符串或者字符型，否则报错！<br><code>f</code>: Float 浮点 – 对应位置参数必须是数字型，否则报错！<br><code>%-10s</code> 指一个宽度为10个字符（-表示左对齐，没有则表示右对齐）,任何字符都会被显示在10个字符宽的字符内，如果不足则自动以空格填充，超过也会将内容全部显示出来。<br><code>%-4.2f</code> 指格式化为小数，其中.2指保留2位小数。</p>
 </blockquote>
 <h1 id="test"><a href="#test" class="headerlink" title="test"></a>test</h1><p>Shell中的 test 命令用于检查某个条件是否成立，它可以进行数值、字符和文件三个方面的测试。</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
 <span class="line">num1=100</span>
 <span class="line">num2=100</span>
-<span class="line">if test $[num1] -eq $[num2]</span>
+<span class="line"><span class="hljs-keyword">if</span> <span class="hljs-built_in">test</span> $[num1] -eq $[num2]</span>
 </code></pre></div></div>
 
-<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><h2 id="1-if-else"><a href="#1-if-else" class="headerlink" title="1. if-else"></a>1. if-else</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
+<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><h2 id="1-if-else"><a href="#1-if-else" class="headerlink" title="1. if-else"></a>1. if-else</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
 <span class="line">a=10</span>
 <span class="line">b=20</span>
-<span class="line">if [ $a == $b ]</span>
-<span class="line">then</span>
-<span class="line">   echo &quot;a 等于 b&quot;</span>
-<span class="line">elif [ $a -gt $b ]</span>
-<span class="line">then</span>
-<span class="line">   echo &quot;a 大于 b&quot;</span>
-<span class="line">elif [ $a -lt $b ]</span>
-<span class="line">then</span>
-<span class="line">   echo &quot;a 小于 b&quot;</span>
-<span class="line">else</span>
-<span class="line">   echo &quot;没有符合的条件&quot;</span>
-<span class="line">fi</span>
+<span class="line"><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> == <span class="hljs-variable">$b</span> ]</span>
+<span class="line"><span class="hljs-keyword">then</span></span>
+<span class="line">   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;a 等于 b&quot;</span></span>
+<span class="line"><span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$a</span> -gt <span class="hljs-variable">$b</span> ]</span>
+<span class="line"><span class="hljs-keyword">then</span></span>
+<span class="line">   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;a 大于 b&quot;</span></span>
+<span class="line"><span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$a</span> -lt <span class="hljs-variable">$b</span> ]</span>
+<span class="line"><span class="hljs-keyword">then</span></span>
+<span class="line">   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;a 小于 b&quot;</span></span>
+<span class="line"><span class="hljs-keyword">else</span></span>
+<span class="line">   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;没有符合的条件&quot;</span></span>
+<span class="line"><span class="hljs-keyword">fi</span></span>
 </code></pre></div></div>
 
-<h2 id="2-for"><a href="#2-for" class="headerlink" title="2. for"></a>2. for</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">for loop in 1 2 3 4 5</span>
-<span class="line">do</span>
-<span class="line">    echo &quot;The value is: $loop&quot;</span>
-<span class="line">done</span>
+<h2 id="2-for"><a href="#2-for" class="headerlink" title="2. for"></a>2. for</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line"><span class="hljs-keyword">for</span> loop <span class="hljs-keyword">in</span> 1 2 3 4 5</span>
+<span class="line"><span class="hljs-keyword">do</span></span>
+<span class="line">    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;The value is: <span class="hljs-variable">$loop</span>&quot;</span></span>
+<span class="line"><span class="hljs-keyword">done</span></span>
 </code></pre></div></div>
 
-<h2 id="3-while"><a href="#3-while" class="headerlink" title="3. while"></a>3. while</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
+<h2 id="3-while"><a href="#3-while" class="headerlink" title="3. while"></a>3. while</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
 <span class="line">int=1</span>
-<span class="line">while(( $int&lt;=5 ))</span>
-<span class="line">do</span>
-<span class="line">    echo $int</span>
-<span class="line">    let &quot;int++&quot;</span>
-<span class="line">done</span>
+<span class="line"><span class="hljs-keyword">while</span>(( <span class="hljs-variable">$int</span>&lt;=5 ))</span>
+<span class="line"><span class="hljs-keyword">do</span></span>
+<span class="line">    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$int</span></span>
+<span class="line">    <span class="hljs-built_in">let</span> <span class="hljs-string">&quot;int++&quot;</span></span>
+<span class="line"><span class="hljs-keyword">done</span></span>
 </code></pre></div></div>
 
-<h2 id="4-case"><a href="#4-case" class="headerlink" title="4. case"></a>4. case</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">echo &#x27;输入 1 到 4 之间的数字:&#x27;</span>
-<span class="line">echo &#x27;你输入的数字为:&#x27;</span>
-<span class="line">read aNum</span>
-<span class="line">case $aNum in</span>
-<span class="line">    1)  echo &#x27;你选择了 1&#x27;</span>
+<h2 id="4-case"><a href="#4-case" class="headerlink" title="4. case"></a>4. case</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;输入 1 到 4 之间的数字:&#x27;</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;你输入的数字为:&#x27;</span></span>
+<span class="line"><span class="hljs-built_in">read</span> aNum</span>
+<span class="line"><span class="hljs-keyword">case</span> <span class="hljs-variable">$aNum</span> <span class="hljs-keyword">in</span></span>
+<span class="line">    1)  <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;你选择了 1&#x27;</span></span>
 <span class="line">    ;;</span>
-<span class="line">    2)  echo &#x27;你选择了 2&#x27;</span>
+<span class="line">    2)  <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;你选择了 2&#x27;</span></span>
 <span class="line">    ;;</span>
-<span class="line">    3)  echo &#x27;你选择了 3&#x27;</span>
+<span class="line">    3)  <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;你选择了 3&#x27;</span></span>
 <span class="line">    ;;</span>
-<span class="line">    4)  echo &#x27;你选择了 4&#x27;</span>
+<span class="line">    4)  <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;你选择了 4&#x27;</span></span>
 <span class="line">    ;;</span>
-<span class="line">    *)  echo &#x27;你没有输入 1 到 4 之间的数字&#x27;</span>
+<span class="line">    *)  <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;你没有输入 1 到 4 之间的数字&#x27;</span></span>
 <span class="line">    ;;</span>
-<span class="line">esac</span>
+<span class="line"><span class="hljs-keyword">esac</span></span>
 </code></pre></div></div>
 
 <h2 id="5-break"><a href="#5-break" class="headerlink" title="5. break"></a>5. break</h2><p>break命令允许跳出所有循环（终止执行后面的所有循环）。</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">while :</span>
-<span class="line">do</span>
-<span class="line">    echo -n &quot;输入 1 到 5 之间的数字:&quot;</span>
-<span class="line">    read aNum</span>
-<span class="line">    case $aNum in</span>
-<span class="line">        1|2|3|4|5) echo &quot;你输入的数字为 $aNum!&quot;</span>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line"><span class="hljs-keyword">while</span> :</span>
+<span class="line"><span class="hljs-keyword">do</span></span>
+<span class="line">    <span class="hljs-built_in">echo</span> -n <span class="hljs-string">&quot;输入 1 到 5 之间的数字:&quot;</span></span>
+<span class="line">    <span class="hljs-built_in">read</span> aNum</span>
+<span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-variable">$aNum</span> <span class="hljs-keyword">in</span></span>
+<span class="line">        1|2|3|4|5) <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;你输入的数字为 <span class="hljs-variable">$aNum</span>!&quot;</span></span>
 <span class="line">        ;;</span>
-<span class="line">        *) echo &quot;你输入的数字不是 1 到 5 之间的! 游戏结束&quot;</span>
-<span class="line">            break</span>
+<span class="line">        *) <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;你输入的数字不是 1 到 5 之间的! 游戏结束&quot;</span></span>
+<span class="line">            <span class="hljs-built_in">break</span></span>
 <span class="line">        ;;</span>
-<span class="line">    esac</span>
-<span class="line">done</span>
+<span class="line">    <span class="hljs-keyword">esac</span></span>
+<span class="line"><span class="hljs-keyword">done</span></span>
 </code></pre></div></div>
 
 <h2 id="6-continue"><a href="#6-continue" class="headerlink" title="6. continue"></a>6. continue</h2><p>跳出当前循环。</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">while :</span>
-<span class="line">do</span>
-<span class="line">    echo -n &quot;输入 1 到 5 之间的数字: &quot;</span>
-<span class="line">    read aNum</span>
-<span class="line">    case $aNum in</span>
-<span class="line">        1|2|3|4|5) echo &quot;你输入的数字为 $aNum!&quot;</span>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line"><span class="hljs-keyword">while</span> :</span>
+<span class="line"><span class="hljs-keyword">do</span></span>
+<span class="line">    <span class="hljs-built_in">echo</span> -n <span class="hljs-string">&quot;输入 1 到 5 之间的数字: &quot;</span></span>
+<span class="line">    <span class="hljs-built_in">read</span> aNum</span>
+<span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-variable">$aNum</span> <span class="hljs-keyword">in</span></span>
+<span class="line">        1|2|3|4|5) <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;你输入的数字为 <span class="hljs-variable">$aNum</span>!&quot;</span></span>
 <span class="line">        ;;</span>
-<span class="line">        *) echo &quot;你输入的数字不是 1 到 5 之间的!&quot;</span>
-<span class="line">            continue</span>
-<span class="line">            echo &quot;游戏结束&quot;</span>
+<span class="line">        *) <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;你输入的数字不是 1 到 5 之间的!&quot;</span></span>
+<span class="line">            <span class="hljs-built_in">continue</span></span>
+<span class="line">            <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;游戏结束&quot;</span></span>
 <span class="line">        ;;</span>
-<span class="line">    esac</span>
-<span class="line">done</span>
+<span class="line">    <span class="hljs-keyword">esac</span></span>
+<span class="line"><span class="hljs-keyword">done</span></span>
 </code></pre></div></div>
 
-<h2 id="7-until"><a href="#7-until" class="headerlink" title="7. until"></a>7. until</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line"></span>
+<h2 id="7-until"><a href="#7-until" class="headerlink" title="7. until"></a>7. until</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line"></br></span>
 <span class="line">a=0</span>
-<span class="line"></span>
-<span class="line">until [ ! $a -lt 10 ]</span>
-<span class="line">do</span>
-<span class="line">   echo $a</span>
-<span class="line">   a=`expr $a + 1`</span>
-<span class="line">done</span>
+<span class="line"></br></span>
+<span class="line">until [ ! <span class="hljs-variable">$a</span> -lt 10 ]</span>
+<span class="line"><span class="hljs-keyword">do</span></span>
+<span class="line">   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$a</span></span>
+<span class="line">   a=`expr <span class="hljs-variable">$a</span> + 1`</span>
+<span class="line"><span class="hljs-keyword">done</span></span>
 </code></pre></div></div>
 
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line"></span>
-<span class="line">funWithParam()&#123;</span>
-<span class="line">    echo &quot;第一个参数为 $1 !&quot;</span>
-<span class="line">    echo &quot;第二个参数为 $2 !&quot;</span>
-<span class="line">    echo &quot;第十个参数为 $10 !&quot;</span>
-<span class="line">    echo &quot;第十个参数为 $&#123;10&#125; !&quot;</span>
-<span class="line">    echo &quot;第十一个参数为 $&#123;11&#125; !&quot;</span>
-<span class="line">    echo &quot;参数总数有 $# 个!&quot;</span>
-<span class="line">    echo &quot;作为一个字符串输出所有参数 $* !&quot;</span>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-title">funWithParam</span></span>()&#123;</span>
+<span class="line">    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第一个参数为 <span class="hljs-variable">$1</span> !&quot;</span></span>
+<span class="line">    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第二个参数为 <span class="hljs-variable">$2</span> !&quot;</span></span>
+<span class="line">    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第十个参数为 <span class="hljs-variable">$10</span> !&quot;</span></span>
+<span class="line">    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第十个参数为 <span class="hljs-variable">$&#123;10&#125;</span> !&quot;</span></span>
+<span class="line">    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;第十一个参数为 <span class="hljs-variable">$&#123;11&#125;</span> !&quot;</span></span>
+<span class="line">    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;参数总数有 <span class="hljs-variable">$#</span> 个!&quot;</span></span>
+<span class="line">    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;作为一个字符串输出所有参数 $* !&quot;</span></span>
 <span class="line">&#125;</span>
 <span class="line">funWithParam 1 2 3 4 5 6 7 8 9 34 73</span>
 </code></pre></div></div>
 
 <p>结果： </p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">第一个参数为 1 !</span>
-<span class="line">第二个参数为 2 !</span>
-<span class="line">第十个参数为 10 !</span>
-<span class="line">第十个参数为 34 !</span>
-<span class="line">第十一个参数为 73 !</span>
-<span class="line">参数总数有 11 个!</span>
-<span class="line">作为一个字符串输出所有参数 1 2 3 4 5 6 7 8 9 34 73 !</span>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-tap codeBlockLines"><span class="line">第一个参数为<span class="hljs-number"> 1 </span>!</span>
+<span class="line">第二个参数为<span class="hljs-number"> 2 </span>!</span>
+<span class="line">第十个参数为<span class="hljs-number"> 10 </span>!</span>
+<span class="line">第十个参数为<span class="hljs-number"> 34 </span>!</span>
+<span class="line">第十一个参数为<span class="hljs-number"> 73 </span>!</span>
+<span class="line">参数总数有<span class="hljs-number"> 11 </span>个!</span>
+<span class="line">作为一个字符串输出所有参数<span class="hljs-number"> 1 </span>2<span class="hljs-number"> 3 </span>4<span class="hljs-number"> 5 </span>6<span class="hljs-number"> 7 </span>8<span class="hljs-number"> 9 </span>34<span class="hljs-number"> 73 </span>!</span>
 </code></pre></div></div>
 
-<h1 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h1><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">who &gt; today.log # 执行结果覆盖到文件 today.log</span>
-<span class="line">echo &quot;菜鸟教程：www.runoob.com&quot; &gt;&gt; today.log # 执行结果追加到文件 today.log</span>
-<span class="line">wc -l &lt; today.log # 统计 today.log 行数</span>
-<span class="line">wc -l &lt;&lt; EOF</span>
-<span class="line">    李白</span>
-<span class="line">    苏轼</span>
-<span class="line">    王勃</span>
-<span class="line">EOF</span>
+<h1 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h1><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line">who &gt; today.log <span class="hljs-comment"># 执行结果覆盖到文件 today.log</span></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;菜鸟教程：www.runoob.com&quot;</span> &gt;&gt; today.log <span class="hljs-comment"># 执行结果追加到文件 today.log</span></span>
+<span class="line">wc -l &lt; today.log <span class="hljs-comment"># 统计 today.log 行数</span></span>
+<span class="line">wc -l &lt;&lt; <span class="hljs-string">EOF</span></span>
+<span class="line"><span class="hljs-string">    李白</span></span>
+<span class="line"><span class="hljs-string">    苏轼</span></span>
+<span class="line"><span class="hljs-string">    王勃</span></span>
+<span class="line"><span class="hljs-string">EOF</span></span>
 </code></pre></div></div>
 
 <h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><p>test1.sh</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">name=&quot;Chris&quot;</span>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line">name=<span class="hljs-string">&quot;Chris&quot;</span></span>
 </code></pre></div></div>
 
 <p>test2.sh</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">#!/bin/bash</span>
-<span class="line">#使用 . 号来引用test1.sh 文件</span>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/bash</span></span>
+<span class="line"><span class="hljs-comment">#使用 . 号来引用test1.sh 文件</span></span>
 <span class="line">. ./test1.sh</span>
-<span class="line"></span>
-<span class="line"># 或者使用以下包含文件代码</span>
-<span class="line"># source ./test1.sh</span>
-<span class="line"></span>
-<span class="line">echo $name</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment"># 或者使用以下包含文件代码</span></span>
+<span class="line"><span class="hljs-comment"># source ./test1.sh</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$name</span></span>
 </code></pre></div></div>
 
 <blockquote>

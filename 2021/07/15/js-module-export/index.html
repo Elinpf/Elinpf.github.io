@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Docusaurus 的多实例文档部署 | Elin 的空间</title>
-  <meta name="keywords" content=" docusaurus ">
-  <meta name="description" content="Docusaurus 的多实例文档部署 | Elin 的空间">
+  <title>javascript 的export导出方式 | Elin 的空间</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="javascript 的export导出方式 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="javascript 的两种格式javascript 中有两种格式模块  Nodejs 的 CommonJS模块，简称CJS ES6模块，简称ESM  引入的方式区别如下：  CJS的导出都是exports，而ESM的导出都是export CJS 的引入使用两个文件来做测试，utils.js 和 test.js 1. module.exportsutils.jsconst a &#x3D; (x, y) &#x3D;">
 <meta property="og:type" content="article">
@@ -418,9 +418,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-docu-的多实例文档" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-js-module-export" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Docusaurus 的多实例文档部署</h1>
+        <h1 class="article-title">javascript 的export导出方式</h1>
     
     <div class="article-meta">
         
@@ -430,22 +430,17 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="前端技术">前端技术</a>
+            <a  data-rel="编程">编程</a> > 
+            
+            <a  data-rel="编程&lt;---&gt;javascript">javascript</a>
             
         </span>
         
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color1">docusaurus</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-15 17:25:24'>2021-06-24 00:00</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-15 17:25:24'>2021-07-15 09:26</time>
         
     </div>
     <div class="article-meta">
@@ -467,7 +462,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docusaurus-%E7%9A%84%E5%A4%9A%E5%AE%9E%E4%BE%8B%E6%96%87%E6%A1%A3%E9%83%A8%E7%BD%B2"><span class="toc-text">Docusaurus 的多实例文档部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="toc-text">修改文件</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#javascript-%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A0%BC%E5%BC%8F"><span class="toc-text">javascript 的两种格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CJS-%E7%9A%84%E5%BC%95%E5%85%A5"><span class="toc-text">CJS 的引入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-module-exports"><span class="toc-text">1. module.exports</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-exports"><span class="toc-text">2. exports</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -483,54 +478,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Docusaurus-的多实例文档部署"><a href="#Docusaurus-的多实例文档部署" class="headerlink" title="Docusaurus 的多实例文档部署"></a>Docusaurus 的多实例文档部署</h1><p>要实现多实例文档部署其实非常简单，按照<a target="_blank" rel="noopener" href="https://docusaurus.io/zh-CN/docs/docs-multi-instance">官方文档</a>就可以操作。但是里面有一些坑需要回避。</p>
-<p>有两种部署方式：</p>
+        <h2 id="javascript-的两种格式"><a href="#javascript-的两种格式" class="headerlink" title="javascript 的两种格式"></a>javascript 的两种格式</h2><p>javascript 中有两种格式模块</p>
 <ol>
-<li>在<code>doc</code>文件夹内部再添加文件夹，这种方式可以控制版本。</li>
-<li>在根目录下添加文件夹，这种方式不能控制版本。</li>
+<li>Nodejs 的 <code>CommonJS</code>模块，简称<code>CJS</code></li>
+<li>ES6模块，简称<code>ESM</code></li>
 </ol>
-<p>本篇讲述第2种方式。第一种方式可以参考<a target="_blank" rel="noopener" href="https://www.gitmemory.com/issue/facebook/docusaurus/3299/675409985">这篇文章</a>。</p>
-<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-asciidoc codeBlockLines"><span class="line">docs/</span>
-<span class="line"><span class="hljs-bullet">- </span>doc1.md</span>
-<span class="line">resources/</span>
-<span class="line"><span class="hljs-bullet">- </span>doc2.md</span>
+<p>引入的方式区别如下：</p>
+<p><img src="/2021/07/15/js-module-export/1.png"></p>
+<p>CJS的导出都是<code>exports</code>，而<code>ESM</code>的导出都是<code>export</code></p>
+<h2 id="CJS-的引入"><a href="#CJS-的引入" class="headerlink" title="CJS 的引入"></a>CJS 的引入</h2><p>使用两个文件来做测试，<code>utils.js</code> 和 <code>test.js</code></p>
+<h3 id="1-module-exports"><a href="#1-module-exports" class="headerlink" title="1. module.exports"></a>1. module.exports</h3><div class="codeBlockContainer"><div class="codeBlockTitle">utils.js</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="hljs-keyword">const</span> a = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> x + y;</span>
+<span class="line"><span class="hljs-keyword">const</span> b = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> x + y;</span>
+<span class="line"><span class="hljs-built_in">module</span>.exports = a;</span>
+<span class="line"><span class="hljs-built_in">module</span>.exports = b;</span>
 </code></pre></div></div>
 
-<p>如上加入了<code>resources</code>文件夹，里面包含了<code>doc2.md</code>文件。</p>
-<h2 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h2><p>在<code>docusaurus.config.js</code>文件中需要做出如下<strong>最小</strong>修改：</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span>
-<span class="line">  <span class="hljs-attr">plugins</span>: [</span>
-<span class="line">    [</span>
-<span class="line">      <span class="hljs-string">&#x27;@docusaurus/plugin-content-docs&#x27;</span>,</span>
-<span class="line">      &#123;</span>
-<span class="line">        <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;resources&#x27;</span>,</span>
-<span class="line">        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;resources&#x27;</span>,</span>
-<span class="line">        <span class="hljs-attr">routeBasePath</span>: <span class="hljs-string">&#x27;resources&#x27;</span>,</span>
-<span class="line">        <span class="hljs-attr">sidebarPath</span>: <span class="hljs-built_in">require</span>.resolve(<span class="hljs-string">&#x27;./sidebarsResources.js&#x27;</span>),</span>
-<span class="line">        <span class="hljs-comment">// ... 其他设置</span></span>
-<span class="line">      &#125;,</span>
-<span class="line">    ],</span>
-<span class="line">  ],</span>
-<span class="line">  <span class="hljs-attr">themeConfig</span>: &#123;</span>
-<span class="line">    <span class="hljs-attr">navbar</span>: &#123;</span>
-<span class="line">      <span class="hljs-attr">items</span>: [&#123;</span>
-<span class="line">      &#123;</span>
-<span class="line marked">        <span class="hljs-attr">to</span>: <span class="hljs-string">&#x27;/resources/doc2&#x27;</span>,   <span class="hljs-comment">// 这里要指定具体的index文档</span></span>
-<span class="line">        <span class="hljs-attr">activeBasePath</span>: <span class="hljs-string">&#x27;resources&#x27;</span>,</span>
-<span class="line">        <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;这里是文档2&#x27;</span>,</span>
-<span class="line">        <span class="hljs-attr">position</span>: <span class="hljs-string">&#x27;left&#x27;</span></span>
-<span class="line">      &#125;,</span>
-<span class="line">      &#125;]</span>
-<span class="line">    &#125;</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;;</span>
+<div class="codeBlockContainer"><div class="codeBlockTitle">test.js</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="hljs-keyword">const</span> utils = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./utils&#x27;</span>);</span>
+<span class="line"><span class="hljs-built_in">console</span>.log(utils); <span class="hljs-comment">// [Function: b]</span></span>
 </code></pre></div></div>
 
-<p>最后是对sidebars的调整</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span>
-<span class="line">    <span class="hljs-attr">resources</span>: [&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;autogenerated&#x27;</span>, <span class="hljs-attr">dirName</span>: <span class="hljs-string">&#x27;.&#x27;</span> &#125;],</span>
-<span class="line">&#125;</span>
+<p>可以看到，这种方法只能导出一个函数</p>
+<h3 id="2-exports"><a href="#2-exports" class="headerlink" title="2. exports"></a>2. exports</h3><div class="codeBlockContainer"><div class="codeBlockTitle">utils.js</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="hljs-built_in">exports</span>.a = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> x + y;</span>
+<span class="line"><span class="hljs-built_in">exports</span>.b = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> x - y;</span>
 </code></pre></div></div>
+
+<div class="codeBlockContainer"><div class="codeBlockTitle">test.js</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="hljs-keyword">const</span> utils = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./utils&#x27;</span>);</span>
+<span class="line"><span class="hljs-built_in">console</span>.log(utils); <span class="hljs-comment">//&#123; a: [Function (anonymous)], b: [Function (anonymous)] &#125;</span></span>
+</code></pre></div></div>
+
+<p>这种方法可以导出多个函数</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>

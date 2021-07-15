@@ -615,7 +615,7 @@ function bind() {
             $(this).after('<div class="code-embed"><span class="code-embed-type">' + (lang ? lang : '') + '</span>' + (hasCopy ? '<span class="code-embed-copy" onclick="copyCode(this)">复制代码</span>' : '') + '</div>')
             // 渲染样式
             if (codeClass.indexOf('hljs') === -1) {
-                hljs.highlightBlock(block);
+                // hljs.highlightBlock(block);
             }
         });
     }
