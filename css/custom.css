@@ -112,6 +112,7 @@ svg {
   flex-direction: column;
   border-radius: 10px;
   background-color: rgba(182,198,208,0.141);
+  overflow-x: auto;
 }
 #post .pjax article .codeBlockLines .marked {
   background-color: #dddfe1;
