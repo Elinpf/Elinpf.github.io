@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Docusaurus 的多实例文档部署 | Elin 的空间</title>
-  <meta name="keywords" content=" docusaurus ">
-  <meta name="description" content="Docusaurus 的多实例文档部署 | Elin 的空间">
+  <title>python http | Elin 的空间</title>
+  <meta name="keywords" content=" http , server ">
+  <meta name="description" content="python http | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="HTTP Server参考一个完整的服务端配置 #!&#x2F;usr&#x2F;bin&#x2F;env python3 &quot;&quot;&quot; Very simple HTTP server in python for logging requests Usage::     .&#x2F;server.py [&lt;port&gt;] &quot;&quot;&quot; from http.server impo">
 <meta property="og:type" content="article">
@@ -434,9 +434,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-docu-的多实例文档" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-python-http" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Docusaurus 的多实例文档部署</h1>
+        <h1 class="article-title">python http</h1>
     
     <div class="article-meta">
         
@@ -446,7 +446,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="前端技术">前端技术</a>
+            <a  data-rel="编程">编程</a> > 
+            
+            <a  data-rel="编程&lt;---&gt;python">python</a>
             
         </span>
         
@@ -454,14 +456,16 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">docusaurus</a>
+            <a class="color5">http</a>
+            
+            <a class="color2">server</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-16 17:34:24'>2021-06-24 00:00</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-16 17:34:24'>2021-07-16 10:05</time>
         
     </div>
     <div class="article-meta">
@@ -483,7 +487,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docusaurus-%E7%9A%84%E5%A4%9A%E5%AE%9E%E4%BE%8B%E6%96%87%E6%A1%A3%E9%83%A8%E7%BD%B2"><span class="toc-text">Docusaurus 的多实例文档部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="toc-text">修改文件</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-Server"><span class="toc-text">HTTP Server</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -499,55 +503,65 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Docusaurus-的多实例文档部署"><a href="#Docusaurus-的多实例文档部署" class="headerlink" title="Docusaurus 的多实例文档部署"></a>Docusaurus 的多实例文档部署</h1><p>要实现多实例文档部署其实非常简单，按照<a target="_blank" rel="noopener" href="https://docusaurus.io/zh-CN/docs/docs-multi-instance">官方文档</a>就可以操作。但是里面有一些坑需要回避。</p>
-<p>有两种部署方式：</p>
-<ol>
-<li>在<code>doc</code>文件夹内部再添加文件夹，这种方式可以控制版本。</li>
-<li>在根目录下添加文件夹，这种方式不能控制版本。</li>
-</ol>
-<p>本篇讲述第2种方式。第一种方式可以参考<a target="_blank" rel="noopener" href="https://www.gitmemory.com/issue/facebook/docusaurus/3299/675409985">这篇文章</a>。</p>
-<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-asciidoc codeBlockLines"><span class="line">docs/</span>
-<span class="line"><span class="hljs-bullet">- </span>doc1.md</span>
-<span class="line">resources/</span>
-<span class="line"><span class="hljs-bullet">- </span>doc2.md</span>
+        <h2 id="HTTP-Server"><a href="#HTTP-Server" class="headerlink" title="HTTP Server"></a>HTTP Server</h2><p>参考一个完整的服务端配置</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-comment">#!/usr/bin/env python3</span></span>
+<span class="line"><span class="hljs-string">&quot;&quot;&quot;</span></span>
+<span class="line"><span class="hljs-string">Very simple HTTP server in python for logging requests</span></span>
+<span class="line"><span class="hljs-string">Usage::</span></span>
+<span class="line"><span class="hljs-string">    ./server.py [&lt;port&gt;]</span></span>
+<span class="line"><span class="hljs-string">&quot;&quot;&quot;</span></span>
+<span class="line"><span class="hljs-keyword">from</span> http.server <span class="hljs-keyword">import</span> BaseHTTPRequestHandler, HTTPServer</span>
+<span class="line"><span class="hljs-keyword">import</span> logging</span>
+<span class="line"></br></span>
+<span class="line">token = <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;token&quot;</span>).read().strip()</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">S</span>(<span class="hljs-params">BaseHTTPRequestHandler</span>):</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_set_response</span>(<span class="hljs-params">self</span>):</span></span>
+<span class="line">        self.send_response(<span class="hljs-number">200</span>)</span>
+<span class="line">        self.send_header(<span class="hljs-string">&#x27;Content-type&#x27;</span>, <span class="hljs-string">&#x27;text/html&#x27;</span>)</span>
+<span class="line">        self.end_headers()</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">do_GET</span>(<span class="hljs-params">self</span>):</span></span>
+<span class="line">        logging.info(<span class="hljs-string">&quot;GET request,\nPath: %s\nHeaders:\n%s\n&quot;</span>, <span class="hljs-built_in">str</span>(self.path), <span class="hljs-built_in">str</span>(self.headers))</span>
+<span class="line">        self._set_response()</span>
+<span class="line">        self.wfile.write(<span class="hljs-string">&quot;GET request for &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(self.path).encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">do_POST</span>(<span class="hljs-params">self</span>):</span></span>
+<span class="line">        content_length = <span class="hljs-built_in">int</span>(self.headers[<span class="hljs-string">&#x27;Content-Length&#x27;</span>]) <span class="hljs-comment"># &lt;--- Gets the size of data</span></span>
+<span class="line">        post_data = self.rfile.read(content_length) <span class="hljs-comment"># &lt;--- Gets the data itself</span></span>
+<span class="line">        logging.info(<span class="hljs-string">&quot;POST request, Body:\n%s\n&quot;</span>, post_data.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))</span>
+<span class="line"></br></span>
+<span class="line">        self._set_response()</span>
+<span class="line"></br></span>
+<span class="line">        <span class="hljs-keyword">if</span> (post_data.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>) == <span class="hljs-string">f&quot;token=<span class="hljs-subst">&#123;token&#125;</span>&quot;</span>):</span>
+<span class="line">            logging.info(<span class="hljs-string">&quot;[+] Token Success\n&quot;</span>)</span>
+<span class="line">            self.wfile.write(<span class="hljs-string">&quot;Token Success&quot;</span>.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))</span>
+<span class="line">        <span class="hljs-keyword">else</span>:</span>
+<span class="line">            logging.info(<span class="hljs-string">&quot;[-] Token Failed\n&quot;</span>)</span>
+<span class="line">            self.wfile.write(<span class="hljs-string">&quot;Token Failed&quot;</span>.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span>(<span class="hljs-params">server_class=HTTPServer, handler_class=S, port=<span class="hljs-number">8080</span></span>):</span></span>
+<span class="line">    logging.basicConfig(level=logging.INFO)</span>
+<span class="line">    server_address = (<span class="hljs-string">&#x27;&#x27;</span>, port)</span>
+<span class="line">    httpd = server_class(server_address, handler_class)</span>
+<span class="line">    logging.info(<span class="hljs-string">&#x27;Starting httpd...\n&#x27;</span>)</span>
+<span class="line">    <span class="hljs-keyword">try</span>:</span>
+<span class="line">        httpd.serve_forever()</span>
+<span class="line">    <span class="hljs-keyword">except</span> KeyboardInterrupt:</span>
+<span class="line">        <span class="hljs-keyword">pass</span></span>
+<span class="line">    httpd.server_close()</span>
+<span class="line">    logging.info(<span class="hljs-string">&#x27;Stopping httpd...\n&#x27;</span>)</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:</span>
+<span class="line">    <span class="hljs-keyword">from</span> sys <span class="hljs-keyword">import</span> argv</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(argv) == <span class="hljs-number">2</span>:</span>
+<span class="line">        run(port=<span class="hljs-built_in">int</span>(argv[<span class="hljs-number">1</span>]))</span>
+<span class="line">    <span class="hljs-keyword">else</span>:</span>
+<span class="line">        run()</span>
 </code></pre></div></div>
-
-<p>如上加入了<code>resources</code>文件夹，里面包含了<code>doc2.md</code>文件。</p>
-<h2 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h2><p>在<code>docusaurus.config.js</code>文件中需要做出如下<strong>最小</strong>修改：</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span>
-<span class="line">  <span class="hljs-attr">plugins</span>: [</span>
-<span class="line">    [</span>
-<span class="line">      <span class="hljs-string">&#x27;@docusaurus/plugin-content-docs&#x27;</span>,</span>
-<span class="line">      &#123;</span>
-<span class="line">        <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;resources&#x27;</span>,</span>
-<span class="line">        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;resources&#x27;</span>,</span>
-<span class="line">        <span class="hljs-attr">routeBasePath</span>: <span class="hljs-string">&#x27;resources&#x27;</span>,</span>
-<span class="line">        <span class="hljs-attr">sidebarPath</span>: <span class="hljs-built_in">require</span>.resolve(<span class="hljs-string">&#x27;./sidebarsResources.js&#x27;</span>),</span>
-<span class="line">        <span class="hljs-comment">// ... 其他设置</span></span>
-<span class="line">      &#125;,</span>
-<span class="line">    ],</span>
-<span class="line">  ],</span>
-<span class="line">  <span class="hljs-attr">themeConfig</span>: &#123;</span>
-<span class="line">    <span class="hljs-attr">navbar</span>: &#123;</span>
-<span class="line">      <span class="hljs-attr">items</span>: [&#123;</span>
-<span class="line">      &#123;</span>
-<span class="line marked">        <span class="hljs-attr">to</span>: <span class="hljs-string">&#x27;/resources/doc2&#x27;</span>,   <span class="hljs-comment">// 这里要指定具体的index文档</span></span>
-<span class="line">        <span class="hljs-attr">activeBasePath</span>: <span class="hljs-string">&#x27;resources&#x27;</span>,</span>
-<span class="line">        <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;这里是文档2&#x27;</span>,</span>
-<span class="line">        <span class="hljs-attr">position</span>: <span class="hljs-string">&#x27;left&#x27;</span></span>
-<span class="line">      &#125;,</span>
-<span class="line">      &#125;]</span>
-<span class="line">    &#125;</span>
-<span class="line">  &#125;</span>
-<span class="line">&#125;;</span>
-</code></pre></div></div>
-
-<p>最后是对sidebars的调整</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span>
-<span class="line">    <span class="hljs-attr">resources</span>: [&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;autogenerated&#x27;</span>, <span class="hljs-attr">dirName</span>: <span class="hljs-string">&#x27;.&#x27;</span> &#125;],</span>
-<span class="line">&#125;</span>
-</code></pre></div></div>
-
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
     </div>

@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>python http</title>
+      <link href="/2021/07/16/python-http/"/>
+      <url>/2021/07/16/python-http/</url>
+      
+        <content type="html"><![CDATA[<h2 id="HTTP-Server"><a href="#HTTP-Server" class="headerlink" title="HTTP Server"></a>HTTP Server</h2><p>参考一个完整的服务端配置</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-comment">#!/usr/bin/env python3</span></span><span class="line"><span class="hljs-string">&quot;&quot;&quot;</span></span><span class="line"><span class="hljs-string">Very simple HTTP server in python for logging requests</span></span><span class="line"><span class="hljs-string">Usage::</span></span><span class="line"><span class="hljs-string">    ./server.py [&lt;port&gt;]</span></span><span class="line"><span class="hljs-string">&quot;&quot;&quot;</span></span><span class="line"><span class="hljs-keyword">from</span> http.server <span class="hljs-keyword">import</span> BaseHTTPRequestHandler, HTTPServer</span><span class="line"><span class="hljs-keyword">import</span> logging</span><span class="line"></br></span><span class="line">token = <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;token&quot;</span>).read().strip()</span><span class="line"></br></span><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">S</span>(<span class="hljs-params">BaseHTTPRequestHandler</span>):</span></span><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_set_response</span>(<span class="hljs-params">self</span>):</span></span><span class="line">        self.send_response(<span class="hljs-number">200</span>)</span><span class="line">        self.send_header(<span class="hljs-string">&#x27;Content-type&#x27;</span>, <span class="hljs-string">&#x27;text/html&#x27;</span>)</span><span class="line">        self.end_headers()</span><span class="line"></br></span><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">do_GET</span>(<span class="hljs-params">self</span>):</span></span><span class="line">        logging.info(<span class="hljs-string">&quot;GET request,\nPath: %s\nHeaders:\n%s\n&quot;</span>, <span class="hljs-built_in">str</span>(self.path), <span class="hljs-built_in">str</span>(self.headers))</span><span class="line">        self._set_response()</span><span class="line">        self.wfile.write(<span class="hljs-string">&quot;GET request for &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(self.path).encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))</span><span class="line"></br></span><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">do_POST</span>(<span class="hljs-params">self</span>):</span></span><span class="line">        content_length = <span class="hljs-built_in">int</span>(self.headers[<span class="hljs-string">&#x27;Content-Length&#x27;</span>]) <span class="hljs-comment"># &lt;--- Gets the size of data</span></span><span class="line">        post_data = self.rfile.read(content_length) <span class="hljs-comment"># &lt;--- Gets the data itself</span></span><span class="line">        logging.info(<span class="hljs-string">&quot;POST request, Body:\n%s\n&quot;</span>, post_data.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))</span><span class="line"></br></span><span class="line">        self._set_response()</span><span class="line"></br></span><span class="line">        <span class="hljs-keyword">if</span> (post_data.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>) == <span class="hljs-string">f&quot;token=<span class="hljs-subst">&#123;token&#125;</span>&quot;</span>):</span><span class="line">            logging.info(<span class="hljs-string">&quot;[+] Token Success\n&quot;</span>)</span><span class="line">            self.wfile.write(<span class="hljs-string">&quot;Token Success&quot;</span>.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))</span><span class="line">        <span class="hljs-keyword">else</span>:</span><span class="line">            logging.info(<span class="hljs-string">&quot;[-] Token Failed\n&quot;</span>)</span><span class="line">            self.wfile.write(<span class="hljs-string">&quot;Token Failed&quot;</span>.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))</span><span class="line"></br></span><span class="line"></br></span><span class="line"></br></span><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span>(<span class="hljs-params">server_class=HTTPServer, handler_class=S, port=<span class="hljs-number">8080</span></span>):</span></span><span class="line">    logging.basicConfig(level=logging.INFO)</span><span class="line">    server_address = (<span class="hljs-string">&#x27;&#x27;</span>, port)</span><span class="line">    httpd = server_class(server_address, handler_class)</span><span class="line">    logging.info(<span class="hljs-string">&#x27;Starting httpd...\n&#x27;</span>)</span><span class="line">    <span class="hljs-keyword">try</span>:</span><span class="line">        httpd.serve_forever()</span><span class="line">    <span class="hljs-keyword">except</span> KeyboardInterrupt:</span><span class="line">        <span class="hljs-keyword">pass</span></span><span class="line">    httpd.server_close()</span><span class="line">    logging.info(<span class="hljs-string">&#x27;Stopping httpd...\n&#x27;</span>)</span><span class="line"></br></span><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:</span><span class="line">    <span class="hljs-keyword">from</span> sys <span class="hljs-keyword">import</span> argv</span><span class="line"></br></span><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(argv) == <span class="hljs-number">2</span>:</span><span class="line">        run(port=<span class="hljs-built_in">int</span>(argv[<span class="hljs-number">1</span>]))</span><span class="line">    <span class="hljs-keyword">else</span>:</span><span class="line">        run()</span></code></pre></div></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> http </tag>
+            
+            <tag> server </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>javascript 的export导出方式</title>
       <link href="/2021/07/15/js-module-export/"/>
       <url>/2021/07/15/js-module-export/</url>
