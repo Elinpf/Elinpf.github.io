@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>PS后期方面</title>
+      <link href="/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/"/>
+      <url>/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/</url>
+      
+        <content type="html"><![CDATA[<ul><li><a href="https://www.bilibili.com/video/BV1ca4y1s7gY">参考视频</a></li></ul><h1 id="通透"><a href="#通透" class="headerlink" title="通透"></a>通透</h1><h2 id="原色原理"><a href="#原色原理" class="headerlink" title="原色原理"></a>原色原理</h2><p><img src="/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/1.png"></p><p>滤色模式就是加色模式，就是光的三原色的加色</p><p>RGB与CMY有着非常紧密的联系</p><table><thead><tr><th align="center">原色</th><th align="center">支持色</th><th align="center">互补色</th></tr></thead><tbody><tr><td align="center">红</td><td align="center">黄，品红</td><td align="center">青</td></tr><tr><td align="center">绿</td><td align="center">黄，青</td><td align="center">品红</td></tr><tr><td align="center">蓝</td><td align="center">青，品红</td><td align="center">黄</td></tr></tbody></table><p>去除互补色干扰</p><h2 id="什么是色彩脏？"><a href="#什么是色彩脏？" class="headerlink" title="什么是色彩脏？"></a>什么是色彩脏？</h2><p>色彩脏是因为加入了互补色</p><p>比如蓝色与黄色为互补色，那么调低不透明度就会成为灰色</p><p><img src="/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/2.png"></p><h1 id="影调"><a href="#影调" class="headerlink" title="影调"></a>影调</h1><h2 id="影调的划分系统"><a href="#影调的划分系统" class="headerlink" title="影调的划分系统"></a>影调的划分系统</h2><p>一般来说是三大调：黑白灰</p><p>具体来说有两种方式表达：</p><p><img src="/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/3.png"></p><p>以及</p><p><img src="/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/4.png"></p><p>那么这两种就会排列组合成9种影调以及1个全长调</p><p><img src="/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/5.png"></p><h2 id="黑白稿画的是什么"><a href="#黑白稿画的是什么" class="headerlink" title="黑白稿画的是什么"></a>黑白稿画的是什么</h2><p>在画黑白稿的时候，就是在确定影调的过程。</p><p>是整体偏暗的低中调，还是比较平均中长调，还是明亮的高中调？</p><h2 id="还有哪些调式"><a href="#还有哪些调式" class="headerlink" title="还有哪些调式"></a>还有哪些调式</h2><ul><li>高调、中间调、低调</li><li>软调、硬调</li><li>冷调、暖调</li><li>对比色调、调和色调</li><li>纯调、灰调</li></ul><h1 id="锐化"><a href="#锐化" class="headerlink" title="锐化"></a>锐化</h1><h2 id="心理上的感受"><a href="#心理上的感受" class="headerlink" title="心理上的感受"></a>心理上的感受</h2><p>发虚的轮廓让人感到着急，看不清</p><h2 id="如何做两级精细化处理"><a href="#如何做两级精细化处理" class="headerlink" title="如何做两级精细化处理"></a>如何做两级精细化处理</h2><ol><li>选择颜色模式为lab模式</li><li>在通道中只选择明度通道</li><li>USM锐化做两次（半径：5， 1.2）</li><li>回到RGB模式不拼合即可</li></ol><h1 id="塑造光线"><a href="#塑造光线" class="headerlink" title="塑造光线"></a>塑造光线</h1><p>两种方式</p><ol><li>画笔</li><li>径向模糊</li></ol><h2 id="径向模糊"><a href="#径向模糊" class="headerlink" title="径向模糊"></a>径向模糊</h2><ol><li>色阶调整到只有光源</li><li>径向模糊</li><li>滤色模式</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 绘画 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>学习编程的网站</title>
       <link href="/2021/07/17/%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BD%91%E7%AB%99/"/>
       <url>/2021/07/17/%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BD%91%E7%AB%99/</url>
@@ -23,6 +42,25 @@
             <tag> 学习 </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>透视关系</title>
+      <link href="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/"/>
+      <url>/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/</url>
+      
+        <content type="html"><![CDATA[<p>关于透视的教学，参考了<a href="https://www.bilibili.com/video/BV11t411m7Fk">这个视频</a>。</p><p>透视中最重要的一点是确定<code>观察点</code>，有了观察点，就有了<code>视平线</code>x轴与<code>垂直线</code>y轴。</p><p><img src="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/1.png"></p><h2 id="视平线"><a href="#视平线" class="headerlink" title="视平线"></a>视平线</h2><p>所有平行于地面的线最终都会汇聚到视平线上 </p><h2 id="画面"><a href="#画面" class="headerlink" title="画面"></a>画面</h2><p>只要是物体的线不与画面平行，那么就会发生汇聚</p><h2 id="测定深度"><a href="#测定深度" class="headerlink" title="测定深度"></a>测定深度</h2><p>3种方法:</p><ol><li><p><img src="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/2.png"></p></li><li><p><img src="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/3.png"></p></li><li><p><img src="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/4.png"></p></li><li><p><img src="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/5.png"></p></li></ol><p>原理都是利用了平行线都是同一个消失点和等比三角形。</p><h2 id="斜面"><a href="#斜面" class="headerlink" title="斜面"></a>斜面</h2><p>有同一个垂直消失线</p><p><img src="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/6.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 绘画 </category>
+          
+      </categories>
+      
       
     </entry>
     
