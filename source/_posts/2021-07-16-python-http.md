@@ -72,3 +72,38 @@ if __name__ == '__main__':
     else:
         run()
 ```
+
+## http Client
+
+POST 方法参考
+
+```python
+from urllib3 import PoolManager
+from urllib.parse import urlencode, urljoin
+import chardet
+
+def get_chapters()
+    # highlight-next-line
+    http = PoolManager()
+
+    post_url = 'https://info.support.huawei.com/network/ptmngsys/getTsrevList'
+    data = {
+        'lang': 'CN',
+        'family': family_str
+    }
+    # highlight-start
+    res = http.request('POST', post_url, body=urlencode(data),
+                       headers={
+                           'Cookie': 'JSESSIONID=F5D938CEFxxxxxxxxxxxxx4559465B96; infosupport_network_ptmngsys_sticky=pro_dggpmw1tmc02615.huawei.com_8080:3; hwsso_uniportal=""; hwsso_login=""',
+                           'Host': 'info.support.huawei.com',
+                           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
+    )
+    # highlight-end
+    if res.status != 200:
+        print("Can't open web, check cookie value.")
+        return
+
+    encode_type = chardet.detect(res.data)  # 自动判断编码类型
+    body = res.data.decode(encode_type['encoding'])
+```
