@@ -6,23 +6,21 @@
   <meta name="keywords" content=" docker ">
   <meta name="description" content="Docker 技术 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="参考视频  通透原色原理 滤色模式就是加色模式，就是光的三原色的加色 RGB与CMY有着非常紧密的联系    原色 支持色 互补色    红 黄，品红 青   绿 黄，青 品红   蓝 青，品红 黄   去除互补色干扰 什么是色彩脏？色彩脏是因为加入了互补色 比如蓝色与黄色为互补色，那么调低不透明度就会成为灰色  影调影调的划分系统一般来说是三大调：黑白灰 具体来说有两种方式表达：  以及  那">
+<meta name="description" content="什么是CapabilitiesCapabilites是从内核2.5之后引入的，作用于进程或者线程上，是将权限更加细致的划分，保障系统安全的一种能力。类似于windows的特权。 capabilities set@iZbp19p0eesh0lxr45we33Z:~#CapInh: 0000000000000000  # 可以继承的CAP(i) CapPrm: 0000003fffffffff  #">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PS后期方面">
-<meta property="og:url" content="http://example.com/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/index.html">
+<meta property="og:title" content="Linux Capabilities">
+<meta property="og:url" content="http://example.com/2021/07/21/linux-capabilities/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="参考视频  通透原色原理 滤色模式就是加色模式，就是光的三原色的加色 RGB与CMY有着非常紧密的联系    原色 支持色 互补色    红 黄，品红 青   绿 黄，青 品红   蓝 青，品红 黄   去除互补色干扰 什么是色彩脏？色彩脏是因为加入了互补色 比如蓝色与黄色为互补色，那么调低不透明度就会成为灰色  影调影调的划分系统一般来说是三大调：黑白灰 具体来说有两种方式表达：  以及  那">
+<meta property="og:description" content="什么是CapabilitiesCapabilites是从内核2.5之后引入的，作用于进程或者线程上，是将权限更加细致的划分，保障系统安全的一种能力。类似于windows的特权。 capabilities set@iZbp19p0eesh0lxr45we33Z:~#CapInh: 0000000000000000  # 可以继承的CAP(i) CapPrm: 0000003fffffffff  #">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/1.png">
-<meta property="og:image" content="http://example.com/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/2.png">
-<meta property="og:image" content="http://example.com/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/3.png">
-<meta property="og:image" content="http://example.com/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/4.png">
-<meta property="og:image" content="http://example.com/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/5.png">
-<meta property="article:published_time" content="2021-07-18T07:44:18.000Z">
-<meta property="article:modified_time" content="2021-07-18T11:44:21.104Z">
+<meta property="og:image" content="http://example.com/2021/07/21/linux-capabilities/1.png">
+<meta property="article:published_time" content="2021-07-21T01:58:47.000Z">
+<meta property="article:modified_time" content="2021-07-21T09:10:42.590Z">
 <meta property="article:author" content="Elin">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="提权">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/1.png">
+<meta name="twitter:image" content="http://example.com/2021/07/21/linux-capabilities/1.png">
 
 
 <link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
@@ -38,7 +36,7 @@
 
 <script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
 <script>
-    hljs.initHighlightingOnLoad();
+    //hljs.initHighlightingOnLoad();
 </script>
 
 <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
@@ -96,7 +94,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(17)</small>
+                <small>(19)</small>
             
         </div>
     </li>
@@ -122,7 +120,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         编程
-                        <small>(4)</small>
+                        <small>(5)</small>
                         
                     </div>
                     
@@ -202,6 +200,20 @@
     
         
             
+                <li>
+                    <div data-rel="渗透">
+                        
+                        渗透
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
         
     
         
@@ -221,7 +233,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="17">
+<input type="hidden" id="yelog_site_posts_number" value="19">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -266,6 +278,10 @@
     <div class="tags-list">
     <input id="tag-search" />
     <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>提权</a>
+            </li>
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>物理</a>
@@ -325,6 +341,22 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 渗透 "
+           href="/2021/07/21/linux-capabilities/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="Linux Capabilities">Linux Capabilities</span>
+            <span class="post-date" title="2021-07-21 09:58:47">2021/07/21</span>
+        </a>
+        
+        <a  class="全部文章 编程 "
+           href="/2021/07/19/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="正则表达式">正则表达式</span>
+            <span class="post-date" title="2021-07-19 16:42:35">2021/07/19</span>
+        </a>
         
         <a  class="全部文章 绘画 "
            href="/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/"
@@ -507,7 +539,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-18 19:44:21'>2021-07-06 09:51</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-21 17:10:42'>2021-07-06 09:51</time>
         
     </div>
     <div class="article-meta">
@@ -529,7 +561,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">Docker 是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">几个基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E5%9C%A8windows%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">docker 在windows下的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows%E4%B8%8B%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-text">windows下的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE"><span class="toc-text">修改存储位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Eimage%E5%88%B0%E5%BA%95%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-text">关于image到底存在哪里</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">docker 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-text">获取镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%95%9C%E5%83%8F"><span class="toc-text">创建自己的镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B"><span class="toc-text">查看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-text">容器执行命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-text">删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Commit%E5%AE%B9%E5%99%A8"><span class="toc-text">Commit容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-text">杂项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-%E5%AE%B9%E5%99%A8%E9%97%B4%E7%9A%84%E9%80%9A%E8%AE%AF"><span class="toc-text">Docker 容器间的通讯</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-Compose"><span class="toc-text">Docker Compose</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%80%E5%B7%A7"><span class="toc-text">技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E4%BF%AE%E6%94%B9"><span class="toc-text">Docker 容器的端口修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E8%BF%9E%E6%8E%A5-hackthebox"><span class="toc-text">docker 连接 hackthebox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-kali-connect-to-hackthebox"><span class="toc-text">Docker kali connect to hackthebox</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">Docker 是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">几个基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E5%9C%A8windows%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">docker 在windows下的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows%E4%B8%8B%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-text">windows下的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE"><span class="toc-text">修改存储位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Eimage%E5%88%B0%E5%BA%95%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-text">关于image到底存在哪里</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">docker 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-text">获取镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%95%9C%E5%83%8F"><span class="toc-text">创建自己的镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B"><span class="toc-text">查看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-text">容器执行命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-text">删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Commit%E5%AE%B9%E5%99%A8"><span class="toc-text">Commit容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-text">杂项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-%E5%AE%B9%E5%99%A8%E9%97%B4%E7%9A%84%E9%80%9A%E8%AE%AF"><span class="toc-text">Docker 容器间的通讯</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-Compose"><span class="toc-text">Docker Compose</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%80%E5%B7%A7"><span class="toc-text">技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E4%BF%AE%E6%94%B9"><span class="toc-text">Docker 容器的端口修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E8%BF%9E%E6%8E%A5-hackthebox"><span class="toc-text">docker 连接 hackthebox</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -645,10 +677,9 @@
 </code></pre></div></div></li>
 </ul>
 <p>docker 提供了更为简单的方法</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-gauss codeBlockLines"><span class="line">docker <span class="hljs-keyword">system</span> prune <span class="hljs-meta">#将对没有用的容器的网络进行删除</span></span>
-<span class="line">docker container prune <span class="hljs-meta"># 删除所有退出状态的容器</span></span>
-<span class="line">docker <span class="hljs-built_in">volume</span> prune <span class="hljs-meta"># 删除未被使用的数据卷</span></span>
-<span class="line">docker image prune <span class="hljs-meta"># 删除 dangling 或所有未被使用的镜像</span></span>
+<div class="codeBlockContainer"><div class="codeBlockTitle">system</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-dockerfile codeBlockLines"><span class="line">docker container prune <span class="hljs-comment"># 删除所有退出状态的容器</span></span>
+<span class="line">docker <span class="hljs-keyword">volume</span><span class="bash"> prune <span class="hljs-comment"># 删除未被使用的数据卷</span></span></span>
+<span class="line">docker image prune <span class="hljs-comment"># 删除 dangling 或所有未被使用的镜像</span></span>
 </code></pre></div></div>
 
 <ul>
@@ -692,15 +723,14 @@
 <li><p>修改hostconfig.json 和 config.v2.json</p>
 </li>
 </ol>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-vala codeBlockLines"><span class="line"><span class="hljs-meta"># vim hostconfig.json</span></span>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-stylus codeBlockLines"><span class="line"></br></span>
+<span class="line"><span class="hljs-string">&quot;PortBindings&quot;</span>:&#123;<span class="hljs-string">&quot;5711/tcp&quot;</span>:<span class="hljs-selector-attr">[&#123;<span class="hljs-string">&quot;HostIp&quot;</span>:<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-string">&quot;HostPort&quot;</span>:<span class="hljs-string">&quot;5711&quot;</span>&#125;]</span>&#125;</span>
 <span class="line"></br></span>
-<span class="line"><span class="hljs-string">&quot;PortBindings&quot;</span>:&#123;<span class="hljs-string">&quot;5711/tcp&quot;</span>:[&#123;<span class="hljs-string">&quot;HostIp&quot;</span>:<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-string">&quot;HostPort&quot;</span>:<span class="hljs-string">&quot;5711&quot;</span>&#125;]&#125;</span>
-<span class="line"></br></span>
-<span class="line"><span class="hljs-meta">#vim config.v2.json</span></span>
+<span class="line"><span class="hljs-selector-id">#vim</span> config<span class="hljs-selector-class">.v2</span><span class="hljs-selector-class">.json</span></span>
 <span class="line"></br></span>
 <span class="line"><span class="hljs-string">&quot;ExposedPorts&quot;</span>:&#123;<span class="hljs-string">&quot;5711/tcp&quot;</span>:&#123;&#125;&#125;</span>
 <span class="line"></br></span>
-<span class="line"><span class="hljs-string">&quot;Ports&quot;</span>:&#123;<span class="hljs-string">&quot;5711/tcp&quot;</span>:[&#123;<span class="hljs-string">&quot;HostIp&quot;</span>:<span class="hljs-string">&quot;0.0.0.0&quot;</span>,<span class="hljs-string">&quot;HostPort&quot;</span>:<span class="hljs-string">&quot;5711&quot;</span>&#125;]&#125;</span>
+<span class="line"><span class="hljs-string">&quot;Ports&quot;</span>:&#123;<span class="hljs-string">&quot;5711/tcp&quot;</span>:<span class="hljs-selector-attr">[&#123;<span class="hljs-string">&quot;HostIp&quot;</span>:<span class="hljs-string">&quot;0.0.0.0&quot;</span>,<span class="hljs-string">&quot;HostPort&quot;</span>:<span class="hljs-string">&quot;5711&quot;</span>&#125;]</span>&#125;</span>
 </code></pre></div></div>
 
 <ol start="5">
@@ -710,21 +740,24 @@
 <ul>
 <li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/30547484/calling-openconnect-vpn-client-in-docker-container-shows-tunsetiff-failed-opera">解决连接</a></li>
 </ul>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-applescript codeBlockLines"><span class="line">docker <span class="hljs-built_in">run</span> -<span class="hljs-keyword">it</span> <span class="hljs-comment">--privileged mykali /bin/bash</span></span>
+<div class="codeBlockContainer"><div class="codeBlockTitle">run</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-dockerfile codeBlockLines"><span class="line">```</span>
+<span class="line">加入所有权限，或者只加入一个能力`--cap-<span class="hljs-keyword">add</span><span class="bash"> SYS_NET_ADMIN --device /dev/net/tun `</span></span>
+<span class="line"></br></span>
+<span class="line">问题<span class="hljs-number">2</span>：</span>
+<span class="line">` Linux can<span class="hljs-string">&#x27;t add IPv6 to interface tun0`</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-string">没有开启ipv6</span></span>
+<span class="line"><span class="hljs-string">- `--sysctl net.ipv6.conf.all.disable_ipv6=0`</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-string">## Docker kali connect to hackthebox</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-string">- [参考链接](https://amar-laksh.github.io/2019/08/24/Setting-up-Kali-docker-for-HackTheBox.html)</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-string">端口转发</span></span>
 </code></pre></div></div>
-<p>加入所有权限，或者只加入一个能力<code>--cap-add SYS_NET_ADMIN --device /dev/net/tun </code></p>
-<p>问题2：<br><code> Linux can&#39;t add IPv6 to interface tun0</code></p>
-<p>没有开启ipv6</p>
-<ul>
-<li><code>--sysctl net.ipv6.conf.all.disable_ipv6=0</code></li>
-</ul>
-<h2 id="Docker-kali-connect-to-hackthebox"><a href="#Docker-kali-connect-to-hackthebox" class="headerlink" title="Docker kali connect to hackthebox"></a>Docker kali connect to hackthebox</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://amar-laksh.github.io/2019/08/24/Setting-up-Kali-docker-for-HackTheBox.html">参考链接</a></li>
-</ul>
-<p>端口转发</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-apache codeBlockLines"><span class="line"><span class="hljs-attribute">socat</span> TCP<span class="hljs-number">4</span>-LISTEN:<span class="hljs-number">1633</span>,reuseaddr,fork TCP<span class="hljs-number">4</span>:<span class="hljs-number">10.10.10.28:80</span></span>
-</code></pre></div></div>
-
+<p>socat TCP4-LISTEN:1633,reuseaddr,fork TCP4:10.10.10.28:80</p>
+<pre><code>
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>

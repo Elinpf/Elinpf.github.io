@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>使用 Github Pages 部署 Blog | Elin 的空间</title>
-  <meta name="keywords" content=" github , docusaurus ">
-  <meta name="description" content="使用 Github Pages 部署 Blog | Elin 的空间">
+  <title>正则表达式 | Elin 的空间</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="正则表达式 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="什么是CapabilitiesCapabilites是从内核2.5之后引入的，作用于进程或者线程上，是将权限更加细致的划分，保障系统安全的一种能力。类似于windows的特权。 capabilities set@iZbp19p0eesh0lxr45we33Z:~#CapInh: 0000000000000000  # 可以继承的CAP(i) CapPrm: 0000003fffffffff  #">
 <meta property="og:type" content="article">
@@ -512,9 +512,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-github-pages-部署" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">使用 Github Pages 部署 Blog</h1>
+        <h1 class="article-title">正则表达式</h1>
     
     <div class="article-meta">
         
@@ -524,24 +524,15 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="前端技术">前端技术</a>
+            <a  data-rel="编程">编程</a>
             
         </span>
         
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color2">github</a>
-            
-            <a class="color1">docusaurus</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-21 17:10:42'>2021-06-23 00:00</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-21 17:10:42'>2021-07-19 16:42</time>
         
     </div>
     <div class="article-meta">
@@ -563,7 +554,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Github-Pages-%E9%83%A8%E7%BD%B2-Blog"><span class="toc-text">使用 Github Pages 部署 Blog</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv4"><span class="toc-text">IPv4</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -579,72 +570,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="使用-Github-Pages-部署-Blog"><a href="#使用-Github-Pages-部署-Blog" class="headerlink" title="使用 Github Pages 部署 Blog"></a>使用 Github Pages 部署 Blog</h1><p>要使用 Github Pages 来部署博客，首先需要选择使用什么静态框架。</p>
-<p>这里我最终选择了<a target="_blank" rel="noopener" href="https://docusaurus.io/zh-CN/docs">Docusaurus</a></p>
-<p>开发与部署的简要流程如下：</p>
-<ol>
-<li><p>使用<code>Docusaurus</code>的脚手架创建初始项目</p>
-<div class="codeBlockContainer"><div class="codeBlockTitle">@docusaurus/init@latest</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">```</span>
-<span class="line"></br></span>
-<span class="line">2. 修改`docusaurus.config.js`文件中3个重要内容</span>
-<span class="line"></br></span>
-<span class="line">```js</span>
-<span class="line">    url: &#x27;https://elinpf.github.io&#x27;,</span>
-<span class="line">    organizationName: &#x27;Elinpf&#x27;, </span>
-<span class="line">    projectName: &#x27;elinpf.github.io&#x27;, </span>
-</code></pre></div></div></li>
-<li><p>在Github上创建同名仓库<code>Elinpf/Elinpf.github.io</code></p>
-</li>
-<li><p>发布<code>master</code>和<code>gh-pages</code>分支</p>
-</li>
-</ol>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">git remote add origin https://github.com/Elinpf/Elinpf.github.io.git</span>
-<span class="line">git push origin master</span>
-<span class="line">git branch -M gh-pages</span>
-<span class="line">git push origin gh-pages</span>
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://wangwl.net/static/projects/visualRegex">一个可视化的正则表达式在线测试网站</a></li>
+</ul>
+<h2 id="IPv4"><a href="#IPv4" class="headerlink" title="IPv4"></a>IPv4</h2><ul>
+<li>匹配每个值</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">^(\d|[1-9]\d|1\d\d|2(?:[0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2(?:[0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2(?:[0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2(?:[0-4]\d|5[0-5]))$</span>
 </code></pre></div></div>
 
-<ol start="5">
-<li>将<code>Setting</code>中的Pages发布源改为<code>gh-pages</code>分支</li>
-</ol>
-<p><img src="/2021/06/22/github-pages-%E9%83%A8%E7%BD%B2/1.png"></p>
-<ol start="6">
-<li>将<code>Setting</code>中的<code>Secrets</code>添加一个<code>ACCESS_TOKEN</code>(这里的token就是用户授权的token值，<a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token">参考这里增加新的授权</a>)</li>
-</ol>
-<p><img src="/2021/06/22/github-pages-%E9%83%A8%E7%BD%B2/2.png"></p>
-<ol start="7">
-<li>在项目中添加文件<code>.github/workflows/docusaurus.yml</code>，来写Action用于自动部署（具体含义参考<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">这篇文章</a>）</li>
-</ol>
-<div class="codeBlockContainer"><div class="codeBlockTitle">title=".github/workflows/docusaurus.yml"</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-yaml codeBlockLines"><span class="line"><span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">Github</span> <span class="hljs-string">pages</span></span>
-<span class="line"><span class="hljs-attr">on:</span></span>
-<span class="line">  <span class="hljs-attr">push:</span></span>
-<span class="line">    <span class="hljs-attr">branches:</span></span>
-<span class="line">      <span class="hljs-bullet">-</span> <span class="hljs-string">master</span></span>
-<span class="line"><span class="hljs-attr">jobs:</span></span>
-<span class="line">  <span class="hljs-attr">build-and-deploy:</span></span>
-<span class="line">    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span></span>
-<span class="line">    <span class="hljs-attr">steps:</span></span>
-<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Checkout</span></span>
-<span class="line">      <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@master</span></span>
-<span class="line">      <span class="hljs-attr">with:</span></span>
-<span class="line">        <span class="hljs-attr">persist-credentials:</span> <span class="hljs-literal">false</span></span>
-<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">and</span> <span class="hljs-string">Build</span></span>
-<span class="line">      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span></span>
-<span class="line"><span class="hljs-string">        npm install</span></span>
-<span class="line"><span class="hljs-string">        npm run-script build </span></span>
-<span class="line"><span class="hljs-string"></span>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span></span>
-<span class="line">      <span class="hljs-attr">uses:</span> <span class="hljs-string">JamesIves/github-pages-deploy-action@releases/v3</span></span>
-<span class="line">      <span class="hljs-attr">with:</span></span>
-<span class="line">        <span class="hljs-attr">ACCESS_TOKEN:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.ACCESS_TOKEN</span> <span class="hljs-string">&#125;&#125;</span></span>
-<span class="line">        <span class="hljs-attr">BRANCH:</span> <span class="hljs-string">gh-pages</span></span>
-<span class="line">        <span class="hljs-attr">FOLDER:</span> <span class="hljs-string">build</span></span>
-<span class="line">        <span class="hljs-attr">BUILD_SCRIPT:</span> <span class="hljs-string">npm</span> <span class="hljs-string">install</span> <span class="hljs-string">&amp;&amp;</span> <span class="hljs-string">npm</span> <span class="hljs-string">run</span> <span class="hljs-string">build</span></span>
+<ul>
+<li>只做验证判断</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">^(?:(?:\d|[1-9]\d|1\d\d|2(?:[0-4]\d|5[0-5]))\.)&#123;3&#125;(?:\d|[1-9]\d|1\d\d|2(?:[0-4]\d|5[0-5]))$</span>
 </code></pre></div></div>
-
-<ol start="8">
-<li>再次提交就可以了</li>
-</ol>
-
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
     </div>
