@@ -6,6 +6,7 @@ tags:
 - linux
 categories:
 - 渗透
+- 知识点
 ---
 
 ## 什么是Capabilities
