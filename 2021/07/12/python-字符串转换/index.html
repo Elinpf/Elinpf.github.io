@@ -6,21 +6,19 @@
   <meta name="keywords" content=" decode ">
   <meta name="description" content="python 一劳永逸的 decode 字符串转换方法 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="什么是CapabilitiesCapabilites是从内核2.5之后引入的，作用于进程或者线程上，是将权限更加细致的划分，保障系统安全的一种能力。类似于windows的特权。 capabilities set@iZbp19p0eesh0lxr45we33Z:~#CapInh: 0000000000000000  # 可以继承的CAP(i) CapPrm: 0000003fffffffff  #">
+<meta name="description" content="SUID 就是 Set User id， SGID 就是 Set Group id SUIDnathan@cap:~# ls -la &#x2F;usr&#x2F;bin&#x2F;passwd -rwsr-xr-x 1 root root 68208 May 28  2020 &#x2F;usr&#x2F;bin&#x2F;passwd   可以看到s这个标签在原本的x标签上，特点如下：  SUID权限仅对可执行文件有效 如果执行者对这个文件有执行权限，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux Capabilities">
-<meta property="og:url" content="http://example.com/2021/07/21/linux-capabilities/index.html">
+<meta property="og:title" content="Linux SUID &amp; SGID">
+<meta property="og:url" content="http://example.com/2021/07/21/SUID-SGID/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="什么是CapabilitiesCapabilites是从内核2.5之后引入的，作用于进程或者线程上，是将权限更加细致的划分，保障系统安全的一种能力。类似于windows的特权。 capabilities set@iZbp19p0eesh0lxr45we33Z:~#CapInh: 0000000000000000  # 可以继承的CAP(i) CapPrm: 0000003fffffffff  #">
+<meta property="og:description" content="SUID 就是 Set User id， SGID 就是 Set Group id SUIDnathan@cap:~# ls -la &#x2F;usr&#x2F;bin&#x2F;passwd -rwsr-xr-x 1 root root 68208 May 28  2020 &#x2F;usr&#x2F;bin&#x2F;passwd   可以看到s这个标签在原本的x标签上，特点如下：  SUID权限仅对可执行文件有效 如果执行者对这个文件有执行权限，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/07/21/linux-capabilities/1.png">
-<meta property="article:published_time" content="2021-07-21T01:58:47.000Z">
-<meta property="article:modified_time" content="2021-07-21T09:10:42.590Z">
+<meta property="article:published_time" content="2021-07-21T09:32:07.000Z">
+<meta property="article:modified_time" content="2021-07-22T08:16:35.462Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="提权">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/07/21/linux-capabilities/1.png">
 
 
 <link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
@@ -94,24 +92,10 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(19)</small>
+                <small>(20)</small>
             
         </div>
     </li>
-    
-        
-            
-                <li>
-                    <div data-rel="工具">
-                        
-                        工具
-                        <small>(3)</small>
-                        
-                    </div>
-                    
-                </li>
-            
-        
     
         
             
@@ -159,6 +143,51 @@
         
             
                 <li>
+                    <div data-rel="渗透">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        渗透
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="渗透<--->知识点">
+                                        
+                                        知识点
+                                        
+                                            <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="前端技术">
+                        
+                        前端技术
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
                     <div data-rel="绘画">
                         
                         绘画
@@ -187,10 +216,10 @@
         
             
                 <li>
-                    <div data-rel="前端技术">
+                    <div data-rel="工具">
                         
-                        前端技术
-                        <small>(6)</small>
+                        工具
+                        <small>(2)</small>
                         
                     </div>
                     
@@ -199,16 +228,6 @@
         
     
         
-            
-                <li>
-                    <div data-rel="渗透">
-                        
-                        渗透
-                        <small>(1)</small>
-                        
-                    </div>
-                    
-                </li>
             
         
     
@@ -233,7 +252,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="19">
+<input type="hidden" id="yelog_site_posts_number" value="20">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -342,7 +361,15 @@
     
     <nav id="title-list-nav">
         
-        <a  class="全部文章 渗透 "
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/21/SUID-SGID/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="Linux SUID &amp; SGID">Linux SUID &amp; SGID</span>
+            <span class="post-date" title="2021-07-21 17:32:07">2021/07/21</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
            href="/2021/07/21/linux-capabilities/"
            data-tag="linux,提权"
            data-author="" >
@@ -438,7 +465,7 @@
             <span class="post-date" title="2021-07-06 16:28:22">2021/07/06</span>
         </a>
         
-        <a  class="全部文章 工具 "
+        <a  class="全部文章 渗透 知识点 "
            href="/2021/07/06/shell-%E9%80%9F%E6%9F%A5%E8%A1%A8/"
            data-tag="linux,shell"
            data-author="" >
@@ -541,7 +568,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-21 17:10:42'>2021-07-12 14:10</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-22 16:16:35'>2021-07-12 14:10</time>
         
     </div>
     <div class="article-meta">
@@ -583,16 +610,18 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/jieli_/article/details/70166244">看这篇文章</a></li>
 </ul>
 <p>当不清楚字符串是什么类型的时候，比如html，此时可以使用<code>chardet</code>模块来进行识别</p>
-<div class="codeBlockContainer"><div class="codeBlockTitle">chardet</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">encode_type = chardet.detect(html)  </span>
-<span class="line">html = html.decode(encode_type[&#x27;encoding&#x27;]) #进行相应解码，赋给原标识符（变量）</span>
-<span class="line">从str到bytes:调用方法encode().</span>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> chardet   <span class="hljs-comment">#需要导入这个模块，检测编码格式</span></span>
+<span class="line">encode_type = chardet.detect(html)  </span>
+<span class="line">html = html.decode(encode_type[<span class="hljs-string">&#x27;encoding&#x27;</span>]) <span class="hljs-comment">#进行相应解码，赋给原标识符（变量）</span></span>
+<span class="line">从<span class="hljs-built_in">str</span>到<span class="hljs-built_in">bytes</span>:调用方法encode().</span>
 <span class="line">编码是把Unicode字符串以各种方式编码成为机器能读懂的ASCII字符串</span>
-<span class="line">从bytes到str:调用方法decode().</span>
+<span class="line">从<span class="hljs-built_in">bytes</span>到<span class="hljs-built_in">str</span>:调用方法decode().</span>
 </code></pre></div></div>
 
 <h2 id="UnicodeDecodeError"><a href="#UnicodeDecodeError" class="headerlink" title="UnicodeDecodeError"></a>UnicodeDecodeError</h2><p>当出现<code>UnicodeDecodeError: &#39;gbk&#39; codec can&#39;t decode byte ...</code>，原因是文档中的特殊符号超过了gbk的字符集。</p>
 <p>所以要么使用更广的<code>gb18030</code>要么忽略:</p>
-<div class="codeBlockContainer"><div class="codeBlockTitle">(path,</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">open(path, encoding=&#x27;gb18030&#x27;, errors=&#x27;ignore&#x27;)   # 更广的字符集，并且错误的忽略</span>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-pgsql codeBlockLines"><span class="line"><span class="hljs-keyword">open</span>(<span class="hljs-type">path</span>, encoding=<span class="hljs-string">&#x27;gb18030&#x27;</span>)   # 更广的字符集</span>
+<span class="line"><span class="hljs-keyword">open</span>(<span class="hljs-type">path</span>, encoding=<span class="hljs-string">&#x27;gb18030&#x27;</span>, errors=<span class="hljs-string">&#x27;ignore&#x27;</span>)   # 更广的字符集，并且错误的忽略</span>
 </code></pre></div></div>
 
 
