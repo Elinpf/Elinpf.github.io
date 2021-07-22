@@ -6,19 +6,24 @@
   <meta name="keywords" content="">
   <meta name="description" content="正则表达式 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="SUID 就是 Set User id， SGID 就是 Set Group id SUIDnathan@cap:~# ls -la &#x2F;usr&#x2F;bin&#x2F;passwd -rwsr-xr-x 1 root root 68208 May 28  2020 &#x2F;usr&#x2F;bin&#x2F;passwd   可以看到s这个标签在原本的x标签上，特点如下：  SUID权限仅对可执行文件有效 如果执行者对这个文件有执行权限，">
+<meta name="description" content="IP ROLE OS    10.10.10.245 Victim Linux   10.10.14.228 Attacker Kali    如果你是在找writeup而看的这篇文章，那么请再坚持一下。这里给一点提示:  仔细观察表面内容，这题并没有需要深挖的内容，别想多 root的方法题目已经给出来了   获取普通权限通过nmap检查端口，发现有21 22 80端口打开，再没有其他端口。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux SUID &amp; SGID">
-<meta property="og:url" content="http://example.com/2021/07/21/SUID-SGID/index.html">
+<meta property="og:title" content="HTB cap">
+<meta property="og:url" content="http://example.com/2021/07/22/HTB-cap/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="SUID 就是 Set User id， SGID 就是 Set Group id SUIDnathan@cap:~# ls -la &#x2F;usr&#x2F;bin&#x2F;passwd -rwsr-xr-x 1 root root 68208 May 28  2020 &#x2F;usr&#x2F;bin&#x2F;passwd   可以看到s这个标签在原本的x标签上，特点如下：  SUID权限仅对可执行文件有效 如果执行者对这个文件有执行权限，">
+<meta property="og:description" content="IP ROLE OS    10.10.10.245 Victim Linux   10.10.14.228 Attacker Kali    如果你是在找writeup而看的这篇文章，那么请再坚持一下。这里给一点提示:  仔细观察表面内容，这题并没有需要深挖的内容，别想多 root的方法题目已经给出来了   获取普通权限通过nmap检查端口，发现有21 22 80端口打开，再没有其他端口。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-21T09:32:07.000Z">
-<meta property="article:modified_time" content="2021-07-22T08:16:35.462Z">
+<meta property="og:image" content="http://example.com/2021/07/22/HTB-cap/1.png">
+<meta property="og:image" content="http://example.com/2021/07/22/HTB-cap/2.png">
+<meta property="og:image" content="http://example.com/2021/07/22/HTB-cap/3.png">
+<meta property="og:image" content="http://example.com/2021/07/22/HTB-cap/4.png">
+<meta property="og:image" content="http://example.com/2021/07/22/HTB-cap/5.png">
+<meta property="article:published_time" content="2021-07-22T08:17:09.000Z">
+<meta property="article:modified_time" content="2021-07-22T09:32:18.884Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="linux">
-<meta property="article:tag" content="提权">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/07/22/HTB-cap/1.png">
 
 
 <link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
@@ -92,7 +97,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(20)</small>
+                <small>(21)</small>
             
         </div>
     </li>
@@ -147,7 +152,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         渗透
-                        <small>(3)</small>
+                        <small>(4)</small>
                         
                     </div>
                     
@@ -159,6 +164,18 @@
                                         知识点
                                         
                                             <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="渗透<--->HTB">
+                                        
+                                        HTB
+                                        
+                                            <small>(1
                                                 )</small>
                                         
                                     </div>
@@ -239,6 +256,10 @@
             
         
     
+        
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -252,7 +273,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="20">
+<input type="hidden" id="yelog_site_posts_number" value="21">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -360,6 +381,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 渗透 HTB "
+           href="/2021/07/22/HTB-cap/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="HTB cap">HTB cap</span>
+            <span class="post-date" title="2021-07-22 16:17:09">2021/07/22</span>
+        </a>
         
         <a  class="全部文章 渗透 知识点 "
            href="/2021/07/21/SUID-SGID/"
@@ -559,7 +588,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-22 16:16:35'>2021-07-19 16:42</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-22 17:32:18'>2021-07-19 16:42</time>
         
     </div>
     <div class="article-meta">

