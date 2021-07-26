@@ -58,6 +58,8 @@ getcap `whereis python3`
 getcap -r / 2>null
 ```
 
+在`LinPEAS`中有自动检查
+
 # 如何利用
 
 根据不同的CAP找出对应的提权方法，详细方法在[这里查看](https://book.hacktricks.xyz/linux-unix/privilege-escalation/linux-capabilities#malicious-use)
