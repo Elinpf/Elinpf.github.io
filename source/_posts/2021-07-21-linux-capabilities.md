@@ -15,7 +15,7 @@ Capabilites是从内核2.5之后引入的，作用于**进程**或者**线程**�
 类似于windows的特权。
 
 
-## capabilities set
+### capabilities set
 
 ```
 root@iZbp19p0eesh0lxr45we33Z:~# cat /proc/$$/status | grep Cap
@@ -27,7 +27,7 @@ CapAmb: 0000000000000000  #
 ```
 
 
-## 进程CAP
+### 进程CAP
 
 - 查看进程CAP
 
@@ -43,7 +43,7 @@ capsh --decode=0000000000003000
 0x0000000000003000=cap_net_admin,cap_net_raw
 ```
 
-## 二进制文件CAP
+### 二进制文件CAP
 
 - 查看二进制文件CAP
 
@@ -60,7 +60,7 @@ getcap -r / 2>null
 
 在`LinPEAS`中有自动检查
 
-# 如何利用
+## 如何利用
 
 根据不同的CAP找出对应的提权方法，详细方法在[这里查看](https://book.hacktricks.xyz/linux-unix/privilege-escalation/linux-capabilities#malicious-use)
 

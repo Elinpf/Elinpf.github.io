@@ -7,7 +7,6 @@ categories:
 - 前端技术
 ---
 
-# 使用 Github Pages 部署 Blog
 
 要使用 Github Pages 来部署博客，首先需要选择使用什么静态框架。
 

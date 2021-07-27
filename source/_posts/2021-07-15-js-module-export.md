@@ -24,7 +24,7 @@ CJS的导出都是`exports`，而`ESM`的导出都是`export`
 
 使用两个文件来做测试，`utils.js` 和 `test.js`
 
-### 1. module.exports
+### module.exports
 
 ```js title:utils.js
 const a = (x, y) => x + y;
@@ -40,7 +40,7 @@ console.log(utils); // [Function: b]
 
 可以看到，这种方法只能导出一个函数
 
-### 2. exports
+### exports
 
 ```js title:utils.js
 exports.a = (x, y) => x + y;
