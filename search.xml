@@ -4,6 +4,62 @@
   
     
     <entry>
+      <title>nmap 使用</title>
+      <link href="/2021/07/26/nmap-%E4%BD%BF%E7%94%A8/"/>
+      <url>/2021/07/26/nmap-%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h2 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h2><ol><li><code>-sn</code> 只判断主机是否在线，不扫描端口</li><li><code>-sV</code> 判断服务软件版本</li><li><code>-O</code> 判断操作系统</li><li><code>-Pn</code> 当主机禁ping后使用，否则会被跳过</li><li><code>-A</code> 强力检测，包含以下：</li></ol><p>服务版本识别（-sV）<br>操作系统识别（-O）<br>脚本扫描（-sC）<br>Traceroute（–traceroute）</p><h2 id="TCP扫描选项"><a href="#TCP扫描选项" class="headerlink" title="TCP扫描选项"></a>TCP扫描选项</h2><ol><li><p>TCP连接扫描（-sT）：指定这个选项后，程序将和目标主机的每个端口都进行<strong>完整的三次握手</strong>。如果成功建立连接，则判定该端口是开放端口。由于在检测每个端口时都需要进行三 次握手，所以这种扫描方式比较慢，而且扫描行为很可能被目标主机记录下来。如果启动 Nmap的用户的权限不足，那么默认情况下Nmap程序将以这种模式进行扫描。</p></li><li><p>​SYN扫描（-sS）：该选项也称为半开连接或者SYN stealth。采用该选项后，Nmap将<strong>使用含有SYN标志位</strong>的数据包进行端口探测。如果目标主机回复了SYN/ACK包，则说明该端口处 于开放状态：如果回复的是RST/ACK包，则说明这个端口处于关闭状态；如果没有任何响应 或者发送了ICMP unreachable信息，则可认为这个端口被屏蔽了。SYN模式的扫描速度非常好。而且由于这种模式不会进行三次握手，所以<strong>是一种十分隐蔽的扫描方式。如果启动Nmap的用户有高级别权限，那么在默认情况下Nmap程序将以这种模式进行扫描。</strong></p></li><li><p>TCP NULL（-sN）、FIN（-sF）及XMAS（-sX）扫描：NULL 扫描不设置任何控制位；FIN扫描仅设置FIN标志位：XMAS扫描设置FIN、PSH和URG的标识位。如果目标主机返回 了含有RST标识位的响应数据，则说明该端口处于关闭状态；如果目标主机没有任何回应， 则该端口处于打开｜过滤状态。</p></li><li><p>TCP Maimon扫描（-sM）：Uriel Maimon 首先发现了TCP Maimom扫描方式。这种模式的探测数据包含有FIN/ACK标识。对于BSD衍生出来的各种操作系统来说，如果被测端口处于 开放状态，主机将会丢弃这种探测数据包；如果被测端口处于关闭状态，那么主机将会回复 RST。</p></li><li><p>TCPACK扫描（-sA）：这种扫描模式可以<strong>检测目标系统是否采用了数据包状态监测技术（stateful）防火墙</strong>，并能确定哪些端口被防火墙屏蔽。这种类型的数据包只有一个ACK标识位。如果目标主机的回复中含有RST标识，则说明目标主机没有被过滤。</p></li><li><p>TCP窗口扫描（-sW）：这种扫描方式检测目标返回的RST数据包的TCP窗口字段。如果目标端口处于开放状态，这个字段的值将是正值；否则它的值应当是0。</p></li><li><p>TCP Idle扫描（-sI）：采用这种技术后，您将通过指定的僵尸主机发送扫描数据包。本机并不与目标主机直接通信。如果对方网络里有IDS，IDS将认为发起扫描的主机是僵尸主机。</p></li></ol><h2 id="UDP扫描"><a href="#UDP扫描" class="headerlink" title="UDP扫描"></a>UDP扫描</h2><p>UDP扫描只有一个<code>-sU</code>选项，由于Linux内核只能进行1秒1次的UDP报文发送，所以必须有针对性的优化扫描</p><ol><li>对常见端口进行扫描</li><li>并行扫描</li><li>在防火墙后方扫描</li><li>使用–host-timeout跳过超时主机</li></ol><h2 id="端口目标选项"><a href="#端口目标选项" class="headerlink" title="端口目标选项"></a>端口目标选项</h2><ul><li><code>-p</code> 指定端口</li><li><code>-F</code> 快速扫描，仅扫描常用的100个端口</li><li><code>-r</code> 顺序扫描，不随机</li><li><code>--top-ports</code> 扫描排名前N的端口</li><li><code>--port-ratio</code> 扫描前百分比的端口</li></ul><h2 id="版本探测"><a href="#版本探测" class="headerlink" title="版本探测"></a>版本探测</h2><ul><li>sV 打开版本探测</li><li><code>--version-intensity &lt;intensity&gt;</code> 设置版本扫描强度, 设置强度的值在 0~9之间，默认是7</li></ul><h2 id="输出选项"><a href="#输出选项" class="headerlink" title="输出选项"></a>输出选项</h2><ol><li>-oN Normal，不显示runtime和警告信息</li><li>-oX xml</li><li>-oG gnmap，方便Grep</li><li>-oA 以上三种一起输出</li></ol><h2 id="时间排程控制"><a href="#时间排程控制" class="headerlink" title="时间排程控制"></a>时间排程控制</h2><p>-T 有6个等级</p><p>paranoid（0）：每5分钟发送一次数据包，且不会以并行方式同时发送多组数据。这种模式的扫描不会被IDS检测到。</p><p>sneaky（1）：每隔15秒发送一个数据包，且不会以并行方式同时发送多组数据。</p><p>polite（2）：每0.4秒发送一个数据包，且不会以并行方式同时发送多组数据。</p><p>normal（3）：此模式同时向多个目标发送多个数据包，为    Nmap默认的模式，该模式能自动在扫描时间和网络负载之间进行平衡。</p><p>aggressive（4）：在这种模式下，Nmap    对每个既定的主机只扫描5分钟，然后扫描下一台主机。它等待响应的时间不超过1.25秒。</p><p>insane（5）：在这种模式下，Nmap对每个既定的主机仅扫描74秒，然后扫描下一台主机。它等待响应的时间不超过0.3秒。</p><h2 id="脚本引擎"><a href="#脚本引擎" class="headerlink" title="脚本引擎"></a>脚本引擎</h2><p>NSE(Nmap Script Engine)可以扩展nmap的使用范围，并且用户可以自定义自己的脚本实现针对性的扫描</p><p>-sC 或–script=default：启动默认类NSE脚本。</p><p>在Kali Linux系统中，Nmap脚本位于目录/usr/share/nmap/scripts。</p><p><code>--script &lt;filename&gt;|&lt;category&gt;|&lt;directories&gt;</code>：根据指定的文件名、类别名、目录名，执行相应的脚本。</p><p><code>--script-args &lt;args&gt;</code> ：这个选项用于给脚本指定参数。例如，在使用认证类脚本时，可通过这个选项指定用户名和密码</p><table><thead><tr><th align="center">类型</th><th align="center">描述</th></tr></thead><tbody><tr><td align="center">auth</td><td align="center">此类脚本使用暴力破解等技术找出目标系统上的认证信息。</td></tr><tr><td align="center">default</td><td align="center">启用–sC 或者-A 选项时运行此类脚本。这类脚本同时具有: 执行速度快；输出的信息有指导下一步操作的价值；输出信息内容丰富、形式简洁；必须可靠；不会侵入目标系统；能泄露信息给第三方。</td></tr><tr><td align="center">discovery</td><td align="center">该类脚本用于探索网络。</td></tr><tr><td align="center">dos</td><td align="center">该类脚本可能使目标系统拒绝服务，请谨慎使用。</td></tr><tr><td align="center">exploit</td><td align="center">该类脚本利用目标系统的安全漏洞。在运行这类脚本之前，渗透测试人员需要获取 被测单位的行动许可。</td></tr><tr><td align="center">external</td><td align="center">该类脚本可能泄露信息给第三方。</td></tr><tr><td align="center">fuzzer</td><td align="center">该类脚本用于对目标系统进行模糊测试。</td></tr><tr><td align="center">instrusive</td><td align="center">该类脚本可能导致目标系统崩溃，或耗尽目标系统的所有资源。</td></tr><tr><td align="center">malware</td><td align="center">该类脚本检査目标系统上是否存在恶意软件或后门。</td></tr><tr><td align="center">safe</td><td align="center">该类脚本不会导致目标服务崩溃、拒绝服务且不利用漏洞。</td></tr><tr><td align="center">version</td><td align="center">配合版本检测选项（-sV），这类脚本对目标系统的服务程序进行深入的版本检 测。</td></tr><tr><td align="center">vuln</td><td align="center">该类脚本可检测检査目标系统上的安全漏洞。</td></tr></tbody></table><ul><li>–script-help 打印帮助</li></ul><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">nmap --script-help <span class="hljs-string">&quot;(vuln) and *smb*&quot;</span></span></code></pre></div></div><h2 id="规避检测选项"><a href="#规避检测选项" class="headerlink" title="规避检测选项"></a>规避检测选项</h2><p>真实环境中探测目标往往都在IDS之后，所以有必要针对网络环境选择规避检测的选项</p><p>-f（使用小数据包）：这个选项可避免对方识别出我们探测的数据包。指定这个选项之后， Nmap将使用8字节甚至更小数据体的数据包。</p><p>–mtu：这个选项用来调整数据包的包大小。MTU（Maximum    Transmission Unit，最大传输单元）必须是8的整数倍，否则Nmap将报错。</p><p>-D（诱饵）：这个选项应指定假    IP，即诱饵的IP。启用这个选项之后，Nmap    在发送侦测 数据包的时候会掺杂一些源地址是假IP（诱饵）的数据包。这种功能意在以藏木于林的方法 掩盖本机的真实    IP。也就是说，对方的log还会记录下本机的真实IP。您可使用RND生成随机 的假IP地址，或者用RND：number的参数生成N个假IP地址。您所指定的诱饵主机 应当在线，否则很容易击溃目标主机。另外，使用了过多的诱饵可能造成网络拥堵。尤其是在扫描客户的网络的时候，您应当极力避免上述情况。</p><p><code>--source-port &lt;portnumber&gt;</code>或-g（模拟源端口）：如果防火墙只允许某些源端口的入站流量，这个选项就非常有用。</p><p>–data-length：这个选项用于改变Nmap    发送数据包的默认数据长度，以避免被识别出来是Nmap的扫描数据。</p><p>–max-parallelism：这个选项可限制Nmap并发扫描的最大连接数。</p><p><code>--scan-delay &lt;time&gt;</code>：这个选项用于控制发送探测数据的时间间隔，以避免达到IDS/IPS端 口扫描规则的阈值。</p><h2 id="常用命令构造"><a href="#常用命令构造" class="headerlink" title="常用命令构造"></a>常用命令构造</h2><h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><h4 id="常见端口扫描"><a href="#常见端口扫描" class="headerlink" title="常见端口扫描"></a>常见端口扫描</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">nmap -p20,21-23,25,53,80,110,111,135,139,143,443,445,993,995,1723,3306,3389,5900,8080 -T4 <span class="hljs-comment">#&#123;RHOST&#125;</span></span></code></pre></div></div><h4 id="HTTP端口扫描"><a href="#HTTP端口扫描" class="headerlink" title="HTTP端口扫描"></a>HTTP端口扫描</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">nmap -p80,443,8000-8100,8443 -T4 <span class="hljs-comment">#&#123;RHOST&#125;</span></span></code></pre></div></div><h4 id="数据库中top1000端口扫描"><a href="#数据库中top1000端口扫描" class="headerlink" title="数据库中top1000端口扫描"></a>数据库中top1000端口扫描</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">nmap -sV -sC -O -T4 -n -Pn -oA fastscan <span class="hljs-comment">#&#123;RHOST&#125;</span></span></code></pre></div></div><p>使用版本扫描(-sV),使用default脚本(-sC),开启系统版本检测(-O),扫描强度4级(-T4),不递归DNS(-n),不检测主机是否ping通(-Pn),全文件类型输出(-oA)</p><h4 id="将检测到打开的端口放在环境变量中"><a href="#将检测到打开的端口放在环境变量中" class="headerlink" title="将检测到打开的端口放在环境变量中"></a>将检测到打开的端口放在环境变量中</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">ports=$(nmap -p- --min-rate=1000 -T4 <span class="hljs-comment">#&#123;RHOST&#125; | grep ^[0-9] | cut -d &#x27;/&#x27; -f 1 | tr &#x27;\n&#x27; &#x27;,&#x27; | sed s/,$//)</span></span></code></pre></div></div><h3 id="脚本使用"><a href="#脚本使用" class="headerlink" title="脚本使用"></a>脚本使用</h3><h4 id="查找脚本并打印使用说明"><a href="#查找脚本并打印使用说明" class="headerlink" title="查找脚本并打印使用说明"></a>查找脚本并打印使用说明</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-comment"># 搜索default version safe 类型的模块</span></span><span class="line">locate -r <span class="hljs-string">&#x27;\.nse$&#x27;</span> | xargs grep categories | grep <span class="hljs-string">&#x27;default\|version\|safe&#x27;</span> | grep <span class="hljs-comment">#&#123;module&#125;</span></span><span class="line"></br></span><span class="line"><span class="hljs-comment"># 打印说明</span></span><span class="line">nmap --script-help <span class="hljs-string">&quot;(default or version) and *#&#123;module&#125;*&quot;</span></span></code></pre></div></div><h4 id="使用漏洞扫描"><a href="#使用漏洞扫描" class="headerlink" title="使用漏洞扫描"></a>使用漏洞扫描</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">nmap -sV -O -p --script vuln <span class="hljs-comment">#&#123;RHOST&#125;</span></span></code></pre></div></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 渗透 </category>
+          
+          <category> 知识点 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tool </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux 侦察清单</title>
+      <link href="/2021/07/26/Linux-%E4%BE%A6%E5%AF%9F%E6%B8%85%E5%8D%95/"/>
+      <url>/2021/07/26/Linux-%E4%BE%A6%E5%AF%9F%E6%B8%85%E5%8D%95/</url>
+      
+        <content type="html"><![CDATA[<h2 id="在确定系统后的初步侦察清单"><a href="#在确定系统后的初步侦察清单" class="headerlink" title="在确定系统后的初步侦察清单"></a>在确定系统后的初步侦察清单</h2><p>检查开放端口，系统版本，服务版本，漏洞信息</p><p><a href="/2021/07/26/nmap-%E4%BD%BF%E7%94%A8/" title="nmap 使用">nmap 使用</a></p><ul><li><input disabled="" type="checkbox"> 端口的初步扫描</li><li><input disabled="" type="checkbox"> 端口的全面扫描</li><li><input disabled="" type="checkbox"> 带漏扫脚本的端口定向扫描</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 渗透 </category>
+          
+          <category> checklist </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> 侦察 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>linux 可执行文件的漏洞利用</title>
       <link href="/2021/07/23/linux-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%B8%85%E5%8D%95/"/>
       <url>/2021/07/23/linux-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%B8%85%E5%8D%95/</url>

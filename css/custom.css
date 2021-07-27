@@ -156,3 +156,6 @@ h4:before {
   counter-increment: h4counter;
   content: counter(h4counter, filled-circled-decimal) "\0000a0\0000a0";
 }
+h4 {
+  margin-left: 25px;
+}
