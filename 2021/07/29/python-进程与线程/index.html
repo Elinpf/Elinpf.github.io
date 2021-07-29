@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>学习编程的网站 | Elin 的空间</title>
-  <meta name="keywords" content=" 学习 ">
-  <meta name="description" content="学习编程的网站 | Elin 的空间">
+  <title>python 进程与线程 | Elin 的空间</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="python 进程与线程 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="使用多进程和多线程最好的方式是使用Master-Worker的设计模式 多进程多进程不共享内存空间，所以变量将会拷贝一份副本到新的进程中。 进程可以在不同的CPU核心上切换，Unix使用的底层的fork()函数，而windows支持的并不好，所以只能最大限度模拟。 通用的封装模块有两个。subprocess和multiprocessing 调用外部程序使用的是subprocess，而创建新的进程往">
 <meta property="og:type" content="article">
@@ -633,9 +633,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-学习编程的网站" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-python-进程与线程" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">学习编程的网站</h1>
+        <h1 class="article-title">python 进程与线程</h1>
     
     <div class="article-meta">
         
@@ -645,22 +645,17 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="编程">编程</a>
+            <a  data-rel="编程">编程</a> > 
+            
+            <a  data-rel="编程&lt;---&gt;python">python</a>
             
         </span>
         
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color3">学习</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-07-29 17:10:04'>2021-07-17 18:02</time>
+            发布时间 : <time class="date" title='最后更新: 2021-07-29 17:10:04'>2021-07-29 15:56</time>
         
     </div>
     <div class="article-meta">
@@ -682,7 +677,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="toc-text">多进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E7%A8%8B%E5%BA%8F"><span class="toc-text">调用外部程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AD%90%E8%BF%9B%E7%A8%8B"><span class="toc-text">创建子进程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#multiprocessing-Process"><span class="toc-text">multiprocessing.Process</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#multiprocessing-Pool"><span class="toc-text">multiprocessing.Pool</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF"><span class="toc-text">进程间通讯</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%B8%A6%E8%AF%BB%E5%86%99%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="toc-text">不带读写的多线程创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E5%B8%A6%E8%BF%9B%E7%A8%8B%E9%94%81%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="toc-text">读写带进程锁的多线程创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Local-%E4%BC%A0%E9%80%92%E5%8F%98%E9%87%8F"><span class="toc-text">Local 传递变量</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -698,27 +693,190 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.cppreference<br><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/">https://en.cppreference.com/w/</a></p>
-<p>2.LearnCpp<br><a target="_blank" rel="noopener" href="https://www.learncpp.com/">https://www.learncpp.com/</a></p>
-<p>3.Cplusplus<br><a target="_blank" rel="noopener" href="http://www.cplusplus.com/">http://www.cplusplus.com/</a></p>
-<p>4.TutorialsPoint<br><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/cplusplus/index.htm">https://www.tutorialspoint.com/cplusplus/index.htm</a></p>
-<p>5.Awesome C++<br><a target="_blank" rel="noopener" href="https://github.com/fffaraz/awesome-cpp">https://github.com/fffaraz/awesome-cpp</a></p>
-<p>6、书栈网<br><a target="_blank" rel="noopener" href="https://www.bookstack.cn/">https://www.bookstack.cn/</a></p>
-<p>7.牛客网<br><a target="_blank" rel="noopener" href="https://www.nowcoder.com/activity/oj">https://www.nowcoder.com/activity/oj</a></p>
-<p>8.搬书匠<br><a target="_blank" rel="noopener" href="http://www.banshujiang.cn/">http://www.banshujiang.cn/</a></p>
-<p>9.程序员刷题网站：LintCode 领扣<br><a target="_blank" rel="noopener" href="https://www.lintcode.com/problem/">https://www.lintcode.com/problem/</a></p>
-<p>10、LeetCode/LintCode 题解网站<br><a target="_blank" rel="noopener" href="https://www.jiuzhang.com/solution/?utm_source=sc-zhihu-jw0603">https://www.jiuzhang.com/solution/?utm_source=sc-zhihu-jw0603</a></p>
-<p>11、前端界的Dribbble——Codepen<br><a target="_blank" rel="noopener" href="https://codepen.io/">https://codepen.io/</a></p>
-<p>12、TheServerSide<br><a target="_blank" rel="noopener" href="https://www.theserverside.com/">https://www.theserverside.com/</a></p>
-<p>13、Hacker News<br><a target="_blank" rel="noopener" href="http://hackernews.betacat.io/">http://hackernews.betacat.io/</a></p>
-<p>14、karan/Projects<br><a target="_blank" rel="noopener" href="https://www.gitmemory.com/karan/Projects">https://www.gitmemory.com/karan/Projects</a></p>
-<p>15.字体动效神器Space Type Generator<br><a target="_blank" rel="noopener" href="https://spacetypegenerator.com/">https://spacetypegenerator.com/</a></p>
-<p>16.大学自学网<br><a target="_blank" rel="noopener" href="http://v.dxsbb.com/">http://v.dxsbb.com/</a></p>
-<p>17.简单教程<br><a target="_blank" rel="noopener" href="https://www.twle.cn/">https://www.twle.cn/</a></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d44y1q76P">参考来源</a></li>
-</ul>
+        <p>使用多进程和多线程最好的方式是使用<code>Master-Worker</code>的设计模式</p>
+<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p><strong>多进程</strong>不共享内存空间，所以变量将会拷贝一份副本到新的进程中。</p>
+<p>进程可以在不同的CPU核心上切换，Unix使用的底层的<code>fork()</code>函数，而windows支持的并不好，所以只能最大限度模拟。</p>
+<p>通用的封装模块有两个。<code>subprocess</code>和<code>multiprocessing</code></p>
+<p>调用外部程序使用的是<code>subprocess</code>，而创建新的进程往往使用的是<code>multiprocessing</code></p>
+<h3 id="调用外部程序"><a href="#调用外部程序" class="headerlink" title="调用外部程序"></a>调用外部程序</h3><p>当调用的外部程序不需要复杂交互的时候，可以使用<code>call</code>方法直接创建子进程，然后得到返回。<br><code>call</code>方法是拥塞的，将会等到子进程结束才会继续执行父进程。</p>
+<p>当调用的外部程序有复杂交互的时候，可以使用<code>Popen</code>方法。<br><code>Popen</code>方法是非拥塞的。</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> subprocess</span>
+<span class="line">r = subprocess.call([<span class="hljs-string">&#x27;nslookup&#x27;</span>, <span class="hljs-string">&#x27;python.org&#x27;</span>])</span>
+<span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Exit code:&#x27;</span>, r)</span>
+</code></pre></div></div>
 
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> subprocess</span>
+<span class="line">p = subprocess.Popen([<span class="hljs-string">&#x27;nslookup&#x27;</span>], stdin=subprocess.PIPE,</span>
+<span class="line">                     stdout=subprocess.PIPE, stderr=subprocess.PIPE)</span>
+<span class="line"></br></span>
+<span class="line">output, error = p.communicate(<span class="hljs-string">b&#x27;setq=mx\npython.org\nexit\n&#x27;</span>)</span>
+<span class="line"><span class="hljs-built_in">print</span>(output.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>, <span class="hljs-string">&#x27;ignore&#x27;</span>))</span>
+<span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Return Code:&#x27;</span>, p.returncode)</span>
+</code></pre></div></div>
+
+<h3 id="创建子进程"><a href="#创建子进程" class="headerlink" title="创建子进程"></a>创建子进程</h3><p>创建子进程也有两种方式，一种是用<code>multiprocessing.Process</code>进行单次创建，另一种就是使用<code>multiprocessing.Pool</code>创建一个池，然后管理池中子进程.</p>
+<h4 id="multiprocessing-Process"><a href="#multiprocessing-Process" class="headerlink" title="multiprocessing.Process"></a>multiprocessing.Process</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Process</span>
+<span class="line"><span class="hljs-keyword">import</span> os</span>
+<span class="line"><span class="hljs-keyword">from</span> time <span class="hljs-keyword">import</span> sleep</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run_child</span>(<span class="hljs-params">name</span>):</span></span>
+<span class="line">    sleep(<span class="hljs-number">1</span>)</span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Run child name %s, pid is %s&#x27;</span> % (name, os.getpid()))</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:</span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Parent process %s.&#x27;</span> % os.getpid())</span>
+<span class="line marked">    p = Process(target=run_child, args=(<span class="hljs-string">&#x27;test&#x27;</span>,))</span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;start child process&#x27;</span>)</span>
+<span class="line">    p.start()  <span class="hljs-comment"># 会自动调用run_child函数</span></span>
+<span class="line">    p.join()  <span class="hljs-comment"># 会等待子进程结束后再继续往下运行</span></span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Child process end&#x27;</span>)</span>
+</code></pre></div></div>
+
+<h4 id="multiprocessing-Pool"><a href="#multiprocessing-Pool" class="headerlink" title="multiprocessing.Pool"></a>multiprocessing.Pool</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Pool, cpu_count</span>
+<span class="line"><span class="hljs-keyword">import</span> os</span>
+<span class="line"><span class="hljs-keyword">import</span> time</span>
+<span class="line"><span class="hljs-keyword">import</span> random</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">long_time_wait</span>(<span class="hljs-params">name</span>):</span></span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Run task %s, pid is %s&quot;</span> % (name, os.getpid()))</span>
+<span class="line">    start_time = time.time()</span>
+<span class="line">    time.sleep(random.random() * <span class="hljs-number">3</span>)</span>
+<span class="line">    end_time = time.time()</span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Task %s runs %0.2f sec&quot;</span> % (name, (end_time - start_time)))</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:</span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Parent pid is %s&quot;</span> % os.getpid())</span>
+<span class="line marked">    p = Pool(cpu_count())  <span class="hljs-comment"># 这个是进程池，默认是CPU核数，可以自己指定</span></span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;subprocess Start&quot;</span>)</span>
+<span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):</span>
+<span class="line marked">        p.apply_async(long_time_wait, args=(i,))  <span class="hljs-comment"># 这个是异步的，异步的执行，不会阻塞当前的进程</span></span>
+<span class="line">        <span class="hljs-comment"># p.apply(long_time_wait, args=(1,))  # 这个是同步的，同步的执行，会阻塞当前的进程</span></span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;before close&#x27;</span>)</span>
+<span class="line">    p.close() <span class="hljs-comment"># 在join()之前必须close()</span></span>
+<span class="line">    p.join()</span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;All subprocess done&quot;</span>)</span>
+</code></pre></div></div>
+
+<h3 id="进程间通讯"><a href="#进程间通讯" class="headerlink" title="进程间通讯"></a>进程间通讯</h3><p>进程间的通讯使用的是<code>multiprocessing.Queue</code>队列</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Process, Queue</span>
+<span class="line"><span class="hljs-keyword">import</span> time</span>
+<span class="line"><span class="hljs-keyword">import</span> random</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">write</span>(<span class="hljs-params">q</span>):</span></span>
+<span class="line">    <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> [<span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>]:</span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Put %s in queue&#x27;</span> % value)</span>
+<span class="line">        <span class="hljs-comment"># highhight-next-line</span></span>
+<span class="line">        q.put(value)</span>
+<span class="line">        time.sleep(random.random() * <span class="hljs-number">3</span>)</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">read</span>(<span class="hljs-params">q</span>):</span></span>
+<span class="line">    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:</span>
+<span class="line">        <span class="hljs-comment"># highhight-next-line</span></span>
+<span class="line">        value = q.get(<span class="hljs-literal">True</span>)</span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Get %s from queue&#x27;</span> % value)</span>
+<span class="line">        time.sleep(<span class="hljs-number">0.1</span>)</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:</span>
+<span class="line">    q = Queue()</span>
+<span class="line">    pw = Process(target=write, args=(q,))</span>
+<span class="line">    pr = Process(target=read, args=(q,))</span>
+<span class="line">    pw.start()</span>
+<span class="line">    pr.start()</span>
+<span class="line">    pw.join()</span>
+<span class="line">    pr.terminate() <span class="hljs-comment"># 由于read是死循环，需要强制结束</span></span>
+</code></pre></div></div>
+
+<p><code>Process</code>中有<code>terminate</code>方法强制结束，但是线程中没有。</p>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p><strong>多线程</strong>共享一个内存空间，调用的变量也是同一个。</p>
+<p>多线程python支持的不错，但是以下几点必须注意：</p>
+<ol>
+<li>在读写全局变量的时候必须加入线程锁，并且确保释放</li>
+<li>多线程的变量<strong>传参</strong>使用<code>threading.Local</code>对象</li>
+<li>python的多线程只能利用一核，要使用多核就必须要用到多进程了</li>
+</ol>
+<h3 id="不带读写的多线程创建"><a href="#不带读写的多线程创建" class="headerlink" title="不带读写的多线程创建"></a>不带读写的多线程创建</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> threading</span>
+<span class="line"><span class="hljs-keyword">import</span> time</span>
+<span class="line"><span class="hljs-keyword">import</span> random</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">loop</span>():</span></span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;thread name %s&#x27;</span> % threading.current_thread().name)</span>
+<span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">6</span>):</span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;thread name %s &gt;&gt;&gt; %s&#x27;</span> % (threading.current_thread().name, i))</span>
+<span class="line">        time.sleep(random.random())</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;thread name %s Done&#x27;</span> % threading.current_thread().name)</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Main thread: &#x27;</span>, threading.current_thread().name)</span>
+<span class="line marked">t = threading.Thread(target=loop, name=<span class="hljs-string">&#x27;LoopThread&#x27;</span>)</span>
+<span class="line">t.start()</span>
+<span class="line">t.join()</span>
+<span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Main thread %s Done&#x27;</span> % threading.current_thread().name)</span>
+</code></pre></div></div>
+
+<h3 id="读写带进程锁的多线程创建"><a href="#读写带进程锁的多线程创建" class="headerlink" title="读写带进程锁的多线程创建"></a>读写带进程锁的多线程创建</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> threading</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment"># 假定这是你的银行存款:</span></span>
+<span class="line">balance = <span class="hljs-number">0</span></span>
+<span class="line marked">lock = threading.Lock()</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change_it</span>(<span class="hljs-params">n</span>):</span></span>
+<span class="line">    <span class="hljs-comment"># 先存后取，结果应该为0:</span></span>
+<span class="line">    <span class="hljs-keyword">global</span> balance</span>
+<span class="line">    balance = balance + n</span>
+<span class="line">    balance = balance - n</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run_thread</span>(<span class="hljs-params">n</span>):</span></span>
+<span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2000000</span>):</span>
+<span class="line marked">        lock.acquire()</span>
+<span class="line marked">        <span class="hljs-keyword">try</span>:</span>
+<span class="line marked">            change_it(n)</span>
+<span class="line marked">        <span class="hljs-keyword">finally</span>:</span>
+<span class="line marked">            lock.release()</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line">t1 = threading.Thread(target=run_thread, args=(<span class="hljs-number">5</span>,))</span>
+<span class="line">t2 = threading.Thread(target=run_thread, args=(<span class="hljs-number">8</span>,))</span>
+<span class="line">t1.start()</span>
+<span class="line">t2.start()</span>
+<span class="line">t1.join()</span>
+<span class="line">t2.join()</span>
+<span class="line"><span class="hljs-built_in">print</span>(balance)</span>
+</code></pre></div></div>
+
+<h3 id="Local-传递变量"><a href="#Local-传递变量" class="headerlink" title="Local 传递变量"></a>Local 传递变量</h3><p>使用local其实是省略了<code>dict[threading.current_thread()]</code>，来保证取到的变量是本线程的变量</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> threading</span>
+<span class="line"></br></span>
+<span class="line">local_s = threading.local()</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">start_thread</span>(<span class="hljs-params">name</span>):</span></span>
+<span class="line">    local_s.name = name</span>
+<span class="line">    proc_name()</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">proc_name</span>():</span></span>
+<span class="line">    name = local_s.name</span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;%s, thread: %s&quot;</span> % (name, threading.current_thread().name))</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line">p1 = threading.Thread(target=start_thread, args=(<span class="hljs-string">&quot;p1&quot;</span>,), name=<span class="hljs-string">&quot;Thread_1&quot;</span>)</span>
+<span class="line">p2 = threading.Thread(target=start_thread, args=(<span class="hljs-string">&quot;p2&quot;</span>,), name=<span class="hljs-string">&quot;Thread_2&quot;</span>)</span>
+<span class="line">p1.start()</span>
+<span class="line">p2.start()</span>
+<span class="line">p1.join()</span>
+<span class="line">p2.join()</span>
+</code></pre></div></div>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
     </div>
