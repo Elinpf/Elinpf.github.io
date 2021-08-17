@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>华为eNSP 关闭Log</title>
+      <link href="/2021/08/17/%E5%8D%8E%E4%B8%BAeNSP-%E5%85%B3%E9%97%ADLog/"/>
+      <url>/2021/08/17/%E5%8D%8E%E4%B8%BAeNSP-%E5%85%B3%E9%97%ADLog/</url>
+      
+        <content type="html"><![CDATA[<p>华为的模拟器<code>eNSP</code>默认对变更会有Log产生，非常影响操作。关闭的方法如下：</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-pf codeBlockLines"><span class="line">info-center source DS channel <span class="hljs-number">0</span> <span class="hljs-keyword">log</span> <span class="hljs-keyword">state</span> off  trap <span class="hljs-keyword">state</span> off</span></code></pre></div></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数通 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>绘画网站推荐</title>
       <link href="/2021/08/09/%E7%BB%98%E7%94%BB%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/"/>
       <url>/2021/08/09/%E7%BB%98%E7%94%BB%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/</url>
