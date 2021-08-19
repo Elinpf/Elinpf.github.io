@@ -14,7 +14,7 @@
 <meta property="og:description" content="华为的模拟器eNSP默认对变更会有Log产生，非常影响操作。关闭的方法如下： info-center source DS channel 0 log state off  trap state off">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-17T07:38:24.000Z">
-<meta property="article:modified_time" content="2021-08-17T07:41:20.343Z">
+<meta property="article:modified_time" content="2021-08-19T09:27:12.289Z">
 <meta property="article:author" content="Elin">
 <meta name="twitter:card" content="summary">
 
@@ -694,7 +694,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-08-17 15:41:20'>2021-07-16 10:05</time>
+            发布时间 : <time class="date" title='最后更新: 2021-08-19 17:27:12'>2021-07-16 10:05</time>
         
     </div>
     <div class="article-meta">
@@ -716,7 +716,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-Server"><span class="toc-text">HTTP Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-Client"><span class="toc-text">http Client</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-Server"><span class="toc-text">HTTP Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-Client"><span class="toc-text">http Client</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requests-%E6%A8%A1%E5%9D%97"><span class="toc-text">requests 模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="toc-text">发送请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%A0%E9%80%92URL%E4%BF%A1%E6%81%AF%E5%92%8C%E5%93%8D%E5%BA%94%E4%BF%A1%E6%81%AF"><span class="toc-text">传递URL信息和响应信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="toc-text">定制请求头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-text">响应状态码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E5%8E%86%E5%8F%B2"><span class="toc-text">重定向历史</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#urllib3-%E6%A8%A1%E5%9D%97"><span class="toc-text">urllib3 模块</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -792,7 +792,69 @@
 <span class="line">        run()</span>
 </code></pre></div></div>
 
-<h2 id="http-Client"><a href="#http-Client" class="headerlink" title="http Client"></a>http Client</h2><p>POST 方法参考</p>
+<h2 id="http-Client"><a href="#http-Client" class="headerlink" title="http Client"></a>http Client</h2><p>推荐两个模块<code>urllib3</code>和<code>requests</code></p>
+<h3 id="requests-模块"><a href="#requests-模块" class="headerlink" title="requests 模块"></a>requests 模块</h3><p><a target="_blank" rel="noopener" href="https://docs.python-requests.org/zh_CN/latest/user/quickstart.html">官方参考链接</a></p>
+<h4 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> requests</span>
+<span class="line"></br></span>
+<span class="line">r = requests.get(<span class="hljs-string">&#x27;https://api.github.com/events&#x27;</span>)</span>
+<span class="line">r = requests.post(<span class="hljs-string">&#x27;http://httpbin.org/post&#x27;</span>, data = &#123;<span class="hljs-string">&#x27;key&#x27;</span>:<span class="hljs-string">&#x27;value&#x27;</span>&#125;)</span>
+<span class="line">r = requests.put(<span class="hljs-string">&#x27;http://httpbin.org/put&#x27;</span>, data = &#123;<span class="hljs-string">&#x27;key&#x27;</span>:<span class="hljs-string">&#x27;value&#x27;</span>&#125;)</span>
+<span class="line">r = requests.delete(<span class="hljs-string">&#x27;http://httpbin.org/delete&#x27;</span>)</span>
+<span class="line">r = requests.head(<span class="hljs-string">&#x27;http://httpbin.org/get&#x27;</span>)</span>
+<span class="line">r = requests.options(<span class="hljs-string">&#x27;http://httpbin.org/get&#x27;</span>)</span>
+</code></pre></div></div>
+
+<h4 id="传递URL信息和响应信息"><a href="#传递URL信息和响应信息" class="headerlink" title="传递URL信息和响应信息"></a>传递URL信息和响应信息</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">payload = &#123;<span class="hljs-string">&#x27;key1&#x27;</span>: <span class="hljs-string">&#x27;value1&#x27;</span>, <span class="hljs-string">&#x27;key2&#x27;</span>: <span class="hljs-string">&#x27;value2&#x27;</span>&#125;</span>
+<span class="line">r = requests.get(<span class="hljs-string">&quot;http://httpbin.org/get&quot;</span>, params=payload)</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-built_in">print</span>(r.url)</span>
+<span class="line"><span class="hljs-comment"># http://httpbin.org/get?key2=value2&amp;key1=value1</span></span>
+<span class="line"></br></span>
+<span class="line">r.text  <span class="hljs-comment"># u解码后的</span></span>
+<span class="line">r.content <span class="hljs-comment"># b未解码的</span></span>
+<span class="line">r.encoding = <span class="hljs-string">&#x27;gbk2312&#x27;</span> <span class="hljs-comment"># 指定解码类型</span></span>
+</code></pre></div></div>
+
+<h4 id="定制请求头"><a href="#定制请求头" class="headerlink" title="定制请求头"></a>定制请求头</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">url = <span class="hljs-string">&#x27;https://api.github.com/some/endpoint&#x27;</span></span>
+<span class="line">headers = &#123;<span class="hljs-string">&#x27;user-agent&#x27;</span>: <span class="hljs-string">&#x27;my-app/0.0.1&#x27;</span>&#125;</span>
+<span class="line">cookies = <span class="hljs-built_in">dict</span>(cookies_are=<span class="hljs-string">&#x27;working&#x27;</span>)</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line">r = requests.get(url, headers=headers, cookies=cookies)</span>
+<span class="line"></br></span>
+<span class="line">r.request.headers <span class="hljs-comment"># 查看请求头部</span></span>
+<span class="line">r.headers  <span class="hljs-comment"># 查看响应头部</span></span>
+</code></pre></div></div>
+
+<h4 id="响应状态码"><a href="#响应状态码" class="headerlink" title="响应状态码"></a>响应状态码</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">r = requests.get(<span class="hljs-string">&#x27;http://httpbin.org/get&#x27;</span>)</span>
+<span class="line">r.status_code</span>
+<span class="line"><span class="hljs-comment"># 200</span></span>
+<span class="line"></br></span>
+<span class="line">r.status_code == requests.codes.ok</span>
+<span class="line"><span class="hljs-comment"># True</span></span>
+<span class="line"></br></span>
+<span class="line">bad_r = requests.get(<span class="hljs-string">&#x27;http://httpbin.org/status/404&#x27;</span>)</span>
+<span class="line">bad_r.status_code</span>
+<span class="line"><span class="hljs-comment"># 404</span></span>
+<span class="line">bad_r.raise_for_status() <span class="hljs-comment"># 错误将抛出异常，否则为None</span></span>
+</code></pre></div></div>
+
+<h4 id="重定向历史"><a href="#重定向历史" class="headerlink" title="重定向历史"></a>重定向历史</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">r = requests.get(<span class="hljs-string">&#x27;http://github.com&#x27;</span>)</span>
+<span class="line">r.url</span>
+<span class="line"><span class="hljs-comment"># &#x27;https://github.com/&#x27;</span></span>
+<span class="line">r.status_code</span>
+<span class="line"><span class="hljs-comment"># 200</span></span>
+<span class="line">r.history</span>
+<span class="line"><span class="hljs-comment"># [&lt;Response [301]&gt;]</span></span>
+<span class="line"></br></span>
+<span class="line">r = requests.get(<span class="hljs-string">&#x27;http://github.com&#x27;</span>, allow_redirects=<span class="hljs-literal">False</span>)</span>
+<span class="line">r.status_code</span>
+<span class="line"><span class="hljs-comment"># 301</span></span>
+<span class="line">r.history</span>
+<span class="line"><span class="hljs-comment"># []</span></span>
+</code></pre></div></div>
+
+<h3 id="urllib3-模块"><a href="#urllib3-模块" class="headerlink" title="urllib3 模块"></a>urllib3 模块</h3><p>POST 方法参考</p>
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> urllib3 <span class="hljs-keyword">import</span> PoolManager</span>
 <span class="line"><span class="hljs-keyword">from</span> urllib.parse <span class="hljs-keyword">import</span> urlencode, urljoin</span>
 <span class="line"><span class="hljs-keyword">import</span> chardet</span>
