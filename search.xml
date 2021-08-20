@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>iptable 防火墙</title>
+      <link href="/2021/08/20/iptable-%E9%98%B2%E7%81%AB%E5%A2%99/"/>
+      <url>/2021/08/20/iptable-%E9%98%B2%E7%81%AB%E5%A2%99/</url>
+      
+        <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>iptable 其实是netfilter的对外接口，内核防火墙其实是netfilter</p><p>iptable 有链和表的概念，还有包处于什么位置</p><p><img src="/2021/08/20/iptable-%E9%98%B2%E7%81%AB%E5%A2%99/1.png"></p><p>这就是iptable的运行图，有5个链：<br><code>prerouting</code> <code>forwording</code> <code>postrouting</code> <code>input</code> <code>output</code></p><p>有4个基本表：<br><code>raw</code> <code>mangle</code> <code>nat</code> <code>filter</code></p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-css codeBlockLines"><span class="line"><span class="hljs-attribute">filter</span>表：负责过滤功能，防火墙；内核模块：iptables_filter</span><span class="line"></br></span><span class="line">nat表：network <span class="hljs-selector-tag">address</span> translation，网络地址转换功能；内核模块：iptable_nat</span><span class="line"></br></span><span class="line">mangle表：拆解报文，做出修改，并重新封装 的功能；iptable_mangle</span><span class="line"></br></span><span class="line">raw表：关闭nat表上启用的连接追踪机制；iptable_raw</span></code></pre></div></div><h3 id="匹配规则"><a href="#匹配规则" class="headerlink" title="匹配规则"></a>匹配规则</h3><p>匹配规则分为标准匹配和扩展匹配，也就是基于IP和基于端口的匹配</p><h3 id="动作"><a href="#动作" class="headerlink" title="动作"></a>动作</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-stata codeBlockLines"><span class="line">ACCEPT：允许数据包通过。</span><span class="line"></br></span><span class="line"><span class="hljs-keyword">DROP</span>：直接丢弃数据包，不给任何回应信息，这时候客户端会感觉自己的请求泥牛入海了，过了超时时间才会有反应。</span><span class="line"></br></span><span class="line">REJECT：拒绝数据包通过，必要时会给数据发送端一个响应的信息，客户端刚请求就会收到拒绝的信息。</span><span class="line"></br></span><span class="line">SNAT：源地址转换，解决内网用户用同一个公网地址上网的问题。</span><span class="line"></br></span><span class="line">MASQUERADE：是SNAT的一种特殊形式，适用于动态的、临时会变的ip上。</span><span class="line"></br></span><span class="line">DNAT：目标地址转换。</span><span class="line"></br></span><span class="line">REDIRECT：在本机做端口映射。</span><span class="line"></br></span><span class="line"><span class="hljs-keyword">LOG</span>：在/<span class="hljs-keyword">var</span>/<span class="hljs-keyword">log</span>/messages文件中记录日志信息，然后将数据包传递给下一条规则，也就是说除了记录以外不对数据包做任何其他操作，仍然让下一条规则去匹配。</span></code></pre></div></div><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><ul><li><p>查看</p><ul><li><code>iptables -L</code> 默认就是查看filter 表的 INPUT 链</li><li><code>iptables -nvL INPUT --line-numbers</code>  查看详情</li></ul></li><li><p><a href="http://blog.51yip.com/linux/1404.html">这里</a>是iptables 的增删改查命令</p></li></ul><p>清除计数为<code>-Z</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 渗透 </category>
+          
+          <category> 知识点 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>华为eNSP 关闭Log</title>
       <link href="/2021/08/17/%E5%8D%8E%E4%B8%BAeNSP-%E5%85%B3%E9%97%ADLog/"/>
       <url>/2021/08/17/%E5%8D%8E%E4%B8%BAeNSP-%E5%85%B3%E9%97%ADLog/</url>
