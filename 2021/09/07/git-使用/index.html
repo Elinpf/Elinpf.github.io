@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>绘画网站推荐 | Elin 的空间</title>
+  <title>git 使用 | Elin 的空间</title>
   <meta name="keywords" content="">
-  <meta name="description" content="绘画网站推荐 | Elin 的空间">
+  <meta name="description" content="git 使用 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Pro Git 第二版中文, 网站这个是一个非常好的学习网站这里是一个DEMO网站 commit使用 git commmit --amend 来提交一个平行的变更 标签查看标签 git tag ##打标签  附注标签git tag -a v1.4 -m &#39;my version 1.4&#39;  轻量标签$ git tag v1.4-lw  后期打标签$ git tag -a v1.2 9">
 <meta property="og:type" content="article">
@@ -695,29 +695,19 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-绘画网站推荐" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-git-使用" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">绘画网站推荐</h1>
+        <h1 class="article-title">git 使用</h1>
     
     <div class="article-meta">
         
-        <span class="top"><a>置顶</a></span>
         
-        
-        
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="绘画">绘画</a>
-            
-        </span>
         
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-09-07 15:55:18'>2021-08-09 18:27</time>
+            发布时间 : <time class="date" title='最后更新: 2021-09-07 15:55:18'>2021-09-07 15:33</time>
         
     </div>
     <div class="article-meta">
@@ -739,7 +729,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#commit"><span class="toc-text">commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE"><span class="toc-text">标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E5%B9%B6"><span class="toc-text">合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E4%B8%B4%E6%97%B6%E6%9C%AA%E6%8F%90%E4%BA%A4%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-text">存储临时未提交的内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E5%9F%BA"><span class="toc-text">变基</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cherry-pick"><span class="toc-text">cherry-pick</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96"><span class="toc-text">拉取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%80%E5%9B%9E%E4%B8%8E%E6%81%A2%E5%A4%8D"><span class="toc-text">退回与恢复</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">恢复的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E9%80%80%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-text">回退的两种方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#reset"><span class="toc-text">reset</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#checkout"><span class="toc-text">checkout</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E9%80%80%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">回退单个文件的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E8%BD%AC%E7%A7%BB%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%88%86%E6%94%AF"><span class="toc-text">强制转移到另一个分支</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ignore-%E9%97%AE%E9%A2%98"><span class="toc-text">.ignore 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E8%BF%9C%E7%A8%8B%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">关于远程的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8Bpush%E7%9A%84%E5%90%8C%E6%97%B6%E5%8F%AF%E4%BB%A5%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="toc-text">远程push的同时可以创建分支</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -755,14 +745,73 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>brusheezy（免费笔刷网站）<a target="_blank" rel="noopener" href="http://www.brusheezy.com/">www.brusheezy.com</a><br>itsnicethat (插画师创作分享网站)  <a target="_blank" rel="noopener" href="http://www.itsnicethat.com/">www.itsnicethat.com</a><br>xuehuahua (基础教程) <a target="_blank" rel="noopener" href="http://www.xuehuahua.cc/">www.xuehuahua.cc</a></p>
-<p>mixkit (优秀插画作品参考) <a target="_blank" rel="noopener" href="https://mixkit.co/free-stock-art">https://mixkit.co/free-stock-art</a><br>皮克斯 （摄影作品参考） <a target="_blank" rel="noopener" href="http://www.pexels.com/">www.pexels.com</a><br>500px  （无版权照片素材网）<a target="_blank" rel="noopener" href="https://500px.com.cn/">https://500px.com.cn</a></p>
-<p>pixivic  （p站镜像站小粉红） <a target="_blank" rel="noopener" href="http://www.pixivic.com/">www.pixivic.com</a><br>GGAC  （国内权威的 CG网站）<a target="_blank" rel="noopener" href="http://www.ggac.com/v2/home">www.ggac.com/v2/home</a><br>cgsociety （美国权威的 CG网站）<a target="_blank" rel="noopener" href="http://www.cgsociety.org/">www.cgsociety.org</a></p>
-<p>花瓣 站酷 微元素 堆糖 知妖直接搜索名字就好</p>
-<p>sketchfab (3D模型参考) <a target="_blank" rel="noopener" href="https://sketchfab.com/3d-models">https://sketchfab.com/3d-models</a><br>bodiesinmotion （人物动态与表情参考）<a target="_blank" rel="noopener" href="http://www.bodiesinmotion.photo/">www.bodiesinmotion.photo</a><br>getbodysmart  （人体骨骼肌肉神经系统）<a target="_blank" rel="noopener" href="http://www.getbodysmart.com/">www.getbodysmart.com</a><br>line-of-action  (人物 动物速写练习)   <a target="_blank" rel="noopener" href="https://line-of-action.com/">https://line-of-action.com</a></p>
-<p>chojugiga （动物拟人参考）<a target="_blank" rel="noopener" href="http://www.chojugiga.com/">www.chojugiga.com</a><br>pixelsquid （各种物体画法参考）<a target="_blank" rel="noopener" href="http://www.pixelsquid.com/png">www.pixelsquid.com/png</a><br>microsculpture  （各种昆虫图片）<a target="_blank" rel="noopener" href="http://www.microsculpture.net/">www.microsculpture.net</a><br>withawish  （燕尾服参考网站）<a target="_blank" rel="noopener" href="http://www.withawish.jp/">www.withawish.jp</a><br>uenoya （霸道总裁长外套） <a target="_blank" rel="noopener" href="https://long-coat.uenoya.jp/">https://long-coat.uenoya.jp</a></p>
-<p>musinsa  （练习速写和褶皱）<a target="_blank" rel="noopener" href="https://m.store.musinsa.com/app/styles/lists">https://m.store.musinsa.com/app/styles/lists</a><br>|screenmusings （电影图的参考网站）<a target="_blank" rel="noopener" href="http://www.screenmusings.org/">www.screenmusings.org</a><br>Filmgrab  （全世界的电影截图）<a target="_blank" rel="noopener" href="https://film-grab.com/">https://Film-grab.com</a><br>impawards （电影海报素材）<a target="_blank" rel="noopener" href="http://www.impawards.com/">http://www.impawards.com/</a></p>
-<p>nipponcolors （日本配色网站） <a target="_blank" rel="noopener" href="https://nipponcolors.com/">https://nipponcolors.com/</a><br>coolors  （新手配色网站） <a target="_blank" rel="noopener" href="https://coolors.co/">https://coolors.co/</a><br>Yorke Antique Textiles（纹理图案网站） <a target="_blank" rel="noopener" href="https://www.yorkeantiquetextiles.com/">https://www.yorkeantiquetextiles.com/</a><br>loftcn (房屋设计网站)  <a target="_blank" rel="noopener" href="https://loftcn.com/">https://loftcn.com/</a></p>
+        <p><a target="_blank" rel="noopener" href="https://progit.bootcss.com/">Pro Git 第二版中文, 网站</a><br><a target="_blank" rel="noopener" href="https://oschina.gitee.io/learn-git-branching/">这个</a>是一个非常好的学习网站<br><a target="_blank" rel="noopener" href="https://learngitbranching.js.org/?NODEMO=&locale=zh_CN">这里</a>是一个DEMO网站</p>
+<h2 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h2><p>使用 <code>git commmit --amend</code> 来提交一个平行的变更</p>
+<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p>查看标签 <code>git tag</code></p>
+<p>##打标签</p>
+<ul>
+<li><p>附注标签<br><code>git tag -a v1.4 -m &#39;my version 1.4&#39;</code></p>
+</li>
+<li><p>轻量标签<br><code>$ git tag v1.4-lw</code></p>
+</li>
+<li><p>后期打标签<br><code>$ git tag -a v1.2 9fceb02</code></p>
+</li>
+<li><p>推送标签<br><code>git push origin --tags</code><br><code>git push origin &lt;tag&gt;</code></p>
+</li>
+</ul>
+<h2 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h2><blockquote>
+<p>合并冲突时，使用  git status 查看，冲突文件中会有标记</p>
+</blockquote>
+<p>可以使用合并工具高效处理 <code>git mergetool</code></p>
+<blockquote>
+<p>–merged 与 –no-merged 这两个有用的选项可以过滤这个列表中已经合并或尚未合并到当前分支的分支。 –merge 在这个列表中分支名字前没有 * 号的分支通常可以使用 git branch -d 删除掉；你已经将它们的工作整合到了另一个分支，所以并不会失去任何东西。</p>
+</blockquote>
+<h2 id="存储临时未提交的内容"><a href="#存储临时未提交的内容" class="headerlink" title="存储临时未提交的内容"></a>存储临时未提交的内容</h2><p>当遇到需要临时存储的时候，使用<code>git stash</code>来进行存储</p>
+<p>使用 <code>git stash list</code> 查看存储内容</p>
+<p>使用 <code>git stash pop</code> 来恢复存储内容</p>
+<h3 id="变基"><a href="#变基" class="headerlink" title="变基"></a>变基</h3><p>其实，还有一种方法：你可以提取在 C4 中引入的补丁和修改，然后在 C3 的基础上应用一次。 在 Git 中，这种操作就叫做 变基。 你可以使用 rebase 命令将提交到某一分支上的所有修改都移至另一分支上，就好像“重新播放”一样。</p>
+<p>在需要使用交互方式的时候加上 <code>-i</code> 即可</p>
+<p>注意变基时候的方向, 大多数情况使用 <code>cherry-pick</code>会更好</p>
+<p><code>$ git rebase &lt;目的分支&gt; &lt;将被移动的分支&gt;</code></p>
+<p><strong>不要对在你的仓库外有副本的分支执行变基。</strong></p>
+<h3 id="cherry-pick"><a href="#cherry-pick" class="headerlink" title="cherry-pick"></a>cherry-pick</h3><p>这个不同与<code>base</code>，可以单独将其他分支的一个提交放到本分支上来</p>
+<p><code>git cherry-pick c3</code></p>
+<h2 id="拉取"><a href="#拉取" class="headerlink" title="拉取"></a>拉取</h2><p>有一个命令叫作 <code>git pull</code> 在大多数情况下它的含义是一个 <code>git fetch</code> 紧接着一个 <code>git merge</code> 命令</p>
+<h2 id="退回与恢复"><a href="#退回与恢复" class="headerlink" title="退回与恢复"></a>退回与恢复</h2><h3 id="恢复的方法"><a href="#恢复的方法" class="headerlink" title="恢复的方法"></a>恢复的方法</h3><p>重点在于列出所有的commit<br><code>git reflog</code></p>
+<h3 id="回退的两种方法"><a href="#回退的两种方法" class="headerlink" title="回退的两种方法"></a>回退的两种方法</h3><p>两种回退方式应该是<code>reset</code>和<code>revert</code>，其中<code>reset</code>是本地退后，本质是checkout，而<code>revert</code>的本质是将要退的地方提交一个新的commit。</p>
+<ul>
+<li><code>git reset HEAD~1</code></li>
+<li><code>git revert HEAD</code></li>
+</ul>
+<ul>
+<li>使用<code>reset</code>回退</li>
+<li>使用<code>checkout</code>回退</li>
+</ul>
+<h4 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h4><p>分为<strong>soft</strong> 和 <strong>hard</strong> 两种，<strong>soft</strong>只会回退状态，不会改变代码。<strong>hard</strong>回退会改变代码。默认是<strong>soft</strong></p>
+<p><code>git reset --hard [commit-id]</code></p>
+<p>恢复即可找到之前的commit-id再reset</p>
+<h4 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h4><p>使用<code>checkout</code>更加的安全方便<br><code>git checkout [commit-id]</code> 将HEAD放到这个新的分支中, 再在这个分支中修改提交后。<code>git checkout master</code> 然后<code>git merge [branch-id]</code> 即可</p>
+<p>或者直接使用 <code>git branch -f [branch-id] &lt;commit-id&gt;</code> 将这个分支指向这个commit</p>
+<h3 id="回退单个文件的方法"><a href="#回退单个文件的方法" class="headerlink" title="回退单个文件的方法"></a>回退单个文件的方法</h3><p>其实<code>git log</code> 和<code>git checkout</code> 后面都可以带单个文件</p>
+<p>所以是</p>
+<ol>
+<li><code>git log &lt;file&gt;</code>来查看此文件的历史提交</li>
+<li><code>git checkout &lt;hash&gt; &lt;file&gt;</code>来恢复特定版本</li>
+</ol>
+<h3 id="强制转移到另一个分支"><a href="#强制转移到另一个分支" class="headerlink" title="强制转移到另一个分支"></a>强制转移到另一个分支</h3><p><code>git branch -f &lt;master&gt; &lt;other_c&gt;</code></p>
+<h2 id="ignore-问题"><a href="#ignore-问题" class="headerlink" title=".ignore 问题"></a>.ignore 问题</h2><p>对于track过的文件，后面的更改不想提交可以使用下面的方法</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-vim codeBlockLines"><span class="line">已经维护起来的文件，即使加上了gitignore，也无济于事。<span class="hljs-symbol">&lt;br&gt;</span></span>
+<span class="line">用下面这个命令：</span>
+<span class="line">git <span class="hljs-keyword">update</span>-<span class="hljs-built_in">index</span> --assume-unchanged logs/*.<span class="hljs-built_in">log</span></span>
+<span class="line"></br></span>
+<span class="line">这样每次提交就不会出现logs下面的文件了</span>
+</code></pre></div></div>
+
+
+<h2 id="关于远程的问题"><a href="#关于远程的问题" class="headerlink" title="关于远程的问题"></a>关于远程的问题</h2><p>当远端的历史发生变化，而自己这端提交新变更是提交不上的</p>
+<p>解决办法是使用 <code>git fetch</code> 然后 <code>git rebase orign/master</code> 也就是将master基变到orgin/master上</p>
+<p>简单的写法直接是<code>git pull --rebase</code></p>
+<h3 id="远程push的同时可以创建分支"><a href="#远程push的同时可以创建分支" class="headerlink" title="远程push的同时可以创建分支"></a>远程push的同时可以创建分支</h3><p><code>git push origin &lt;branch&gt;:&lt;remoteNewBranch&gt;</code></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
