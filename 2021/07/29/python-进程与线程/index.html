@@ -14,7 +14,7 @@
 <meta property="og:description" content="Pro Git 第二版中文, 网站这个是一个非常好的学习网站这里是一个DEMO网站 commit使用 git commmit --amend 来提交一个平行的变更 标签查看标签 git tag ##打标签  附注标签git tag -a v1.4 -m &#39;my version 1.4&#39;  轻量标签$ git tag v1.4-lw  后期打标签$ git tag -a v1.2 9">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-07T07:33:06.000Z">
-<meta property="article:modified_time" content="2021-09-07T07:55:18.630Z">
+<meta property="article:modified_time" content="2021-09-13T08:16:14.839Z">
 <meta property="article:author" content="Elin">
 <meta name="twitter:card" content="summary">
 
@@ -717,7 +717,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-09-07 15:55:18'>2021-07-29 15:56</time>
+            发布时间 : <time class="date" title='最后更新: 2021-09-13 16:16:14'>2021-07-29 15:56</time>
         
     </div>
     <div class="article-meta">
@@ -739,7 +739,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="toc-text">多进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E7%A8%8B%E5%BA%8F"><span class="toc-text">调用外部程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AD%90%E8%BF%9B%E7%A8%8B"><span class="toc-text">创建子进程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#multiprocessing-Process"><span class="toc-text">multiprocessing.Process</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#multiprocessing-Pool"><span class="toc-text">multiprocessing.Pool</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF"><span class="toc-text">进程间通讯</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%B8%A6%E8%AF%BB%E5%86%99%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="toc-text">不带读写的多线程创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E5%B8%A6%E8%BF%9B%E7%A8%8B%E9%94%81%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="toc-text">读写带进程锁的多线程创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Local-%E4%BC%A0%E9%80%92%E5%8F%98%E9%87%8F"><span class="toc-text">Local 传递变量</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="toc-text">多进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E7%A8%8B%E5%BA%8F"><span class="toc-text">调用外部程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AD%90%E8%BF%9B%E7%A8%8B"><span class="toc-text">创建子进程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#multiprocessing-Process"><span class="toc-text">multiprocessing.Process</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#multiprocessing-Pool"><span class="toc-text">multiprocessing.Pool</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF"><span class="toc-text">进程间通讯</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%B8%A6%E8%AF%BB%E5%86%99%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="toc-text">不带读写的多线程创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E5%B8%A6%E8%BF%9B%E7%A8%8B%E9%94%81%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="toc-text">读写带进程锁的多线程创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Local-%E4%BC%A0%E9%80%92%E5%8F%98%E9%87%8F"><span class="toc-text">Local 传递变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-text">线程池</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -937,6 +937,21 @@
 <span class="line">p1.join()</span>
 <span class="line">p2.join()</span>
 </code></pre></div></div>
+
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>使用<code>multiprocessing.pool.ThreadPool</code>创建线程池</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> multiprocessing.pool <span class="hljs-keyword">import</span> ThreadPool</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span>(<span class="hljs-params">bar, baz</span>):</span></span>
+<span class="line">  <span class="hljs-built_in">print</span> <span class="hljs-string">&#x27;hello &#123;0&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(bar)</span>
+<span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;foo&#x27;</span> + baz</span>
+<span class="line"></br></span>
+<span class="line">pool = ThreadPool(processes=<span class="hljs-number">1</span>)</span>
+<span class="line"></br></span>
+<span class="line">async_result = pool.apply_async(foo, (<span class="hljs-string">&#x27;elin&#x27;</span>, <span class="hljs-string">&#x27;foo&#x27;</span>,))</span>
+<span class="line"></br></span>
+<span class="line">result = async_result.get() <span class="hljs-comment"># 取返回值</span></span>
+</code></pre></div></div>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
     </div>
