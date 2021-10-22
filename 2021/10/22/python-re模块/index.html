@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>使用 Github Pages 部署 Blog | Elin 的空间</title>
-  <meta name="keywords" content=" github , docusaurus ">
-  <meta name="description" content="使用 Github Pages 部署 Blog | Elin 的空间">
+  <title>python re模块 | Elin 的空间</title>
+  <meta name="keywords" content=" python ">
+  <meta name="description" content="python re模块 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="re 模块下的常用方法 查找所有  re.findall(&amp;#x27;a&amp;#x27;,&amp;#x27;alvin yuan&amp;#x27;)   返回所有满足匹配条件的结果, 放在列表里  查找（只到找到第一个匹配）  re.search(&amp;#x27;a&amp;#x27;,&amp;#x27;alvin yuan&amp;#x27;).group()   函数会在字符串内查找模式匹配, 只到找到第一个匹配然后返回一个包含匹配信">
 <meta property="og:type" content="article">
@@ -804,9 +804,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-github-pages-部署" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-python-re模块" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">使用 Github Pages 部署 Blog</h1>
+        <h1 class="article-title">python re模块</h1>
     
     <div class="article-meta">
         
@@ -816,7 +816,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="前端技术">前端技术</a>
+            <a  data-rel="编程">编程</a> > 
+            
+            <a  data-rel="编程&lt;---&gt;python">python</a>
             
         </span>
         
@@ -824,16 +826,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">github</a>
-            
-            <a class="color1">docusaurus</a>
+            <a class="color2">python</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-10-22 14:35:44'>2021-06-23 00:00</time>
+            发布时间 : <time class="date" title='最后更新: 2021-10-22 14:35:44'>2021-10-22 14:26</time>
         
     </div>
     <div class="article-meta">
@@ -855,7 +855,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#re-%E6%A8%A1%E5%9D%97%E4%B8%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">re 模块下的常用方法</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -871,73 +871,64 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>要使用 Github Pages 来部署博客，首先需要选择使用什么静态框架。</p>
-<p>这里我最终选择了<a target="_blank" rel="noopener" href="https://docusaurus.io/zh-CN/docs">Docusaurus</a></p>
-<p>开发与部署的简要流程如下：</p>
-<ol>
-<li><p>使用<code>Docusaurus</code>的脚手架创建初始项目</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-swift codeBlockLines"><span class="line">npx <span class="hljs-meta">@docusaurus</span><span class="hljs-operator">/</span><span class="hljs-keyword">init</span><span class="hljs-meta">@latest</span> <span class="hljs-keyword">init</span> my<span class="hljs-operator">-</span>website classic</span>
-</code></pre></div></div></li>
-<li><p>修改<code>docusaurus.config.js</code>文件中3个重要内容</p>
-</li>
-</ol>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line">url: <span class="hljs-string">&#x27;https://elinpf.github.io&#x27;</span>,</span>
-<span class="line"><span class="hljs-attr">organizationName</span>: <span class="hljs-string">&#x27;Elinpf&#x27;</span>, </span>
-<span class="line"><span class="hljs-attr">projectName</span>: <span class="hljs-string">&#x27;elinpf.github.io&#x27;</span>, </span>
+        <h2 id="re-模块下的常用方法"><a href="#re-模块下的常用方法" class="headerlink" title="re 模块下的常用方法"></a>re 模块下的常用方法</h2><ul>
+<li>查找所有</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">re.findall(<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;alvin yuan&#x27;</span>)</span>
 </code></pre></div></div>
 
-<ol start="3">
-<li><p>在Github上创建同名仓库<code>Elinpf/Elinpf.github.io</code></p>
-</li>
-<li><p>发布<code>master</code>和<code>gh-pages</code>分支</p>
-</li>
-</ol>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">git remote add origin https://github.com/Elinpf/Elinpf.github.io.git</span>
-<span class="line">git push origin master</span>
-<span class="line">git branch -M gh-pages</span>
-<span class="line">git push origin gh-pages</span>
+<p>返回所有满足匹配条件的结果, 放在列表里</p>
+<ul>
+<li>查找（只到找到第一个匹配）</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">re.search(<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;alvin yuan&#x27;</span>).group()</span>
 </code></pre></div></div>
 
-<ol start="5">
-<li>将<code>Setting</code>中的Pages发布源改为<code>gh-pages</code>分支</li>
-</ol>
-<p><img src="/2021/06/22/github-pages-%E9%83%A8%E7%BD%B2/1.png"></p>
-<ol start="6">
-<li>将<code>Setting</code>中的<code>Secrets</code>添加一个<code>ACCESS_TOKEN</code>(这里的token就是用户授权的token值，<a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token">参考这里增加新的授权</a>)</li>
-</ol>
-<p><img src="/2021/06/22/github-pages-%E9%83%A8%E7%BD%B2/2.png"></p>
-<ol start="7">
-<li>在项目中添加文件<code>.github/workflows/docusaurus.yml</code>，来写Action用于自动部署（具体含义参考<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">这篇文章</a>）</li>
-</ol>
-<div class="codeBlockContainer"><div class="codeBlockTitle">title=".github/workflows/docusaurus.yml"</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-yaml codeBlockLines"><span class="line"><span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">Github</span> <span class="hljs-string">pages</span></span>
-<span class="line"><span class="hljs-attr">on:</span></span>
-<span class="line">  <span class="hljs-attr">push:</span></span>
-<span class="line">    <span class="hljs-attr">branches:</span></span>
-<span class="line">      <span class="hljs-bullet">-</span> <span class="hljs-string">master</span></span>
-<span class="line"><span class="hljs-attr">jobs:</span></span>
-<span class="line">  <span class="hljs-attr">build-and-deploy:</span></span>
-<span class="line">    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span></span>
-<span class="line">    <span class="hljs-attr">steps:</span></span>
-<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Checkout</span></span>
-<span class="line">      <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@master</span></span>
-<span class="line">      <span class="hljs-attr">with:</span></span>
-<span class="line">        <span class="hljs-attr">persist-credentials:</span> <span class="hljs-literal">false</span></span>
-<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">and</span> <span class="hljs-string">Build</span></span>
-<span class="line">      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span></span>
-<span class="line"><span class="hljs-string">        npm install</span></span>
-<span class="line"><span class="hljs-string">        npm run-script build </span></span>
-<span class="line"><span class="hljs-string"></span>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span></span>
-<span class="line">      <span class="hljs-attr">uses:</span> <span class="hljs-string">JamesIves/github-pages-deploy-action@releases/v3</span></span>
-<span class="line">      <span class="hljs-attr">with:</span></span>
-<span class="line">        <span class="hljs-attr">ACCESS_TOKEN:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.ACCESS_TOKEN</span> <span class="hljs-string">&#125;&#125;</span></span>
-<span class="line">        <span class="hljs-attr">BRANCH:</span> <span class="hljs-string">gh-pages</span></span>
-<span class="line">        <span class="hljs-attr">FOLDER:</span> <span class="hljs-string">build</span></span>
-<span class="line">        <span class="hljs-attr">BUILD_SCRIPT:</span> <span class="hljs-string">npm</span> <span class="hljs-string">install</span> <span class="hljs-string">&amp;&amp;</span> <span class="hljs-string">npm</span> <span class="hljs-string">run</span> <span class="hljs-string">build</span></span>
+<p>函数会在字符串内查找模式匹配, 只到找到第一个匹配然后返回一个包含匹配信息的对象, 该对象可以<br>通过调用<code>group()</code>方法得到匹配的字符串, 如果字符串没有匹配，则返回<code>None</code>。</p>
+<ul>
+<li>查找（仅在字符串开始处进行匹配）</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">re.match(<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;abc&#x27;</span>).group()</span>
 </code></pre></div></div>
 
-<ol start="8">
-<li>再次提交就可以了</li>
-</ol>
+<p>同<code>search</code>, 不过仅在字符串开始处进行匹配</p>
+<ul>
+<li>分割</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">ret=re.split(<span class="hljs-string">&#x27;[ab]&#x27;</span>,<span class="hljs-string">&#x27;abcd&#x27;</span>)</span>
+</code></pre></div></div>
+
+<p>先按’a’分割’a’的左边无内容，则左边得到’’和右边’bcd’, 在对’’和’bcd’分别按’b’分割</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-built_in">print</span>(ret)<span class="hljs-comment">#[&#x27;&#x27;, &#x27;&#x27;, &#x27;cd&#x27;]</span></span>
+</code></pre></div></div>
+
+<ul>
+<li>替换</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">ret=re.sub(<span class="hljs-string">&#x27;\d&#x27;</span>,<span class="hljs-string">&#x27;abc&#x27;</span>,<span class="hljs-string">&#x27;alvin5yuan6&#x27;</span>,<span class="hljs-number">1</span>)</span>
+</code></pre></div></div>
+
+<p><code>re.sub(参 1, 参 2, 参 3, 参 4) </code>参 1 表示匹配规则或字符，参 2 表示要替换成的字符串，参 3 表示被匹配的字符串，参 4 表示指定匹配次数</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">re.subn(<span class="hljs-string">&#x27;\d&#x27;</span>,<span class="hljs-string">&#x27;abc&#x27;</span>,<span class="hljs-string">&#x27;alvin5yuan6&#x27;</span>)</span>
+</code></pre></div></div>
+
+<p>返回一个元组，分别为替换后字符串，和本次替换的次数</p>
+<ul>
+<li>编译（自定义规则）可重复使用</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">obj=re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">&#x27;\d&#123;3&#125;&#x27;</span>)            <span class="hljs-comment">#返回一个规则对象</span></span>
+<span class="line">ret=obj.search(<span class="hljs-string">&#x27;abc123eeee&#x27;</span>)      <span class="hljs-comment">#规则对象可以调用.search()  .findall等方法 </span></span>
+<span class="line"><span class="hljs-built_in">print</span>(ret.group())<span class="hljs-comment">#123</span></span>
+</code></pre></div></div>
+
+<ul>
+<li>将查找的内容生成迭代器</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">ret=re.finditer(<span class="hljs-string">&#x27;\d&#x27;</span>,<span class="hljs-string">&#x27;ds3sy4784a&#x27;</span>)</span>
+<span class="line"><span class="hljs-built_in">print</span>(ret)        <span class="hljs-comment">#&lt;callable_iterator object at 0x10195f940&gt;</span></span>
+<span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(ret).group()) <span class="hljs-comment"># &#x27;3&#x27;</span></span>
+<span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(ret).group()) <span class="hljs-comment"># &#x27;4&#x27;</span></span>
+</code></pre></div></div>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>

@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>python re模块</title>
+      <link href="/2021/10/22/python-re%E6%A8%A1%E5%9D%97/"/>
+      <url>/2021/10/22/python-re%E6%A8%A1%E5%9D%97/</url>
+      
+        <content type="html"><![CDATA[<h2 id="re-模块下的常用方法"><a href="#re-模块下的常用方法" class="headerlink" title="re 模块下的常用方法"></a>re 模块下的常用方法</h2><ul><li>查找所有</li></ul><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">re.findall(<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;alvin yuan&#x27;</span>)</span></code></pre></div></div><p>返回所有满足匹配条件的结果, 放在列表里</p><ul><li>查找（只到找到第一个匹配）</li></ul><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">re.search(<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;alvin yuan&#x27;</span>).group()</span></code></pre></div></div><p>函数会在字符串内查找模式匹配, 只到找到第一个匹配然后返回一个包含匹配信息的对象, 该对象可以<br>通过调用<code>group()</code>方法得到匹配的字符串, 如果字符串没有匹配，则返回<code>None</code>。</p><ul><li>查找（仅在字符串开始处进行匹配）</li></ul><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">re.match(<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;abc&#x27;</span>).group()</span></code></pre></div></div><p>同<code>search</code>, 不过仅在字符串开始处进行匹配</p><ul><li>分割</li></ul><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">ret=re.split(<span class="hljs-string">&#x27;[ab]&#x27;</span>,<span class="hljs-string">&#x27;abcd&#x27;</span>)</span></code></pre></div></div><p>先按’a’分割’a’的左边无内容，则左边得到’’和右边’bcd’, 在对’’和’bcd’分别按’b’分割</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-built_in">print</span>(ret)<span class="hljs-comment">#[&#x27;&#x27;, &#x27;&#x27;, &#x27;cd&#x27;]</span></span></code></pre></div></div><ul><li>替换</li></ul><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">ret=re.sub(<span class="hljs-string">&#x27;\d&#x27;</span>,<span class="hljs-string">&#x27;abc&#x27;</span>,<span class="hljs-string">&#x27;alvin5yuan6&#x27;</span>,<span class="hljs-number">1</span>)</span></code></pre></div></div><p><code>re.sub(参 1, 参 2, 参 3, 参 4) </code>参 1 表示匹配规则或字符，参 2 表示要替换成的字符串，参 3 表示被匹配的字符串，参 4 表示指定匹配次数</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">re.subn(<span class="hljs-string">&#x27;\d&#x27;</span>,<span class="hljs-string">&#x27;abc&#x27;</span>,<span class="hljs-string">&#x27;alvin5yuan6&#x27;</span>)</span></code></pre></div></div><p>返回一个元组，分别为替换后字符串，和本次替换的次数</p><ul><li>编译（自定义规则）可重复使用</li></ul><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">obj=re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">&#x27;\d&#123;3&#125;&#x27;</span>)            <span class="hljs-comment">#返回一个规则对象</span></span><span class="line">ret=obj.search(<span class="hljs-string">&#x27;abc123eeee&#x27;</span>)      <span class="hljs-comment">#规则对象可以调用.search()  .findall等方法 </span></span><span class="line"><span class="hljs-built_in">print</span>(ret.group())<span class="hljs-comment">#123</span></span></code></pre></div></div><ul><li>将查找的内容生成迭代器</li></ul><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">ret=re.finditer(<span class="hljs-string">&#x27;\d&#x27;</span>,<span class="hljs-string">&#x27;ds3sy4784a&#x27;</span>)</span><span class="line"><span class="hljs-built_in">print</span>(ret)        <span class="hljs-comment">#&lt;callable_iterator object at 0x10195f940&gt;</span></span><span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(ret).group()) <span class="hljs-comment"># &#x27;3&#x27;</span></span><span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(ret).group()) <span class="hljs-comment"># &#x27;4&#x27;</span></span></code></pre></div></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>python yield 详解</title>
       <link href="/2021/10/18/python-yield-%E8%AF%A6%E8%A7%A3/"/>
       <url>/2021/10/18/python-yield-%E8%AF%A6%E8%A7%A3/</url>
