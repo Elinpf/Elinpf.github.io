@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Elin 的空间</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Elin 的空间">
+  <title>python execl模块 | Elin 的空间</title>
+  <meta name="keywords" content=" python ">
+  <meta name="description" content="python execl模块 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="所有图例汇总  类图@startuml abstract        抽象 abstract class  抽象(等同abstract) annotation      注解 circle          圆 ()              圆缩写形式 class           类 diamond         菱形 &lt;&gt;              菱形写形式 entit">
 <meta property="og:type" content="article">
@@ -68,7 +68,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -833,12 +833,60 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-python-execl模块" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99"><span class="toc-text">关于本站</span></a></li></ol>
+        <h1 class="article-title">python execl模块</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程">编程</a> > 
+            
+            <a  data-rel="编程&lt;---&gt;python">python</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">python</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2021-11-03 16:44:18'>2021-10-25 16:14</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8%E5%92%8C%E4%BF%9D%E5%AD%98"><span class="toc-text">创建表和保存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E8%A1%A8"><span class="toc-text">创建新表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E5%B7%B2%E6%9C%89%E7%9A%84Excel"><span class="toc-text">加载已有的Excel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8%E5%90%8D"><span class="toc-text">修改表名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98"><span class="toc-text">保存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-text">迭代器</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -851,14 +899,46 @@
     }
 </style>
 </div>
-            <h1 id="关于本站"><a href="#关于本站" class="headerlink" title="关于本站"></a>关于本站</h1><p>本站主要为<strong>Elin</strong>本人的笔记网站，包括了各学科的知识以及渗透测试方面的学习。</p>
-<p>全局搜索：<code>in:</code></p>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>python 中使用execl推荐使用<code>openpyxl</code>模块</p>
+<h2 id="创建表和保存"><a href="#创建表和保存" class="headerlink" title="创建表和保存"></a>创建表和保存</h2><h3 id="创建新表"><a href="#创建新表" class="headerlink" title="创建新表"></a>创建新表</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">wb = pyopenxl.Workbook() <span class="hljs-comment"># 创建新Excel</span></span>
+<span class="line">sheet = wb.active  <span class="hljs-comment"># 获取激活的表，也就是第一个</span></span>
+</code></pre></div></div>
 
-        </article>
-        
-        
+<h3 id="加载已有的Excel"><a href="#加载已有的Excel" class="headerlink" title="加载已有的Excel"></a>加载已有的Excel</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">wb = pyopenxl.load_workbook(filename=<span class="hljs-string">&#x27;path.xlsx&#x27;</span>)</span>
+<span class="line">sheet = wb[<span class="hljs-string">&#x27;Sheet1&#x27;</span>] <span class="hljs-comment"># 获取表</span></span>
+</code></pre></div></div>
+
+<h3 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">sheet.title = <span class="hljs-string">&#x27;new_sheet_name&#x27;</span></span>
+</code></pre></div></div>
+
+<h3 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">wb.save(<span class="hljs-string">&#x27;path.xlsx&#x27;</span>)</span>
+</code></pre></div></div>
+
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p>行迭代器</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> sheet.iter_rows(min_row=<span class="hljs-number">1</span>, max_row=sheet.max_row, min_col=<span class="hljs-number">1</span>, max_col=<span class="hljs-number">3</span>):</span>
+<span class="line">    <span class="hljs-keyword">for</span> cell <span class="hljs-keyword">in</span> row:</span>
+<span class="line">        ...</span>
+</code></pre></div></div>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -867,11 +947,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
