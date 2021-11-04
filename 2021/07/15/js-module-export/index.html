@@ -6,29 +6,35 @@
   <meta name="keywords" content="">
   <meta name="description" content="javascript 的export导出方式 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="所有图例汇总  类图@startuml abstract        抽象 abstract class  抽象(等同abstract) annotation      注解 circle          圆 ()              圆缩写形式 class           类 diamond         菱形 &lt;&gt;              菱形写形式 entit">
+<meta name="description" content="所有图例汇总  类图 @startuml abstract        抽象 abstract class  抽象(等同abstract) annotation      注解 circle          圆 ()              圆缩写形式 class           类 diamond         菱形 &lt;&gt;              菱形写形式 enti">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PlantUML">
 <meta property="og:url" content="http://example.com/2021/11/03/PlantUML/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="所有图例汇总  类图@startuml abstract        抽象 abstract class  抽象(等同abstract) annotation      注解 circle          圆 ()              圆缩写形式 class           类 diamond         菱形 &lt;&gt;              菱形写形式 entit">
+<meta property="og:description" content="所有图例汇总  类图 @startuml abstract        抽象 abstract class  抽象(等同abstract) annotation      注解 circle          圆 ()              圆缩写形式 class           类 diamond         菱形 &lt;&gt;              菱形写形式 enti">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://121.196.175.55:9999/png/SoWkIImgAStDuKfCAYufIamkKO22PrrxNsnSY11EpaaiBeO9QpnVs_bqGWzCKfChCIylloIn93C_3wfxyueNonTp9MSM9UUaAi31qpbjN1gQ2YW0AFPypygdRJEVxbtqT4y_5zGYE7Y-SJTNIcPYRdvU2bpiHVz6e6ek6pjKeo322ADIyqeoIogHh5etxyc-Rg1mQIwojcVpPZtPiOyhCwyajIWjCHdctcTzIv_sB-PoICrB0GOG0000">
-<meta property="og:image" content="http://121.196.175.55:9999/png/SoWkIImgAStDKSXBp4qjBaXCJkNYIiv9B2vMo4ijqVDBBIdFByfMgEPI08BCl1A5n9IKejJYOYw8G45yGL5gMcQ5XYPNBPT3QbuAq2G0">
-<meta property="og:image" content="http://121.196.175.55:9999/png/NOin2e0m54DtJn5ngtY13jwbVcCLFYtyjlTN1qKS0abU4lGGOfgnv0NZwB5JDNTt-fI5ka62wWkE6s28HgRVAJ9R99ppbyGOAfthZBLPmfeJ7s_ok_GzF5OgwxifJQGLdW00">
-<meta property="og:image" content="http://121.196.175.55:9999/png/HOxH3S8m34J_FSKn00jK2AdyCqGWfhNKn2Xn9KJLtKaQglxOklCxswTtSaDmCDOlBCrCj6HpoLRqapmPvojk-a27pOLNYGDiB3N3pwcgqfo9HgfWuU_kKtaDl75KzR5cjy5JPbeu-XN_OBlOuILHydXySYcp1hOyJ0B_0000">
-<meta property="og:image" content="http://121.196.175.55:9999/png/JOzB4WCX20NtxnHSZIYJik98mk0Yjm_ChxBfrmKgmiNLY9FWfmoddM3pjaIPBi53vwXiNxe4XQrI0gNh34sYwFhMaI_T5hNXfftEH6Nd1sz2bo1EDV_I4N6-TodUT6pqvrXQ5qfWqLx5w0WinciqacZ3nUB7GdGhXbQX1DvSNh4YdOdFb2cq4vj7aNR2OYQFPyoxBVfgUVTCp4rARd7c3m00">
-<meta property="og:image" content="http://121.196.175.55:9999/png/PL4xRiCm3Drr2exsaWF8GuS0BRe5oGa4YOw5g98hqWbo--fZkMupIU3xuF6HM4KMykYilbqmtXtoOLBUE3pZzuB4NJy8wV41ixhY8Em8tIdz3i5VK2_HylCueRxrm1Dww3Wks0i0kP8-lIqM05bfwJt4XuhchV5zoEpCZq4Z4UZWEGP7GnbdKPvOlo3CbMBzzKKEG1pcyaLlx2WsjQLJ8Du4JwIcQ14pNYCciIFSkpRE1_vIYlyUFASHnefNjDgCAZszM0FbC2P0H6CZwfT4iW5jpQ6uhCKbuVYlkMqJkNQQhCl5Iem_UyYQi9mG6BzcfnXtQMl0tE0F">
-<meta property="og:image" content="http://121.196.175.55:9999/png/RLBDJi904BxlKqmuak03669Ib4GJZ0X13eMORHbnfTrjThS8KMw-XU_XXSIdqVWQxayBIw2NpiytCzzyivhf3A7P_Dj-_6o_VZ-_cqr22fekw1oXCKIvP2dsw1fb0zu8c2--HQLCjbEgAL05IQbStFoXTG7nDUMp3AMQkcWgya9mv1eQ8yuqY2SO2xcecxc6KQAqfAc6aHYxbZGfnUikxpnelvz1FBplHGxbaXlFPpVGZlUb6qBYg7zZ8YPaYPt3fSXp0rGaxYuDdLHmLUOeJqA2uhWZXBRqYkd9oeFytgwxaa3CQ4OBRNZMkmVI3B0GYcaX6QhJqkmGwqeXQGA1HDODD0hWeLG3d34ruMwF2U-NISRKirt5j9Gsvs6eqwdLq2lVShAwUVi3-EMFPWNhNecSChvxDT5yBd5EDRepnLskcQx8rOxl-K2p4k4kUS5KrtdBjxAh8pb-jQAsenz7o8ngcb25K1lccjsLGN6QGVLqeIF5ebeRLu-vZvAzwPaSdZjCjrkjIYzof86hhOV_0m00">
-<meta property="og:image" content="http://121.196.175.55:9999/png/TP0n3eCm34Ltdy9pfGpGhKAvHCUsGmL1qAg9579_rJPn2WhTp7ylyGzBUYQ7_HJctZNOTUjaBIm2nX3V3I81dahy2hDl9UQfnCuFPvIO9ahXTdhmDnfZouuBZZ5ya4x4TFSfP03AsTMrsLsHo4nsgbQfLIOxLUlLAX40NMhOlVA3Ibb68iexDsOMM_nZWkA3gcByckQDOkf_gqmfglSSc8nK_080">
-<meta property="og:image" content="http://121.196.175.55:9999/png/oq_AIaqkKV39pql9p-FAX_324uipClFIIn0YJgb5EPbmdbzgUMH-KJONLsvYWO9pOa5cIMAESsP9fK8rbqAejuAMhXtCG8NGO4SW7oY0PAQ2UsfHRc9U9KW2A0CrkvQB2sgk0aWKoLWhAw0f0000">
-<meta property="og:image" content="http://121.196.175.55:9999/png/LP5DRuCm38Rl_XK-xS1bws5I9x6eqjeJfPN6lgu134GAIPIFTVpx4Q0LlSH-tjTox6JdFBU-5whkkS66GyMD5rfX8zfW2JVWXPU4-O0k6B8u8K22wKCZUSlsL0gk88b2AtL9xBCCoeTHIV0eLFZ3N2W_OHPMrYhFzWSyaRvsiTnqx9Zl3pER81snGikX_iaMYRIHe-Q9z-TYrk8Yx9qx4-V1Y_0TSlmbEw3KgaN5UvekIzrKrPTL-kWOlZ8y5_dRsXeQSRM-j0ozq02I6ezEr77r1B_7zz8NXo_FTxHTq-bZwdd5xHrjdW2W8rwJXTlJBaogNZAeIFdHQBIEuLOuSnog7OlHYhRpW5XqsiOuox7Fakt6O_dYVm00">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/1-1.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/1-2.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/1-3.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/2-1.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/2-2.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/2-3.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/3-1.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/3-2.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/4-1.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/4-2.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/5-1.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/5-2.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/6-1.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/6-2.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/7-1.png">
+<meta property="og:image" content="http://example.com/2021/11/03/PlantUML/8-1.png">
 <meta property="article:published_time" content="2021-11-03T07:43:52.000Z">
-<meta property="article:modified_time" content="2021-11-03T08:44:18.325Z">
+<meta property="article:modified_time" content="2021-11-04T08:16:22.304Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="plantuml">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://121.196.175.55:9999/png/SoWkIImgAStDuKfCAYufIamkKO22PrrxNsnSY11EpaaiBeO9QpnVs_bqGWzCKfChCIylloIn93C_3wfxyueNonTp9MSM9UUaAi31qpbjN1gQ2YW0AFPypygdRJEVxbtqT4y_5zGYE7Y-SJTNIcPYRdvU2bpiHVz6e6ek6pjKeo322ADIyqeoIogHh5etxyc-Rg1mQIwojcVpPZtPiOyhCwyajIWjCHdctcTzIv_sB-PoICrB0GOG0000">
+<meta name="twitter:image" content="http://example.com/2021/11/03/PlantUML/1-1.png">
 
 
 <link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
@@ -857,7 +863,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-11-03 16:44:18'>2021-07-15 09:26</time>
+            发布时间 : <time class="date" title='最后更新: 2021-11-04 16:16:22'>2021-07-15 09:26</time>
         
     </div>
     <div class="article-meta">
