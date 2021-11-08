@@ -83,3 +83,37 @@ Query info about Bob...
 End
 ```
 
+## yield from
+
+看个例子
+
+```py
+def g1():     
+     yield range(5)
+def g2():
+     yield from range(5)
+
+it1 = g1()
+it2 = g2()
+for x in it1:
+    print(x)
+
+for x in it2:
+    print(x)
+```
+
+输出:
+
+```
+range(0, 5)
+0
+1
+2
+3
+4
+```
+
+可以知道yield返回的是可迭代对象，而`yield from`返回的是迭代器执行后每个item。
+
+**所以`yield from iterable`的本质就是`for item in iterable: yield item`**
+
