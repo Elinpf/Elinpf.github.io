@@ -13,7 +13,7 @@ SqlAlchemy对应的数据库的表结构，数据库是没有Dict字段的，所
 
 而想要将其做成自动存储，需要使用`sqlalchemy.ext.mutable`模块。
 
-```python
+```python sqlalchemy_type.py
 import json
 from sqlalchemy.types import TypeDecorator, VARCHAR
 from sqlalchemy.ext.mutable import Mutable
@@ -66,4 +66,32 @@ class MutableDict(Mutable, dict):
 
         dict.update(self, *args, **kwargs)
         self.changed()
+```
+
+使用经典映射
+
+```python orm.py
+from sqlalchemy import Table, Column, Integer
+
+from sqlalchemy_type import MutableDict, JSONEncodedDict
+
+my_data = Table('my_data', metadata,
+    Column('id', Integer, primary_key=True),
+    Column('data', MutableDict.as_mutable(JSONEncodedDict))
+)
+```
+
+或者使用关系映射
+
+```python orm.py
+from sqlalchemy.ext.declarative import declarative_base
+
+from sqlalchemy_type import MutableDict, JSONEncodedDict
+
+Base = declarative_base()
+
+class MyDataClass(Base):
+    __tablename__ = 'my_data'
+    id = Column(Integer, primary_key=True)
+    data = Column(MutableDict.as_mutable(JSONEncodedDict))
 ```
