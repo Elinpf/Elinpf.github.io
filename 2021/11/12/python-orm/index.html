@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>python SqlAlchemy ORM | Elin 的空间</title>
+  <meta name="keywords" content=" python ">
+  <meta name="description" content="python SqlAlchemy ORM | Elin 的空间">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="SqlAlchemy对应的数据库的表结构，数据库是没有Dict字段的，所以只能通过json来存储。 而想要将其做成自动存储，需要使用sqlalchemy.ext.mutable模块。 import json from sqlalchemy.types import TypeDecorator, VARCHAR from sqlalchemy.ext.mutable import Mutable">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python sqlalchemy 使用Dict字段">
+<meta property="og:url" content="http://example.com/2021/11/18/python-sqlalchemy-%E4%BD%BF%E7%94%A8Dict%E5%AD%97%E6%AE%B5/index.html">
+<meta property="og:site_name" content="Elin 的空间">
+<meta property="og:description" content="SqlAlchemy对应的数据库的表结构，数据库是没有Dict字段的，所以只能通过json来存储。 而想要将其做成自动存储，需要使用sqlalchemy.ext.mutable模块。 import json from sqlalchemy.types import TypeDecorator, VARCHAR from sqlalchemy.ext.mutable import Mutable">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-18T06:59:02.000Z">
+<meta property="article:modified_time" content="2021-11-18T07:44:56.960Z">
+<meta property="article:author" content="Elin">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="sqlalchemy">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    //hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="false" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png"/>
+</a>
+<div class="author">
+    <span>Elin</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/Elinpf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(48)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="编程">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        编程
+                        <small>(17)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="编程<--->javascript">
+                                        
+                                        javascript
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="编程<--->python">
+                                        
+                                        python
+                                        
+                                            <small>(12
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="编程<--->ruby">
+                                        
+                                        ruby
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="渗透">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        渗透
+                        <small>(13)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="渗透<--->知识点">
+                                        
+                                        知识点
+                                        
+                                            <small>(7
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="渗透<--->checklist">
+                                        
+                                        checklist
+                                        
+                                            <small>(4
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="渗透<--->HTB">
+                                        
+                                        HTB
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="前端技术">
+                        
+                        前端技术
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="绘画">
+                        
+                        绘画
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="科学">
+                        
+                        科学
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="工具">
+                        
+                        工具
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="数通">
+                        
+                        数通
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="48">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>提权</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>物理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>侦察</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>decode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docusaurus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>github</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>http</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>plantuml</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ruby</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>server</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sqlalchemy</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>tool</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>windows</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a id="top" class="全部文章 渗透 checklist "
+           href="/2021/07/23/linux-%E6%8F%90%E6%9D%83%E6%B8%85%E5%8D%95/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="Linux 提权清单">Linux 提权清单</span>
+            <span class="post-date" title="2021-07-23 08:45:31">2021/07/23</span>
+        </a>
+        
+        <a id="top" class="全部文章 绘画 "
+           href="/2021/08/09/%E7%BB%98%E7%94%BB%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="绘画网站推荐">绘画网站推荐</span>
+            <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/11/18/python-sqlalchemy-%E4%BD%BF%E7%94%A8Dict%E5%AD%97%E6%AE%B5/"
+           data-tag="python,sqlalchemy"
+           data-author="" >
+            <span class="post-title" title="python sqlalchemy 使用Dict字段">python sqlalchemy 使用Dict字段</span>
+            <span class="post-date" title="2021-11-18 14:59:02">2021/11/18</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/11/12/python-sqlalchemy-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E8%A1%A8/"
+           data-tag="python,sqlalchemy"
+           data-author="" >
+            <span class="post-title" title="python sqlalchemy 继承关系表">python sqlalchemy 继承关系表</span>
+            <span class="post-date" title="2021-11-12 15:51:27">2021/11/12</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/11/12/python-orm/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python SqlAlchemy ORM">python SqlAlchemy ORM</span>
+            <span class="post-date" title="2021-11-12 09:51:06">2021/11/12</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/11/03/PlantUML/"
+           data-tag="plantuml"
+           data-author="" >
+            <span class="post-title" title="PlantUML">PlantUML</span>
+            <span class="post-date" title="2021-11-03 15:43:52">2021/11/03</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/25/python-execl%E6%A8%A1%E5%9D%97/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python execl模块">python execl模块</span>
+            <span class="post-date" title="2021-10-25 16:14:50">2021/10/25</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/22/python-re%E6%A8%A1%E5%9D%97/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python re模块">python re模块</span>
+            <span class="post-date" title="2021-10-22 14:26:42">2021/10/22</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/18/python-yield-%E8%AF%A6%E8%A7%A3/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python yield 详解">python yield 详解</span>
+            <span class="post-date" title="2021-10-18 10:04:40">2021/10/18</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/13/python-pytest/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python pytest">python pytest</span>
+            <span class="post-date" title="2021-10-13 09:22:11">2021/10/13</span>
+        </a>
+        
+        <a  class="全部文章 编程 ruby "
+           href="/2021/10/09/ruby-%E4%B8%AD-include-extend-require-load-%E7%9A%84%E5%8C%BA%E5%88%AB/"
+           data-tag="ruby"
+           data-author="" >
+            <span class="post-title" title="ruby 中 include extend require load 的区别">ruby 中 include extend require load 的区别</span>
+            <span class="post-date" title="2021-10-09 11:29:01">2021/10/09</span>
+        </a>
+        
+        <a  class="全部文章 编程 ruby "
+           href="/2021/10/09/ruby-module-%E6%A8%A1%E5%9D%97/"
+           data-tag="ruby"
+           data-author="" >
+            <span class="post-title" title="Ruby module 模块">Ruby module 模块</span>
+            <span class="post-date" title="2021-10-09 11:09:59">2021/10/09</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/09/24/python-%E6%A8%A1%E6%8B%9Fjs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python 模拟js">python 模拟js</span>
+            <span class="post-date" title="2021-09-24 18:11:38">2021/09/24</span>
+        </a>
+        
+        <a  class="全部文章 "
+           href="/2021/09/14/css-%E5%B8%83%E5%B1%80%E5%B7%A5%E5%85%B7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="css 布局工具">css 布局工具</span>
+            <span class="post-date" title="2021-09-14 11:18:11">2021/09/14</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2021/09/07/git-%E4%BD%BF%E7%94%A8/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="git 使用">git 使用</span>
+            <span class="post-date" title="2021-09-07 15:33:06">2021/09/07</span>
+        </a>
+        
+        <a  class="全部文章 数通 "
+           href="/2021/08/26/Cisco-IOS-%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Cisco IOS 下载">Cisco IOS 下载</span>
+            <span class="post-date" title="2021-08-26 15:23:09">2021/08/26</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/08/25/python-%E8%A3%85%E9%A5%B0%E5%99%A8%E8%AF%A6%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python 装饰器详解">python 装饰器详解</span>
+            <span class="post-date" title="2021-08-25 19:21:11">2021/08/25</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/08/20/iptable-%E9%98%B2%E7%81%AB%E5%A2%99/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="iptable 防火墙">iptable 防火墙</span>
+            <span class="post-date" title="2021-08-20 16:20:59">2021/08/20</span>
+        </a>
+        
+        <a  class="全部文章 数通 "
+           href="/2021/08/17/%E5%8D%8E%E4%B8%BAeNSP-%E5%85%B3%E9%97%ADLog/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="华为eNSP 关闭Log">华为eNSP 关闭Log</span>
+            <span class="post-date" title="2021-08-17 15:38:24">2021/08/17</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/07/29/python-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python 进程与线程">python 进程与线程</span>
+            <span class="post-date" title="2021-07-29 15:56:24">2021/07/29</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/27/smb/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smb">smb</span>
+            <span class="post-date" title="2021-07-27 16:49:13">2021/07/27</span>
+        </a>
+        
+        <a  class="全部文章 渗透 checklist "
+           href="/2021/07/27/smb-%E6%B8%97%E9%80%8F%E6%B8%85%E5%8D%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smb 渗透清单">smb 渗透清单</span>
+            <span class="post-date" title="2021-07-27 16:49:03">2021/07/27</span>
+        </a>
+        
+        <a  class="全部文章 渗透 HTB "
+           href="/2021/07/27/HTB-start-point-1-archetype/"
+           data-tag="windows"
+           data-author="" >
+            <span class="post-title" title="HTB start point 1 - Archetype">HTB start point 1 - Archetype</span>
+            <span class="post-date" title="2021-07-27 16:28:36">2021/07/27</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/27/linpeas-%E4%BD%BF%E7%94%A8/"
+           data-tag="linux,提权,tool"
+           data-author="" >
+            <span class="post-title" title="linpeas 使用">linpeas 使用</span>
+            <span class="post-date" title="2021-07-27 11:20:25">2021/07/27</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/26/nmap-%E4%BD%BF%E7%94%A8/"
+           data-tag="tool"
+           data-author="" >
+            <span class="post-title" title="nmap 使用">nmap 使用</span>
+            <span class="post-date" title="2021-07-26 17:07:48">2021/07/26</span>
+        </a>
+        
+        <a  class="全部文章 渗透 checklist "
+           href="/2021/07/26/Linux-%E4%BE%A6%E5%AF%9F%E6%B8%85%E5%8D%95/"
+           data-tag="linux,侦察"
+           data-author="" >
+            <span class="post-title" title="Linux 侦察清单">Linux 侦察清单</span>
+            <span class="post-date" title="2021-07-26 16:13:24">2021/07/26</span>
+        </a>
+        
+        <a  class="全部文章 渗透 checklist "
+           href="/2021/07/23/linux-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%B8%85%E5%8D%95/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="linux 可执行文件的漏洞利用">linux 可执行文件的漏洞利用</span>
+            <span class="post-date" title="2021-07-23 09:31:07">2021/07/23</span>
+        </a>
+        
+        <a  class="全部文章 渗透 HTB "
+           href="/2021/07/22/HTB-cap/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="HTB cap">HTB cap</span>
+            <span class="post-date" title="2021-07-22 16:17:09">2021/07/22</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/21/SUID-SGID/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="Linux SUID &amp; SGID">Linux SUID &amp; SGID</span>
+            <span class="post-date" title="2021-07-21 17:32:07">2021/07/21</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/21/linux-capabilities/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="Linux Capabilities">Linux Capabilities</span>
+            <span class="post-date" title="2021-07-21 09:58:47">2021/07/21</span>
+        </a>
+        
+        <a  class="全部文章 编程 "
+           href="/2021/07/19/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="正则表达式">正则表达式</span>
+            <span class="post-date" title="2021-07-19 16:42:35">2021/07/19</span>
+        </a>
+        
+        <a  class="全部文章 绘画 "
+           href="/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PS后期方面">PS后期方面</span>
+            <span class="post-date" title="2021-07-18 15:44:18">2021/07/18</span>
+        </a>
+        
+        <a  class="全部文章 编程 "
+           href="/2021/07/17/%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BD%91%E7%AB%99/"
+           data-tag="学习"
+           data-author="" >
+            <span class="post-title" title="学习编程的网站">学习编程的网站</span>
+            <span class="post-date" title="2021-07-17 18:02:15">2021/07/17</span>
+        </a>
+        
+        <a  class="全部文章 绘画 "
+           href="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="透视关系">透视关系</span>
+            <span class="post-date" title="2021-07-17 10:27:45">2021/07/17</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/07/16/python-http/"
+           data-tag="http,server"
+           data-author="" >
+            <span class="post-title" title="python http">python http</span>
+            <span class="post-date" title="2021-07-16 10:05:39">2021/07/16</span>
+        </a>
+        
+        <a  class="全部文章 编程 javascript "
+           href="/2021/07/15/js-module-export/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="javascript 的export导出方式">javascript 的export导出方式</span>
+            <span class="post-date" title="2021-07-15 09:26:54">2021/07/15</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2021/07/14/git-push-%E5%85%8D%E5%AF%86%E6%89%A7%E8%A1%8C/"
+           data-tag="github,git"
+           data-author="" >
+            <span class="post-title" title="git push 免密执行">git push 免密执行</span>
+            <span class="post-date" title="2021-07-14 14:42:56">2021/07/14</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/07/13/hexo-highlight-%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo highlight 插件编写">hexo highlight 插件编写</span>
+            <span class="post-date" title="2021-07-13 16:47:46">2021/07/13</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/07/12/python-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2/"
+           data-tag="decode"
+           data-author="" >
+            <span class="post-title" title="python 一劳永逸的 decode 字符串转换方法">python 一劳永逸的 decode 字符串转换方法</span>
+            <span class="post-date" title="2021-07-12 14:10:40">2021/07/12</span>
+        </a>
+        
+        <a  class="全部文章 科学 "
+           href="/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/"
+           data-tag="物理"
+           data-author="" >
+            <span class="post-title" title="相对论">相对论</span>
+            <span class="post-date" title="2021-07-06 16:50:54">2021/07/06</span>
+        </a>
+        
+        <a  class="全部文章 科学 "
+           href="/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/"
+           data-tag="物理"
+           data-author="" >
+            <span class="post-title" title="量子力学">量子力学</span>
+            <span class="post-date" title="2021-07-06 16:28:22">2021/07/06</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/06/shell-%E9%80%9F%E6%9F%A5%E8%A1%A8/"
+           data-tag="linux,shell"
+           data-author="" >
+            <span class="post-title" title="shell 速查表">shell 速查表</span>
+            <span class="post-date" title="2021-07-06 10:18:44">2021/07/06</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2021/07/06/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Docker 技术">Docker 技术</span>
+            <span class="post-date" title="2021-07-06 09:51:16">2021/07/06</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/07/05/hexo-%E9%83%A8%E7%BD%B2/"
+           data-tag="github,git"
+           data-author="" >
+            <span class="post-title" title="hexo 部署">hexo 部署</span>
+            <span class="post-date" title="2021-07-05 17:08:54">2021/07/05</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/06/28/docu%E5%AE%9E%E7%8E%B0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/"
+           data-tag="docusaurus"
+           data-author="" >
+            <span class="post-title" title="Docusaurus 实现搜索功能">Docusaurus 实现搜索功能</span>
+            <span class="post-date" title="2021-06-29 00:00:00">2021/06/29</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/06/28/docu%E6%8A%A5%E9%94%99%E6%B8%85%E5%8D%95/"
+           data-tag="docusaurus"
+           data-author="" >
+            <span class="post-title" title="Docusaurus 报错清单">Docusaurus 报错清单</span>
+            <span class="post-date" title="2021-06-29 00:00:00">2021/06/29</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/06/23/docu-%E7%9A%84%E5%A4%9A%E5%AE%9E%E4%BE%8B%E6%96%87%E6%A1%A3/"
+           data-tag="docusaurus"
+           data-author="" >
+            <span class="post-title" title="Docusaurus 的多实例文档部署">Docusaurus 的多实例文档部署</span>
+            <span class="post-date" title="2021-06-24 00:00:00">2021/06/24</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/06/22/github-pages-%E9%83%A8%E7%BD%B2/"
+           data-tag="github,docusaurus"
+           data-author="" >
+            <span class="post-title" title="使用 Github Pages 部署 Blog">使用 Github Pages 部署 Blog</span>
+            <span class="post-date" title="2021-06-23 00:00:00">2021/06/23</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-python-orm" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">python SqlAlchemy ORM</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程">编程</a> > 
+            
+            <a  data-rel="编程&lt;---&gt;python">python</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">python</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2021-11-18 15:44:56'>2021-11-12 09:51</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFORM"><span class="toc-text">什么是ORM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E6%98%A0%E5%B0%84%E6%A8%A1%E5%BC%8F"><span class="toc-text">经典映射模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84%E6%A8%A1%E5%BC%8F"><span class="toc-text">关系映射模式</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是ORM"><a href="#什么是ORM" class="headerlink" title="什么是ORM"></a>什么是ORM</h2><p>ORM（Object Relationship Mapping）是一种将数据库表和对象的关系映射起来的方法。是完整软件的必要部分，将数据持久化。</p>
+<p>映射关系如下图所示</p>
+<p><img src="/2021/11/12/python-orm/1.png"></p>
+<p>常用的ORM框架是SqlAlchemy，它提供了一个简单接口，无需使用SQL语句就可以完成对数据库的操作。</p>
+<h2 id="经典映射模式"><a href="#经典映射模式" class="headerlink" title="经典映射模式"></a>经典映射模式</h2><p>使用经典映射模式，有一个好处就是将对象和表之间的映射关系解耦，将数据库的操作抽象出来，提高代码的可维护性。</p>
+<div class="codeBlockContainer"><div class="codeBlockTitle">model.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Device</span>:</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, device_id: <span class="hljs-built_in">str</span></span>):</span></span>
+<span class="line">        self.device_id: <span class="hljs-built_in">str</span> = device_id</span>
+<span class="line">        self.hostname: <span class="hljs-built_in">str</span> = <span class="hljs-string">&#x27;&#x27;</span></span>
+<span class="line">        self.version: <span class="hljs-built_in">str</span> = <span class="hljs-string">&#x27;&#x27;</span></span>
+</code></pre></div></div>
+
+<div class="codeBlockContainer"><div class="codeBlockTitle">orm.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> sqlalchemy.orm <span class="hljs-keyword">import</span> mapper, relationship</span>
+<span class="line"><span class="hljs-keyword">from</span> sqlalchemy <span class="hljs-keyword">import</span> (</span>
+<span class="line">    Table,</span>
+<span class="line">    MetaData,</span>
+<span class="line">    Column,</span>
+<span class="line">    Integer,</span>
+<span class="line">    String</span>
+<span class="line">)</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-keyword">import</span> model</span>
+<span class="line"></br></span>
+<span class="line">metadata = MetaData()</span>
+<span class="line"></br></span>
+<span class="line">devices = Table(</span>
+<span class="line">    <span class="hljs-string">&#x27;devices&#x27;</span>,</span>
+<span class="line">    metadata,</span>
+<span class="line">    Column(<span class="hljs-string">&#x27;id&#x27;</span>, Integer, primary_key=<span class="hljs-literal">True</span>, autoincrement=<span class="hljs-literal">True</span>),</span>
+<span class="line">    Column(<span class="hljs-string">&#x27;device_id&#x27;</span>, String(<span class="hljs-number">255</span>), nullable=<span class="hljs-literal">False</span>),</span>
+<span class="line">    Column(<span class="hljs-string">&#x27;hostname&#x27;</span>, String(<span class="hljs-number">255</span>)),</span>
+<span class="line">    Column(<span class="hljs-string">&#x27;version&#x27;</span>, String(<span class="hljs-number">255</span>))</span>
+<span class="line">)</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">start_mapper</span>():</span></span>
+<span class="line">    mapper(model.Device, devices)</span>
+</code></pre></div></div>
+
+<h2 id="关系映射模式"><a href="#关系映射模式" class="headerlink" title="关系映射模式"></a>关系映射模式</h2><p>使用方法参考<a href="/2021/11/12/python-sqlalchemy-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E8%A1%A8/" title="python sqlalchemy 继承关系表">python sqlalchemy 继承关系表</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2017 Elin
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
