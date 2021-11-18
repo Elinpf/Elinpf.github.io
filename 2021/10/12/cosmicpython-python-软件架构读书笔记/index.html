@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>python 领域驱动编程 笔记 | Elin 的空间</title>
+  <meta name="keywords" content=" python ">
+  <meta name="description" content="python 领域驱动编程 笔记 | Elin 的空间">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="SqlAlchemy对应的数据库的表结构，数据库是没有Dict字段的，所以只能通过json来存储。 而想要将其做成自动存储，需要使用sqlalchemy.ext.mutable模块。 import json from sqlalchemy.types import TypeDecorator, VARCHAR from sqlalchemy.ext.mutable import Mutable">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python sqlalchemy 使用Dict字段">
+<meta property="og:url" content="http://example.com/2021/11/18/python-sqlalchemy-%E4%BD%BF%E7%94%A8Dict%E5%AD%97%E6%AE%B5/index.html">
+<meta property="og:site_name" content="Elin 的空间">
+<meta property="og:description" content="SqlAlchemy对应的数据库的表结构，数据库是没有Dict字段的，所以只能通过json来存储。 而想要将其做成自动存储，需要使用sqlalchemy.ext.mutable模块。 import json from sqlalchemy.types import TypeDecorator, VARCHAR from sqlalchemy.ext.mutable import Mutable">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-18T06:59:02.000Z">
+<meta property="article:modified_time" content="2021-11-18T07:53:27.095Z">
+<meta property="article:author" content="Elin">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="sqlalchemy">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    //hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="false" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png"/>
+</a>
+<div class="author">
+    <span>Elin</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/Elinpf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(49)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="编程">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        编程
+                        <small>(18)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="编程<--->javascript">
+                                        
+                                        javascript
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="编程<--->python">
+                                        
+                                        python
+                                        
+                                            <small>(13
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="编程<--->ruby">
+                                        
+                                        ruby
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="渗透">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        渗透
+                        <small>(13)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="渗透<--->知识点">
+                                        
+                                        知识点
+                                        
+                                            <small>(7
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="渗透<--->checklist">
+                                        
+                                        checklist
+                                        
+                                            <small>(4
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="渗透<--->HTB">
+                                        
+                                        HTB
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="前端技术">
+                        
+                        前端技术
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="绘画">
+                        
+                        绘画
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="科学">
+                        
+                        科学
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="工具">
+                        
+                        工具
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="数通">
+                        
+                        数通
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="49">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>提权</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>物理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>侦察</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>decode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docusaurus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>github</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>http</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>plantuml</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ruby</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>server</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sqlalchemy</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>tool</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>windows</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a id="top" class="全部文章 渗透 checklist "
+           href="/2021/07/23/linux-%E6%8F%90%E6%9D%83%E6%B8%85%E5%8D%95/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="Linux 提权清单">Linux 提权清单</span>
+            <span class="post-date" title="2021-07-23 08:45:31">2021/07/23</span>
+        </a>
+        
+        <a id="top" class="全部文章 绘画 "
+           href="/2021/08/09/%E7%BB%98%E7%94%BB%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="绘画网站推荐">绘画网站推荐</span>
+            <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/11/18/python-sqlalchemy-%E4%BD%BF%E7%94%A8Dict%E5%AD%97%E6%AE%B5/"
+           data-tag="python,sqlalchemy"
+           data-author="" >
+            <span class="post-title" title="python sqlalchemy 使用Dict字段">python sqlalchemy 使用Dict字段</span>
+            <span class="post-date" title="2021-11-18 14:59:02">2021/11/18</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/11/12/python-sqlalchemy-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E8%A1%A8/"
+           data-tag="python,sqlalchemy"
+           data-author="" >
+            <span class="post-title" title="python sqlalchemy 继承关系表">python sqlalchemy 继承关系表</span>
+            <span class="post-date" title="2021-11-12 15:51:27">2021/11/12</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/11/12/python-orm/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python SqlAlchemy ORM">python SqlAlchemy ORM</span>
+            <span class="post-date" title="2021-11-12 09:51:06">2021/11/12</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/11/03/PlantUML/"
+           data-tag="plantuml"
+           data-author="" >
+            <span class="post-title" title="PlantUML">PlantUML</span>
+            <span class="post-date" title="2021-11-03 15:43:52">2021/11/03</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/25/python-execl%E6%A8%A1%E5%9D%97/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python execl模块">python execl模块</span>
+            <span class="post-date" title="2021-10-25 16:14:50">2021/10/25</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/22/python-re%E6%A8%A1%E5%9D%97/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python re模块">python re模块</span>
+            <span class="post-date" title="2021-10-22 14:26:42">2021/10/22</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/18/python-yield-%E8%AF%A6%E8%A7%A3/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python yield 详解">python yield 详解</span>
+            <span class="post-date" title="2021-10-18 10:04:40">2021/10/18</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/13/python-pytest/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python pytest">python pytest</span>
+            <span class="post-date" title="2021-10-13 09:22:11">2021/10/13</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python 领域驱动编程 笔记">python 领域驱动编程 笔记</span>
+            <span class="post-date" title="2021-10-12 15:57:42">2021/10/12</span>
+        </a>
+        
+        <a  class="全部文章 编程 ruby "
+           href="/2021/10/09/ruby-%E4%B8%AD-include-extend-require-load-%E7%9A%84%E5%8C%BA%E5%88%AB/"
+           data-tag="ruby"
+           data-author="" >
+            <span class="post-title" title="ruby 中 include extend require load 的区别">ruby 中 include extend require load 的区别</span>
+            <span class="post-date" title="2021-10-09 11:29:01">2021/10/09</span>
+        </a>
+        
+        <a  class="全部文章 编程 ruby "
+           href="/2021/10/09/ruby-module-%E6%A8%A1%E5%9D%97/"
+           data-tag="ruby"
+           data-author="" >
+            <span class="post-title" title="Ruby module 模块">Ruby module 模块</span>
+            <span class="post-date" title="2021-10-09 11:09:59">2021/10/09</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/09/24/python-%E6%A8%A1%E6%8B%9Fjs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python 模拟js">python 模拟js</span>
+            <span class="post-date" title="2021-09-24 18:11:38">2021/09/24</span>
+        </a>
+        
+        <a  class="全部文章 "
+           href="/2021/09/14/css-%E5%B8%83%E5%B1%80%E5%B7%A5%E5%85%B7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="css 布局工具">css 布局工具</span>
+            <span class="post-date" title="2021-09-14 11:18:11">2021/09/14</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2021/09/07/git-%E4%BD%BF%E7%94%A8/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="git 使用">git 使用</span>
+            <span class="post-date" title="2021-09-07 15:33:06">2021/09/07</span>
+        </a>
+        
+        <a  class="全部文章 数通 "
+           href="/2021/08/26/Cisco-IOS-%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Cisco IOS 下载">Cisco IOS 下载</span>
+            <span class="post-date" title="2021-08-26 15:23:09">2021/08/26</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/08/25/python-%E8%A3%85%E9%A5%B0%E5%99%A8%E8%AF%A6%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python 装饰器详解">python 装饰器详解</span>
+            <span class="post-date" title="2021-08-25 19:21:11">2021/08/25</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/08/20/iptable-%E9%98%B2%E7%81%AB%E5%A2%99/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="iptable 防火墙">iptable 防火墙</span>
+            <span class="post-date" title="2021-08-20 16:20:59">2021/08/20</span>
+        </a>
+        
+        <a  class="全部文章 数通 "
+           href="/2021/08/17/%E5%8D%8E%E4%B8%BAeNSP-%E5%85%B3%E9%97%ADLog/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="华为eNSP 关闭Log">华为eNSP 关闭Log</span>
+            <span class="post-date" title="2021-08-17 15:38:24">2021/08/17</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/07/29/python-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python 进程与线程">python 进程与线程</span>
+            <span class="post-date" title="2021-07-29 15:56:24">2021/07/29</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/27/smb/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smb">smb</span>
+            <span class="post-date" title="2021-07-27 16:49:13">2021/07/27</span>
+        </a>
+        
+        <a  class="全部文章 渗透 checklist "
+           href="/2021/07/27/smb-%E6%B8%97%E9%80%8F%E6%B8%85%E5%8D%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smb 渗透清单">smb 渗透清单</span>
+            <span class="post-date" title="2021-07-27 16:49:03">2021/07/27</span>
+        </a>
+        
+        <a  class="全部文章 渗透 HTB "
+           href="/2021/07/27/HTB-start-point-1-archetype/"
+           data-tag="windows"
+           data-author="" >
+            <span class="post-title" title="HTB start point 1 - Archetype">HTB start point 1 - Archetype</span>
+            <span class="post-date" title="2021-07-27 16:28:36">2021/07/27</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/27/linpeas-%E4%BD%BF%E7%94%A8/"
+           data-tag="linux,提权,tool"
+           data-author="" >
+            <span class="post-title" title="linpeas 使用">linpeas 使用</span>
+            <span class="post-date" title="2021-07-27 11:20:25">2021/07/27</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/26/nmap-%E4%BD%BF%E7%94%A8/"
+           data-tag="tool"
+           data-author="" >
+            <span class="post-title" title="nmap 使用">nmap 使用</span>
+            <span class="post-date" title="2021-07-26 17:07:48">2021/07/26</span>
+        </a>
+        
+        <a  class="全部文章 渗透 checklist "
+           href="/2021/07/26/Linux-%E4%BE%A6%E5%AF%9F%E6%B8%85%E5%8D%95/"
+           data-tag="linux,侦察"
+           data-author="" >
+            <span class="post-title" title="Linux 侦察清单">Linux 侦察清单</span>
+            <span class="post-date" title="2021-07-26 16:13:24">2021/07/26</span>
+        </a>
+        
+        <a  class="全部文章 渗透 checklist "
+           href="/2021/07/23/linux-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%B8%85%E5%8D%95/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="linux 可执行文件的漏洞利用">linux 可执行文件的漏洞利用</span>
+            <span class="post-date" title="2021-07-23 09:31:07">2021/07/23</span>
+        </a>
+        
+        <a  class="全部文章 渗透 HTB "
+           href="/2021/07/22/HTB-cap/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="HTB cap">HTB cap</span>
+            <span class="post-date" title="2021-07-22 16:17:09">2021/07/22</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/21/SUID-SGID/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="Linux SUID &amp; SGID">Linux SUID &amp; SGID</span>
+            <span class="post-date" title="2021-07-21 17:32:07">2021/07/21</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/21/linux-capabilities/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="Linux Capabilities">Linux Capabilities</span>
+            <span class="post-date" title="2021-07-21 09:58:47">2021/07/21</span>
+        </a>
+        
+        <a  class="全部文章 编程 "
+           href="/2021/07/19/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="正则表达式">正则表达式</span>
+            <span class="post-date" title="2021-07-19 16:42:35">2021/07/19</span>
+        </a>
+        
+        <a  class="全部文章 绘画 "
+           href="/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PS后期方面">PS后期方面</span>
+            <span class="post-date" title="2021-07-18 15:44:18">2021/07/18</span>
+        </a>
+        
+        <a  class="全部文章 编程 "
+           href="/2021/07/17/%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BD%91%E7%AB%99/"
+           data-tag="学习"
+           data-author="" >
+            <span class="post-title" title="学习编程的网站">学习编程的网站</span>
+            <span class="post-date" title="2021-07-17 18:02:15">2021/07/17</span>
+        </a>
+        
+        <a  class="全部文章 绘画 "
+           href="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="透视关系">透视关系</span>
+            <span class="post-date" title="2021-07-17 10:27:45">2021/07/17</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/07/16/python-http/"
+           data-tag="http,server"
+           data-author="" >
+            <span class="post-title" title="python http">python http</span>
+            <span class="post-date" title="2021-07-16 10:05:39">2021/07/16</span>
+        </a>
+        
+        <a  class="全部文章 编程 javascript "
+           href="/2021/07/15/js-module-export/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="javascript 的export导出方式">javascript 的export导出方式</span>
+            <span class="post-date" title="2021-07-15 09:26:54">2021/07/15</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2021/07/14/git-push-%E5%85%8D%E5%AF%86%E6%89%A7%E8%A1%8C/"
+           data-tag="github,git"
+           data-author="" >
+            <span class="post-title" title="git push 免密执行">git push 免密执行</span>
+            <span class="post-date" title="2021-07-14 14:42:56">2021/07/14</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/07/13/hexo-highlight-%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo highlight 插件编写">hexo highlight 插件编写</span>
+            <span class="post-date" title="2021-07-13 16:47:46">2021/07/13</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/07/12/python-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2/"
+           data-tag="decode"
+           data-author="" >
+            <span class="post-title" title="python 一劳永逸的 decode 字符串转换方法">python 一劳永逸的 decode 字符串转换方法</span>
+            <span class="post-date" title="2021-07-12 14:10:40">2021/07/12</span>
+        </a>
+        
+        <a  class="全部文章 科学 "
+           href="/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/"
+           data-tag="物理"
+           data-author="" >
+            <span class="post-title" title="相对论">相对论</span>
+            <span class="post-date" title="2021-07-06 16:50:54">2021/07/06</span>
+        </a>
+        
+        <a  class="全部文章 科学 "
+           href="/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/"
+           data-tag="物理"
+           data-author="" >
+            <span class="post-title" title="量子力学">量子力学</span>
+            <span class="post-date" title="2021-07-06 16:28:22">2021/07/06</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/06/shell-%E9%80%9F%E6%9F%A5%E8%A1%A8/"
+           data-tag="linux,shell"
+           data-author="" >
+            <span class="post-title" title="shell 速查表">shell 速查表</span>
+            <span class="post-date" title="2021-07-06 10:18:44">2021/07/06</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2021/07/06/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Docker 技术">Docker 技术</span>
+            <span class="post-date" title="2021-07-06 09:51:16">2021/07/06</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/07/05/hexo-%E9%83%A8%E7%BD%B2/"
+           data-tag="github,git"
+           data-author="" >
+            <span class="post-title" title="hexo 部署">hexo 部署</span>
+            <span class="post-date" title="2021-07-05 17:08:54">2021/07/05</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/06/28/docu%E5%AE%9E%E7%8E%B0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/"
+           data-tag="docusaurus"
+           data-author="" >
+            <span class="post-title" title="Docusaurus 实现搜索功能">Docusaurus 实现搜索功能</span>
+            <span class="post-date" title="2021-06-29 00:00:00">2021/06/29</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/06/28/docu%E6%8A%A5%E9%94%99%E6%B8%85%E5%8D%95/"
+           data-tag="docusaurus"
+           data-author="" >
+            <span class="post-title" title="Docusaurus 报错清单">Docusaurus 报错清单</span>
+            <span class="post-date" title="2021-06-29 00:00:00">2021/06/29</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/06/23/docu-%E7%9A%84%E5%A4%9A%E5%AE%9E%E4%BE%8B%E6%96%87%E6%A1%A3/"
+           data-tag="docusaurus"
+           data-author="" >
+            <span class="post-title" title="Docusaurus 的多实例文档部署">Docusaurus 的多实例文档部署</span>
+            <span class="post-date" title="2021-06-24 00:00:00">2021/06/24</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/06/22/github-pages-%E9%83%A8%E7%BD%B2/"
+           data-tag="github,docusaurus"
+           data-author="" >
+            <span class="post-title" title="使用 Github Pages 部署 Blog">使用 Github Pages 部署 Blog</span>
+            <span class="post-date" title="2021-06-23 00:00:00">2021/06/23</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-cosmicpython-python-软件架构读书笔记" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">python 领域驱动编程 笔记</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程">编程</a> > 
+            
+            <a  data-rel="编程&lt;---&gt;python">python</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">python</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2021-11-18 15:53:27'>2021-10-12 15:57</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E9%83%A8%E5%88%86-%E6%9E%84%E5%BB%BA%E6%94%AF%E6%8C%81%E9%A2%86%E5%9F%9F%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-text">第1部分: 构建支持领域建模的体系结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9F%9F%E5%BB%BA%E6%A8%A1-Domain-Modeling"><span class="toc-text">1. 域建模 Domain Modeling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BA%93%E6%A8%A1%E5%BC%8F-Repository-Pattern"><span class="toc-text">2. 库模式 Repository Pattern</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%85%B3%E4%BA%8E%E8%80%A6%E5%90%88%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">3. 关于耦合和抽象的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%9C%8D%E5%8A%A1%E5%B1%82"><span class="toc-text">4. 服务层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TDD-%E5%9C%A8%E9%AB%98%E9%80%9F%E6%A1%A3%E5%92%8C%E4%BD%8E%E9%80%9F%E6%A1%A3"><span class="toc-text">TDD 在高速档和低速档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8D%95%E5%85%83-Unit-of-Work"><span class="toc-text">工作单元 Unit of Work</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%92%8C%E4%B8%80%E8%87%B4%E6%80%A7%E8%BE%B9%E7%95%8C"><span class="toc-text">聚合和一致性边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%92%8C%E6%B6%88%E6%81%AF%E6%80%BB%E7%BA%BF"><span class="toc-text">事件和消息总线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Going-to-Towm-on-the-Message-Bus"><span class="toc-text">Going to Towm on the Message Bus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%92%8C%E5%91%BD%E4%BB%A4%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="toc-text">命令和命令处理程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Event-Driven-%E6%9E%B6%E6%9E%84"><span class="toc-text">Event-Driven 架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%9F%A5%E8%AF%A2%E8%B4%A3%E4%BB%BB%E5%88%86%E7%A6%BB%EF%BC%88CQRS%EF%BC%89"><span class="toc-text">命令查询责任分离（CQRS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="toc-text">注入依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-text">后记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E7%9A%84%E9%AA%8C%E8%AF%81"><span class="toc-text">语法的验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89%E9%AA%8C%E8%AF%81"><span class="toc-text">语义验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E7%94%A8"><span class="toc-text">语用</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="http://www.cosmicpython.com/book/introduction.html">Python软件设计</a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>什么是DIP(The Dependency Inversion Principle 依赖反转原则)， 他的定义是什么</p>
+<blockquote>
+<p>一、高级模块不应该依赖于低级模块，两者都应该依赖于抽象。</p>
+<p>二、抽象不应该依赖于细节，相反，细节应该依赖于抽象。</p>
+</blockquote>
+<p>所以通常的模式是业务逻辑 -&gt; 中间层 -&gt; 数据逻辑</p>
+<h2 id="第1部分-构建支持领域建模的体系结构"><a href="#第1部分-构建支持领域建模的体系结构" class="headerlink" title="第1部分: 构建支持领域建模的体系结构"></a>第1部分: 构建支持领域建模的体系结构</h2><blockquote>
+<p>我们发现，许多开发人员在被要求设计一个新系统时，会立即开始构建一个数据库模式，而对象模型则是事后才想到的。这就是一切开始出错的地方。相反，行为应该放在第一位，并驱动我们的存储需求。毕竟，我们的客户并不关心数据模型。他们关心系统做什么; 否则他们只会使用电子表格。</p>
+</blockquote>
+<p>通过 TDD构建富对象模型,提出了四个关键的设计模式:</p>
+<ul>
+<li>仓库模式，对持久存储概念的抽象</li>
+<li>服务层模式来清楚地定义我们的用例开始和结束的位置</li>
+<li>提供原子操作的工作单元模式</li>
+<li>加强数据完整性的聚合模式</li>
+</ul>
+<img src="c42a133ff98a6e6416513c6244ba590f.png" alt="1.png" style="zoom:50%;" />
+
+<img src="b75234a13d34a59dbe15193d61bbe56e.png" alt="2.png" style="zoom:50%;" />
+
+<h3 id="1-域建模-Domain-Modeling"><a href="#1-域建模-Domain-Modeling" class="headerlink" title="1. 域建模 Domain Modeling"></a>1. 域建模 Domain Modeling</h3><blockquote>
+<p> 单元测试的名称描述了我们希望从系统中看到的行为，我们使用的类和变量的名称取自业务术语。我们可以向非技术人员同事展示这段代码，他们会同意这正确地描述了系统的行为。</p>
+</blockquote>
+<p>Domain Model 也就是核心模型，是在剥离了数据细节，专注于处理业务逻辑的地方，这里也是<strong>最常被修改</strong>的地方。</p>
+<p>要清楚，剥离了数据后，所有的逻辑都是在核心模型里面进行的。</p>
+<p>那么就要思考一些问题。</p>
+<ol>
+<li>在一开始设计的时候，首先就是对这一块代码的试试，并且是以测试驱动的，那么数据怎么来？ 怎么测试</li>
+<li>哪些是真正的业务逻辑，哪些是底层逻辑？</li>
+</ol>
+<p>在书中给出了使用<code>@dataclass</code>来建立一个<code>Value Object</code>的方式来分配了一个不可变动的数据容器。</p>
+<p>在Domain Model中需要保持良好的注解习惯，方便阅读。</p>
+<p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/b694248664d2cf393319cabaff43e9fc.png" alt="8.png"></p>
+<h3 id="2-库模式-Repository-Pattern"><a href="#2-库模式-Repository-Pattern" class="headerlink" title="2. 库模式 Repository Pattern"></a>2. 库模式 Repository Pattern</h3><p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/bdd1c063c41bb94ab7759fe185b52529.png" alt="3.png"></p>
+<p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/275344b3f8510c070a600196dff79e86.png" alt="4.png"></p>
+<p>如上所示的模型，领域模型不依赖于数据层，而是反过来的依赖关系。</p>
+<p>这种设计模式叫做依赖反转原则（DIP）。</p>
+<p>还有一个叫做控制反转（IoC），说的是原本A控制B的流程变成了B由外部容器控制。</p>
+<p>那么这样就需要解决一个问题，如何让Domain调用数据层的内容。所以就有了仓库这样的适配器。</p>
+<p>按照我目前的理解，适配器其中一个作用就是将存在DB中的Domain实例提取出来，然后给到Domain Model中执行。</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-comment"># load all batches from the DB</span></span>
+<span class="line"> batches = session.query(Batch).<span class="hljs-built_in">all</span>()</span>
+<span class="line"></br></span>
+<span class="line"> <span class="hljs-comment"># call our domain service</span></span>
+<span class="line"> allocate(line, batches)</span>
+</code></pre></div></div>
+
+<blockquote>
+<p>我们坚持定义接口是我们程序和我们抽象出来的东西之间有一个约定。对于调用方并不关心一个方法究竟是怎么实现的。我们只想知道这个方法能给我们带来什么。</p>
+</blockquote>
+<ul>
+<li>其中用到了数据库的ORM技术，即把表和类关联起来，重点是session和mapper。</li>
+</ul>
+<p>在内存中建立数据库的方法是：</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">in_memory_db</span>():</span></span>
+<span class="line">    engine = create_engine(<span class="hljs-string">&quot;sqlite:///:memory:&quot;</span>)</span>
+<span class="line">    metadata.create_all(engine)</span>
+<span class="line">    <span class="hljs-keyword">return</span> engine</span>
+</code></pre></div></div>
+
+<p>仓库模式的一个优势就是可以方便的使用假数据做测试，因为可以在test中建立一个FakeRepository仓库来模拟测试。</p>
+<h2 id="3-关于耦合和抽象的概念"><a href="#3-关于耦合和抽象的概念" class="headerlink" title="3. 关于耦合和抽象的概念"></a>3. 关于耦合和抽象的概念</h2><blockquote>
+<p>当我们必须从基本原则出发来解决问题时，我们通常会尝试编写一个简单的实现，然后重构以获得更好的设计。我们将在整本书中使用这种方法，因为这是我们在现实世界中编写代码的方式: 从问题的最小部分的解决方案开始，然后迭代使解决方案更加丰富和更好地设计。</p>
+</blockquote>
+<p>我们将在这里运用一个技巧，我们将在本书后面大规模运用这个技巧。我们要把我们<strong>想做的</strong>和<strong>怎么做</strong>的区分开来。</p>
+<p>一般来说，顶级函数就是在输入后将复杂的逻辑交到低级函数，低级函数经过复杂处理得到如何做后，交给顶级函数，然后顶级函数根据怎么做来执行任务。</p>
+<p>这样一来，测试的时候，做低级函数的测试就更加方便。</p>
+<h2 id="4-服务层"><a href="#4-服务层" class="headerlink" title="4. 服务层"></a>4. 服务层</h2><p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/c8149ce406c5dad9eae3b55d1b76e506.png" alt="5.png"></p>
+<p>典型的服务层功能有类似的步骤:</p>
+<ol>
+<li>从repository中提取对象</li>
+<li>对请求进行检查或者断言</li>
+<li>执行domain模型中的函数</li>
+<li>当一切正常，保存或者更新</li>
+</ol>
+<p>为什么要加入这一层？ </p>
+<ol>
+<li>因为在没加入这一层的时候，做e2e的测试复杂。</li>
+<li>加入这一层后，展示层只需要负责简单的调用逻辑，而服务层则负责将所需内容编排起来。</li>
+</ol>
+<p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/b9feffbb61514fcd5859e9101e1794ad.png" alt="6.png"></p>
+<h2 id="TDD-在高速档和低速档"><a href="#TDD-在高速档和低速档" class="headerlink" title="TDD 在高速档和低速档"></a>TDD 在高速档和低速档</h2><blockquote>
+<p>测试应该帮助我们大胆地改变我们的系统，但是我们经常看到团队针对他们的领域模型编写了太多的测试。当他们改变他们的代码库并发现他们需要更新数十甚至数百个单元测试时，这会导致问题。</p>
+</blockquote>
+<blockquote>
+<p>我们用的比喻是“换档”。出发时，自行车需要挂低挡，这样才能克服惯性。一旦我们出发并开始跑步，我们可以通过换上高速档来提高速度和效率; 但是如果我们突然遇到陡峭的山坡或者因为危险而被迫减速，我们会再次降到低速档，直到我们可以再次加速。</p>
+</blockquote>
+<p>也就是说在当需要理清楚域模型的特性的时候，使用低速挡来前进。当域模型比较稳定，需要添加新的特性的时候，那么就用高速档，在服务层进行测试。</p>
+<p>所谓的依赖关系，就是要引入并且手动的实例化对象。</p>
+<blockquote>
+<p>一般来说，如果您发现自己需要在<strong>服务层测试</strong>中直接执行域层的工作，这可能表明您的服务层是不完整的</p>
+</blockquote>
+<p><strong>每个测试倾向于覆盖一个特性的一个代码路径</strong></p>
+<blockquote>
+<p>理想情况下，您的应用程序的结构应该使得所有冒泡到入口点的错误(例如，Flask)都以同样的方式处理。</p>
+</blockquote>
+<p>  用原语而不是域对象来表示服务层。</p>
+<h2 id="工作单元-Unit-of-Work"><a href="#工作单元-Unit-of-Work" class="headerlink" title="工作单元 Unit of Work"></a>工作单元 Unit of Work</h2><p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/0df1c20f1443178b71459560515c9cf5.png" alt="7.png"></p>
+<p>工作单元放在服务层，解决的问题是在<code>Services</code>中直接调用仓库还是耦合度较高，并且不易于对DB进行维护。</p>
+<p>使用了UoW后，可以通过<code>with uow</code>的方式对上下文进行处理。<code>__enter</code>和<code>__exit__</code>方法</p>
+<p>另外，将原本在server上依赖的<code>Repository</code>转移到了UoW上，Server只需要获得UoW就可以了。</p>
+<p>UoW还能提供遇到异常时候的隐式处理模式：</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbstractUnitOfWork</span>(<span class="hljs-params">abc.ABC</span>):</span></span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__enter__</span>(<span class="hljs-params">self</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">return</span> self</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__exit__</span>(<span class="hljs-params">self, exc_type, exc_value, traceback</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">if</span> exc_type <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span>
+<span class="line">            self.commit()  <span class="hljs-comment">#(1)</span></span>
+<span class="line">        <span class="hljs-keyword">else</span>:</span>
+<span class="line">            self.rollback()  <span class="hljs-comment">#(2)</span></span>
+</code></pre></div></div>
+
+<h2 id="聚合和一致性边界"><a href="#聚合和一致性边界" class="headerlink" title="聚合和一致性边界"></a>聚合和一致性边界</h2><blockquote>
+<p>事实上，大量的业务流程都是通过电子邮件手工来回发送电子表格来实现的。这种“ CSV over SMTP”体系结构的初始复杂度较低，但由于难以应用逻辑和维护一致性，因此往往不能很好地进行伸缩。</p>
+</blockquote>
+<p>聚合、有界上下文和微服务</p>
+<blockquote>
+<p>从本质上讲，这是对试图将整个企业纳入单一模式的反击。顾客这个词对于销售、客户服务、后勤、支持等等方面的人来说意味着不同的东西。在一个上下文中需要的属性在另一个上下文中是不相关的; 更有害的是，同名的概念在不同的上下文中可能有完全不同的含义。与其试图构建一个单一的模型(或类或数据库)来捕获所有的用例，不如使用多个模型，围绕每个上下文划定界限，并明确地处理不同上下文之间的转换。</p>
+</blockquote>
+<p>也就是所，通过对上下文的限制，确定每一个聚合的服务对象确保是最小单元的,域模型应该只包含执行计算所需的数据。例如：</p>
+<p><code>Product(sku, batches)</code> 和 <code>Product(sku, description, price, image_url, dimensions, etc…​)</code></p>
+<p>聚合是进入域模型的入口点</p>
+<p>聚合的任务是能够在不变量应用于一组相关对象时管理有关不变量的业务规则。检查其职权范围内的对象是否相互一致，是否符合我们的规则，并拒绝可能违反规则的更改，这是总体的工作。</p>
+<h2 id="事件和消息总线"><a href="#事件和消息总线" class="headerlink" title="事件和消息总线"></a>事件和消息总线</h2><p>举例：当需要使用<code>send_mail</code>来通告的时候，这个方法放在哪里呢？ 可以想到放在现有的哪个位置都是不好的，因为违反了单一责任原则。</p>
+<p>我们的模型不会关注电子邮件，而是负责记录事件。我们将使用消息总线来响应事件并调用新的操作。</p>
+<p>messagebus属于服务层。</p>
+<p>具体的操作就是在<code>repository</code>中添加要观察的类，然后在<code>uow</code>要<code>commit</code>的时候将所有的event传递给messagebus</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle</span>(<span class="hljs-params">event: events.Event</span>):</span></span>
+<span class="line">    <span class="hljs-keyword">for</span> handler <span class="hljs-keyword">in</span> HANDLERS[<span class="hljs-built_in">type</span>(event)]:</span>
+<span class="line">        handler(event)</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">send_out_of_stock_notification</span>(<span class="hljs-params">event: events.OutOfStock</span>):</span></span>
+<span class="line">    email.send_mail(</span>
+<span class="line">        <span class="hljs-string">&quot;stock@made.com&quot;</span>,</span>
+<span class="line">        <span class="hljs-string">f&quot;Out of stock for <span class="hljs-subst">&#123;event.sku&#125;</span>&quot;</span>,</span>
+<span class="line">    )</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line">HANDLERS = &#123;</span>
+<span class="line">    events.OutOfStock: [send_out_of_stock_notification],</span>
+<span class="line">&#125;  <span class="hljs-comment"># type: <span class="hljs-type">Dict</span>[<span class="hljs-type">Type</span>[events.Event], <span class="hljs-type">List</span>[<span class="hljs-type">Callable</span>]]</span></span>
+</code></pre></div></div>
+
+<p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/a411fa45e57f664059c29e99e529475a.png" alt="9.png"></p>
+<h2 id="Going-to-Towm-on-the-Message-Bus"><a href="#Going-to-Towm-on-the-Message-Bus" class="headerlink" title="Going to Towm on the Message Bus"></a>Going to Towm on the Message Bus</h2><p>这一章将API调用和内部消息都统一起来了放在了前端。所有API的调用都是以消息的方式进行的。</p>
+<p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/ddfee420274300570723a328cc8e46dc.png" alt="10.png"></p>
+<p>这样做也导致了整个串联关系没有了实体，只能通过日志来进行调试。</p>
+<p>下图是时序图，在调用了BatchQuantityChanged事件后，在<code>messagebus.py</code>中将消息转化成了函数调用，去执行<code>domain</code>中的内容，然后<code>domain</code>又激发了<code>AllocationRequired</code>消息，<code>handler</code>接受到了后继续执行。</p>
+<p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/6eeb52e368a4a9e5d0268125d81637e5.png" alt="11.png"></p>
+<p>另外在做测试的时候，可以使用<code>FakeMessageBus</code>来进行。</p>
+<h2 id="命令和命令处理程序"><a href="#命令和命令处理程序" class="headerlink" title="命令和命令处理程序"></a>命令和命令处理程序</h2><p>将<code>Event</code>和<code>Command</code>分开</p>
+<p>Event：</p>
+<ol>
+<li>事件传递给可以委托给每个事件的多个处理程序的调度程序。</li>
+<li>它捕获并记录错误，但不允许错误中断消息处理。</li>
+<li>没有返回值</li>
+</ol>
+<p>Command：</p>
+<ol>
+<li> 命令调度程序期望每个命令只有一个处理程序。</li>
+<li> 如果出现任何错误，它们很快就会失败，并且会冒出来。</li>
+</ol>
+<p>Event 命名是过去时，而Command是现在时。</p>
+<p>区别对待Event和Command有助于帮助我们理解哪些事是必须成功的，哪些是可以失败的。</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> tenacity <span class="hljs-keyword">import</span> Retrying, RetryError, stop_after_attempt, wait_exponential <span class="hljs-comment">#(1)</span></span>
+<span class="line"></br></span>
+<span class="line">...</span>
+<span class="line"></br></span>
+<span class="line"></br></span></span>
+<span class="line"><span class="hljs-params"><span class="hljs-function">    event: events.Event,</span></span></span>
+<span class="line"><span class="hljs-params"><span class="hljs-function">    queue: <span class="hljs-type">List</span>[Message],</span></span></span>
+<span class="line"><span class="hljs-params"><span class="hljs-function">    uow: unit_of_work.AbstractUnitOfWork,</span></span></span>
+<span class="line"></br>):</span></span>
+<span class="line">    <span class="hljs-keyword">for</span> handler <span class="hljs-keyword">in</span> EVENT_HANDLERS[<span class="hljs-built_in">type</span>(event)]:</span>
+<span class="line">        <span class="hljs-keyword">try</span>:</span>
+<span class="line">            <span class="hljs-keyword">for</span> attempt <span class="hljs-keyword">in</span> Retrying(  <span class="hljs-comment">#(2)</span></span>
+<span class="line">                stop=stop_after_attempt(<span class="hljs-number">3</span>),</span>
+<span class="line">                wait=wait_exponential()</span>
+<span class="line">            ):</span>
+<span class="line"></br></span>
+<span class="line">                <span class="hljs-keyword">with</span> attempt:</span>
+<span class="line">                    logger.debug(<span class="hljs-string">&quot;handling event %s with handler %s&quot;</span>, event, handler)</span>
+<span class="line">                    handler(event, uow=uow)</span>
+<span class="line">                    queue.extend(uow.collect_new_events())</span>
+<span class="line">        <span class="hljs-keyword">except</span> RetryError <span class="hljs-keyword">as</span> retry_failure:</span>
+<span class="line">            logger.error(</span>
+<span class="line">                <span class="hljs-string">&quot;Failed to handle event %s times, giving up!&quot;</span>,</span>
+<span class="line">                retry_failure.last_attempt.attempt_number</span>
+<span class="line">            )</span>
+<span class="line">            <span class="hljs-keyword">continue</span></span>
+</code></pre></div></div>
+
+<p>上面的重试方法使event有一定的韧性。</p>
+<h2 id="Event-Driven-架构"><a href="#Event-Driven-架构" class="headerlink" title="Event-Driven 架构"></a>Event-Driven 架构</h2><p>事件驱动架构，当遇到需要与其他软件系统进行协作的时候，直接调用软件的方法相当于是强耦合了，这里给出的方式是通过异步消息来串联，使用的工具是<code>Redis</code></p>
+<p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/663a2c676ac004f27f9c8078fa5505cb.png" alt="12.png"></p>
+<h2 id="命令查询责任分离（CQRS）"><a href="#命令查询责任分离（CQRS）" class="headerlink" title="命令查询责任分离（CQRS）"></a>命令查询责任分离（CQRS）</h2><p>command-query Responsibility separation (CQRS) </p>
+<p>将命令与查询的责任分开。</p>
+<p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/22030bbf641c076f4d70371302493317.png" alt="13.png"></p>
+<p>单独开辟一个<code>view.py</code>层作为对外的读取接口，并直接调用SQL语句进行查询，查询的是<code>allocations_view</code>表。</p>
+<p>书中加入了<code>event.Allocated</code>事件方法<code>handlers.add_allocation_to_read_model</code>，将单独的给DB中<code>allocations_view</code>表添加可读信息。这样将外部的可读与可写的分开了。</p>
+<h2 id="注入依赖"><a href="#注入依赖" class="headerlink" title="注入依赖"></a>注入依赖</h2><p>所谓的注入依赖，就是将原本在方法内完成的实例化由第三方外部完成，然后传递进来的就只是实例即可。</p>
+<p>原先的MessageBus需要在内部进行组装，而这章加入了引导模块(bootstrap)。并在其中进行组装，使用lambda函数将函数预先封装好。后面直接调用，而不用获取<code>uow</code>等上下文环境。</p>
+<p>加入了引导模块的好处是可以根据实际的情况进行拼装，比如测试还是生产。</p>
+<p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/08c051419609a2a668e0183d4f194abf.png" alt="14.png"></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><blockquote>
+<p>在本书的开头，我们说过一个大泥球的主要特征是同质性: 系统的每个部分看起来都是一样的，因为我们<strong>没有明确每个部分的责任</strong>。为了解决这个问题，我们需要开始划分责任并引入明确的界限。我们可以做的第一件事情是开始构建服务层(协作系统的领域)。</p>
+</blockquote>
+<blockquote>
+<p>前面我们说过，我们希望<strong>避免代码中混杂无关的细节</strong>。特别是，我们不希望在域模型中进行防御性编码。相反，我们希望确保在域模型或用例处理程序看到请求之前，请求已知是有效的。这有助于我们的代码在长期内保持整洁和可维护性。我们有时将此称为在系统边缘验证。</p>
+</blockquote>
+<p>验证是验证什么？句法、语义和语用（syntax, semantics, and pragmatics）。</p>
+<p>在系统边缘进行验证。</p>
+<h3 id="语法的验证"><a href="#语法的验证" class="headerlink" title="语法的验证"></a>语法的验证</h3><p>通过<code>schema</code>模块对<code>command.py</code>模块中的dataclass进行验证。</p>
+<p>这样就可以保证在api和业务核心上的代码干净。</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> schema <span class="hljs-keyword">import</span> And, Schema, Use</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-meta">@dataclass</span></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Allocate</span>(<span class="hljs-params">Command</span>):</span></span>
+<span class="line"></br></span>
+<span class="line">    _schema = Schema(&#123;  <span class="hljs-comment">#(1)</span></span>
+<span class="line">        <span class="hljs-string">&#x27;orderid&#x27;</span>: <span class="hljs-built_in">int</span>,</span>
+<span class="line">         sku: <span class="hljs-built_in">str</span>,</span>
+<span class="line">         qty: And(Use(<span class="hljs-built_in">int</span>), <span class="hljs-keyword">lambda</span> n: n &gt; <span class="hljs-number">0</span>)</span>
+<span class="line">     &#125;, ignore_extra_keys=<span class="hljs-literal">True</span>)</span>
+<span class="line"></br></span>
+<span class="line">    orderid: <span class="hljs-built_in">str</span></span>
+<span class="line">    sku: <span class="hljs-built_in">str</span></span>
+<span class="line">    qty: <span class="hljs-built_in">int</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-meta">    @classmethod</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">from_json</span>(<span class="hljs-params">cls, data</span>):</span>  <span class="hljs-comment">#(2)</span></span>
+<span class="line">       data = json.loads(data)</span>
+<span class="line">       <span class="hljs-keyword">return</span> cls(**_schema.validate(data))</span>
+</code></pre></div></div>
+
+<p>这样做有个弊端就是要声明两次。</p>
+<h3 id="语义验证"><a href="#语义验证" class="headerlink" title="语义验证"></a>语义验证</h3><p>将规则验证单独提取出来，开辟单独的Exception，并在MessageBus中捕获</p>
+<h3 id="语用"><a href="#语用" class="headerlink" title="语用"></a>语用</h3><p>语用就是结合上下文，书中没有给出示例。</p>
+<blockquote>
+<p> <strong>验证语法可以发生在消息类上，验证语义可以发生在服务层或消息总线上，验证语用属于域模型。</strong></p>
+</blockquote>
+<p>全书的最终结构：</p>
+<p><img src="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/e34b6be92adfc2b86ffebbb26e802463.png" alt="15.png"></p>
+<p><img src="http://121.196.175.55:9999/png/RLDBJiCm4Dtx5AEke58v0AeGAQq44eX2LRf8A-GaGmbDxCXsIYleZbjm3pQLE0s8Q-1FaXfHRsBFl9bvysPoAXKLgimp-Dc-VMq_ljy_YKfLXj1kDvPscv22nWiwHsYDK2pJ62_f6aKBNWZe4rwXbDhRA-KCg8IebDQklz0vWV2SiYH38MVM6lEyu0oPWjQOfGhu0qouMDJ9RC8WaahGMC6OJsnA6fNykV7R5tHVZo0StLm65cMT6yUdAMZAkz0D8M4mlD0MRJB4Zk6Cvxa6IX8EbffEp9aiSnHx8LvmsEDS6Nh5R6_a7__kNcSbdfX1GWkbUTQzUzBSOi5bghX8KUwNfa6iAuM4DdWIcQUdaGVtfRh599LJPlkOic4PPQbyDAtebCBu70nLF3CQEkKxLbPRRpS0r_o_MbwxVPxJb3LR4ypd0kTKeHrJE61wyofozSFblADPYN0TFM6iQh_XMzsh8Lb-jQ8ceoj7I48LZQZ4gkx18VHxTXy6AmrbD8DgVw4d-ABg7LVtkREItTNH-JjptztjT2hHo3yXRAmkhCyfiaJ_Sxy0" alt="组件图" title="组件图"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2017 Elin
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
