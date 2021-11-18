@@ -6,15 +6,15 @@
   <meta name="keywords" content=" python , sqlalchemy ">
   <meta name="description" content="python sqlalchemy 使用Dict字段 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="SqlAlchemy对应的数据库的表结构，数据库是没有Dict字段的，所以只能通过json来存储。 而想要将其做成自动存储，需要使用sqlalchemy.ext.mutable模块。 import json from sqlalchemy.types import TypeDecorator, VARCHAR from sqlalchemy.ext.mutable import Mutable">
+<meta name="description" content="SqlAlchemy对应的数据库的表结构，数据库是没有Dict字段的，所以只能通过json来存储。 而想要将其做成自动存储，需要使用sqlalchemy.ext.mutable模块。 sqlalchemy_type.pyimport json from sqlalchemy.types import TypeDecorator, VARCHAR from sqlalchemy.ext.mutabl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python sqlalchemy 使用Dict字段">
 <meta property="og:url" content="http://example.com/2021/11/18/python-sqlalchemy-%E4%BD%BF%E7%94%A8Dict%E5%AD%97%E6%AE%B5/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="SqlAlchemy对应的数据库的表结构，数据库是没有Dict字段的，所以只能通过json来存储。 而想要将其做成自动存储，需要使用sqlalchemy.ext.mutable模块。 import json from sqlalchemy.types import TypeDecorator, VARCHAR from sqlalchemy.ext.mutable import Mutable">
+<meta property="og:description" content="SqlAlchemy对应的数据库的表结构，数据库是没有Dict字段的，所以只能通过json来存储。 而想要将其做成自动存储，需要使用sqlalchemy.ext.mutable模块。 sqlalchemy_type.pyimport json from sqlalchemy.types import TypeDecorator, VARCHAR from sqlalchemy.ext.mutabl">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-18T06:59:02.000Z">
-<meta property="article:modified_time" content="2021-11-18T07:53:27.095Z">
+<meta property="article:modified_time" content="2021-11-18T08:07:12.607Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="sqlalchemy">
@@ -892,7 +892,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-11-18 15:53:27'>2021-11-18 14:59</time>
+            发布时间 : <time class="date" title='最后更新: 2021-11-18 16:07:12'>2021-11-18 14:59</time>
         
     </div>
     <div class="article-meta">
@@ -932,7 +932,7 @@
       
         <p>SqlAlchemy对应的数据库的表结构，数据库是没有Dict字段的，所以只能通过<code>json</code>来存储。</p>
 <p>而想要将其做成自动存储，需要使用<code>sqlalchemy.ext.mutable</code>模块。</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> json</span>
+<div class="codeBlockContainer"><div class="codeBlockTitle">sqlalchemy_type.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> json</span>
 <span class="line"><span class="hljs-keyword">from</span> sqlalchemy.types <span class="hljs-keyword">import</span> TypeDecorator, VARCHAR</span>
 <span class="line"><span class="hljs-keyword">from</span> sqlalchemy.ext.mutable <span class="hljs-keyword">import</span> Mutable</span>
 <span class="line"></br></span>
@@ -984,6 +984,30 @@
 <span class="line"></br></span>
 <span class="line">        <span class="hljs-built_in">dict</span>.update(self, *args, **kwargs)</span>
 <span class="line">        self.changed()</span>
+</code></pre></div></div>
+
+<p>使用经典映射</p>
+<div class="codeBlockContainer"><div class="codeBlockTitle">orm.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> sqlalchemy <span class="hljs-keyword">import</span> Table, Column, Integer</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-keyword">from</span> sqlalchemy_type <span class="hljs-keyword">import</span> MutableDict, JSONEncodedDict</span>
+<span class="line"></br></span>
+<span class="line">my_data = Table(<span class="hljs-string">&#x27;my_data&#x27;</span>, metadata,</span>
+<span class="line">    Column(<span class="hljs-string">&#x27;id&#x27;</span>, Integer, primary_key=<span class="hljs-literal">True</span>),</span>
+<span class="line">    Column(<span class="hljs-string">&#x27;data&#x27;</span>, MutableDict.as_mutable(JSONEncodedDict))</span>
+<span class="line">)</span>
+</code></pre></div></div>
+
+<p>或者使用关系映射</p>
+<div class="codeBlockContainer"><div class="codeBlockTitle">orm.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> sqlalchemy.ext.declarative <span class="hljs-keyword">import</span> declarative_base</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-keyword">from</span> sqlalchemy_type <span class="hljs-keyword">import</span> MutableDict, JSONEncodedDict</span>
+<span class="line"></br></span>
+<span class="line">Base = declarative_base()</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyDataClass</span>(<span class="hljs-params">Base</span>):</span></span>
+<span class="line">    __tablename__ = <span class="hljs-string">&#x27;my_data&#x27;</span></span>
+<span class="line">    <span class="hljs-built_in">id</span> = Column(Integer, primary_key=<span class="hljs-literal">True</span>)</span>
+<span class="line">    data = Column(MutableDict.as_mutable(JSONEncodedDict))</span>
 </code></pre></div></div>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
