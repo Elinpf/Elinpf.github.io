@@ -75,6 +75,90 @@ if __name__ == '__main__':
 
 ## http Client
 
+推荐两个模块`urllib3`和`requests`
+
+### requests 模块
+
+[官方参考链接](https://docs.python-requests.org/zh_CN/latest/user/quickstart.html)
+
+#### 发送请求
+
+```py
+import requests
+
+r = requests.get('https://api.github.com/events')
+r = requests.post('http://httpbin.org/post', data = {'key':'value'})
+r = requests.put('http://httpbin.org/put', data = {'key':'value'})
+r = requests.delete('http://httpbin.org/delete')
+r = requests.head('http://httpbin.org/get')
+r = requests.options('http://httpbin.org/get')
+```
+
+#### 传递URL信息和响应信息
+
+```py
+payload = {'key1': 'value1', 'key2': 'value2'}
+r = requests.get("http://httpbin.org/get", params=payload)
+
+print(r.url)
+# http://httpbin.org/get?key2=value2&key1=value1
+
+r.text  # u解码后的
+r.content # b未解码的
+r.encoding = 'gbk2312' # 指定解码类型
+
+```
+
+#### 定制请求头
+
+```py
+url = 'https://api.github.com/some/endpoint'
+headers = {'user-agent': 'my-app/0.0.1'}
+cookies = dict(cookies_are='working')
+
+
+r = requests.get(url, headers=headers, cookies=cookies)
+
+r.request.headers # 查看请求头部
+r.headers  # 查看响应头部
+```
+
+#### 响应状态码
+
+```py
+r = requests.get('http://httpbin.org/get')
+r.status_code
+# 200
+
+r.status_code == requests.codes.ok
+# True
+
+bad_r = requests.get('http://httpbin.org/status/404')
+bad_r.status_code
+# 404
+bad_r.raise_for_status() # 错误将抛出异常，否则为None
+```
+
+#### 重定向历史
+
+```py
+r = requests.get('http://github.com')
+r.url
+# 'https://github.com/'
+r.status_code
+# 200
+r.history
+# [<Response [301]>]
+
+r = requests.get('http://github.com', allow_redirects=False)
+r.status_code
+# 301
+r.history
+# []
+```
+
+### urllib3 模块
+
 POST 方法参考
 
 ```python
