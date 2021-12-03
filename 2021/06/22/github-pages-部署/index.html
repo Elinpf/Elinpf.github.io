@@ -6,16 +6,17 @@
   <meta name="keywords" content=" github , docusaurus ">
   <meta name="description" content="使用 Github Pages 部署 Blog | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="日志常用指引  日志级别   级别 何时使用    DEBUG 细节信息，仅当诊断问题时适用。   INFO 确认程序按预期运行。   WARNING 表明有已经或即将发生的意外（例如：磁盘空间不足）。程序仍按预期进行。   ERROR 由于严重的问题，程序的某些功能已经不能正常执行   CRITICAL 严重的错误，表明程序已不能继续执行   初级使用import logging loggin">
+<meta name="description" content="python 包格式Python的包分为源码包和二进制包，源码包就是将源码打包成一个压缩文件。而二进制包分为.egg和.whl。 whl现在被认为是Python的标准二进制格式。 setup.py 文件setup.py文件使用setuptools中的setup()函数来定义包的各种属性。  setup()函数的参数常见函数如下：    参数 说明    name 包名称   version 包版本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python logging 日志模块">
-<meta property="og:url" content="http://example.com/2021/12/02/python-logging-%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97/index.html">
+<meta property="og:title" content="python 打包分发(setup.py)的编写">
+<meta property="og:url" content="http://example.com/2021/12/03/python-%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91-setup-py-%E7%9A%84%E7%BC%96%E5%86%99/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="日志常用指引  日志级别   级别 何时使用    DEBUG 细节信息，仅当诊断问题时适用。   INFO 确认程序按预期运行。   WARNING 表明有已经或即将发生的意外（例如：磁盘空间不足）。程序仍按预期进行。   ERROR 由于严重的问题，程序的某些功能已经不能正常执行   CRITICAL 严重的错误，表明程序已不能继续执行   初级使用import logging loggin">
+<meta property="og:description" content="python 包格式Python的包分为源码包和二进制包，源码包就是将源码打包成一个压缩文件。而二进制包分为.egg和.whl。 whl现在被认为是Python的标准二进制格式。 setup.py 文件setup.py文件使用setuptools中的setup()函数来定义包的各种属性。  setup()函数的参数常见函数如下：    参数 说明    name 包名称   version 包版本">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-02T02:14:54.000Z">
-<meta property="article:modified_time" content="2021-12-02T07:49:29.171Z">
+<meta property="article:published_time" content="2021-12-03T06:42:42.000Z">
+<meta property="article:modified_time" content="2021-12-03T07:33:35.100Z">
 <meta property="article:author" content="Elin">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
 
 
@@ -90,7 +91,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(50)</small>
+                <small>(51)</small>
             
         </div>
     </li>
@@ -102,7 +103,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         编程
-                        <small>(18)</small>
+                        <small>(20)</small>
                         
                     </div>
                     
@@ -125,7 +126,7 @@
                                         
                                         python
                                         
-                                            <small>(13
+                                            <small>(15
                                                 )</small>
                                         
                                     </div>
@@ -312,7 +313,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="50">
+<input type="hidden" id="yelog_site_posts_number" value="51">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -465,9 +466,17 @@
             <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
         </a>
         
-        <a  class="全部文章 "
+        <a  class="全部文章 编程 python "
+           href="/2021/12/03/python-%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91-setup-py-%E7%9A%84%E7%BC%96%E5%86%99/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python 打包分发(setup.py)的编写">python 打包分发(setup.py)的编写</span>
+            <span class="post-date" title="2021-12-03 14:42:42">2021/12/03</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
            href="/2021/12/02/python-logging-%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97/"
-           data-tag=""
+           data-tag="python"
            data-author="" >
             <span class="post-title" title="python logging 日志模块">python logging 日志模块</span>
             <span class="post-date" title="2021-12-02 10:14:54">2021/12/02</span>
@@ -896,7 +905,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-12-02 15:49:29'>2021-06-23 00:00</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-03 15:33:35'>2021-06-23 00:00</time>
         
     </div>
     <div class="article-meta">
