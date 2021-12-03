@@ -2,7 +2,10 @@
 title: python logging 日志模块
 date: 2021-12-02 10:14:54
 tags:
+- python
 categories:
+- 编程
+- python
 ---
 
 - [日志常用指引](https://docs.python.org/zh-cn/3/howto/logging.html#logging-basic-tutorial)
