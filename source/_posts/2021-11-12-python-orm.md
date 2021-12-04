@@ -62,4 +62,16 @@ def start_mapper():
 
 使用方法参考[](!python-sqlalchemy-继承关系表)
 
+## ORM事件
+
+当ORM与类属性映射不能做到一一对应的情况下，重新获取类时没有覆盖到的属性不会被初始化，这种情况下，可以使用`load`事件在创建实例后立即对属性进行初始化。
+
+```py orm.py
+from sqlalchemy import event
+
+@event.listens_for(Device, 'load')
+def receive_load(target, _):
+    target.uname = 'uname'
+```
+
 
