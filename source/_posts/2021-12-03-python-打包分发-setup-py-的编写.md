@@ -217,6 +217,14 @@ setup(
 - `bdist_egg` python egg包
 - `bdist_wheel` python wheel包
 
+### 指定dist文件夹的位置
+
+`python setup.py sdist  --dist-dir=[path]`
+
+or
+
+`-d [path]`
+
 ## 使用 setup.py 安装包
 
 多数情况使用构建包或者pip进行安装，如果需要本地安装：
@@ -228,4 +236,4 @@ setup(
 
 ## 如何发布到 PyPI
 
-`python setup.py upload` 命令发布到 PyPI
+`python setup.py sdist upload` 命令发布到 PyPI
