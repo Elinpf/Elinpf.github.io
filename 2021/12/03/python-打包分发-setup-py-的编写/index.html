@@ -14,7 +14,7 @@
 <meta property="og:description" content="python 包格式Python的包分为源码包和二进制包，源码包就是将源码打包成一个压缩文件。而二进制包分为.egg和.whl。 whl现在被认为是Python的标准二进制格式。 setup.py 文件setup.py文件使用setuptools中的setup()函数来定义包的各种属性。  setup()函数的参数常见函数如下：    参数 说明    name 包名称   version 包版本">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-03T06:42:42.000Z">
-<meta property="article:modified_time" content="2021-12-04T16:26:37.767Z">
+<meta property="article:modified_time" content="2021-12-13T03:05:33.298Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
@@ -929,7 +929,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-12-05 00:26:37'>2021-12-03 14:42</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-13 11:05:33'>2021-12-03 14:42</time>
         
     </div>
     <div class="article-meta">
@@ -951,7 +951,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python-%E5%8C%85%E6%A0%BC%E5%BC%8F"><span class="toc-text">python 包格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setup-py-%E6%96%87%E4%BB%B6"><span class="toc-text">setup.py 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#setup-%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-text">setup()函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-text">简单的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E9%80%89%E6%8B%A9%E5%92%8C%E5%88%86%E5%8F%91"><span class="toc-text">文件的选择和分发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%8C%85%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="toc-text">依赖包的描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83%E7%9A%84%E9%99%90%E5%88%B6"><span class="toc-text">安装环境的限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6"><span class="toc-text">生成可执行文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-setup-py-%E6%9E%84%E5%BB%BA%E5%8C%85"><span class="toc-text">使用 setup.py 构建包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E5%8C%85"><span class="toc-text">源码包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8C%85"><span class="toc-text">二进制包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-setup-py-%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-text">使用 setup.py 安装包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8F%91%E5%B8%83%E5%88%B0-PyPI"><span class="toc-text">如何发布到 PyPI</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python-%E5%8C%85%E6%A0%BC%E5%BC%8F"><span class="toc-text">python 包格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setup-py-%E6%96%87%E4%BB%B6"><span class="toc-text">setup.py 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#setup-%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-text">setup()函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-text">简单的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E9%80%89%E6%8B%A9%E5%92%8C%E5%88%86%E5%8F%91"><span class="toc-text">文件的选择和分发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%8C%85%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="toc-text">依赖包的描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83%E7%9A%84%E9%99%90%E5%88%B6"><span class="toc-text">安装环境的限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6"><span class="toc-text">生成可执行文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-setup-py-%E6%9E%84%E5%BB%BA%E5%8C%85"><span class="toc-text">使用 setup.py 构建包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E5%8C%85"><span class="toc-text">源码包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8C%85"><span class="toc-text">二进制包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E5%AE%9Adist%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">指定dist文件夹的位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-setup-py-%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-text">使用 setup.py 安装包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8F%91%E5%B8%83%E5%88%B0-PyPI"><span class="toc-text">如何发布到 PyPI</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1248,6 +1248,9 @@
 <li><code>bdist_egg</code> python egg包</li>
 <li><code>bdist_wheel</code> python wheel包</li>
 </ul>
+<h3 id="指定dist文件夹的位置"><a href="#指定dist文件夹的位置" class="headerlink" title="指定dist文件夹的位置"></a>指定dist文件夹的位置</h3><p><code>python setup.py sdist  --dist-dir=[path]</code></p>
+<p>or</p>
+<p><code>-d [path]</code></p>
 <h2 id="使用-setup-py-安装包"><a href="#使用-setup-py-安装包" class="headerlink" title="使用 setup.py 安装包"></a>使用 setup.py 安装包</h2><p>多数情况使用构建包或者pip进行安装，如果需要本地安装：</p>
 <ul>
 <li><p><code>python setup.py install</code>命令完整安装。</p>
@@ -1255,7 +1258,7 @@
 <li><p><code>python setup.py develop</code>命令创建软连接，有变化时不必重复安装。</p>
 </li>
 </ul>
-<h2 id="如何发布到-PyPI"><a href="#如何发布到-PyPI" class="headerlink" title="如何发布到 PyPI"></a>如何发布到 PyPI</h2><p><code>python setup.py upload</code> 命令发布到 PyPI</p>
+<h2 id="如何发布到-PyPI"><a href="#如何发布到-PyPI" class="headerlink" title="如何发布到 PyPI"></a>如何发布到 PyPI</h2><p><code>python setup.py sdist upload</code> 命令发布到 PyPI</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
