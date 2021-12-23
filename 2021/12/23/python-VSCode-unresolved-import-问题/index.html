@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>python pytest | Elin 的空间</title>
-  <meta name="keywords" content=" python ">
-  <meta name="description" content="python pytest | Elin 的空间">
+  <title>python VSCode unresolved import 问题 | Elin 的空间</title>
+  <meta name="keywords" content=" python , vscode ">
+  <meta name="description" content="python VSCode unresolved import 问题 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="问题描述当使用以下结构的时候，测试无法获取到src\pyaio的模块路径 - src |- pyaio |-- __init__.py |-- main.py  - tests |- test_main.py   解决办法问题的原因是vscode解释器无法找到路径，解决参考这篇文章以及微软官方解释 加添launch.json文件 .vscode&#x2F;launch.json&amp;#123;     &#x2F;&#x2F; 使">
 <meta property="og:type" content="article">
@@ -937,9 +937,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-python-pytest" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-python-VSCode-unresolved-import-问题" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">python pytest</h1>
+        <h1 class="article-title">python VSCode unresolved import 问题</h1>
     
     <div class="article-meta">
         
@@ -961,12 +961,14 @@
             
             <a class="color2">python</a>
             
+            <a class="color2">vscode</a>
+            
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-12-23 14:25:02'>2021-10-13 09:22</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-23 14:25:02'>2021-12-23 10:29</time>
         
     </div>
     <div class="article-meta">
@@ -988,7 +990,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#conftest-py"><span class="toc-text">conftest.py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fixture"><span class="toc-text">fixture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pytest-ini"><span class="toc-text">pytest.ini</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text">解决办法</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1004,40 +1006,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>pytest 是强大的测试框架</p>
-<p>当函数使用<code>test_</code>为开头的时候，就会在执行测试的时候进行测试。</p>
-<p>执行命令为：</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-nginx codeBlockLines"><span class="line"><span class="hljs-attribute">pytest</span> -v -s test_file.py</span>
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>当使用以下结构的时候，测试无法获取到<code>src\pyaio</code>的模块路径</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">- src</span>
+<span class="line">|- pyaio</span>
+<span class="line">|-- __init__.py</span>
+<span class="line">|-- main.py</span>
+<span class="line"></br></span>
+<span class="line">- tests</span>
+<span class="line">|- test_main.py</span>
 </code></pre></div></div>
 
-<h2 id="conftest-py"><a href="#conftest-py" class="headerlink" title="conftest.py"></a>conftest.py</h2><p><code>conftest.py</code>的特点:</p>
-<ol>
-<li>conftest.py与运行的用例要在同一个pakage下，并且有__init__.py文件</li>
-<li>不需要import导入 conftest.py，pytest用例会自动识别该文件，放到项目的根目录下就可以全局目录调用了，如果放到某个package下，那就在该package内有效，可有多个conftest.py</li>
-<li>conftest.py配置脚本名称是固定的，不能改名称</li>
-<li>conftest.py文件不能被其他文件导入</li>
-<li>所有同目录测试文件运行前都会执行conftest.py文件</li>
-</ol>
-<p>在conftest.py中将会用到<code>@pytest.fixture</code>装饰器</p>
-<h2 id="fixture"><a href="#fixture" class="headerlink" title="fixture"></a>fixture</h2><p>fixture函数如下：</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-lasso codeBlockLines"><span class="line">fixture（scope=<span class="hljs-string">&#x27;function&#x27;</span>，<span class="hljs-keyword">params</span>=<span class="hljs-literal">None</span>，autouse=<span class="hljs-literal">False</span>，ids=<span class="hljs-literal">None</span>，name=<span class="hljs-literal">None</span>）</span>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>问题的原因是vscode解释器无法找到路径，解决参考<a target="_blank" rel="noopener" href="https://www.pianshen.com/article/84501691762/">这篇文章</a>以及<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/python/environments#_use-of-the-pythonpath-variable">微软官方解释</a></p>
+<p>加添<code>launch.json</code>文件</p>
+<div class="codeBlockContainer"><div class="codeBlockTitle">.vscode/launch.json</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-json codeBlockLines"><span class="line">&#123;</span>
+<span class="line">    <span class="hljs-comment">// 使用 IntelliSense 了解相关属性。 </span></span>
+<span class="line">    <span class="hljs-comment">// 悬停以查看现有属性的描述。</span></span>
+<span class="line">    <span class="hljs-comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span></span>
+<span class="line">    <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.2.0&quot;</span>,</span>
+<span class="line">    <span class="hljs-attr">&quot;configurations&quot;</span>: [</span>
+<span class="line">        &#123;</span>
+<span class="line">            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Python: 当前文件&quot;</span>,</span>
+<span class="line">            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;python&quot;</span>,</span>
+<span class="line">            <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,</span>
+<span class="line">            <span class="hljs-attr">&quot;program&quot;</span>: <span class="hljs-string">&quot;$&#123;file&#125;&quot;</span>,</span>
+<span class="line">            <span class="hljs-attr">&quot;console&quot;</span>: <span class="hljs-string">&quot;integratedTerminal&quot;</span>,</span>
+<span class="line marked">            <span class="hljs-attr">&quot;env&quot;</span>: &#123;<span class="hljs-attr">&quot;PYTHONPATH&quot;</span>: <span class="hljs-string">&quot;$&#123;workspaceRoot&#125;&quot;</span>&#125;,</span>
+<span class="line marked">            <span class="hljs-attr">&quot;envFile&quot;</span>: <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;/.env&quot;</span></span>
+<span class="line">        &#125;</span>
+<span class="line">    ]</span>
+<span class="line">&#125;</span>
 </code></pre></div></div>
 
-<ul>
-<li>scope参数可以控制fixture的作用范围，scope：有四个级别参数”function”（默认），”class”，”module”，”session</li>
-<li>params：一个可选的参数列表，每个参数执行一遍，相当于for循环</li>
-<li>autouse：如果True，则为所有测试激活fixture func可以看到它。</li>
-<li>ids：每个字符串id的列表，每个字符串对应于params这样他们就是测试ID的一部分。如果没有提供ID它们将从params自动生成</li>
-<li>name：fixture的名称。</li>
-</ul>
-<p>scope作用范围： session&gt;module&gt;class&gt;function</p>
-<ul>
-<li>function：每一个函数或方法都会调用</li>
-<li>class：每一个类调用一次，一个类中可以有多个方法</li>
-<li>module：每一个.py文件调用一次，该文件内又有多个function和class</li>
-<li>session：是多个文件调用一次，可以跨.py文件调用，每个.py文件就是module</li>
-</ul>
-<h2 id="pytest-ini"><a href="#pytest-ini" class="headerlink" title="pytest.ini"></a>pytest.ini</h2><p>todo</p>
+<p>以及根目录下添加<code>.env</code>文件</p>
+<div class="codeBlockContainer"><div class="codeBlockTitle">.env</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">PYTHONPATH=./src/pyaio</span>
+</code></pre></div></div>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>

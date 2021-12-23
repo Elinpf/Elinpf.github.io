@@ -6,17 +6,19 @@
   <meta name="keywords" content=" 物理 ">
   <meta name="description" content="相对论 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="问题描述当使用以下结构的时候，测试无法获取到src\pyaio的模块路径 - src |- pyaio |-- __init__.py |-- main.py  - tests |- test_main.py   解决办法问题的原因是vscode解释器无法找到路径，解决参考这篇文章以及微软官方解释 加添launch.json文件 .vscode&#x2F;launch.json&amp;#123;     &#x2F;&#x2F; 使">
 <meta property="og:type" content="article">
-<meta property="og:title" content="头发的画法">
-<meta property="og:url" content="http://example.com/2021/12/13/%E5%A4%B4%E5%8F%91%E7%9A%84%E7%94%BB%E6%B3%95/index.html">
+<meta property="og:title" content="python VSCode unresolved import 问题">
+<meta property="og:url" content="http://example.com/2021/12/23/python-VSCode-unresolved-import-%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Elin 的空间">
+<meta property="og:description" content="问题描述当使用以下结构的时候，测试无法获取到src\pyaio的模块路径 - src |- pyaio |-- __init__.py |-- main.py  - tests |- test_main.py   解决办法问题的原因是vscode解释器无法找到路径，解决参考这篇文章以及微软官方解释 加添launch.json文件 .vscode&#x2F;launch.json&amp;#123;     &#x2F;&#x2F; 使">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/12/13/%E5%A4%B4%E5%8F%91%E7%9A%84%E7%94%BB%E6%B3%95/1.png">
-<meta property="article:published_time" content="2021-12-13T16:20:34.000Z">
-<meta property="article:modified_time" content="2021-12-22T08:31:13.894Z">
+<meta property="article:published_time" content="2021-12-23T02:29:46.000Z">
+<meta property="article:modified_time" content="2021-12-23T06:25:02.555Z">
 <meta property="article:author" content="Elin">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="vscode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/12/13/%E5%A4%B4%E5%8F%91%E7%9A%84%E7%94%BB%E6%B3%95/1.png">
 
 
 <link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
@@ -90,7 +92,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(56)</small>
+                <small>(57)</small>
             
         </div>
     </li>
@@ -102,7 +104,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         编程
-                        <small>(20)</small>
+                        <small>(21)</small>
                         
                     </div>
                     
@@ -125,7 +127,7 @@
                                         
                                         python
                                         
-                                            <small>(15
+                                            <small>(16
                                                 )</small>
                                         
                                     </div>
@@ -312,7 +314,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="56">
+<input type="hidden" id="yelog_site_posts_number" value="57">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -443,6 +445,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>windows</a>
             </li>
         
@@ -479,6 +485,14 @@
            data-author="" >
             <span class="post-title" title="绘画网站推荐">绘画网站推荐</span>
             <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/12/23/python-VSCode-unresolved-import-%E9%97%AE%E9%A2%98/"
+           data-tag="python,vscode"
+           data-author="" >
+            <span class="post-title" title="python VSCode unresolved import 问题">python VSCode unresolved import 问题</span>
+            <span class="post-date" title="2021-12-23 10:29:46">2021/12/23</span>
         </a>
         
         <a  class="全部文章 绘画 "
@@ -950,7 +964,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-12-22 16:31:13'>2021-07-06 16:50</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-23 14:25:02'>2021-07-06 16:50</time>
         
     </div>
     <div class="article-meta">
@@ -1021,17 +1035,19 @@
 <p>结论是，在火车上你感觉到的时间要比在外面的时间短。<br><img src="/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/relativity_3.png" alt="Alt text | left | 300*0"></p>
 <p>$ v \uparrow \rightarrow \Delta t’ \uparrow$</p>
 <p>速度越快， $\Delta t’ \uparrow $ 就越大在外面感受到的时间就越快。相对的，$\Delta t \downarrow$ 就越小，里面的人感受到的时间就越慢。<br>所以在地面坐标系下看，地上的人感受到的时间没有变化，而火车里的人的时间变慢了。<strong>是时间本身变慢了</strong></p>
-<h2 id="穿越到未来"><a href="#穿越到未来" class="headerlink" title="穿越到未来"></a>穿越到未来</h2><h3 id="真的可以长寿"><a href="#真的可以长寿" class="headerlink" title="真的可以长寿"></a>真的可以长寿</h3><p>相对论的核心在于处于不用的坐标系来观察。</p>
+<h2 id="穿越到未来"><a href="#穿越到未来" class="headerlink" title="穿越到未来"></a>穿越到未来</h2><ul>
+<li>这部分可以参考<a target="_blank" rel="noopener" href="https://b23.tv/l72627Q">可视化解释</a></li>
+</ul>
+<h3 id="真的可以长寿"><a href="#真的可以长寿" class="headerlink" title="真的可以长寿"></a>真的可以长寿</h3><p>相对论的核心在于处于不用的坐标系来观察。</p>
 <p>我们可以做这样的一个实验。<br>有一个星球距离我们80光年，我们通过加速到0.8c的宇宙飞船飞到那个星球。<br>在地面上的人看，这段时间需要花上100年。 而飞船上的宇航员自己则会感觉到只过去了60年。坐标系下的时间会发生<strong>时间膨胀</strong>。<br>要用这个方法来验证显然不太现实。但是物理学家想到了另外一种实验方法。</p>
 <p>有一种叫做$\mu$子的基本粒子，他有一基本特性就是特别特别短命。 半衰期是2.2微秒。也就是说给你一堆$\mu$子，他们会在2.2微秒后只剩下一半了，然后再过2.2微秒又有一半木有了。<br>而这个实验就是将一堆$\mu$子从山顶上加速到0.9994c的光速，然后丢下来。如果到地面上的$\mu$子数量大于在静止坐标系下得到的数量，那么相对论就是正确的。</p>
 <p>实验结果完美的符合了相对论的预测，平均寿命被延长了29.3倍！</p>
 <p>相对论不但正确，而且非常精确。</p>
 <h3 id="双生子佯谬"><a href="#双生子佯谬" class="headerlink" title="双生子佯谬"></a>双生子佯谬</h3><p>问题是这样的，你妹妹在地球上，而你坐上了宇宙飞船。<br>在妹妹的坐标系中，你处于高速运动中，你的时间变慢了。<br>而在你的坐标系中，妹妹同样也是高速离开，那妹妹的时间也变慢了。</p>
-<p class='qst'>那你飞一圈回来后，是你比妹妹年轻还是妹妹比你年轻呢？
-<p class='asr'>这个问题的关键在于你的坐标系和你妹妹的坐标系并不是等价的。
-你所处于的运动过程，要有加速，匀速直线减速掉头再加速最后减速的过程。并不全都是匀速直线运动。
-计算的过程比较复杂，但是结论是真实的。并且你会比你妹妹年轻一些。
+<p class='quest'>那你飞一圈回来后，是你比妹妹年轻还是妹妹比你年轻呢？
+<p class='answer'>这个问题的关键在于你的坐标系和你妹妹的坐标系并不是等价的。
 
+<p>你所处于的运动过程，要有加速，匀速直线减速掉头再加速最后减速的过程。并不全都是匀速直线运动。<br>计算的过程比较复杂，但是结论是真实的。并且你会比你妹妹年轻一些。</p>
 <h3 id="时空是相对的"><a href="#时空是相对的" class="headerlink" title="时空是相对的"></a>时空是相对的</h3><p>和<strong>时间膨胀</strong>对应的是<strong>长度收缩</strong></p>
 <p>当宇航员用20年的时间完成了本来需要30年才能完成的路程。那么相对于宇航员来看。这段路程实际上是变短了。</p>
 <p>我们所处的坐标系下，其实和外星人所处的坐标系。在没有联系的情况下是完全两个独立的时空。你过你的，我过我的。但是一旦建立起了联系，那么就需要进行相对的转换了。</p>
@@ -1072,8 +1088,8 @@
 <h3 id="加速度和引力"><a href="#加速度和引力" class="headerlink" title="加速度和引力"></a>加速度和引力</h3><p>我们可以想象一个这样的场景。<br>你处于一个一直做加速运动的火箭里。 你会感觉到一个力，这个力向下。此时你抛一个小球，这个小球也会朝着地面的方向掉落。那么这个实验和在地球上抛小球通过引力落回地面上有区别吗？</p>
 <p><img src="/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/1225873056.jpg" alt="Alt text | center | 300*0"></p>
 <p>爱因斯坦说，<strong>我在火箭内部做实验，观测不到任何的区别</strong></p>
-<h3 id="自由落体和匀速直线运动"><a href="#自由落体和匀速直线运动" class="headerlink" title="自由落体和匀速直线运动"></a>自由落体和匀速直线运动</h3><p class='qst'>自由落体是一个加速运动，但是为什么爱因斯坦说它跟匀速直线运动没有区别呢？
-<p class='asr'>**因为自由落体状态下物体的加速度都是一样的。**
+<h3 id="自由落体和匀速直线运动"><a href="#自由落体和匀速直线运动" class="headerlink" title="自由落体和匀速直线运动"></a>自由落体和匀速直线运动</h3><p class='quest'>自由落体是一个加速运动，但是为什么爱因斯坦说它跟匀速直线运动没有区别呢？
+<p class='answer'>**因为自由落体状态下物体的加速度都是一样的。**
 
 <p>我们知道，在地球上加速度G是一个恒定的数值$9.8m/s$<br>只有这样，两个质量不同的小球才会在同时下落的情况下同时到达地面。</p>
 <ul>
