@@ -53,5 +53,5 @@ categories:
 以及根目录下添加`.env`文件
 
 ```plant .env
-PYTHONPATH=./src/pyaio
+PYTHONPATH=./src
 ```
