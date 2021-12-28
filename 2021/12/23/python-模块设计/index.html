@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>smb | Elin 的空间</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="smb | Elin 的空间">
+  <title>python 模块设计 | Elin 的空间</title>
+  <meta name="keywords" content=" python ">
+  <meta name="description" content="python 模块设计 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="cisco IOS 官方版本下载 cisco IOS 旧版非官方下载     华为典型案例库 华为 ACL应用模块的ACL默认动作和处理机制     华为维保查询">
 <meta property="og:type" content="article">
@@ -951,9 +951,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-smb" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-python-模块设计" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">smb</h1>
+        <h1 class="article-title">python 模块设计</h1>
     
     <div class="article-meta">
         
@@ -963,17 +963,24 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="渗透">渗透</a> > 
+            <a  data-rel="编程">编程</a> > 
             
-            <a  data-rel="渗透&lt;---&gt;知识点">知识点</a>
+            <a  data-rel="编程&lt;---&gt;python">python</a>
             
         </span>
         
         
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">python</a>
+            
+        </span>
+        
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-12-28 10:58:01'>2021-07-27 16:49</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-28 10:58:01'>2021-12-23 16:58</time>
         
     </div>
     <div class="article-meta">
@@ -995,7 +1002,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Port-139"><span class="toc-text">Port 139</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Port-445"><span class="toc-text">Port 445</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IPC"><span class="toc-text">$IPC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE"><span class="toc-text">枚举</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E7%BD%91%E6%AE%B5%E4%B8%AD%E7%9A%84%E4%B8%BB%E6%9C%BA%E6%90%9C%E7%B4%A2SMB%E6%9C%8D%E5%8A%A1"><span class="toc-text">对网段中的主机搜索SMB服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">版本信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E5%AF%B9%E5%BA%94%E7%89%88%E6%9C%AC%E7%9A%84exploit"><span class="toc-text">搜索对应版本的exploit</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="toc-text">文件设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setup-py-%E9%85%8D%E7%BD%AE"><span class="toc-text">setup.py 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3tests%E4%B8%AD%E7%9A%84%E5%8C%85%E5%BC%95%E5%85%A5%E9%97%AE%E9%A2%98"><span class="toc-text">解决tests中的包引入问题</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1011,57 +1018,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>SMB(Server Message Block) 是被设计通过LAN来远程读写文件的协议。是微软的主要通讯协议。</p>
-<p>SMB使用了NetBIOS接口，所以为什么smb通常是139，445两个端口?</p>
-<h2 id="Port-139"><a href="#Port-139" class="headerlink" title="Port 139"></a>Port 139</h2><p>端口139是 NBT over IP。</p>
-<p>NetBIOS(Network Basic Input Output System) 可以使软件、PC等设备通过LAN网络进行通讯。</p>
-<p>在NetBIOS网络上运行的软件通过NetBIOS名称进行互相识别。NetBIOS名称长度为16个字符，与计算机名称分开。</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-arduino codeBlockLines"><span class="line"><span class="hljs-number">139</span>/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn</span>
+        <h2 id="文件设计"><a href="#文件设计" class="headerlink" title="文件设计"></a>文件设计</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">- setup.py</span>
+<span class="line">- src\</span>
+<span class="line">  \- pyaio\</span>
+<span class="line">    - __init__.py</span>
+<span class="line">    \- allocation\</span>
+<span class="line">      \- domain\</span>
+<span class="line">      \- adapters\</span>
+<span class="line">      \- service_layer\</span>
+<span class="line">    \- lib\</span>
+<span class="line">- tests\</span>
+<span class="line">  \- units\</span>
+<span class="line">  \- integration\</span>
+<span class="line">  \- e2e\</span>
+<span class="line">- .env</span>
 </code></pre></div></div>
 
-<h2 id="Port-445"><a href="#Port-445" class="headerlink" title="Port 445"></a>Port 445</h2><p>445端口是 SMB over IP， 现在也称为CIFS(Common Internet File System)。运行在应用层，用于提供访问文件、打印机、串口以及其他基于网络的两端节点通讯。</p>
-<p>在Windows中，SMB直接基于TCP/IP运行，不需要NetBIOS,所以一般只有445。<br>而其他操作系统就会有139端口一起，这说明SMB的运行是基于BetBIOS的TCP/IP的。</p>
-<h3 id="IPC"><a href="#IPC" class="headerlink" title="$IPC"></a>$IPC</h3><p>当使用匿名用户或者空用户的时候，可以访问<code>IPC$</code>。使用<a href="#">Post not found: enum4linux-工具使用</a>从这里可以获取：</p>
-<ol>
-<li>操作系统信息</li>
-<li>域的详细信息</li>
-<li>本地用户和组的列表</li>
-<li>可用SMB共享的详细信息</li>
-<li>生效的系统安全策略</li>
-</ol>
-<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><h3 id="对网段中的主机搜索SMB服务"><a href="#对网段中的主机搜索SMB服务" class="headerlink" title="对网段中的主机搜索SMB服务"></a>对网段中的主机搜索SMB服务</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">nbtscan -r 192.168.0.1/24</span>
-</code></pre></div></div>
-
-<h3 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">msf&gt; use  auxiliary/scanner/smb/smb_version  </span>
-</code></pre></div></div>
-
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-meta">#!/bin/sh</span></span>
-<span class="line"><span class="hljs-comment">#Author: rewardone</span></span>
-<span class="line"><span class="hljs-comment">#Description:</span></span>
-<span class="line"><span class="hljs-comment"># Requires root or enough permissions to use tcpdump</span></span>
-<span class="line"><span class="hljs-comment"># Will listen for the first 7 packets of a null login</span></span>
-<span class="line"><span class="hljs-comment"># and grab the SMB Version</span></span>
-<span class="line"><span class="hljs-comment">#Notes:</span></span>
-<span class="line"><span class="hljs-comment"># Will sometimes not capture or will print multiple</span></span>
-<span class="line"><span class="hljs-comment"># lines. May need to run a second time for success.</span></span>
-<span class="line"><span class="hljs-keyword">if</span> [ -z <span class="hljs-variable">$1</span> ]; <span class="hljs-keyword">then</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Usage: ./smbver.sh RHOST &#123;RPORT&#125;&quot;</span> &amp;&amp; <span class="hljs-built_in">exit</span>; <span class="hljs-keyword">else</span> rhost=<span class="hljs-variable">$1</span>; <span class="hljs-keyword">fi</span></span>
-<span class="line"><span class="hljs-keyword">if</span> [ ! -z <span class="hljs-variable">$2</span> ]; <span class="hljs-keyword">then</span> rport=<span class="hljs-variable">$2</span>; <span class="hljs-keyword">else</span> rport=139; <span class="hljs-keyword">fi</span></span>
-<span class="line">tcpdump -s0 -n -i tap0 src <span class="hljs-variable">$rhost</span> and port <span class="hljs-variable">$rport</span> -A -c 7 2&gt;/dev/null | grep -i <span class="hljs-string">&quot;samba\|s.a.m&quot;</span> | tr -d <span class="hljs-string">&#x27;.&#x27;</span> | grep -oP <span class="hljs-string">&#x27;UnixSamba.*[0-9a-z]&#x27;</span> | tr -d <span class="hljs-string">&#x27;\n&#x27;</span> &amp; <span class="hljs-built_in">echo</span> -n <span class="hljs-string">&quot;<span class="hljs-variable">$rhost</span>: &quot;</span> &amp;</span>
-<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;exit&quot;</span> | smbclient -L <span class="hljs-variable">$rhost</span> 1&gt;/dev/null 2&gt;/dev/null</span>
-<span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&quot;</span> &amp;&amp; sleep .1</span>
-</code></pre></div></div>
-
-<h3 id="搜索对应版本的exploit"><a href="#搜索对应版本的exploit" class="headerlink" title="搜索对应版本的exploit"></a>搜索对应版本的exploit</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">msf&gt; search <span class="hljs-built_in">type</span>:exploit platform:windows target:2008 smb</span>
-</code></pre></div></div>
-
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">searchsploit microsoft smb</span>
+<h2 id="setup-py-配置"><a href="#setup-py-配置" class="headerlink" title="setup.py 配置"></a>setup.py 配置</h2><div class="codeBlockContainer"><div class="codeBlockTitle">setup.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> setuptools <span class="hljs-keyword">import</span> setup, find_packages</span>
+<span class="line"></br></span>
+<span class="line">setup(</span>
+<span class="line">    name=<span class="hljs-string">&#x27;pyaio&#x27;</span>,</span>
+<span class="line">    version=<span class="hljs-string">&#x27;0.1.0&#x27;</span>,</span>
+<span class="line">    python_requires=<span class="hljs-string">&quot;&gt;=3.7, &lt;4&quot;</span>,</span>
+<span class="line marked">    packages=find_packages(<span class="hljs-string">&#x27;src&#x27;</span>),</span>
+<span class="line marked">    package_dir=&#123;<span class="hljs-string">&#x27;&#x27;</span>: <span class="hljs-string">&quot;src&quot;</span>&#125;</span>
+<span class="line">)</span>
 </code></pre></div></div>
 
 
-
-
-
-
+<p>所有引用自身包的都必须加入名称前缀，比如<code>pyaio.allocation</code></p>
+<h2 id="解决tests中的包引入问题"><a href="#解决tests中的包引入问题" class="headerlink" title="解决tests中的包引入问题"></a>解决tests中的包引入问题</h2><p>由于不在一个文件夹下，所以<code>tests</code>中要引入包就需要参考<a href="/2021/12/23/python-VSCode-unresolved-import-%E9%97%AE%E9%A2%98/" title="python VSCode unresolved import 问题">python VSCode unresolved import 问题</a>这篇文章</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
