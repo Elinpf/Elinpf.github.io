@@ -6,17 +6,17 @@
   <meta name="keywords" content=" linux , 提权 ">
   <meta name="description" content="linux 可执行文件的漏洞利用 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="SQL注入的gong击方式根据应用程序处理数据库返回内容的不同，可以分为可显注入、报错注入和盲注。本篇总结的很全了，尤其是新手而言，很有用. 可显注入 攻击者可以直接在当前界面内容中获取想要获得的内容。 报错注入 数据库查询返回结果并没有在页面中显示，但是应用程序将数据库报错信息打印到了页面中，所以攻击者可以构造数据库报错语句，从报错信息中获取想要获得的内容。 盲注 数据库查询结果无法从直观页面中">
+<meta name="description" content="安装官方的 Docker Kali GPG 无法验证在使用2022.1版本 kalilinux&#x2F;kali-rolling 的时候，apt update 会报以下验证错误。 root@28593cafb270:&#x2F;# apt update Get:1 http:&#x2F;&#x2F;mirrors.neusoft.edu.cn&#x2F;kali kali-rolling InRelease [30.6 kB] Err:1 ht">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sql 注入合集">
-<meta property="og:url" content="http://example.com/2022/02/11/sql-%E6%B3%A8%E5%85%A5%E5%90%88%E9%9B%86/index.html">
+<meta property="og:title" content="kali docker 使用时遇到的坑">
+<meta property="og:url" content="http://example.com/2022/02/18/kali-docker-%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="SQL注入的gong击方式根据应用程序处理数据库返回内容的不同，可以分为可显注入、报错注入和盲注。本篇总结的很全了，尤其是新手而言，很有用. 可显注入 攻击者可以直接在当前界面内容中获取想要获得的内容。 报错注入 数据库查询返回结果并没有在页面中显示，但是应用程序将数据库报错信息打印到了页面中，所以攻击者可以构造数据库报错语句，从报错信息中获取想要获得的内容。 盲注 数据库查询结果无法从直观页面中">
+<meta property="og:description" content="安装官方的 Docker Kali GPG 无法验证在使用2022.1版本 kalilinux&#x2F;kali-rolling 的时候，apt update 会报以下验证错误。 root@28593cafb270:&#x2F;# apt update Get:1 http:&#x2F;&#x2F;mirrors.neusoft.edu.cn&#x2F;kali kali-rolling InRelease [30.6 kB] Err:1 ht">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-02-11T00:37:21.000Z">
-<meta property="article:modified_time" content="2022-02-11T01:48:09.655Z">
+<meta property="article:published_time" content="2022-02-18T02:03:04.000Z">
+<meta property="article:modified_time" content="2022-02-18T02:56:48.158Z">
 <meta property="article:author" content="Elin">
-<meta property="article:tag" content="sql">
+<meta property="article:tag" content="docker-kali">
 <meta name="twitter:card" content="summary">
 
 
@@ -91,7 +91,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(68)</small>
+                <small>(70)</small>
             
         </div>
     </li>
@@ -294,6 +294,41 @@
     
         
             
+                <li>
+                    <div data-rel="系统">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        系统
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="系统<--->linux">
+                                        
+                                        linux
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
         
     
         
@@ -329,7 +364,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="68">
+<input type="hidden" id="yelog_site_posts_number" value="70">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -401,6 +436,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker-kali</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -504,6 +543,22 @@
            data-author="" >
             <span class="post-title" title="绘画网站推荐">绘画网站推荐</span>
             <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
+        </a>
+        
+        <a  class="全部文章 系统 linux "
+           href="/2022/02/18/kali-docker-%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"
+           data-tag="docker-kali"
+           data-author="" >
+            <span class="post-title" title="kali docker 使用时遇到的坑">kali docker 使用时遇到的坑</span>
+            <span class="post-date" title="2022-02-18 10:03:04">2022/02/18</span>
+        </a>
+        
+        <a  class="全部文章 系统 linux "
+           href="/2022/02/18/kali-docker-apt-gpg-%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5/"
+           data-tag="docker-kali"
+           data-author="" >
+            <span class="post-title" title="kali docker apt gpg 验证失败">kali docker apt gpg 验证失败</span>
+            <span class="post-date" title="2022-02-18 09:59:58">2022/02/18</span>
         </a>
         
         <a  class="全部文章 渗透 知识点 "
@@ -1075,7 +1130,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-02-11 09:48:09'>2021-07-23 09:31</time>
+            发布时间 : <time class="date" title='最后更新: 2022-02-18 10:56:48'>2021-07-23 09:31</time>
         
     </div>
     <div class="article-meta">
