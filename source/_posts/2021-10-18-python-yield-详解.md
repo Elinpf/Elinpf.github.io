@@ -117,3 +117,29 @@ range(0, 5)
 
 **所以`yield from iterable`的本质就是`for item in iterable: yield item`**
 
+## 取返回值
+
+正常情况下，迭代器是无法获取到返回值的，但是可以通过两种方式获取
+1. 使用`StopIteration`异常
+2. 使用类，然后取类的变量
+
+### 使用`StopIteration`
+
+```py
+def fib(max):
+  n, a, b = 0, 0, 1
+  while n < max:
+    yield b
+    a, b = b, a + b
+    n = n + 1
+  return 'done'
+# 捕获Generator的返回值
+g = fib(6)
+while True:
+  try:
+    x=next(g)
+    print('g=',x)
+  except StopIteration as e:
+    print('Generrator return value:', e.value)
+    break
+```
