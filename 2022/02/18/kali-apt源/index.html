@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>python SqlAlchemy ORM | Elin 的空间</title>
-  <meta name="keywords" content=" python ">
-  <meta name="description" content="python SqlAlchemy ORM | Elin 的空间">
+  <title>kali apt源 | Elin 的空间</title>
+  <meta name="keywords" content=" docker-kali ">
+  <meta name="description" content="kali apt源 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="这篇文章是将自己在浏览源码的时候见到的一起模块收集起来备忘。 inspect 检查现场对象 快速上手  inspect 模块也被称为 检查现场对象。这里的重点在于 “现场” 二字，也就是当前运行的状态。inspect 模块提供了一些函数来了解现场对象，包括 模块、类、实例、函数和方法。inspect 函数主要用于以下四个方面:   对是否是模块、框架、函数进行类型检查 获取源码 获取类或者函数的参">
 <meta property="og:type" content="article">
@@ -1115,9 +1115,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-python-orm" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-kali-apt源" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">python SqlAlchemy ORM</h1>
+        <h1 class="article-title">kali apt源</h1>
     
     <div class="article-meta">
         
@@ -1127,9 +1127,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="编程">编程</a> > 
+            <a  data-rel="系统">系统</a> > 
             
-            <a  data-rel="编程&lt;---&gt;python">python</a>
+            <a  data-rel="系统&lt;---&gt;linux">linux</a>
             
         </span>
         
@@ -1137,14 +1137,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">python</a>
+            <a class="color2">docker-kali</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-02-21 08:34:22'>2021-11-12 09:51</time>
+            发布时间 : <time class="date" title='最后更新: 2022-02-21 08:34:22'>2022-02-18 11:02</time>
         
     </div>
     <div class="article-meta">
@@ -1166,7 +1166,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFORM"><span class="toc-text">什么是ORM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E6%98%A0%E5%B0%84%E6%A8%A1%E5%BC%8F"><span class="toc-text">经典映射模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84%E6%A8%A1%E5%BC%8F"><span class="toc-text">关系映射模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ORM%E4%BA%8B%E4%BB%B6"><span class="toc-text">ORM事件</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -1182,55 +1182,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="什么是ORM"><a href="#什么是ORM" class="headerlink" title="什么是ORM"></a>什么是ORM</h2><p>ORM（Object Relationship Mapping）是一种将数据库表和对象的关系映射起来的方法。是完整软件的必要部分，将数据持久化。</p>
-<p>映射关系如下图所示</p>
-<p><img src="/2021/11/12/python-orm/1.png"></p>
-<p>常用的ORM框架是SqlAlchemy，它提供了一个简单接口，无需使用SQL语句就可以完成对数据库的操作。</p>
-<h2 id="经典映射模式"><a href="#经典映射模式" class="headerlink" title="经典映射模式"></a>经典映射模式</h2><p>使用经典映射模式，有一个好处就是将对象和表之间的映射关系解耦，将数据库的操作抽象出来，提高代码的可维护性。</p>
-<div class="codeBlockContainer"><div class="codeBlockTitle">model.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Device</span>:</span></span>
-<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, device_id: <span class="hljs-built_in">str</span></span>):</span></span>
-<span class="line">        self.device_id: <span class="hljs-built_in">str</span> = device_id</span>
-<span class="line">        self.hostname: <span class="hljs-built_in">str</span> = <span class="hljs-string">&#x27;&#x27;</span></span>
-<span class="line">        self.version: <span class="hljs-built_in">str</span> = <span class="hljs-string">&#x27;&#x27;</span></span>
+        <p>修改<code>/etc/apt/sources.list</code>文件</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-awk codeBlockLines"><span class="line"><span class="hljs-comment">#阿里云</span></span>
+<span class="line">deb http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com/kali kali-rolling main non-free contrib</span>
+<span class="line">deb-src http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com/kali kali-rolling main non-free contrib</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment">#中科大</span></span>
+<span class="line">deb http:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span>
+<span class="line">deb-src http:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment">#清华大学</span></span>
+<span class="line">deb http:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free</span>
+<span class="line">deb-src https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment">#浙大</span></span>
+<span class="line">deb http:<span class="hljs-regexp">//mi</span>rrors.zju.edu.cn/kali kali-rolling main contrib non-free</span>
+<span class="line">deb-src http:<span class="hljs-regexp">//mi</span>rrors.zju.edu.cn/kali kali-rolling main contrib non-free</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment">#东软大学</span></span>
+<span class="line">deb http:<span class="hljs-regexp">//mi</span>rrors.neusoft.edu.cn<span class="hljs-regexp">/kali kali-rolling/m</span>ain non-free contrib</span>
+<span class="line">deb-src http:<span class="hljs-regexp">//mi</span>rrors.neusoft.edu.cn<span class="hljs-regexp">/kali kali-rolling/m</span>ain non-free contrib</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment">#官方源</span></span>
+<span class="line">deb http:<span class="hljs-regexp">//</span>http.kali.org/kali kali-rolling main non-free contrib</span>
+<span class="line">deb-src http:<span class="hljs-regexp">//</span>http.kali.org/kali kali-rolling main non-free contrib</span>
 </code></pre></div></div>
-
-<div class="codeBlockContainer"><div class="codeBlockTitle">orm.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> sqlalchemy.orm <span class="hljs-keyword">import</span> mapper, relationship</span>
-<span class="line"><span class="hljs-keyword">from</span> sqlalchemy <span class="hljs-keyword">import</span> (</span>
-<span class="line">    Table,</span>
-<span class="line">    MetaData,</span>
-<span class="line">    Column,</span>
-<span class="line">    Integer,</span>
-<span class="line">    String</span>
-<span class="line">)</span>
-<span class="line"></br></span>
-<span class="line"><span class="hljs-keyword">import</span> model</span>
-<span class="line"></br></span>
-<span class="line">metadata = MetaData()</span>
-<span class="line"></br></span>
-<span class="line">devices = Table(</span>
-<span class="line">    <span class="hljs-string">&#x27;devices&#x27;</span>,</span>
-<span class="line">    metadata,</span>
-<span class="line">    Column(<span class="hljs-string">&#x27;id&#x27;</span>, Integer, primary_key=<span class="hljs-literal">True</span>, autoincrement=<span class="hljs-literal">True</span>),</span>
-<span class="line">    Column(<span class="hljs-string">&#x27;device_id&#x27;</span>, String(<span class="hljs-number">255</span>), nullable=<span class="hljs-literal">False</span>),</span>
-<span class="line">    Column(<span class="hljs-string">&#x27;hostname&#x27;</span>, String(<span class="hljs-number">255</span>)),</span>
-<span class="line">    Column(<span class="hljs-string">&#x27;version&#x27;</span>, String(<span class="hljs-number">255</span>))</span>
-<span class="line">)</span>
-<span class="line"></br></span>
-<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">start_mapper</span>():</span></span>
-<span class="line">    mapper(model.Device, devices)</span>
-</code></pre></div></div>
-
-<h2 id="关系映射模式"><a href="#关系映射模式" class="headerlink" title="关系映射模式"></a>关系映射模式</h2><p>使用方法参考<a href="/2021/11/12/python-sqlalchemy-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E8%A1%A8/" title="python sqlalchemy 继承关系表">python sqlalchemy 继承关系表</a></p>
-<h2 id="ORM事件"><a href="#ORM事件" class="headerlink" title="ORM事件"></a>ORM事件</h2><p>当ORM与类属性映射不能做到一一对应的情况下，重新获取类时没有覆盖到的属性不会被初始化，这种情况下，可以使用<code>load</code>事件在创建实例后立即对属性进行初始化。</p>
-<div class="codeBlockContainer"><div class="codeBlockTitle">orm.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> sqlalchemy <span class="hljs-keyword">import</span> event</span>
-<span class="line"></br></span>
-<span class="line"><span class="hljs-meta">@event.listens_for(<span class="hljs-params">Device, <span class="hljs-string">&#x27;load&#x27;</span></span>)</span></span>
-<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">receive_load</span>(<span class="hljs-params">target, _</span>):</span></span>
-<span class="line">    target.uname = <span class="hljs-string">&#x27;uname&#x27;</span></span>
-</code></pre></div></div>
-
-
-
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
     </div>

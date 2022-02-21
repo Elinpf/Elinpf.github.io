@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>python SqlAlchemy ORM | Elin 的空间</title>
+  <title>python 实用模块收集 | Elin 的空间</title>
   <meta name="keywords" content=" python ">
-  <meta name="description" content="python SqlAlchemy ORM | Elin 的空间">
+  <meta name="description" content="python 实用模块收集 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="这篇文章是将自己在浏览源码的时候见到的一起模块收集起来备忘。 inspect 检查现场对象 快速上手  inspect 模块也被称为 检查现场对象。这里的重点在于 “现场” 二字，也就是当前运行的状态。inspect 模块提供了一些函数来了解现场对象，包括 模块、类、实例、函数和方法。inspect 函数主要用于以下四个方面:   对是否是模块、框架、函数进行类型检查 获取源码 获取类或者函数的参">
 <meta property="og:type" content="article">
@@ -1115,9 +1115,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-python-orm" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-python-模块收集" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">python SqlAlchemy ORM</h1>
+        <h1 class="article-title">python 实用模块收集</h1>
     
     <div class="article-meta">
         
@@ -1144,7 +1144,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-02-21 08:34:22'>2021-11-12 09:51</time>
+            发布时间 : <time class="date" title='最后更新: 2022-02-21 08:34:22'>2022-02-18 14:24</time>
         
     </div>
     <div class="article-meta">
@@ -1166,7 +1166,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFORM"><span class="toc-text">什么是ORM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E6%98%A0%E5%B0%84%E6%A8%A1%E5%BC%8F"><span class="toc-text">经典映射模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84%E6%A8%A1%E5%BC%8F"><span class="toc-text">关系映射模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ORM%E4%BA%8B%E4%BB%B6"><span class="toc-text">ORM事件</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#inspect-%E6%A3%80%E6%9F%A5%E7%8E%B0%E5%9C%BA%E5%AF%B9%E8%B1%A1"><span class="toc-text">inspect 检查现场对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mock-%E8%99%9A%E5%81%87%E5%80%BC%E6%B5%8B%E8%AF%95"><span class="toc-text">mock 虚假值测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#schema-%E9%AA%8C%E8%AF%81%E8%BE%93%E5%85%A5"><span class="toc-text">schema 验证输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eviron-config-%E8%AE%BE%E7%BD%AE%E5%92%8C%E8%8E%B7%E5%8F%96%E5%8F%98%E9%87%8F"><span class="toc-text">eviron-config 设置和获取变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#click-%E6%9B%BF%E4%BB%A3Argparse"><span class="toc-text">click 替代Argparse</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shlex-%E7%AE%80%E5%8D%95%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90"><span class="toc-text">shlex 简单词法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rich-%E5%BD%A9%E8%89%B2%E5%AF%8C%E6%96%87%E6%9C%AC"><span class="toc-text">rich 彩色富文本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tabulate-%E8%BD%BB%E6%9D%BE%E5%AE%9E%E7%8E%B0%E5%AD%97%E7%AC%A6%E8%A1%A8%E6%A0%BC"><span class="toc-text">tabulate 轻松实现字符表格</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1182,54 +1182,102 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="什么是ORM"><a href="#什么是ORM" class="headerlink" title="什么是ORM"></a>什么是ORM</h2><p>ORM（Object Relationship Mapping）是一种将数据库表和对象的关系映射起来的方法。是完整软件的必要部分，将数据持久化。</p>
-<p>映射关系如下图所示</p>
-<p><img src="/2021/11/12/python-orm/1.png"></p>
-<p>常用的ORM框架是SqlAlchemy，它提供了一个简单接口，无需使用SQL语句就可以完成对数据库的操作。</p>
-<h2 id="经典映射模式"><a href="#经典映射模式" class="headerlink" title="经典映射模式"></a>经典映射模式</h2><p>使用经典映射模式，有一个好处就是将对象和表之间的映射关系解耦，将数据库的操作抽象出来，提高代码的可维护性。</p>
-<div class="codeBlockContainer"><div class="codeBlockTitle">model.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Device</span>:</span></span>
-<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, device_id: <span class="hljs-built_in">str</span></span>):</span></span>
-<span class="line">        self.device_id: <span class="hljs-built_in">str</span> = device_id</span>
-<span class="line">        self.hostname: <span class="hljs-built_in">str</span> = <span class="hljs-string">&#x27;&#x27;</span></span>
-<span class="line">        self.version: <span class="hljs-built_in">str</span> = <span class="hljs-string">&#x27;&#x27;</span></span>
+        <p>这篇文章是将自己在浏览源码的时候见到的一起模块收集起来备忘。</p>
+<h2 id="inspect-检查现场对象"><a href="#inspect-检查现场对象" class="headerlink" title="inspect 检查现场对象"></a>inspect <strong>检查现场对象</strong></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/NeverLate_gogogo/article/details/107752428">快速上手</a></li>
+</ul>
+<p>inspect 模块也被称为 检查现场对象。这里的重点在于 “现场” 二字，也就是当前运行的状态。<br>inspect 模块提供了一些函数来了解现场对象，包括 模块、类、实例、函数和方法。<br>inspect 函数主要用于以下四个方面: </p>
+<ol>
+<li>对是否是模块、框架、函数进行类型检查</li>
+<li>获取源码</li>
+<li>获取类或者函数的参数信息</li>
+<li>解析堆栈</li>
+</ol>
+<h2 id="mock-虚假值测试"><a href="#mock-虚假值测试" class="headerlink" title="mock 虚假值测试"></a>mock <strong>虚假值测试</strong></h2><p>用于测试的模块pytest-mock，将方法屏蔽掉并给出虚假的返回值。</p>
+<h2 id="schema-验证输入"><a href="#schema-验证输入" class="headerlink" title="schema 验证输入"></a>schema <strong>验证输入</strong></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000011777230">快速上手</a></li>
+</ul>
+<p>不管我们做什么应用，只要和用户输入打交道，就有一个原则 – 永远不要相信用户的输入数据。意味着我们要对用户输入进行严格的验证，web 开发时一般输入数据都以 JSON 形式发送到后端 API，API 要对输入数据做验证。一般我都是加很多判断，各种if，导致代码很丑陋，能不能有一种方式比较优雅的验证用户数据呢？Schema就派上用场了。</p>
+<h2 id="eviron-config-设置和获取变量"><a href="#eviron-config-设置和获取变量" class="headerlink" title="eviron-config 设置和获取变量"></a>eviron-config <strong>设置和获取变量</strong></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/hynek/environ-config">快速上手</a></li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> environ</span>
+<span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-comment"># Extracts secrets from Vault-via-envconsul: &#x27;secret/your-app&#x27;:</span></span>
+<span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>vault = environ.secrets.VaultEnvSecrets(vault_prefix=<span class="hljs-string">&quot;SECRET_YOUR_APP&quot;</span>)</span>
+<span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>@environ.config(prefix=<span class="hljs-string">&quot;APP&quot;</span>)</span>
+<span class="line"><span class="hljs-meta">... </span><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppConfig</span>:</span></span>
+<span class="line"><span class="hljs-meta">... </span>   @environ.config</span>
+<span class="line"><span class="hljs-meta">... </span>   <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DB</span>:</span></span>
+<span class="line"><span class="hljs-meta">... </span>       name = environ.var(<span class="hljs-string">&quot;default_db&quot;</span>)</span>
+<span class="line"><span class="hljs-meta">... </span>       host = environ.var(<span class="hljs-string">&quot;default.host&quot;</span>)</span>
+<span class="line"><span class="hljs-meta">... </span>       port = environ.var(<span class="hljs-number">5432</span>, converter=<span class="hljs-built_in">int</span>)  <span class="hljs-comment"># Use attrs&#x27;s converters and validators!</span></span>
+<span class="line"><span class="hljs-meta">... </span>       user = environ.var(<span class="hljs-string">&quot;default_user&quot;</span>)</span>
+<span class="line"><span class="hljs-meta">... </span>       password = vault.secret()</span>
+<span class="line">...</span>
+<span class="line"><span class="hljs-meta">... </span>   env = environ.var()</span>
+<span class="line"><span class="hljs-meta">... </span>   lang = environ.var(name=<span class="hljs-string">&quot;LANG&quot;</span>)  <span class="hljs-comment"># It&#x27;s possible to overwrite the names of variables.</span></span>
+<span class="line"><span class="hljs-meta">... </span>   db = environ.group(DB)</span>
+<span class="line"><span class="hljs-meta">... </span>   awesome = environ.bool_var()</span>
+<span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>cfg = environ.to_config(</span>
+<span class="line"><span class="hljs-meta">... </span>    AppConfig,</span>
+<span class="line"><span class="hljs-meta">... </span>    environ=&#123;</span>
+<span class="line"><span class="hljs-meta">... </span>        <span class="hljs-string">&quot;APP_ENV&quot;</span>: <span class="hljs-string">&quot;dev&quot;</span>,</span>
+<span class="line"><span class="hljs-meta">... </span>        <span class="hljs-string">&quot;APP_DB_HOST&quot;</span>: <span class="hljs-string">&quot;localhost&quot;</span>,</span>
+<span class="line"><span class="hljs-meta">... </span>        <span class="hljs-string">&quot;LANG&quot;</span>: <span class="hljs-string">&quot;C&quot;</span>,</span>
+<span class="line"><span class="hljs-meta">... </span>        <span class="hljs-string">&quot;APP_AWESOME&quot;</span>: <span class="hljs-string">&quot;yes&quot;</span>,  <span class="hljs-comment"># true and 1 work too, everything else is False</span></span>
+<span class="line"><span class="hljs-meta">... </span>        <span class="hljs-comment"># Vault-via-envconsul-style var name:</span></span>
+<span class="line"><span class="hljs-meta">... </span>        <span class="hljs-string">&quot;SECRET_YOUR_APP_DB_PASSWORD&quot;</span>: <span class="hljs-string">&quot;s3kr3t&quot;</span>,</span>
+<span class="line"><span class="hljs-meta">... </span>&#125;)  <span class="hljs-comment"># Uses os.environ by default.</span></span>
+<span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>cfg</span>
+<span class="line">AppConfig(env=<span class="hljs-string">&#x27;dev&#x27;</span>, lang=<span class="hljs-string">&#x27;C&#x27;</span>, db=AppConfig.DB(name=<span class="hljs-string">&#x27;default_db&#x27;</span>, host=<span class="hljs-string">&#x27;localhost&#x27;</span>, port=<span class="hljs-number">5432</span>, user=<span class="hljs-string">&#x27;default_user&#x27;</span>, password=&lt;SECRET&gt;), awesome=<span class="hljs-literal">True</span>)</span>
+<span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>cfg.db.password</span>
+<span class="line"><span class="hljs-string">&#x27;s3kr3t&#x27;</span></span>
 </code></pre></div></div>
 
-<div class="codeBlockContainer"><div class="codeBlockTitle">orm.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> sqlalchemy.orm <span class="hljs-keyword">import</span> mapper, relationship</span>
-<span class="line"><span class="hljs-keyword">from</span> sqlalchemy <span class="hljs-keyword">import</span> (</span>
-<span class="line">    Table,</span>
-<span class="line">    MetaData,</span>
-<span class="line">    Column,</span>
-<span class="line">    Integer,</span>
-<span class="line">    String</span>
-<span class="line">)</span>
-<span class="line"></br></span>
-<span class="line"><span class="hljs-keyword">import</span> model</span>
-<span class="line"></br></span>
-<span class="line">metadata = MetaData()</span>
-<span class="line"></br></span>
-<span class="line">devices = Table(</span>
-<span class="line">    <span class="hljs-string">&#x27;devices&#x27;</span>,</span>
-<span class="line">    metadata,</span>
-<span class="line">    Column(<span class="hljs-string">&#x27;id&#x27;</span>, Integer, primary_key=<span class="hljs-literal">True</span>, autoincrement=<span class="hljs-literal">True</span>),</span>
-<span class="line">    Column(<span class="hljs-string">&#x27;device_id&#x27;</span>, String(<span class="hljs-number">255</span>), nullable=<span class="hljs-literal">False</span>),</span>
-<span class="line">    Column(<span class="hljs-string">&#x27;hostname&#x27;</span>, String(<span class="hljs-number">255</span>)),</span>
-<span class="line">    Column(<span class="hljs-string">&#x27;version&#x27;</span>, String(<span class="hljs-number">255</span>))</span>
-<span class="line">)</span>
-<span class="line"></br></span>
-<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">start_mapper</span>():</span></span>
-<span class="line">    mapper(model.Device, devices)</span>
+<h2 id="click-替代Argparse"><a href="#click-替代Argparse" class="headerlink" title="click 替代Argparse"></a>click <strong>替代Argparse</strong></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiao-apple36/p/9089027.html">快速上手</a></li>
+</ul>
+<p>Python 内置了一个 Argparse 的标准库用于创建命令行，但使用起来有些繁琐，Click 相比于 Argparse，就好比 requests 相比于 urllib。</p>
+<p>常用<code>click.confirm</code>:</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> click</span>
+<span class="line">click.confirm(<span class="hljs-string">&quot;Do you want to kick this off with an Nmap scan?&quot;</span>, default=<span class="hljs-literal">True</span>):</span>
+<span class="line">    dosomething()</span>
 </code></pre></div></div>
 
-<h2 id="关系映射模式"><a href="#关系映射模式" class="headerlink" title="关系映射模式"></a>关系映射模式</h2><p>使用方法参考<a href="/2021/11/12/python-sqlalchemy-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E8%A1%A8/" title="python sqlalchemy 继承关系表">python sqlalchemy 继承关系表</a></p>
-<h2 id="ORM事件"><a href="#ORM事件" class="headerlink" title="ORM事件"></a>ORM事件</h2><p>当ORM与类属性映射不能做到一一对应的情况下，重新获取类时没有覆盖到的属性不会被初始化，这种情况下，可以使用<code>load</code>事件在创建实例后立即对属性进行初始化。</p>
-<div class="codeBlockContainer"><div class="codeBlockTitle">orm.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> sqlalchemy <span class="hljs-keyword">import</span> event</span>
-<span class="line"></br></span>
-<span class="line"><span class="hljs-meta">@event.listens_for(<span class="hljs-params">Device, <span class="hljs-string">&#x27;load&#x27;</span></span>)</span></span>
-<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">receive_load</span>(<span class="hljs-params">target, _</span>):</span></span>
-<span class="line">    target.uname = <span class="hljs-string">&#x27;uname&#x27;</span></span>
+<h2 id="shlex-简单词法分析"><a href="#shlex-简单词法分析" class="headerlink" title="shlex 简单词法分析"></a>shlex <strong>简单词法分析</strong></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/shlex.html">快速上手</a></li>
+</ul>
+<p>常用<code>shlex.split</code> 配合<code>subprocess.run</code>:</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">subprocess.run(shlex.split(<span class="hljs-string">&quot;cat sendtext.txt&quot;</span>), stdout=subprocess.PIPE, universal_newlines=<span class="hljs-literal">True</span>) </span>
 </code></pre></div></div>
 
+<h2 id="rich-彩色富文本"><a href="#rich-彩色富文本" class="headerlink" title="rich 彩色富文本"></a>rich <strong>彩色富文本</strong></h2><p><a target="_blank" rel="noopener" href="https://github.com/Textualize/rich/blob/master/README.cn.md">Rich</a> 是一个 Python 库，可以为您在终端中提供富文本和精美格式。</p>
+<p><a target="_blank" rel="noopener" href="https://rich.readthedocs.io/en/latest/">Rich API</a> 可以很容易的在终端输出添加各种颜色和不同风格。Rich 还可以绘制漂亮的表格，进度条，markdown，突出显示语法的源代码及回溯等等，不胜枚举。</p>
+<h2 id="tabulate-轻松实现字符表格"><a href="#tabulate-轻松实现字符表格" class="headerlink" title="tabulate 轻松实现字符表格"></a>tabulate <strong>轻松实现字符表格</strong></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://python.fasionchan.com/zh_CN/latest/libs/tabulate.html">快速上手</a></li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">from</span> tabulate <span class="hljs-keyword">import</span> tabulate</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>table_header = [<span class="hljs-string">&#x27;Name&#x27;</span>, <span class="hljs-string">&#x27;Chinese&#x27;</span>, <span class="hljs-string">&#x27;Math&#x27;</span>, <span class="hljs-string">&#x27;English&#x27;</span>]</span>
+<span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>table_data = [</span>
+<span class="line"><span class="hljs-meta">... </span>    (<span class="hljs-string">&#x27;Tom&#x27;</span>, <span class="hljs-string">&#x27;90&#x27;</span>, <span class="hljs-string">&#x27;80&#x27;</span>, <span class="hljs-string">&#x27;85&#x27;</span>),</span>
+<span class="line"><span class="hljs-meta">... </span>    (<span class="hljs-string">&#x27;Jim&#x27;</span>, <span class="hljs-string">&#x27;70&#x27;</span>, <span class="hljs-string">&#x27;90&#x27;</span>, <span class="hljs-string">&#x27;80&#x27;</span>),</span>
+<span class="line"><span class="hljs-meta">... </span>    (<span class="hljs-string">&#x27;Lucy&#x27;</span>, <span class="hljs-string">&#x27;90&#x27;</span>, <span class="hljs-string">&#x27;70&#x27;</span>, <span class="hljs-string">&#x27;90&#x27;</span>),</span>
+<span class="line"><span class="hljs-meta">... </span>]</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(tabulate(table_data, headers=table_header, tablefmt=<span class="hljs-string">&#x27;grid&#x27;</span>))</span>
+<span class="line">+--------+-----------+--------+-----------+</span>
+<span class="line">| Name   |   Chinese |   Math |   English |</span>
+<span class="line">+========+===========+========+===========+</span>
+<span class="line">| Tom    |        <span class="hljs-number">90</span> |     <span class="hljs-number">80</span> |        <span class="hljs-number">85</span> |</span>
+<span class="line">+--------+-----------+--------+-----------+</span>
+<span class="line">| Jim    |        <span class="hljs-number">70</span> |     <span class="hljs-number">90</span> |        <span class="hljs-number">80</span> |</span>
+<span class="line">+--------+-----------+--------+-----------+</span>
+<span class="line">| Lucy   |        <span class="hljs-number">90</span> |     <span class="hljs-number">70</span> |        <span class="hljs-number">90</span> |</span>
+<span class="line">+--------+-----------+--------+-----------+</span>
+</code></pre></div></div>
 
+<p>中文对齐引入<code>import wcwidth</code></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
