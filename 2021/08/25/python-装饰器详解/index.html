@@ -3,22 +3,23 @@
 <head>
   <meta charset="utf-8">
   <title>python 装饰器详解 | Elin 的空间</title>
-  <meta name="keywords" content="">
+  <meta name="keywords" content=" python ">
   <meta name="description" content="python 装饰器详解 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="很好的解析 官方文档">
+<meta name="description" content="很好的解析 官方文档  描述符的介绍只要类中包含了__get__, __set__, __delete__ 中的任意一个，那么这个类就是描述类 也就是对这个实例的取、设置和删除都会执行上面对应的方法。 必须作为类变量进行初始化。 同时包含__get__和__set__的被称为数据描述符，而只有__get__被称为非数据描述符 对于一个类中的变量调用顺序参考下图：  从上图可以看到调用顺序为：__">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python 描述符详解">
 <meta property="og:url" content="http://example.com/2022/03/10/python-%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="很好的解析 官方文档">
+<meta property="og:description" content="很好的解析 官方文档  描述符的介绍只要类中包含了__get__, __set__, __delete__ 中的任意一个，那么这个类就是描述类 也就是对这个实例的取、设置和删除都会执行上面对应的方法。 必须作为类变量进行初始化。 同时包含__get__和__set__的被称为数据描述符，而只有__get__被称为非数据描述符 对于一个类中的变量调用顺序参考下图：  从上图可以看到调用顺序为：__">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/03/10/python-%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3/1.jpg">
 <meta property="article:published_time" content="2022-03-10T08:30:37.000Z">
-<meta property="article:modified_time" content="2022-03-11T07:53:25.830Z">
+<meta property="article:modified_time" content="2022-03-14T08:44:49.295Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="python">
-<meta property="article:tag" content="todo">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/03/10/python-%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3/1.jpg">
 
 
 <link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
@@ -564,7 +565,7 @@
         
         <a  class="全部文章 编程 python "
            href="/2022/03/10/python-%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3/"
-           data-tag="python,todo"
+           data-tag="python"
            data-author="" >
             <span class="post-title" title="python 描述符详解">python 描述符详解</span>
             <span class="post-date" title="2022-03-10 16:30:37">2022/03/10</span>
@@ -916,7 +917,7 @@
         
         <a  class="全部文章 编程 python "
            href="/2021/08/25/python-%E8%A3%85%E9%A5%B0%E5%99%A8%E8%AF%A6%E8%A7%A3/"
-           data-tag=""
+           data-tag="python"
            data-author="" >
             <span class="post-title" title="python 装饰器详解">python 装饰器详解</span>
             <span class="post-date" title="2021-08-25 19:21:11">2021/08/25</span>
@@ -1215,10 +1216,17 @@
         </span>
         
         
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">python</a>
+            
+        </span>
+        
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-03-11 15:53:25'>2021-08-25 19:21</time>
+            发布时间 : <time class="date" title='最后更新: 2022-03-14 16:44:49'>2021-08-25 19:21</time>
         
     </div>
     <div class="article-meta">
@@ -1308,7 +1316,9 @@
 <span class="line"><span class="hljs-attribute">in extend_magic</span></span>
 </code></pre></div></div>
 
-
+<blockquote>
+<p>要仔细理解这里的<code>return</code>, 理解了这里就可以理解<code>@property</code>装饰器。<a href="/2022/03/10/python-%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3/" title="python 描述符详解">python 描述符详解</a></p>
+</blockquote>
 <h2 id="以主体函数包裹住装饰器的基本型"><a href="#以主体函数包裹住装饰器的基本型" class="headerlink" title="以主体函数包裹住装饰器的基本型"></a>以主体函数包裹住装饰器的基本型</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">magic</span>(<span class="hljs-params">func</span>):</span></span>
 <span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;in magic&#x27;</span>)</span>
 <span class="line">    func()</span>
@@ -1588,26 +1598,26 @@
 <span class="line"><span class="hljs-comment">#hello</span></span>
 </code></pre></div></div>
 
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>完全不带参数的基本型：</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>装饰器不带参数的基本型：</p>
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decorator</span>(<span class="hljs-params">func</span>):</span></span>
 <span class="line">    <span class="hljs-comment"># do some decorator init</span></span>
-<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fun_main</span>():</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fun_main</span>(<span class="hljs-params">*args, **kwargs</span>):</span></span>
 <span class="line">        ...</span>
-<span class="line">        func()</span>
+<span class="line">        func(*args, **kwargs)</span>
 <span class="line">        ...</span>
 <span class="line">    <span class="hljs-keyword">return</span> func_main</span>
 <span class="line"></br></span>
 <span class="line"><span class="hljs-meta">@decorator</span></span>
-<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span>():</span></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span>(<span class="hljs-params">*args, **kwargs</span>):</span></span>
 <span class="line">    ...</span>
 <span class="line"></br></span>
 <span class="line">func()</span>
 <span class="line"><span class="hljs-comment"># 等效于</span></span>
-<span class="line">decorator(func)()</span>
+<span class="line">decorator(func)(*args, **kwargs)</span>
 </code></pre></div></div>
 
 
-<p>任意带参数的:</p>
+<p>装饰器带参数的基本型:</p>
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decorator</span>(<span class="hljs-params">*dec_args, **dec_kwargs</span>):</span></span>
 <span class="line">    <span class="hljs-comment"># do some decorator init</span></span>
 <span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func_init</span>(<span class="hljs-params">func</span>):</span></span>

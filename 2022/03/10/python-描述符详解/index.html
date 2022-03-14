@@ -3,22 +3,23 @@
 <head>
   <meta charset="utf-8">
   <title>python 描述符详解 | Elin 的空间</title>
-  <meta name="keywords" content=" python , todo ">
+  <meta name="keywords" content=" python ">
   <meta name="description" content="python 描述符详解 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="很好的解析 官方文档">
+<meta name="description" content="很好的解析 官方文档  描述符的介绍只要类中包含了__get__, __set__, __delete__ 中的任意一个，那么这个类就是描述类 也就是对这个实例的取、设置和删除都会执行上面对应的方法。 必须作为类变量进行初始化。 同时包含__get__和__set__的被称为数据描述符，而只有__get__被称为非数据描述符 对于一个类中的变量调用顺序参考下图：  从上图可以看到调用顺序为：__">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python 描述符详解">
 <meta property="og:url" content="http://example.com/2022/03/10/python-%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="很好的解析 官方文档">
+<meta property="og:description" content="很好的解析 官方文档  描述符的介绍只要类中包含了__get__, __set__, __delete__ 中的任意一个，那么这个类就是描述类 也就是对这个实例的取、设置和删除都会执行上面对应的方法。 必须作为类变量进行初始化。 同时包含__get__和__set__的被称为数据描述符，而只有__get__被称为非数据描述符 对于一个类中的变量调用顺序参考下图：  从上图可以看到调用顺序为：__">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/03/10/python-%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3/1.jpg">
 <meta property="article:published_time" content="2022-03-10T08:30:37.000Z">
-<meta property="article:modified_time" content="2022-03-11T07:53:25.830Z">
+<meta property="article:modified_time" content="2022-03-14T08:44:49.295Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="python">
-<meta property="article:tag" content="todo">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/03/10/python-%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3/1.jpg">
 
 
 <link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
@@ -564,7 +565,7 @@
         
         <a  class="全部文章 编程 python "
            href="/2022/03/10/python-%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3/"
-           data-tag="python,todo"
+           data-tag="python"
            data-author="" >
             <span class="post-title" title="python 描述符详解">python 描述符详解</span>
             <span class="post-date" title="2022-03-10 16:30:37">2022/03/10</span>
@@ -916,7 +917,7 @@
         
         <a  class="全部文章 编程 python "
            href="/2021/08/25/python-%E8%A3%85%E9%A5%B0%E5%99%A8%E8%AF%A6%E8%A7%A3/"
-           data-tag=""
+           data-tag="python"
            data-author="" >
             <span class="post-title" title="python 装饰器详解">python 装饰器详解</span>
             <span class="post-date" title="2021-08-25 19:21:11">2021/08/25</span>
@@ -1220,14 +1221,12 @@
             
             <a class="color2">python</a>
             
-            <a class="color5">todo</a>
-            
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-03-11 15:53:25'>2022-03-10 16:30</time>
+            发布时间 : <time class="date" title='最后更新: 2022-03-14 16:44:49'>2022-03-10 16:30</time>
         
     </div>
     <div class="article-meta">
@@ -1249,7 +1248,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E7%AC%A6%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="toc-text">描述符的介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E5%90%88%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="toc-text">结合装饰器</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1269,6 +1268,167 @@
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/52708890">很好的解析</a></li>
 <li><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/howto/descriptor.html">官方文档</a></li>
 </ul>
+<h2 id="描述符的介绍"><a href="#描述符的介绍" class="headerlink" title="描述符的介绍"></a>描述符的介绍</h2><p>只要类中包含了<code>__get__</code>, <code>__set__</code>, <code>__delete__</code> 中的任意一个，那么这个类就是描述类</p>
+<p>也就是对这个实例的取、设置和删除都会执行上面对应的方法。</p>
+<p>必须作为类变量进行初始化。</p>
+<p>同时包含<code>__get__</code>和<code>__set__</code>的被称为数据描述符，而只有<code>__get__</code>被称为非数据描述符</p>
+<p>对于一个类中的变量调用顺序参考下图：</p>
+<p><img src="/2022/03/10/python-%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3/1.jpg"></p>
+<p>从上图可以看到调用顺序为：<br><code>__getattribute__</code> &gt; 数据描述符<code>__get__</code> &gt; 非数据描述符<code>__get__</code> &gt; 兜底的<code>__getattr__</code></p>
+<p>Example:</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Price</span>:</span></span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span></span>
+<span class="line">        self._price = <span class="hljs-number">0</span></span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__get__</span>(<span class="hljs-params">self, obj, klass</span>):</span></span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;call __get__ method, get: &#x27;</span>, self._price)</span>
+<span class="line">        <span class="hljs-keyword">return</span> self._price</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__set__</span>(<span class="hljs-params">self, obj, value</span>):</span></span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;call __set__ method, set: &#x27;</span>, value)</span>
+<span class="line">        <span class="hljs-keyword">if</span> value &lt; <span class="hljs-number">0</span>:</span>
+<span class="line">            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&#x27;price should not be negative&#x27;</span>)</span>
+<span class="line">        self._price = value</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__delete__</span>(<span class="hljs-params">self, obj</span>):</span></span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;call __delete__ method , price to 0&#x27;</span>)</span>
+<span class="line">        self._price = <span class="hljs-number">0</span></span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Apple</span>:</span></span>
+<span class="line"></br></span>
+<span class="line">    price = Price()</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, price</span>):</span></span>
+<span class="line">        self.price = price</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__getattribute__</span>(<span class="hljs-params">self, __name: <span class="hljs-built_in">str</span></span>):</span></span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;call __getattribute__ method, get: &quot;</span>, __name)</span>
+<span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>().__getattribute__(__name)</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__getattr__</span>(<span class="hljs-params">self, __name: <span class="hljs-built_in">str</span></span>):</span></span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;call __getattr__ method, get: &quot;</span>, __name)</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line">a1 = Apple(<span class="hljs-number">10</span>)</span>
+<span class="line">a1.no_exist_attr</span>
+<span class="line"><span class="hljs-built_in">print</span>(a1.price)</span>
+<span class="line">a1.price = <span class="hljs-number">15</span></span>
+<span class="line"><span class="hljs-built_in">print</span>(a1.price)</span>
+<span class="line"><span class="hljs-keyword">del</span> a1.price</span>
+<span class="line"><span class="hljs-built_in">print</span>(a1.price)</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment"># output:</span></span>
+<span class="line"><span class="hljs-comment">#call __set__ method, set:  10</span></span>
+<span class="line"><span class="hljs-comment">#call __getattribute__ method, get:  no_exist_attr</span></span>
+<span class="line"><span class="hljs-comment">#call __getattr__ method, get:  no_exist_attr</span></span>
+<span class="line"><span class="hljs-comment">#call __getattribute__ method, get:  price</span></span>
+<span class="line"><span class="hljs-comment">#call __get__ method, get:  10</span></span>
+<span class="line"><span class="hljs-comment">#10</span></span>
+<span class="line"><span class="hljs-comment">#call __set__ method, set:  15</span></span>
+<span class="line"><span class="hljs-comment">#call __getattribute__ method, get:  price</span></span>
+<span class="line"><span class="hljs-comment">#call __get__ method, get:  15</span></span>
+<span class="line"><span class="hljs-comment">#15</span></span>
+<span class="line"><span class="hljs-comment">#call __delete__ method , price to 0</span></span>
+<span class="line"><span class="hljs-comment">#call __getattribute__ method, get:  price</span></span>
+<span class="line"><span class="hljs-comment">#call __get__ method, get:  0</span></span>
+<span class="line"><span class="hljs-comment">#0</span></span>
+</code></pre></div></div>
+
+<h2 id="结合装饰器"><a href="#结合装饰器" class="headerlink" title="结合装饰器"></a>结合装饰器</h2><p>我们以<code>@property</code>的python简单实现为例。</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">mproperty</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span></span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, fget, fset=<span class="hljs-literal">None</span>, fdel=<span class="hljs-literal">None</span></span>):</span></span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;call mproperty.__init__ method, set getter func&quot;</span>)</span>
+<span class="line">        self._fget = fget</span>
+<span class="line">        self._fset = fset</span>
+<span class="line">        self._fdel = fdel</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__get__</span>(<span class="hljs-params">self, obj, klass</span>):</span></span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;call __get__ method&#x27;</span>)</span>
+<span class="line">        <span class="hljs-keyword">return</span> self._fget(obj)</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__set__</span>(<span class="hljs-params">self, obj, val</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">hasattr</span>(self._fset, <span class="hljs-string">&#x27;__call__&#x27;</span>):</span>
+<span class="line">            <span class="hljs-keyword">raise</span> AttributeError(<span class="hljs-string">&quot;Readonly attribute!&quot;</span>)</span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;call __set__ method, set: &#x27;</span>, val)</span>
+<span class="line">        self._fset(obj, val)</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__delete__</span>(<span class="hljs-params">self, obj</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">hasattr</span>(self._fdel, <span class="hljs-string">&#x27;__call__&#x27;</span>):</span>
+<span class="line">            <span class="hljs-keyword">raise</span> AttributeError(<span class="hljs-string">&quot;Can&#x27;t delete the attribute!&quot;</span>)</span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;call __delete__ method, price to 0&#x27;</span>)</span>
+<span class="line">        self._fdel(obj)</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">setter</span>(<span class="hljs-params">self, fset</span>):</span></span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;call mproperty.setter method, set setter func&quot;</span>)</span>
+<span class="line">        self._fset = fset</span>
+<span class="line">        <span class="hljs-keyword">return</span> self</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">deleter</span>(<span class="hljs-params">self, fdel</span>):</span></span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;call mproperty.delete method, set delete func&quot;</span>)</span>
+<span class="line">        self._fdel = fdel</span>
+<span class="line">        <span class="hljs-keyword">return</span> self</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Apple</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span></span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, price=<span class="hljs-number">0</span></span>):</span></span>
+<span class="line">        self._price = price</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-meta">    @mproperty</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">price</span>(<span class="hljs-params">self</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">return</span> self._price</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-meta">    @price.setter</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">price</span>(<span class="hljs-params">self, value</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">if</span> value &lt; <span class="hljs-number">0</span>:</span>
+<span class="line">            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;Price must be greater than 0&quot;</span>)</span>
+<span class="line">        self._price = value</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-meta">    @price.deleter</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">price</span>(<span class="hljs-params">self</span>):</span></span>
+<span class="line">        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;delete price&quot;</span>)</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;=== start process ===&quot;</span>)</span>
+<span class="line"></br></span>
+<span class="line">a1 = Apple(<span class="hljs-number">10</span>)</span>
+<span class="line">a1.price</span>
+<span class="line">a1.price = <span class="hljs-number">15</span></span>
+<span class="line">a1.price</span>
+<span class="line"><span class="hljs-keyword">del</span> a1.price</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment"># output:</span></span>
+<span class="line"><span class="hljs-comment">#call mproperty.__init__ method, set getter func</span></span>
+<span class="line"><span class="hljs-comment">#call mproperty.setter method, set setter func</span></span>
+<span class="line"><span class="hljs-comment">#call mproperty.delete method, set delete func</span></span>
+<span class="line"><span class="hljs-comment">#=== start process ===</span></span>
+<span class="line"><span class="hljs-comment">#call __get__ method</span></span>
+<span class="line"><span class="hljs-comment">#call __set__ method, set:  15</span></span>
+<span class="line"><span class="hljs-comment">#call __get__ method</span></span>
+<span class="line"><span class="hljs-comment">#call __delete__ method, price to 0</span></span>
+<span class="line"><span class="hljs-comment">#delete price</span></span>
+</code></pre></div></div>
+
+<blockquote>
+<p>如果还不清楚装饰器的原理，可以看<a href="/2021/08/25/python-%E8%A3%85%E9%A5%B0%E5%99%A8%E8%AF%A6%E8%A7%A3/" title="我写的这篇">我写的这篇</a></p>
+</blockquote>
+<p>我们来一步一步分析:</p>
+<ol>
+<li><p>在程序初始化阶段，将执行<code>@mproperty</code>，此时装饰的是<code>price</code>，等价于<code>mpropertry(price)</code>, 此时<code>price</code>函数实际上就是<code>mproperty</code>实例了</p>
+</li>
+<li><p><code>@price.setter</code>装饰<code>price</code>, 里面的<code>@price</code>现在就是<code>mproperty</code>实例，所以有<code>setter</code>方法。在<code>setter</code>中设置了<code>self._fset</code>后返回<code>self</code>，这样<code>price</code>同样指向的是<code>mproperty</code>实例。</p>
+</li>
+<li><p><code>@price.delete</code>装饰<code>price</code>, 同理<code>price</code>指向了同一个<code>mproperty</code>实例，保证了这几个方法都其实是个实例。</p>
+</li>
+<li><p>既然都是一个实例，并且<code>mproperty</code>含有<code>__get__</code> <code>__set__</code> <code>__delete</code>，是描述器，所以在调用<code>price</code>的时候，就会去调用对应的方法。</p>
+</li>
+<li><p>通过<code>self._get(obj)</code>这样的形式再回过来调用<code>Apple.price</code>中的方法</p>
+</li>
+</ol>
+<p>其实这里面的关键点就是<code>setter</code>和<code>delete</code>中的<code>return self</code>到底返回的是什么，成为了什么形式被调用。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
