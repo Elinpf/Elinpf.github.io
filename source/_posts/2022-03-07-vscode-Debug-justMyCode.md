@@ -30,6 +30,4 @@ categories:
     "justMyCode": false
 }
 // highlight-end
-
-
-
+```

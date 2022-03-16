@@ -10,6 +10,11 @@ categories:
 
 要理解`yield`，首先要清楚在有yield的函数，在执行的时候，其实返回的一个生成器对象。然后通过`next()`执行到yield语句停下，并返回yield所跟的值，然后一直等待`next()`的执行
 
+- `iterable` 可迭代对象, 实现了`__iter__` 的对象
+- `iterator` 迭代器, 实现了 `__iter__` 和 `__next__` 的对象
+- `generator` 生成器
+- `yield` `__next__()` 方法的优雅形式
+
 ## 简单的例子
 
 ```py
