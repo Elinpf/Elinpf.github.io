@@ -15,7 +15,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/03/10/python-%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3/1.jpg">
 <meta property="article:published_time" content="2022-03-10T08:30:37.000Z">
-<meta property="article:modified_time" content="2022-03-16T09:31:38.282Z">
+<meta property="article:modified_time" content="2022-03-22T00:31:27.546Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
@@ -1219,7 +1219,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-03-16 17:31:38'>2021-07-29 15:56</time>
+            发布时间 : <time class="date" title='最后更新: 2022-03-22 08:31:27'>2021-07-29 15:56</time>
         
     </div>
     <div class="article-meta">
@@ -1323,8 +1323,35 @@
 <span class="line">    p.close() <span class="hljs-comment"># 在join()之前必须close()</span></span>
 <span class="line">    p.join()</span>
 <span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;All subprocess done&quot;</span>)</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment">## output:</span></span>
+<span class="line"><span class="hljs-comment">#Parent pid is 14068</span></span>
+<span class="line"><span class="hljs-comment">#subprocess Start</span></span>
+<span class="line"><span class="hljs-comment">#before close</span></span>
+<span class="line"><span class="hljs-comment">#Run task 0, pid is 7984</span></span>
+<span class="line"><span class="hljs-comment">#Run task 1, pid is 12564</span></span>
+<span class="line"><span class="hljs-comment">#Run task 2, pid is 12380</span></span>
+<span class="line"><span class="hljs-comment">#Run task 3, pid is 5828</span></span>
+<span class="line"><span class="hljs-comment">#Run task 4, pid is 14752</span></span>
+<span class="line"><span class="hljs-comment">#Run task 5, pid is 7124</span></span>
+<span class="line"><span class="hljs-comment">#Run task 6, pid is 16648</span></span>
+<span class="line"><span class="hljs-comment">#Run task 7, pid is 2712</span></span>
+<span class="line"><span class="hljs-comment">#Task 1 runs 0.36 sec</span></span>
+<span class="line"><span class="hljs-comment">#Run task 8, pid is 12564</span></span>
+<span class="line"><span class="hljs-comment">#Task 6 runs 0.87 sec</span></span>
+<span class="line"><span class="hljs-comment">#Run task 9, pid is 16648</span></span>
+<span class="line"><span class="hljs-comment">#Task 0 runs 0.93 sec</span></span>
+<span class="line"><span class="hljs-comment">#Task 2 runs 1.30 sec</span></span>
+<span class="line"><span class="hljs-comment">#Task 8 runs 1.20 sec</span></span>
+<span class="line"><span class="hljs-comment">#Task 4 runs 2.73 sec</span></span>
+<span class="line"><span class="hljs-comment">#Task 3 runs 2.84 sec</span></span>
+<span class="line"><span class="hljs-comment">#Task 5 runs 2.84 sec</span></span>
+<span class="line"><span class="hljs-comment">#Task 9 runs 2.02 sec</span></span>
+<span class="line"><span class="hljs-comment">#Task 7 runs 2.97 sec</span></span>
+<span class="line"><span class="hljs-comment">#All subprocess done</span></span>
 </code></pre></div></div>
 
+<p>另外如果想使用<strong>装饰器</strong>的话是会有问题的，参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/9336646/python-decorator-with-multiprocessing-fails">这篇文章</a>, 解决办法只能使用等价形式调用。</p>
 <h3 id="进程间通讯"><a href="#进程间通讯" class="headerlink" title="进程间通讯"></a>进程间通讯</h3><p>进程间的通讯使用的是<code>multiprocessing.Queue</code>队列</p>
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Process, Queue</span>
 <span class="line"><span class="hljs-keyword">import</span> time</span>
