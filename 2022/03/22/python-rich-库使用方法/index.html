@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>vscode Debug justMyCode | Elin 的空间</title>
-  <meta name="keywords" content=" vscode ">
-  <meta name="description" content="vscode Debug justMyCode | Elin 的空间">
+  <title>python rich 库使用方法 | Elin 的空间</title>
+  <meta name="keywords" content=" todo , python ">
+  <meta name="description" content="python rich 库使用方法 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="模块使用python3 -m rich.&lt;module&gt;这样的形式可以看到官方给出的一些例子，可以演示的模块有：  align 定位 box box 效果 color  色彩定义 columns 定义列 console 高层级接口 default_styles 默认样式 diagnose 诊断 emoji 输出所有表情，使用方式可以直接把表情粘贴过来，或者:&lt;emoji_name">
 <meta property="og:type" content="article">
@@ -1204,9 +1204,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-vscode-Debug-justMyCode" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-python-rich-库使用方法" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">vscode Debug justMyCode</h1>
+        <h1 class="article-title">python rich 库使用方法</h1>
     
     <div class="article-meta">
         
@@ -1226,14 +1226,16 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">vscode</a>
+            <a class="color5">todo</a>
+            
+            <a class="color2">python</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-03-24 16:19:46'>2022-03-07 10:14</time>
+            发布时间 : <time class="date" title='最后更新: 2022-03-24 16:19:46'>2022-03-22 17:26</time>
         
     </div>
     <div class="article-meta">
@@ -1255,7 +1257,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97"><span class="toc-text">模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%AB%98%E4%BA%AE"><span class="toc-text">自定义高亮</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1271,25 +1273,69 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在debug和pytest debug中添加 <code>justMyCode</code> 选项</p>
+        <h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p>使用<code>python3 -m rich.&lt;module&gt;</code>这样的形式可以看到官方给出的一些例子，可以演示的模块有：</p>
 <ul>
-<li>参考这个<a target="_blank" rel="noopener" href="https://github.com/microsoft/vscode-python/issues/7083">issue</a></li>
+<li><code>align</code> 定位</li>
+<li><code>box</code> box 效果</li>
+<li><code>color</code>  色彩定义</li>
+<li><code>columns</code> 定义列</li>
+<li><code>console</code> 高层级接口</li>
+<li><code>default_styles</code> 默认样式</li>
+<li><code>diagnose</code> 诊断</li>
+<li><code>emoji</code> 输出所有表情，使用方式可以直接把表情粘贴过来，或者<code>:&lt;emoji_name&gt;:</code>这种方式</li>
+<li><code>highlighter</code></li>
+<li><code>json</code> Json 格式输出</li>
+<li><code>layout</code> 布局效果</li>
+<li><code>live</code> 渲染长期存活，自动更新的事件</li>
+<li><code>logging</code> 日志输出</li>
+<li><code>markdown</code> Markdown 格式输出</li>
+<li><code>markup</code> 演示几种打标签的方式</li>
+<li><code>padding</code> 演示padding的用法</li>
+<li><code>pager</code> 演示页面的用法</li>
+<li><code>palette</code> 输出一个调色板，其实这里的示例告诉了你如何自定义一个可以被渲染的类。</li>
+<li><code>panel</code> 如何定义一个面板单元</li>
+<li><code>pretty</code> 漂亮的变量输出</li>
+<li><code>progress_bar</code> 进度条</li>
+<li><code>progress</code> 使用进度条的例子</li>
+<li><code>prompt</code> 输入提示符</li>
+<li><code>repr</code> </li>
+<li><code>rule</code> 分割线</li>
+<li><code>scope</code> 显示作用域内的变量</li>
+<li><code>segment</code> segment是Rich渲染的基本单元</li>
+<li><code>spinner</code> 加载显示动画效果</li>
+<li><code>status</code> 状态更新效果</li>
+<li><code>syntax</code> 显示 code 区域</li>
+<li><code>table</code> 表格</li>
+<li><code>text</code> 本文效果</li>
+<li><code>theme</code> 默认风格</li>
+<li><code>traceback</code> 回溯</li>
+<li><code>tree</code> 树结构</li>
 </ul>
-<div class="codeBlockContainer"><div class="codeBlockTitle">.vscode/launch.json</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-json codeBlockLines"><span class="line">&#123;</span>
-<span class="line">    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Python: 当前文件&quot;</span>,</span>
-<span class="line">    <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;python&quot;</span>,</span>
-<span class="line">    <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,</span>
-<span class="line">    <span class="hljs-attr">&quot;program&quot;</span>: <span class="hljs-string">&quot;$&#123;file&#125;&quot;</span>,</span>
-<span class="line">    <span class="hljs-attr">&quot;console&quot;</span>: <span class="hljs-string">&quot;integratedTerminal&quot;</span>,</span>
-<span class="line marked">    <span class="hljs-attr">&quot;justMyCode&quot;</span>: <span class="hljs-literal">false</span></span>
-<span class="line">&#125;,</span>
-<span class="line marked">&#123;</span>
-<span class="line marked">    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Debug Pytest&quot;</span>,</span>
-<span class="line marked">    <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;python&quot;</span>,</span>
-<span class="line marked">    <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;test&quot;</span>,</span>
-<span class="line marked">    <span class="hljs-attr">&quot;justMyCode&quot;</span>: <span class="hljs-literal">false</span></span>
-<span class="line marked">&#125;</span>
+<h2 id="自定义高亮"><a href="#自定义高亮" class="headerlink" title="自定义高亮"></a>自定义高亮</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> rich.theme <span class="hljs-keyword">import</span> Theme</span>
+<span class="line"><span class="hljs-keyword">from</span> rich.highlighter <span class="hljs-keyword">import</span> RegexHighlighter</span>
+<span class="line"><span class="hljs-keyword">from</span> rich.text <span class="hljs-keyword">import</span> Text</span>
+<span class="line"></br></span>
+<span class="line">console = Console(</span>
+<span class="line">    theme=Theme(</span>
+<span class="line">        &#123;</span>
+<span class="line">            <span class="hljs-string">&quot;variable&quot;</span>: <span class="hljs-string">&quot;dim&quot;</span>,</span>
+<span class="line">        &#125;</span>
+<span class="line">    )</span>
+<span class="line">)</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CommandHighlighter</span>(<span class="hljs-params">RegexHighlighter</span>):</span></span>
+<span class="line">    highlights = [</span>
+<span class="line">        <span class="hljs-string">r&quot;(?P&lt;variable&gt;#&#123;.*?&#125;)&quot;</span></span>
+<span class="line">    ]</span>
+<span class="line"></br></span>
+<span class="line">cmd_highlighter = CommandHighlighter()</span>
+<span class="line"></br></span>
+<span class="line">line = <span class="hljs-string">&quot;hello this is #&#123;variable&#125; test&quot;</span></span>
+<span class="line">console.<span class="hljs-built_in">print</span>(cmd_highlighter(Text.from_markup(line)))</span>
 </code></pre></div></div>
+
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
     </div>
