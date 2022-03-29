@@ -6,22 +6,22 @@
   <meta name="keywords" content=" todo , python , 收集 ">
   <meta name="description" content="python 实用库收集 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="模块使用python3 -m rich.&lt;module&gt;这样的形式可以看到官方给出的一些例子，可以演示的模块有：  align 定位 box box 效果 color  色彩定义 columns 定义列 console 高层级接口 default_styles 默认样式 diagnose 诊断 emoji 输出所有表情，使用方式可以直接把表情粘贴过来，或者:&lt;emoji_name">
+<meta name="description" content="模块使用python3 -m rich.&lt;module&gt;这样的形式可以看到官方给出的一些例子，可以演示的模块有：    模块 说明    align 定位   box box 效果   color 色彩定义   columns 定义列   console 高层级接口   default_styles 默认样式   diagnose 诊断   emoji 输出所有表情，使用方式可以直接把">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python rich 库使用方法">
 <meta property="og:url" content="http://example.com/2022/03/22/python-rich-%E5%BA%93%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="模块使用python3 -m rich.&lt;module&gt;这样的形式可以看到官方给出的一些例子，可以演示的模块有：  align 定位 box box 效果 color  色彩定义 columns 定义列 console 高层级接口 default_styles 默认样式 diagnose 诊断 emoji 输出所有表情，使用方式可以直接把表情粘贴过来，或者:&lt;emoji_name">
+<meta property="og:description" content="模块使用python3 -m rich.&lt;module&gt;这样的形式可以看到官方给出的一些例子，可以演示的模块有：    模块 说明    align 定位   box box 效果   color 色彩定义   columns 定义列   console 高层级接口   default_styles 默认样式   diagnose 诊断   emoji 输出所有表情，使用方式可以直接把">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-22T09:26:11.000Z">
-<meta property="article:modified_time" content="2022-03-24T08:19:46.472Z">
+<meta property="article:modified_time" content="2022-03-29T00:59:55.802Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="todo">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="icon" href="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png">
+<link rel="icon" href="https://z3.ax1x.com/2021/06/23/Rnz2UP.png">
 
 <link href="/css/style.css?v=1.1.0" rel="stylesheet">
 
@@ -63,7 +63,7 @@
         <a href="/"
    class="avatar_target">
     <img class="avatar"
-         src="https://gitee.com/Elinpf/drawing-bed/raw/master/images/elin.png"/>
+         src="https://z3.ax1x.com/2021/06/23/Rnz2UP.png"/>
 </a>
 <div class="author">
     <span>Elin</span>
@@ -1239,7 +1239,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-03-24 16:19:46'>2022-02-18 14:24</time>
+            发布时间 : <time class="date" title='最后更新: 2022-03-29 08:59:55'>2022-02-18 14:24</time>
         
     </div>
     <div class="article-meta">
@@ -1332,7 +1332,10 @@
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">subprocess.run(shlex.split(<span class="hljs-string">&quot;cat sendtext.txt&quot;</span>), stdout=subprocess.PIPE, universal_newlines=<span class="hljs-literal">True</span>) </span>
 </code></pre></div></div>
 
-<h3 id="rich-彩色富文本"><a href="#rich-彩色富文本" class="headerlink" title="rich 彩色富文本"></a>rich <strong>彩色富文本</strong></h3><p><a target="_blank" rel="noopener" href="https://github.com/Textualize/rich/blob/master/README.cn.md">Rich</a> 是一个 Python 库，可以为您在终端中提供富文本和精美格式。</p>
+<h3 id="rich-彩色富文本"><a href="#rich-彩色富文本" class="headerlink" title="rich 彩色富文本"></a>rich <strong>彩色富文本</strong></h3><ul>
+<li><a href="/2022/03/22/python-rich-%E5%BA%93%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="python rich 库使用方法">python rich 库使用方法</a></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/Textualize/rich/blob/master/README.cn.md">Rich</a> 是一个 Python 库，可以为您在终端中提供富文本和精美格式。</p>
 <p><a target="_blank" rel="noopener" href="https://rich.readthedocs.io/en/latest/">Rich API</a> 可以很容易的在终端输出添加各种颜色和不同风格。Rich 还可以绘制漂亮的表格，进度条，markdown，突出显示语法的源代码及回溯等等，不胜枚举。</p>
 <p>另外rich还有个非常漂亮的traceback，<a target="_blank" rel="noopener" href="https://rich.readthedocs.io/en/latest/traceback.html#automatic-traceback-handler">这里</a>告诉了如何添加使用。</p>
 <h3 id="tabulate-轻松实现字符表格"><a href="#tabulate-轻松实现字符表格" class="headerlink" title="tabulate 轻松实现字符表格"></a>tabulate <strong>轻松实现字符表格</strong></h3><ul>
