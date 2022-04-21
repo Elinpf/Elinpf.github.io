@@ -35,7 +35,7 @@ subprocess.run(args, *, stdin=None, input=None, stdout=None, stderr=None, captur
 |       `stdout`       |                         标准输出                          |
 |       `stderr`       |                       标准错误输出                        |
 |   `capture_output`   |                      是否获取返回值                       |
-|       `shell`        |                    执行指定的shell指令                    |
+|       `shell`        |         执行指定的shell指令, args可以直接为字符串         |
 |        `cwd`         |                      指定运行的目录                       |
 |      `timeout`       |       超时后杀死子进程并抛出 `TimeoutExpired` 异常        |
 |       `check`        |    进程以非零码退出时，抛出 `CalledProcessError` 异常     |
@@ -43,7 +43,7 @@ subprocess.run(args, *, stdin=None, input=None, stdout=None, stderr=None, captur
 |       `errors`       |                         输出文本                          |
 |        `text`        |                以 input 和 errors 输出文本                |
 |        `env`         |                  dict 类型，提供环境变量                  |
-| `universal_newlines` |                     等同于 text 参数                      |
+| `universal_newlines` |        等同于 text 参数，输出字符串，否则输出字节         |
 
 例如：
 ```python
@@ -70,6 +70,30 @@ subprocess.getoutput(cmd)
 uid = subprocess.getoutput("id -u")
 if uid != "0":
     print("must be run with root permissions")
+```
+
+### `Popen`
+
+`subprocess.Popen`是基础API命令，可以控制的地方也相对多一些
+
+当`stdin=subprocess.PIPE`的时候, 可以通过`proc.stdout`获取内容
+
+`proc.wait()`等待进程结束
+
+比如需要同时输出屏幕和文件的时候
+
+```py
+import subprocess, sys
+proc = subprocess.Popen(shell,
+                        shell=True,
+                        stdout=subprocess.PIPE if output else None,
+                        stderr=subprocess.STDOUT if output else None,
+                        universal_newlines=True)
+if output:
+    for line in proc.stdout:
+        sys.stdout.write(line)
+        output.write(line)
+proc.wait()
 ```
 
 ## 在权限不足的时候如何使用 sudo
