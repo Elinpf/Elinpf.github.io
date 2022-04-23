@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>绘画笔记</title>
+      <link href="/2022/04/23/%E7%BB%98%E7%94%BB%E7%AC%94%E8%AE%B0/"/>
+      <url>/2022/04/23/%E7%BB%98%E7%94%BB%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="阴影滚动条"><a href="#阴影滚动条" class="headerlink" title="阴影滚动条"></a>阴影滚动条</h2><ul><li><a href="https://www.bilibili.com/video/BV1KK4y1G77Z">video</a></li></ul><p>在观察一幅画的时候，可以去关注他的阴影，画面阴影可以用三个值来表达：</p><ul><li><strong>面积</strong> 阴影覆盖的面积，阴影面积越小，代表越想去表达本体，越大代表越想去表达情绪。</li><li><strong>明度</strong> 阴影的明度越低，颜色越深，越难被看清。可以将其理解为修辞，越小越直白，越大越委婉，感情越细腻。</li><li><strong>硬度</strong> 硬度越小越柔和，越大边缘越清晰。可以理解为语气，越小却强烈。</li></ul><p><img src="/2022/04/23/%E7%BB%98%E7%94%BB%E7%AC%94%E8%AE%B0/1.png"></p><h2 id="长期色彩"><a href="#长期色彩" class="headerlink" title="长期色彩"></a>长期色彩</h2><ul><li><a href="https://www.bilibili.com/video/BV1yv41157KC">video</a></li></ul><p>长期色彩培养的是一个色彩关系，在临摹的时候，不要完全照搬颜色，而是应该根据自己定的基调推出颜色。</p><p><img src="/2022/04/23/%E7%BB%98%E7%94%BB%E7%AC%94%E8%AE%B0/2.png"></p><p>如上图，因为在定天空的颜色时候稍微亮了一些，所以所有的颜色推导都会亮一些。</p><h2 id="主观颜色"><a href="#主观颜色" class="headerlink" title="主观颜色"></a>主观颜色</h2><ul><li><a href="https://www.bilibili.com/video/BV1qv411p7kK">video</a></li></ul><p>主观颜色是要将需要强调的颜色通过冷暖对撞完全脱离出来。</p><p><img src="/2022/04/23/%E7%BB%98%E7%94%BB%E7%AC%94%E8%AE%B0/3.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 绘画 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> todo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>HTB timlapse writeup</title>
       <link href="/2022/04/20/HTB-timlapse-writeup/"/>
       <url>/2022/04/20/HTB-timlapse-writeup/</url>
