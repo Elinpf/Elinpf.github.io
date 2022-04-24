@@ -42,6 +42,8 @@ SMB over IP : 445/TCP 445/UDP
 
 那么接下来可以围绕如何获取域控管理员最高权限进行，因为有SMB，所以首先枚举SMB相关信息。
 
+- [](!smb-渗透清单)
+
 `cmder -p db/pentesting/1_enumeration/137_138_139_SMB.xd`
 
 ```bash
@@ -211,6 +213,8 @@ total 36K
 
 
 ## 获取管理员权限
+
+- [](!域渗透清单)
 
 这里我首次检查history就发现的问题
 
