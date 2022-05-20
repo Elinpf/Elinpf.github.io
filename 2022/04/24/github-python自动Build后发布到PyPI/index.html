@@ -6,24 +6,20 @@
   <meta name="keywords" content=" python ">
   <meta name="description" content="github python自动Build后发布到PyPI | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="之前在开发的时候并没有一个成熟的git开发流程，这次整理三种开发流。 流行的开发流有三种：  TrunkBased：主干在手，天下我有。所有代码都往主干上招呼，发版也只用主干。 GitFlow：严谨、规范、难用，主要是记不住该往哪个分支合并了。 AoneFlow：前两种都不行，那就借鉴各自的优点，达到阴阳平衡，中庸也。  TrunkBased这种开发流将所有东西都丢到主线上，然后再从主线上拉取分支">
+<meta name="description" content="PyQt是 Python 语言的 GUI 编程解决方案之一。 Qt Designer是PyQt程序UI界面的实现工具，使用Qt Designer可以拖拽、点击完成GUI界面设计，并且设计完成的.ui程序可以转换成.py文件供python程序调用  Qt Desinger推荐阅读这篇文章 另外在使用VsCode的时候，推荐Qt for python插件。将一下两个选项改为-o &quot;$&amp;#1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="开发时如何使用Git分支">
-<meta property="og:url" content="http://example.com/2022/04/24/%E5%BC%80%E5%8F%91%E6%97%B6%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Git%E5%88%86%E6%94%AF/index.html">
+<meta property="og:title" content="PyQt 和 Qt Designer">
+<meta property="og:url" content="http://example.com/2022/04/26/pyqt-%E5%92%8C-qt-designer/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="之前在开发的时候并没有一个成熟的git开发流程，这次整理三种开发流。 流行的开发流有三种：  TrunkBased：主干在手，天下我有。所有代码都往主干上招呼，发版也只用主干。 GitFlow：严谨、规范、难用，主要是记不住该往哪个分支合并了。 AoneFlow：前两种都不行，那就借鉴各自的优点，达到阴阳平衡，中庸也。  TrunkBased这种开发流将所有东西都丢到主线上，然后再从主线上拉取分支">
+<meta property="og:description" content="PyQt是 Python 语言的 GUI 编程解决方案之一。 Qt Designer是PyQt程序UI界面的实现工具，使用Qt Designer可以拖拽、点击完成GUI界面设计，并且设计完成的.ui程序可以转换成.py文件供python程序调用  Qt Desinger推荐阅读这篇文章 另外在使用VsCode的时候，推荐Qt for python插件。将一下两个选项改为-o &quot;$&amp;#1">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/04/24/%E5%BC%80%E5%8F%91%E6%97%B6%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Git%E5%88%86%E6%94%AF/1.jpg">
-<meta property="og:image" content="http://example.com/2022/04/24/%E5%BC%80%E5%8F%91%E6%97%B6%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Git%E5%88%86%E6%94%AF/2.jpg">
-<meta property="og:image" content="http://example.com/2022/04/24/%E5%BC%80%E5%8F%91%E6%97%B6%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Git%E5%88%86%E6%94%AF/3.png">
-<meta property="og:image" content="http://example.com/2022/04/24/%E5%BC%80%E5%8F%91%E6%97%B6%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Git%E5%88%86%E6%94%AF/4.jpg">
-<meta property="og:image" content="http://example.com/2022/04/24/%E5%BC%80%E5%8F%91%E6%97%B6%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Git%E5%88%86%E6%94%AF/5.jpg">
-<meta property="article:published_time" content="2022-04-24T08:23:45.000Z">
-<meta property="article:modified_time" content="2022-04-24T08:51:29.119Z">
+<meta property="og:image" content="http://example.com/2022/04/26/pyqt-%E5%92%8C-qt-designer/1.png">
+<meta property="article:published_time" content="2022-04-26T03:09:44.000Z">
+<meta property="article:modified_time" content="2022-05-20T03:22:07.827Z">
 <meta property="article:author" content="Elin">
-<meta property="article:tag" content="git">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/04/24/%E5%BC%80%E5%8F%91%E6%97%B6%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Git%E5%88%86%E6%94%AF/1.jpg">
+<meta name="twitter:image" content="http://example.com/2022/04/26/pyqt-%E5%92%8C-qt-designer/1.png">
 
 
 <link rel="icon" href="https://z3.ax1x.com/2021/06/23/Rnz2UP.png">
@@ -97,7 +93,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(87)</small>
+                <small>(88)</small>
             
         </div>
     </li>
@@ -109,7 +105,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         编程
-                        <small>(33)</small>
+                        <small>(34)</small>
                         
                     </div>
                     
@@ -132,7 +128,7 @@
                                         
                                         python
                                         
-                                            <small>(28
+                                            <small>(29
                                                 )</small>
                                         
                                     </div>
@@ -370,7 +366,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="87">
+<input type="hidden" id="yelog_site_posts_number" value="88">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -565,6 +561,14 @@
            data-author="" >
             <span class="post-title" title="绘画网站推荐">绘画网站推荐</span>
             <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2022/04/26/pyqt-%E5%92%8C-qt-designer/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="PyQt 和 Qt Designer">PyQt 和 Qt Designer</span>
+            <span class="post-date" title="2022-04-26 11:09:44">2022/04/26</span>
         </a>
         
         <a  class="全部文章 "
@@ -1268,7 +1272,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-04-24 16:51:29'>2022-04-24 15:28</time>
+            发布时间 : <time class="date" title='最后更新: 2022-05-20 11:22:07'>2022-04-24 15:28</time>
         
     </div>
     <div class="article-meta">
@@ -1290,7 +1294,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-poetry-%E6%9E%84%E5%BB%BA"><span class="toc-text">使用 poetry 构建</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1336,7 +1340,7 @@
 <span class="line">        <span class="hljs-attr">password:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.PYPI_PASSWORD</span> <span class="hljs-string">&#125;&#125;</span></span>
 </code></pre></div></div>
 
-<p>首先要在<a target="_blank" rel="noopener" href="https://test.pypi.org/manage/account/#api-tokens"></a>中申请token，然后再到github中的仓库里面<br><code>Setting -&gt; Secret</code>中添加Token，名称就为<code>PYPI_PASSWORD</code></p>
+<p>首先要在<a target="_blank" rel="noopener" href="https://pypi.org/manage/account/#api-tokens">PyPi</a>中申请token，然后再到github中的仓库里面<br><code>Setting -&gt; Secret</code>中添加Token，名称就为<code>PYPI_PASSWORD</code></p>
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-yaml codeBlockLines"><span class="line"><span class="hljs-attr">on:</span></span>
 <span class="line">  <span class="hljs-attr">push:</span></span>
 <span class="line">    <span class="hljs-attr">tags:</span></span>
@@ -1344,7 +1348,32 @@
 </code></pre></div></div>
 
 <p>这个的意思是当push打标签的时候开头为<code>v</code>。将会执行这个Action。</p>
-
+<h2 id="使用-poetry-构建"><a href="#使用-poetry-构建" class="headerlink" title="使用 poetry 构建"></a>使用 poetry 构建</h2><div class="codeBlockContainer"><div class="codeBlockTitle">.github/workflows/release.yml</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-yaml codeBlockLines"><span class="line"><span class="hljs-attr">name:</span> <span class="hljs-string">Upload</span> <span class="hljs-string">Python</span> <span class="hljs-string">Package</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-attr">on:</span></span>
+<span class="line">  <span class="hljs-attr">push:</span></span>
+<span class="line">    <span class="hljs-attr">tags:</span></span>
+<span class="line">      <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;v*&#x27;</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-attr">jobs:</span></span>
+<span class="line">  <span class="hljs-attr">publish:</span></span>
+<span class="line">    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span></span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-attr">steps:</span></span>
+<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v2</span></span>
+<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Setup</span> <span class="hljs-string">Python</span></span>
+<span class="line">      <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-python@v2</span></span>
+<span class="line">      <span class="hljs-attr">with:</span></span>
+<span class="line">        <span class="hljs-attr">python-version:</span> <span class="hljs-string">&#x27;3.x&#x27;</span></span>
+<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">dependencies</span></span>
+<span class="line">      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span></span>
+<span class="line"><span class="hljs-string">        python -m pip install --upgrade pip</span></span>
+<span class="line"><span class="hljs-string">        pip install poetry</span></span>
+<span class="line"><span class="hljs-string"></span>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">and</span> <span class="hljs-string">Publish</span> <span class="hljs-string">distribution</span> <span class="hljs-string">📦to</span> <span class="hljs-string">PyPI</span></span>
+<span class="line">      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span></span>
+<span class="line"><span class="hljs-string">        poetry config pypi-token.pypi $&#123;&#123; secrets.PYPI_PASSWORD &#125;&#125;</span></span>
+<span class="line"><span class="hljs-string">        poetry publish --build</span></span>
+</code></pre></div></div>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
     </div>
