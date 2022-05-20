@@ -37,7 +37,7 @@ jobs:
         password: ${{ secrets.PYPI_PASSWORD }}
 ```
 
-首先要在[](https://test.pypi.org/manage/account/#api-tokens)中申请token，然后再到github中的仓库里面
+首先要在[PyPi](https://pypi.org/manage/account/#api-tokens)中申请token，然后再到github中的仓库里面
 `Setting -> Secret`中添加Token，名称就为`PYPI_PASSWORD`
 
 ```yml
@@ -49,3 +49,32 @@ on:
 
 这个的意思是当push打标签的时候开头为`v`。将会执行这个Action。
 
+## 使用 poetry 构建
+
+```yml .github/workflows/release.yml
+name: Upload Python Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install poetry
+    - name: Build and Publish distribution 📦to PyPI
+      run: |
+        poetry config pypi-token.pypi ${{ secrets.PYPI_PASSWORD }}
+        poetry publish --build
+```
