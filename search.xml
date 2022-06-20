@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>windows 中通过端口号查看进程</title>
+      <link href="/2022/06/20/windows-%E4%B8%AD%E9%80%9A%E8%BF%87%E7%AB%AF%E5%8F%A3%E5%8F%B7%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B/"/>
+      <url>/2022/06/20/windows-%E4%B8%AD%E9%80%9A%E8%BF%87%E7%AB%AF%E5%8F%A3%E5%8F%B7%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<p><code>netstat -ano | findstr &lt;port&gt;</code></p><p>得到pid, 然后</p><p><code>tasklist | grep &lt;pid&gt;</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 系统 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>git CHANGELOG 规范</title>
       <link href="/2022/05/23/git-CHANGELOG-%E8%A7%84%E8%8C%83/"/>
       <url>/2022/05/23/git-CHANGELOG-%E8%A7%84%E8%8C%83/</url>
