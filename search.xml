@@ -4,11 +4,30 @@
   
     
     <entry>
+      <title>github 账号登录问题</title>
+      <link href="/2022/06/21/github-%E8%B4%A6%E5%8F%B7%E7%99%BB%E5%BD%95%E9%97%AE%E9%A2%98/"/>
+      <url>/2022/06/21/github-%E8%B4%A6%E5%8F%B7%E7%99%BB%E5%BD%95%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>当使用git的时候遇到</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-basic codeBlockLines"><span class="line"><span class="hljs-comment">remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.</span></span></code></pre></div></div><p>这时候输入的不应该是用户名和密码，而是用户名和<code>personal access token</code></p><p>在 Github -&gt; Settings -&gt; Developer settings -&gt; Personal access tokens 创建或者重新生成一个token</p><p>把这个token用作密码</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>windows 中通过端口号查看进程</title>
       <link href="/2022/06/20/windows-%E4%B8%AD%E9%80%9A%E8%BF%87%E7%AB%AF%E5%8F%A3%E5%8F%B7%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B/"/>
       <url>/2022/06/20/windows-%E4%B8%AD%E9%80%9A%E8%BF%87%E7%AB%AF%E5%8F%A3%E5%8F%B7%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B/</url>
       
-        <content type="html"><![CDATA[<p><code>netstat -ano | findstr &lt;port&gt;</code></p><p>得到pid, 然后</p><p><code>tasklist | grep &lt;pid&gt;</code></p>]]></content>
+        <content type="html"><![CDATA[<p><code>netstat -ano | findstr &lt;port&gt;</code></p><p>得到pid, 然后</p><p><code>tasklist | findstr &lt;pid&gt;</code></p>]]></content>
       
       
       <categories>
