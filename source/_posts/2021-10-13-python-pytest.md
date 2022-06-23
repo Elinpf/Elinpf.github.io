@@ -54,3 +54,24 @@ scope作用范围： session>module>class>function
 ## pytest.ini
 
 todo
+
+
+## 测试代码覆盖率
+
+`coverage` 用于对测试的时候，哪些代码被执行了，可以反映出完成程度。
+
+`pip install pytest-cov`
+
+使用
+
+`pytest --cov --cov-report xml`
+
+这样就会生成一个`xml`文件
+
+命令行中使用`coverage report` 查看整体覆盖率
+
+VsCode中推荐插件`Coverage Gutters`
+
+配置:
+
+![](1.png)
