@@ -6,17 +6,17 @@
   <meta name="keywords" content=" python ">
   <meta name="description" content="github python自动Build后发布到PyPI | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="tox 是对任务进行自动化的工具。 平常测试的时候，如果只是单一的测试，比如只有pytest，这样还好。但是如果涉及到多python版本，多个测试内容，比如涉及 black、 flake8、 yamllint 这些，那么一次次的测试就会很麻烦了。 这时就要用到tox tox依赖于项目文件夹中的tox.ini配置文件运行, tox config 基础例子[tox] isolated_build &#x3D;">
+<meta name="description" content="网络工程师往往需要使用自动化的处理工具来减轻负担。其中对CLI的输出进行解析然后获取有效信息就是其中的自动化的关键。 TextFSM是Google发起的开源项目, 它的官方介绍Wiki里面介绍了几个基本使用方式。 这里是英文对网络工程师自动化的一些介绍。也有一些TextFSM的使用案例和介绍。 更多的使用案例在ntc-templates里面 语法介绍文件后缀名称为 .textfsm 文件最基本的形">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python tox 任务自动化工具使用方法">
-<meta property="og:url" content="http://example.com/2022/06/21/python-tox-%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:title" content="TextFSM 使用方法">
+<meta property="og:url" content="http://example.com/2022/06/23/TextFSM-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="tox 是对任务进行自动化的工具。 平常测试的时候，如果只是单一的测试，比如只有pytest，这样还好。但是如果涉及到多python版本，多个测试内容，比如涉及 black、 flake8、 yamllint 这些，那么一次次的测试就会很麻烦了。 这时就要用到tox tox依赖于项目文件夹中的tox.ini配置文件运行, tox config 基础例子[tox] isolated_build &#x3D;">
+<meta property="og:description" content="网络工程师往往需要使用自动化的处理工具来减轻负担。其中对CLI的输出进行解析然后获取有效信息就是其中的自动化的关键。 TextFSM是Google发起的开源项目, 它的官方介绍Wiki里面介绍了几个基本使用方式。 这里是英文对网络工程师自动化的一些介绍。也有一些TextFSM的使用案例和介绍。 更多的使用案例在ntc-templates里面 语法介绍文件后缀名称为 .textfsm 文件最基本的形">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-21T07:39:39.000Z">
-<meta property="article:modified_time" content="2022-06-21T09:21:33.386Z">
+<meta property="article:published_time" content="2022-06-23T02:22:38.000Z">
+<meta property="article:modified_time" content="2022-06-28T06:30:55.332Z">
 <meta property="article:author" content="Elin">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="todo">
 <meta name="twitter:card" content="summary">
 
 
@@ -91,7 +91,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(92)</small>
+                <small>(93)</small>
             
         </div>
     </li>
@@ -284,7 +284,7 @@
                     <div data-rel="数通">
                         
                         数通
-                        <small>(4)</small>
+                        <small>(5)</small>
                         
                     </div>
                     
@@ -364,7 +364,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="92">
+<input type="hidden" id="yelog_site_posts_number" value="93">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -559,6 +559,14 @@
            data-author="" >
             <span class="post-title" title="绘画网站推荐">绘画网站推荐</span>
             <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
+        </a>
+        
+        <a  class="全部文章 数通 "
+           href="/2022/06/23/TextFSM-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"
+           data-tag="todo"
+           data-author="" >
+            <span class="post-title" title="TextFSM 使用方法">TextFSM 使用方法</span>
+            <span class="post-date" title="2022-06-23 10:22:38">2022/06/23</span>
         </a>
         
         <a  class="全部文章 编程 python "
@@ -1302,7 +1310,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-06-21 17:21:33'>2022-04-24 15:28</time>
+            发布时间 : <time class="date" title='最后更新: 2022-06-28 14:30:55'>2022-04-24 15:28</time>
         
     </div>
     <div class="article-meta">
@@ -1324,7 +1332,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-poetry-%E6%9E%84%E5%BB%BA"><span class="toc-text">使用 poetry 构建</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-poetry-%E6%9E%84%E5%BB%BA"><span class="toc-text">使用 poetry 构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E6%B5%8B%E8%AF%95%EF%BC%8C%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F%E5%90%8E%E5%8F%91%E5%B8%83"><span class="toc-text">先测试，测试成功后发布</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1404,6 +1412,62 @@
 <span class="line"><span class="hljs-string">        poetry config pypi-token.pypi $&#123;&#123; secrets.PYPI_PASSWORD &#125;&#125;</span></span>
 <span class="line"><span class="hljs-string">        poetry publish --build</span></span>
 </code></pre></div></div>
+
+<h2 id="先测试，测试成功后发布"><a href="#先测试，测试成功后发布" class="headerlink" title="先测试，测试成功后发布"></a>先测试，测试成功后发布</h2><p>我们还可以先做测试，测试成功后再发布。</p>
+<div class="codeBlockContainer"><div class="codeBlockTitle">.github/workflows/release.yml</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-yaml codeBlockLines"><span class="line"><span class="hljs-attr">name:</span> <span class="hljs-string">Check</span> <span class="hljs-string">Templates</span> <span class="hljs-string">and</span> <span class="hljs-string">Publish</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-attr">on:</span></span>
+<span class="line">  <span class="hljs-attr">push:</span></span>
+<span class="line">    <span class="hljs-attr">branches:</span> [<span class="hljs-string">master</span>, <span class="hljs-string">dev</span>, <span class="hljs-string">test-me-*</span>]</span>
+<span class="line">    <span class="hljs-attr">tags:</span> [<span class="hljs-string">v*</span>]</span>
+<span class="line">  <span class="hljs-attr">pull_request:</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-attr">jobs:</span></span>
+<span class="line">  <span class="hljs-attr">check:</span></span>
+<span class="line">    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span></span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-attr">steps:</span></span>
+<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v2</span></span>
+<span class="line">      <span class="hljs-attr">with:</span></span>
+<span class="line">        <span class="hljs-attr">fetch-depth:</span> <span class="hljs-number">0</span></span>
+<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Setup</span> <span class="hljs-string">Python</span></span>
+<span class="line">      <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-python@v2</span></span>
+<span class="line">      <span class="hljs-attr">with:</span></span>
+<span class="line">        <span class="hljs-attr">python-version:</span> <span class="hljs-string">&#x27;3.8&#x27;</span></span>
+<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">Dependencies</span></span>
+<span class="line">      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span></span>
+<span class="line"><span class="hljs-string">        python -m pip install --upgrade pip</span></span>
+<span class="line"><span class="hljs-string">        pip install poetry</span></span>
+<span class="line"><span class="hljs-string">        poetry install</span></span>
+<span class="line"><span class="hljs-string"></span>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Run</span> <span class="hljs-string">Scripts</span></span>
+<span class="line">      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span></span>
+<span class="line"><span class="hljs-string">        poetry run tox</span></span>
+<span class="line"></br></span>
+<span class="line">  <span class="hljs-attr">publish:</span></span>
+<span class="line">    <span class="hljs-attr">if:</span> <span class="hljs-string">github.event_name</span> <span class="hljs-string">==</span> <span class="hljs-string">&#x27;push&#x27;</span> <span class="hljs-string">&amp;&amp;</span> <span class="hljs-string">startsWith(github.ref,</span> <span class="hljs-string">&#x27;refs/tags&#x27;</span><span class="hljs-string">)</span></span>
+<span class="line">    <span class="hljs-attr">needs:</span> <span class="hljs-string">check</span></span>
+<span class="line">    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span></span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-attr">steps:</span></span>
+<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v2</span></span>
+<span class="line">      <span class="hljs-attr">with:</span></span>
+<span class="line">        <span class="hljs-attr">fetch-depth:</span> <span class="hljs-number">0</span></span>
+<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Setup</span> <span class="hljs-string">Python</span></span>
+<span class="line">      <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-python@v2</span></span>
+<span class="line">      <span class="hljs-attr">with:</span></span>
+<span class="line">        <span class="hljs-attr">python-version:</span> <span class="hljs-string">&#x27;3.x&#x27;</span></span>
+<span class="line">    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">dependencies</span></span>
+<span class="line">      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span></span>
+<span class="line"><span class="hljs-string">        python -m pip install --upgrade pip</span></span>
+<span class="line"><span class="hljs-string">        pip install poetry</span></span>
+<span class="line"><span class="hljs-string"></span>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">and</span> <span class="hljs-string">Publish</span> <span class="hljs-string">distribution</span> <span class="hljs-string">📦to</span> <span class="hljs-string">PyPI</span></span>
+<span class="line">      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span></span>
+<span class="line"><span class="hljs-string">        poetry config pypi-token.pypi $&#123;&#123; secrets.PYPI_PASSWORD &#125;&#125;</span></span>
+<span class="line"><span class="hljs-string">        poetry publish --build</span></span>
+</code></pre></div></div>
+
+<p><code>on: [push, pull_request]</code>的意思是当push或者pull_request的时候执行这个Action。</p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
     </div>
