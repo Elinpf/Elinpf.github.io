@@ -75,3 +75,5 @@ VsCode中推荐插件`Coverage Gutters`
 配置:
 
 ![](1.png)
+
+**注意：这样设置会导致vscode在测试时无法使用断点调试！！！**
