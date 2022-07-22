@@ -77,3 +77,12 @@ VsCode中推荐插件`Coverage Gutters`
 ![](1.png)
 
 **注意：这样设置会导致vscode在测试时无法使用断点调试！！！**
+
+## caplog 取log日志
+
+```py
+def test_something(caplog)
+    caplog.set_level(logging.DEBUG)
+    assert caplog.messages[0] == 'This is a debug message'
+    caplog.clear()
+```
