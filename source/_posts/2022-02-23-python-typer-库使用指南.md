@@ -177,6 +177,19 @@ if __name__ == "__main__":
     app()
 ```
 
+## 当需要`--help`的短命令`-h`的时候
+
+```py
+import typer
+
+app = typer.Typer()
+
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+@app.command(context_settings=CONTEXT_SETTINGS)
+def main(nom: str):
+    ...
+```
+
 ## get_app_dir 取配置文件夹路径
 
 定义如下
