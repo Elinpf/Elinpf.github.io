@@ -14,7 +14,7 @@
 <meta property="og:description" content="网络工程师往往需要使用自动化的处理工具来减轻负担。其中对CLI的输出进行解析然后获取有效信息就是其中的自动化的关键。 TextFSM是Google发起的开源项目, 它的官方介绍Wiki里面介绍了几个基本使用方式。 这里是英文对网络工程师自动化的一些介绍。也有一些TextFSM的使用案例和介绍。 更多的使用案例在ntc-templates里面 语法介绍文件后缀名称为 .textfsm 文件最基本的形">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-23T02:22:38.000Z">
-<meta property="article:modified_time" content="2022-08-10T01:44:41.394Z">
+<meta property="article:modified_time" content="2022-08-11T07:08:46.689Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="todo">
 <meta name="twitter:card" content="summary">
@@ -1326,7 +1326,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-08-10 09:44:41'>2022-03-10 14:32</time>
+            发布时间 : <time class="date" title='最后更新: 2022-08-11 15:08:46'>2022-03-10 14:32</time>
         
     </div>
     <div class="article-meta">
@@ -1348,7 +1348,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%9C%E4%B8%BA%E9%80%89%E9%A1%B9%E5%88%A4%E6%96%AD"><span class="toc-text">使用二进制作为选项判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8or"><span class="toc-text">灵活运用or</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E6%9D%A5%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%86%99%E4%BA%86%E5%8F%82%E6%95%B0"><span class="toc-text">使用自定义类来判断是否写了参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C-if%E2%80%A6else"><span class="toc-text">单行 if…else</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda-%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0"><span class="toc-text">lambda 作为参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#print-%E4%B8%AD%E7%9A%84-r"><span class="toc-text">print 中的!r</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA-contentmanager-%E4%B8%80%E8%B5%B7%E5%86%99"><span class="toc-text">多个 contentmanager 一起写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-file-%E5%AE%9A%E4%BD%8D%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="toc-text">使用__file__定位程序的路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E6%89%A9%E5%B1%95"><span class="toc-text">正则表达式的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%B3%BB%E7%BB%9F%E8%B7%AF%E5%BE%84%E5%88%86%E5%89%B2%E6%96%B9%E6%B3%95"><span class="toc-text">多系统路径分割方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E6%96%87%E4%BB%B6%EF%BC%8C%E8%BF%94%E5%9B%9E%E5%88%97%E8%A1%A8"><span class="toc-text">遍历文件，返回列表</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%9C%E4%B8%BA%E9%80%89%E9%A1%B9%E5%88%A4%E6%96%AD"><span class="toc-text">使用二进制作为选项判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8or"><span class="toc-text">灵活运用or</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E6%9D%A5%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%86%99%E4%BA%86%E5%8F%82%E6%95%B0"><span class="toc-text">使用自定义类来判断是否写了参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C-if%E2%80%A6else"><span class="toc-text">单行 if…else</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda-%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0"><span class="toc-text">lambda 作为参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#print-%E4%B8%AD%E7%9A%84-r"><span class="toc-text">print 中的!r</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA-contentmanager-%E4%B8%80%E8%B5%B7%E5%86%99"><span class="toc-text">多个 contentmanager 一起写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-file-%E5%AE%9A%E4%BD%8D%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="toc-text">使用__file__定位程序的路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E6%89%A9%E5%B1%95"><span class="toc-text">正则表达式的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%B3%BB%E7%BB%9F%E8%B7%AF%E5%BE%84%E5%88%86%E5%89%B2%E6%96%B9%E6%B3%95"><span class="toc-text">多系统路径分割方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E6%96%87%E4%BB%B6%EF%BC%8C%E8%BF%94%E5%9B%9E%E5%88%97%E8%A1%A8"><span class="toc-text">遍历文件，返回列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#contextmanager-%E8%B7%B3%E8%BF%87%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-text">contextmanager 跳过代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B%E7%B1%BB"><span class="toc-text">单例类</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1520,6 +1520,115 @@
 <span class="line"><span class="hljs-comment"># or</span></span>
 <span class="line"></br></span>
 <span class="line">glob.glob(<span class="hljs-string">&quot;&#123;0&#125;/*.yml&quot;</span>.<span class="hljs-built_in">format</span>(dirpath))</span>
+</code></pre></div></div>
+
+<h2 id="contextmanager-跳过代码块"><a href="#contextmanager-跳过代码块" class="headerlink" title="contextmanager 跳过代码块"></a>contextmanager 跳过代码块</h2><ul>
+<li>参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/12594148/skipping-execution-of-with-block">这篇文章</a></li>
+</ul>
+<p>原型为</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> sys</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SkipWithBlock</span>(<span class="hljs-params">Exception</span>):</span></span>
+<span class="line">    <span class="hljs-keyword">pass</span></span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SkipContextManager</span>:</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, skip</span>):</span></span>
+<span class="line">        self.skip = skip</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__enter__</span>(<span class="hljs-params">self</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">if</span> self.skip:</span>
+<span class="line">            sys.settrace(<span class="hljs-keyword">lambda</span> *args, **keys: <span class="hljs-literal">None</span>)</span>
+<span class="line">            frame = sys._getframe(<span class="hljs-number">1</span>)</span>
+<span class="line">            frame.f_trace = self.trace</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trace</span>(<span class="hljs-params">self, frame, event, arg</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">raise</span> SkipWithBlock()</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__exit__</span>(<span class="hljs-params">self, <span class="hljs-built_in">type</span>, value, traceback</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span> <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span>
+<span class="line">            <span class="hljs-keyword">return</span>  <span class="hljs-comment"># No exception</span></span>
+<span class="line">        <span class="hljs-keyword">if</span> <span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">type</span>, SkipWithBlock):</span>
+<span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>  <span class="hljs-comment"># Suppress special SkipWithBlock exception</span></span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-keyword">with</span> SkipContextManager(skip=<span class="hljs-literal">True</span>):    </span>
+<span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;In the with block&#x27;</span>)  <span class="hljs-comment"># Won&#x27;t be called</span></span>
+<span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Out of the with block&#x27;</span>)</span>
+</code></pre></div></div>
+
+<p>替换 contextmanager 的方法为:</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> sys</span>
+<span class="line"><span class="hljs-keyword">from</span> contextlib <span class="hljs-keyword">import</span> _GeneratorContextManager</span>
+<span class="line"><span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> wraps</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SkipWithBlock</span>(<span class="hljs-params">Exception</span>):</span></span>
+<span class="line">    <span class="hljs-keyword">pass</span></span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">_ContextManager</span>(<span class="hljs-params">_GeneratorContextManager</span>):</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__enter__</span>(<span class="hljs-params">self</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">del</span> self.args, self.kwds, self.func</span>
+<span class="line">        <span class="hljs-keyword">try</span>:</span>
+<span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-built_in">next</span>(self.gen)</span>
+<span class="line">        <span class="hljs-keyword">except</span> StopIteration:</span>
+<span class="line">            sys.settrace(<span class="hljs-keyword">lambda</span> *args, **keys: <span class="hljs-literal">None</span>)</span>
+<span class="line">            frame = sys._getframe(<span class="hljs-number">1</span>)</span>
+<span class="line">            frame.f_trace = self.trace</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trace</span>(<span class="hljs-params">self, frame, event, arg</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">raise</span> SkipWithBlock()</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__exit__</span>(<span class="hljs-params">self, <span class="hljs-built_in">type</span>, value, traceback</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span> <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span>
+<span class="line">            <span class="hljs-keyword">try</span>:</span>
+<span class="line">                <span class="hljs-built_in">next</span>(self.gen)</span>
+<span class="line">            <span class="hljs-keyword">except</span> StopIteration:</span>
+<span class="line">                <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span>
+<span class="line">            <span class="hljs-keyword">else</span>:</span>
+<span class="line">                <span class="hljs-keyword">raise</span> RuntimeError(<span class="hljs-string">&quot;generator didn&#x27;t stop&quot;</span>)</span>
+<span class="line">        <span class="hljs-keyword">elif</span> <span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">type</span>, SkipWithBlock):</span>
+<span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span></span>
+<span class="line">        <span class="hljs-keyword">else</span>:</span>
+<span class="line">            <span class="hljs-keyword">if</span> value <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span>
+<span class="line">                value = <span class="hljs-built_in">type</span>()</span>
+<span class="line">            <span class="hljs-keyword">try</span>:</span>
+<span class="line">                self.gen.throw(<span class="hljs-built_in">type</span>, value, traceback)</span>
+<span class="line">            <span class="hljs-keyword">except</span> StopIteration <span class="hljs-keyword">as</span> exc:</span>
+<span class="line">                <span class="hljs-keyword">return</span> exc <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> value</span>
+<span class="line">            <span class="hljs-keyword">except</span> RuntimeError <span class="hljs-keyword">as</span> exc:</span>
+<span class="line">                <span class="hljs-keyword">if</span> exc <span class="hljs-keyword">is</span> value:</span>
+<span class="line">                    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span>
+<span class="line">                <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span> <span class="hljs-keyword">is</span> StopIteration <span class="hljs-keyword">and</span> exc.__cause__ <span class="hljs-keyword">is</span> value:</span>
+<span class="line">                    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span>
+<span class="line">                <span class="hljs-keyword">raise</span></span>
+<span class="line">            <span class="hljs-keyword">except</span>:</span>
+<span class="line">                <span class="hljs-keyword">if</span> sys.exc_info()[<span class="hljs-number">1</span>] <span class="hljs-keyword">is</span> value:</span>
+<span class="line">                    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span>
+<span class="line">                <span class="hljs-keyword">raise</span></span>
+<span class="line">            <span class="hljs-keyword">raise</span> RuntimeError(<span class="hljs-string">&quot;generator didn&#x27;t stop after throw()&quot;</span>)</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">contextmanager</span>(<span class="hljs-params">func</span>):</span></span>
+<span class="line">    <span class="hljs-string">&quot;&quot;&quot;这个contextmanager可以在没有yield的时候，主动跳过代码块&quot;&quot;&quot;</span></span>
+<span class="line"><span class="hljs-meta">    @wraps(<span class="hljs-params">func</span>)</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">helper</span>(<span class="hljs-params">*args, **kwds</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">return</span> _ContextManager(func, args, kwds)</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-keyword">return</span> helper</span>
+</code></pre></div></div>
+
+<h2 id="单例类"><a href="#单例类" class="headerlink" title="单例类"></a>单例类</h2><p>用类继承会好些</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span></span>
+<span class="line">  _instance = <span class="hljs-literal">None</span></span>
+<span class="line">  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__new__</span>(<span class="hljs-params">class_, *args, **kwargs</span>):</span></span>
+<span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">isinstance</span>(class_._instance, class_):</span>
+<span class="line">        class_._instance = <span class="hljs-built_in">object</span>.__new__(class_, *args, **kwargs)</span>
+<span class="line">    <span class="hljs-keyword">return</span> class_._instance</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OtherClass</span>(<span class="hljs-params">Singleton</span>):</span></span>
+<span class="line">    ...</span>
 </code></pre></div></div>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
