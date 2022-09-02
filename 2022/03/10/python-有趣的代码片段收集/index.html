@@ -14,7 +14,7 @@
 <meta property="og:description" content="参考这篇文章  默认情况下，python中的with代码块是无法跳过的，定义如下： with EXPR as VAR:     BLOCK   mgr &#x3D; (EXPR) exit &#x3D; type(mgr).__exit__  # Not calling it yet value &#x3D; type(mgr).__enter__(mgr) exc &#x3D; True try:     try:">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-24T08:36:47.000Z">
-<meta property="article:modified_time" content="2022-08-24T08:58:01.267Z">
+<meta property="article:modified_time" content="2022-09-02T02:59:56.215Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
@@ -1342,7 +1342,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-08-24 16:58:01'>2022-03-10 14:32</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-02 10:59:56'>2022-03-10 14:32</time>
         
     </div>
     <div class="article-meta">
@@ -1364,7 +1364,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%9C%E4%B8%BA%E9%80%89%E9%A1%B9%E5%88%A4%E6%96%AD"><span class="toc-text">使用二进制作为选项判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8or"><span class="toc-text">灵活运用or</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E6%9D%A5%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%86%99%E4%BA%86%E5%8F%82%E6%95%B0"><span class="toc-text">使用自定义类来判断是否写了参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C-if%E2%80%A6else"><span class="toc-text">单行 if…else</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda-%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0"><span class="toc-text">lambda 作为参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#print-%E4%B8%AD%E7%9A%84-r"><span class="toc-text">print 中的!r</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA-contentmanager-%E4%B8%80%E8%B5%B7%E5%86%99"><span class="toc-text">多个 contentmanager 一起写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-file-%E5%AE%9A%E4%BD%8D%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="toc-text">使用__file__定位程序的路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E6%89%A9%E5%B1%95"><span class="toc-text">正则表达式的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%B3%BB%E7%BB%9F%E8%B7%AF%E5%BE%84%E5%88%86%E5%89%B2%E6%96%B9%E6%B3%95"><span class="toc-text">多系统路径分割方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E6%96%87%E4%BB%B6%EF%BC%8C%E8%BF%94%E5%9B%9E%E5%88%97%E8%A1%A8"><span class="toc-text">遍历文件，返回列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#contextmanager-%E8%B7%B3%E8%BF%87%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-text">contextmanager 跳过代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B%E7%B1%BB"><span class="toc-text">单例类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0"><span class="toc-text">多类型参数</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%9C%E4%B8%BA%E9%80%89%E9%A1%B9%E5%88%A4%E6%96%AD"><span class="toc-text">使用二进制作为选项判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%81%B5%E6%B4%BB%E8%BF%90%E7%94%A8or"><span class="toc-text">灵活运用or</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E6%9D%A5%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%86%99%E4%BA%86%E5%8F%82%E6%95%B0"><span class="toc-text">使用自定义类来判断是否写了参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C-if%E2%80%A6else"><span class="toc-text">单行 if…else</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda-%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0"><span class="toc-text">lambda 作为参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#print-%E4%B8%AD%E7%9A%84-r"><span class="toc-text">print 中的!r</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA-contentmanager-%E4%B8%80%E8%B5%B7%E5%86%99"><span class="toc-text">多个 contentmanager 一起写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-file-%E5%AE%9A%E4%BD%8D%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="toc-text">使用__file__定位程序的路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E6%89%A9%E5%B1%95"><span class="toc-text">正则表达式的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%B3%BB%E7%BB%9F%E8%B7%AF%E5%BE%84%E5%88%86%E5%89%B2%E6%96%B9%E6%B3%95"><span class="toc-text">多系统路径分割方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E6%96%87%E4%BB%B6%EF%BC%8C%E8%BF%94%E5%9B%9E%E5%88%97%E8%A1%A8"><span class="toc-text">遍历文件，返回列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#contextmanager-%E8%B7%B3%E8%BF%87%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-text">contextmanager 跳过代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B%E7%B1%BB"><span class="toc-text">单例类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0"><span class="toc-text">多类型参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dataclass-%E4%BD%BF%E7%94%A8dict"><span class="toc-text">dataclass 使用dict</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1581,6 +1581,18 @@
 <span class="line"><span class="hljs-comment"># 类型不支持</span></span>
 <span class="line"><span class="hljs-comment"># 参数类型为string 连接到192.168.1.1:123</span></span>
 <span class="line"><span class="hljs-comment"># 参数类型为tuple 连接到192.168.1.1:123</span></span>
+</code></pre></div></div>
+
+
+<h2 id="dataclass-使用dict"><a href="#dataclass-使用dict" class="headerlink" title="dataclass 使用dict"></a>dataclass 使用dict</h2><p>正常情况下，dataclass中是能有dict这种iter类的，但是可以加入<code>field</code>来解决</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/72630488/valueerror-mutable-default-class-dict-for-field-headers-is-not-allowed-use">参考</a></li>
+</ul>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> dataclasses <span class="hljs-keyword">import</span> dataclass, field</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-meta">@dataclass</span></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span>:</span></span>
+<span class="line">    headers: <span class="hljs-built_in">dict</span> = field(default_factory=<span class="hljs-keyword">lambda</span>: &#123;&#125;)</span>
 </code></pre></div></div>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>

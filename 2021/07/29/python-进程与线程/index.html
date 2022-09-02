@@ -14,7 +14,7 @@
 <meta property="og:description" content="参考这篇文章  默认情况下，python中的with代码块是无法跳过的，定义如下： with EXPR as VAR:     BLOCK   mgr &#x3D; (EXPR) exit &#x3D; type(mgr).__exit__  # Not calling it yet value &#x3D; type(mgr).__enter__(mgr) exc &#x3D; True try:     try:">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-24T08:36:47.000Z">
-<meta property="article:modified_time" content="2022-08-24T08:58:01.267Z">
+<meta property="article:modified_time" content="2022-09-02T02:59:56.215Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
@@ -1329,7 +1329,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-08-24 16:58:01'>2021-07-29 15:56</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-02 10:59:56'>2021-07-29 15:56</time>
         
     </div>
     <div class="article-meta">
@@ -1372,6 +1372,9 @@
 <p>进程可以在不同的CPU核心上切换，Unix使用的底层的<code>fork()</code>函数，而windows支持的并不好，所以只能最大限度模拟。</p>
 <p>通用的封装模块有两个。<code>subprocess</code>和<code>multiprocessing</code></p>
 <p>调用外部程序使用的是<code>subprocess</code>，而创建新的进程往往使用的是<code>multiprocessing</code></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/huangpo001/article/details/106254480">如何获取返回值</a></li>
+</ul>
 <h3 id="调用外部程序"><a href="#调用外部程序" class="headerlink" title="调用外部程序"></a>调用外部程序</h3><p>当调用的外部程序不需要复杂交互的时候，可以使用<code>call</code>方法直接创建子进程，然后得到返回。<br><code>call</code>方法是拥塞的，将会等到子进程结束才会继续执行父进程。</p>
 <p>当调用的外部程序有复杂交互的时候，可以使用<code>Popen</code>方法。<br><code>Popen</code>方法是非拥塞的。</p>
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> subprocess</span>
@@ -1420,19 +1423,23 @@
 <span class="line">    time.sleep(random.random() * <span class="hljs-number">3</span>)</span>
 <span class="line">    end_time = time.time()</span>
 <span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Task %s runs %0.2f sec&quot;</span> % (name, (end_time - start_time)))</span>
+<span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">f&#x27;hello <span class="hljs-subst">&#123;name&#125;</span>&#x27;</span></span>
 <span class="line"></br></span>
 <span class="line"></br></span>
 <span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:</span>
 <span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Parent pid is %s&quot;</span> % os.getpid())</span>
 <span class="line marked">    p = Pool(cpu_count())  <span class="hljs-comment"># 这个是进程池，默认是CPU核数，可以自己指定</span></span>
+<span class="line">    jobs = []</span>
 <span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;subprocess Start&quot;</span>)</span>
 <span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):</span>
-<span class="line marked">        p.apply_async(long_time_wait, args=(i,))  <span class="hljs-comment"># 这个是异步的，异步的执行，不会阻塞当前的进程</span></span>
-<span class="line">        <span class="hljs-comment"># p.apply(long_time_wait, args=(1,))  # 这个是同步的，同步的执行，会阻塞当前的进程</span></span>
+<span class="line marked">        jobs.append(p.apply_async(long_time_wait, args=(i,)))  <span class="hljs-comment"># 这个是异步的，异步的执行，不会阻塞当前的进程</span></span>
+<span class="line">        <span class="hljs-comment"># jobs.append(p.apply(long_time_wait, args=(1,)))  # 这个是同步的，同步的执行，会阻塞当前的进程</span></span>
 <span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;before close&#x27;</span>)</span>
-<span class="line">    p.close() <span class="hljs-comment"># 在join()之前必须close()</span></span>
-<span class="line">    p.join()</span>
+<span class="line">    p.close() <span class="hljs-comment"># 关闭进程池，表示不能再往进程池中添加进程，需要在join之前调用</span></span>
+<span class="line">    p.join() <span class="hljs-comment"># 等待进程池中的所有进程执行完毕</span></span>
 <span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;All subprocess done&quot;</span>)</span>
+<span class="line">    <span class="hljs-keyword">for</span> job <span class="hljs-keyword">in</span> jobs:</span>
+<span class="line">        <span class="hljs-built_in">print</span>(job.get()) <span class="hljs-comment"># 获取进程的返回值</span></span>
 <span class="line"></br></span>
 <span class="line"><span class="hljs-comment">## output:</span></span>
 <span class="line"><span class="hljs-comment">#Parent pid is 14068</span></span>
