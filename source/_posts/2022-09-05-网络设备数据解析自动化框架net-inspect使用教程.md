@@ -53,7 +53,9 @@ pip install net_inspect
 │   ├── Switch_C.log
 ```
 
-可用看到，在`log`文件夹下有三台设备的命令的回显信息，我们需要将这些设备的厂商、软件版本、管理IP，提取打印出来。
+可用看到，在`log`文件夹下有三台设备的命令的回显信息，这些文件是通过`vty`或者`console`连接到设备上作为记录日志保存下来。每个文件中都需要包含`display version` 这个命令来识别设备的厂商。
+
+现在我们需要将这些设备的厂商、软件版本、管理IP，提取打印出来。
 
 ```py
 from net_inspect import NetInspect
@@ -70,6 +72,8 @@ for device in net.cluster.devices:
           info.version, info.model, info.cpu_usage]))
 ```
 
+output:
+
 ```text
 total devices: 3
 Switch_A | 24.44.1.248 | Huawei | 5.170 | S12704 Terabit Routing Switch | 6%
@@ -79,7 +83,9 @@ Switch_C | 24.45.254.254 | H3C | 5.20 Release: 1238P08 | S9508E-V | 1%
 
 可以看到，仅仅通过简单的几行代码，就可以实现对多厂商设备的数据解析和调用。
 
-> 可供使用的base_info属性信息在[这里](https://github.com/Elinpf/net_inspect/blob/master/net_inspect/base_info.py#L23)查看
+> `console`代表的是`vty`或者`console`连接设备的回显信息格式。
+
+> 可供使用的base_info属性信息在使用`net_inspect -b`查看
 
 ### 框架的组成
 
@@ -94,7 +100,12 @@ Switch_C | 24.45.254.254 | H3C | 5.20 Release: 1238P08 | S9508E-V | 1%
 > 有时候我们收集设备信息的方式不止是通过console，或者自己的telnet/ssh。而是通过网管平台进行的，回显格式不同，这时候就需要自己写一个`input_plugin`，将网管平台的数据转换成`net_inspect`需要的格式。
 
 > `parse_plugin` 使用的是[ntc_templates_elinpf](https://github.com/Elinpf/ntc-templates)这个库，它是`ntc_templates`的一个分支，主要是为了解决`ntc_templates`没有对国内厂商支持的问题。
+
 > 所以，需要先卸载`pip uninstall ntc_templates` 然后安装`pip install ntc_templates_elinpf`
+
+`net_inspect`支持cli的命令行模式，可以通过`net_inspect -h`查看帮助信息。
+
+![](2.png)
 
 
 ## 进阶教程
@@ -231,7 +242,7 @@ Switch_B | 2021-03-19 10:24:17
 Switch_C | 2021-03-19 10:32:17
 ```
 
-输出的结果是一样的，可以看到，在`base_info`中新增了一个`clock`字段，然后只需要调用这个`clock`属性就可以了。这样的做法复用性强，后续在想要获取设备的时间的时候，只需要调用`clock`属性即可。
+输出的结果是一样的，可以看到，在`base_info`中新增了一个`clock`字段，然后只需要调用这个`clock`属性就可以了。这样的做法复用性强，后续再想要获取设备的时间的时候，只需要调用`clock`属性即可。
 
 ### 自定义分析信息
 
@@ -297,7 +308,7 @@ Switch_C |
 
 编写这个需要注意：
 1. `@analysis.template_key`中的`templates`名称需要完整包含后缀名。
-2. 类方法不许要`self`这个关键字。
+2. 类方法不需要`self`这个关键字。
 3. 结果加入到`result`中即可，不需要返回值。
 4. 整个过程不用单独设置，所有信息会直接写入`analysis`变量中。
 
@@ -319,7 +330,7 @@ class Output(OutputPluginAbstract):
         console = Console()
 
         table = Table(title=self.args.output_params.get(
-            'company'), show_lines=False)
+            'title'), show_lines=False)
         table.add_column('name', justify='center')
         table.add_column('ip', justify='center')
         table.add_column('model', justify='center')
@@ -343,7 +354,7 @@ if __name__ == '__main__':
     net = NetInspect()
     net.set_plugins(input_plugin='console', output_plugin=Output)
     cluster = net.run('log', output_plugin_params={
-                    'company': 'Company Name'})
+                    'title': '设备信息'})
 ```
 
 output:
