@@ -13,13 +13,14 @@
 <meta property="og:site_name" content="Elin 的空间">
 <meta property="og:description" content="前言作为网络工程师，需要经常收集设备的设备信息，比如设备CPU利用率、内存利用率、软件版本、序列号、接口状态等，这些信息可以用来监控网络设备的运行状态，也可以用来做设备的资产管理。 在已经收集完成的情况下，我们需要将关键信息提取出来，然后将可用数据按需求格式输出。市面上目前没有针对多厂商的网络设备数据解析工具，厂家只会制作针对自己设备的解析工具。造成使用割裂，并且输出样式也无法做到自定义。 另外，">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/09/05/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6net-inspect%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2.png">
 <meta property="og:image" content="http://example.com/2022/09/05/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6net-inspect%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/1.png">
 <meta property="article:published_time" content="2022-09-05T00:33:21.000Z">
-<meta property="article:modified_time" content="2022-09-05T06:36:37.008Z">
+<meta property="article:modified_time" content="2022-09-06T07:43:04.937Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/09/05/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6net-inspect%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/1.png">
+<meta name="twitter:image" content="http://example.com/2022/09/05/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6net-inspect%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2.png">
 
 
 <link rel="icon" href="https://z3.ax1x.com/2021/06/23/Rnz2UP.png">
@@ -1344,7 +1345,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-09-05 14:36:37'>2022-09-05 08:33</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-06 15:43:04'>2022-09-05 08:33</time>
         
     </div>
     <div class="article-meta">
@@ -1412,7 +1413,8 @@
 <span class="line">│   ├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Switch_C</span>.</span></span>log</span>
 </code></pre></div></div>
 
-<p>可用看到，在<code>log</code>文件夹下有三台设备的命令的回显信息，我们需要将这些设备的厂商、软件版本、管理IP，提取打印出来。</p>
+<p>可用看到，在<code>log</code>文件夹下有三台设备的命令的回显信息，这些文件是通过<code>vty</code>或者<code>console</code>连接到设备上作为记录日志保存下来。每个文件中都需要包含<code>display version</code> 这个命令来识别设备的厂商。</p>
+<p>现在我们需要将这些设备的厂商、软件版本、管理IP，提取打印出来。</p>
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> net_inspect <span class="hljs-keyword">import</span> NetInspect</span>
 <span class="line"></br></span>
 <span class="line">net = NetInspect()</span>
@@ -1427,6 +1429,7 @@
 <span class="line">          info.version, info.model, info.cpu_usage]))</span>
 </code></pre></div></div>
 
+<p>output:</p>
 <div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">total devices: 3</span>
 <span class="line">Switch_A | 24.44.1.248 | Huawei | 5.170 | S12704 Terabit Routing Switch | 6%</span>
 <span class="line">Switch_B | 24.45.1.240 | H3C | 5.20 Release: 3342 | SR8800 | 5%</span>
@@ -1435,7 +1438,10 @@
 
 <p>可以看到，仅仅通过简单的几行代码，就可以实现对多厂商设备的数据解析和调用。</p>
 <blockquote>
-<p>可供使用的base_info属性信息在<a target="_blank" rel="noopener" href="https://github.com/Elinpf/net_inspect/blob/master/net_inspect/base_info.py#L23">这里</a>查看</p>
+<p><code>console</code>代表的是<code>vty</code>或者<code>console</code>连接设备的回显信息格式。</p>
+</blockquote>
+<blockquote>
+<p>可供使用的base_info属性信息在使用<code>net_inspect -b</code>查看</p>
 </blockquote>
 <h3 id="框架的组成"><a href="#框架的组成" class="headerlink" title="框架的组成"></a>框架的组成</h3><p><code>net_inspect</code>由以下几个部分组成：</p>
 <ul>
@@ -1449,8 +1455,13 @@
 <p>有时候我们收集设备信息的方式不止是通过console，或者自己的telnet/ssh。而是通过网管平台进行的，回显格式不同，这时候就需要自己写一个<code>input_plugin</code>，将网管平台的数据转换成<code>net_inspect</code>需要的格式。</p>
 </blockquote>
 <blockquote>
-<p><code>parse_plugin</code> 使用的是<a target="_blank" rel="noopener" href="https://github.com/Elinpf/ntc-templates">ntc_templates_elinpf</a>这个库，它是<code>ntc_templates</code>的一个分支，主要是为了解决<code>ntc_templates</code>没有对国内厂商支持的问题。<br>所以，需要先卸载<code>pip uninstall ntc_templates</code> 然后安装<code>pip install ntc_templates_elinpf</code></p>
+<p><code>parse_plugin</code> 使用的是<a target="_blank" rel="noopener" href="https://github.com/Elinpf/ntc-templates">ntc_templates_elinpf</a>这个库，它是<code>ntc_templates</code>的一个分支，主要是为了解决<code>ntc_templates</code>没有对国内厂商支持的问题。</p>
 </blockquote>
+<blockquote>
+<p>所以，需要先卸载<code>pip uninstall ntc_templates</code> 然后安装<code>pip install ntc_templates_elinpf</code></p>
+</blockquote>
+<p><code>net_inspect</code>支持cli的命令行模式，可以通过<code>net_inspect -h</code>查看帮助信息。</p>
+<p><img src="/2022/09/05/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6net-inspect%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/2.png"></p>
 <h2 id="进阶教程"><a href="#进阶教程" class="headerlink" title="进阶教程"></a>进阶教程</h2><p>上面的简单例子中还有很多地方没有涉及到，比如<code>analysis_plugin</code>的使用，<code>base_info</code>的使用，<code>output_plugin</code>的使用等等。</p>
 <p>试想一个情况，我们需要获取设备的<code>show clock</code>信息，在<code>ntc_templates_elinpf</code>中没有，怎么办？</p>
 <h3 id="调用外部textFSM模板"><a href="#调用外部textFSM模板" class="headerlink" title="调用外部textFSM模板"></a>调用外部textFSM模板</h3><p>要解决<code>ntc_templates_elinpf</code>中没有模板的问题，我们可以自己写一个本地的textFSM模板仓库，然后调用。</p>
@@ -1559,7 +1570,7 @@
 <span class="line">Switch_C | 2021-03-19 10:32:17</span>
 </code></pre></div></div>
 
-<p>输出的结果是一样的，可以看到，在<code>base_info</code>中新增了一个<code>clock</code>字段，然后只需要调用这个<code>clock</code>属性就可以了。这样的做法复用性强，后续在想要获取设备的时间的时候，只需要调用<code>clock</code>属性即可。</p>
+<p>输出的结果是一样的，可以看到，在<code>base_info</code>中新增了一个<code>clock</code>字段，然后只需要调用这个<code>clock</code>属性就可以了。这样的做法复用性强，后续再想要获取设备的时间的时候，只需要调用<code>clock</code>属性即可。</p>
 <h3 id="自定义分析信息"><a href="#自定义分析信息" class="headerlink" title="自定义分析信息"></a>自定义分析信息</h3><p>完成了数据的解析调用，下面还需要对设备进行分析，比如判断电源、风扇是否故障，cpu、memory利用率是否过高等。</p>
 <p>当<code>net_inspect</code>中没有需要的分析模块时，我们可以自定义分析模块。</p>
 <p>比如我们写一个检查OSPF邻居状态的分析模块</p>
@@ -1615,7 +1626,7 @@
 <p>编写这个需要注意：</p>
 <ol>
 <li><code>@analysis.template_key</code>中的<code>templates</code>名称需要完整包含后缀名。</li>
-<li>类方法不许要<code>self</code>这个关键字。</li>
+<li>类方法不需要<code>self</code>这个关键字。</li>
 <li>结果加入到<code>result</code>中即可，不需要返回值。</li>
 <li>整个过程不用单独设置，所有信息会直接写入<code>analysis</code>变量中。</li>
 </ol>
@@ -1631,7 +1642,7 @@
 <span class="line">        console = Console()</span>
 <span class="line"></br></span>
 <span class="line">        table = Table(title=self.args.output_params.get(</span>
-<span class="line">            <span class="hljs-string">&#x27;company&#x27;</span>), show_lines=<span class="hljs-literal">False</span>)</span>
+<span class="line">            <span class="hljs-string">&#x27;title&#x27;</span>), show_lines=<span class="hljs-literal">False</span>)</span>
 <span class="line">        table.add_column(<span class="hljs-string">&#x27;name&#x27;</span>, justify=<span class="hljs-string">&#x27;center&#x27;</span>)</span>
 <span class="line">        table.add_column(<span class="hljs-string">&#x27;ip&#x27;</span>, justify=<span class="hljs-string">&#x27;center&#x27;</span>)</span>
 <span class="line">        table.add_column(<span class="hljs-string">&#x27;model&#x27;</span>, justify=<span class="hljs-string">&#x27;center&#x27;</span>)</span>
@@ -1655,7 +1666,7 @@
 <span class="line">    net = NetInspect()</span>
 <span class="line">    net.set_plugins(input_plugin=<span class="hljs-string">&#x27;console&#x27;</span>, output_plugin=Output)</span>
 <span class="line">    cluster = net.run(<span class="hljs-string">&#x27;log&#x27;</span>, output_plugin_params=&#123;</span>
-<span class="line">                    <span class="hljs-string">&#x27;company&#x27;</span>: <span class="hljs-string">&#x27;Company Name&#x27;</span>&#125;)</span>
+<span class="line">                    <span class="hljs-string">&#x27;title&#x27;</span>: <span class="hljs-string">&#x27;设备信息&#x27;</span>&#125;)</span>
 </code></pre></div></div>
 
 <p>output:</p>
