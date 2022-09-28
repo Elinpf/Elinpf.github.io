@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>github README中添加徽章</title>
+      <link href="/2022/09/28/github-README%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%BE%BD%E7%AB%A0/"/>
+      <url>/2022/09/28/github-README%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%BE%BD%E7%AB%A0/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/2022/09/28/github-README%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%BE%BD%E7%AB%A0/1.png"></p><p><code>README.md</code>中添加徽章的方法</p><h2 id="静态标签"><a href="#静态标签" class="headerlink" title="静态标签"></a>静态标签</h2><p>大部分标签可以再<a href="https://shields.io/">shields.io</a>中找到并直接使用</p><h2 id="代码测试覆盖率标签"><a href="#代码测试覆盖率标签" class="headerlink" title="代码测试覆盖率标签"></a>代码测试覆盖率标签</h2><p>使用<a href="https://app.codecov.io/">codecov</a></p><p>注册授权后，选择仓库，将<code>TOKEN</code>复制到<code>Github</code>的<code>Secrets</code>中。</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-yaml codeBlockLines"><span class="line"><span class="hljs-attr">name:</span> <span class="hljs-string">Coverage</span> <span class="hljs-string">upload</span> <span class="hljs-string">to</span> <span class="hljs-string">Codecov</span></span><span class="line"></br></span><span class="line"><span class="hljs-attr">on:</span></span><span class="line">  <span class="hljs-attr">push:</span></span><span class="line">    <span class="hljs-attr">branches:</span></span><span class="line">      <span class="hljs-bullet">-</span> <span class="hljs-string">master</span></span><span class="line"></br></span><span class="line"><span class="hljs-attr">jobs:</span></span><span class="line">  <span class="hljs-attr">coverage:</span></span><span class="line">    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span></span><span class="line"></br></span><span class="line">    <span class="hljs-attr">steps:</span></span><span class="line">      <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v3</span></span><span class="line">        <span class="hljs-attr">with:</span></span><span class="line">          <span class="hljs-attr">fetch-depth:</span> <span class="hljs-number">0</span></span><span class="line">      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Setup</span> <span class="hljs-string">Python</span></span><span class="line">        <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-python@v4</span></span><span class="line">        <span class="hljs-attr">with:</span></span><span class="line">          <span class="hljs-attr">python-version:</span> <span class="hljs-string">&quot;3.x&quot;</span></span><span class="line">      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">Dependencies</span></span><span class="line">        <span class="hljs-attr">run:</span> <span class="hljs-string">|</span></span><span class="line"><span class="hljs-string">          python -m pip install --upgrade pip</span></span><span class="line"><span class="hljs-string">          pip install poetry</span></span><span class="line"><span class="hljs-string">          poetry install</span></span><span class="line"><span class="hljs-string"></span>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Run</span> <span class="hljs-string">Pytest</span> <span class="hljs-string">Coverage</span></span><span class="line">        <span class="hljs-attr">run:</span> <span class="hljs-string">|</span></span><span class="line"><span class="hljs-string">          poetry run python -m pytest --cov --cov-report xml</span></span><span class="line"><span class="hljs-string"></span>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Upload</span> <span class="hljs-string">coverage</span> <span class="hljs-string">to</span> <span class="hljs-string">Codecov</span></span><span class="line">        <span class="hljs-attr">uses:</span> <span class="hljs-string">codecov/codecov-action@v2</span></span><span class="line">        <span class="hljs-attr">with:</span></span><span class="line">          <span class="hljs-attr">token:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.CODECOV_TOKEN</span> <span class="hljs-string">&#125;&#125;</span></span><span class="line">          <span class="hljs-attr">file:</span> <span class="hljs-string">./coverage.xml</span></span><span class="line">          <span class="hljs-attr">flags:</span> <span class="hljs-string">unittests</span></span></code></pre></div></div><p>pull后等待action 上传 <code>coverage.xml</code>文件到<code>codecov</code>。</p><p>然后到<code>codecov</code>的<code>settings/badge</code>中选择<code>markdown</code>，复制到<code>README.md</code>中。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>网络设备数据解析自动化框架net_inspect使用教程</title>
       <link href="/2022/09/05/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6net-inspect%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"/>
       <url>/2022/09/05/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6net-inspect%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>

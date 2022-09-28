@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>vscode Debug justMyCode | Elin 的空间</title>
-  <meta name="keywords" content=" vscode ">
-  <meta name="description" content="vscode Debug justMyCode | Elin 的空间">
+  <title>github README中添加徽章 | Elin 的空间</title>
+  <meta name="keywords" content=" python ">
+  <meta name="description" content="github README中添加徽章 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="README.md中添加徽章的方法 静态标签大部分标签可以再shields.io中找到并直接使用 代码测试覆盖率标签使用codecov 注册授权后，选择仓库，将TOKEN复制到Github的Secrets中。 name: Coverage upload to Codecov  on:   push:     branches:       - master  jobs:   coverage:">
 <meta property="og:type" content="article">
@@ -1325,9 +1325,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-vscode-Debug-justMyCode" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-github-README中添加徽章" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">vscode Debug justMyCode</h1>
+        <h1 class="article-title">github README中添加徽章</h1>
     
     <div class="article-meta">
         
@@ -1347,14 +1347,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">vscode</a>
+            <a class="color2">python</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-09-28 17:24:40'>2022-03-07 10:14</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-28 17:24:40'>2022-09-28 17:16</time>
         
     </div>
     <div class="article-meta">
@@ -1376,7 +1376,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%A0%87%E7%AD%BE"><span class="toc-text">静态标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87%E6%A0%87%E7%AD%BE"><span class="toc-text">代码测试覆盖率标签</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1392,25 +1392,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在debug和pytest debug中添加 <code>justMyCode</code> 选项</p>
-<ul>
-<li>参考这个<a target="_blank" rel="noopener" href="https://github.com/microsoft/vscode-python/issues/7083">issue</a></li>
-</ul>
-<div class="codeBlockContainer"><div class="codeBlockTitle">.vscode/launch.json</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-json codeBlockLines"><span class="line">&#123;</span>
-<span class="line">    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Python: 当前文件&quot;</span>,</span>
-<span class="line">    <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;python&quot;</span>,</span>
-<span class="line">    <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,</span>
-<span class="line">    <span class="hljs-attr">&quot;program&quot;</span>: <span class="hljs-string">&quot;$&#123;file&#125;&quot;</span>,</span>
-<span class="line">    <span class="hljs-attr">&quot;console&quot;</span>: <span class="hljs-string">&quot;integratedTerminal&quot;</span>,</span>
-<span class="line marked">    <span class="hljs-attr">&quot;justMyCode&quot;</span>: <span class="hljs-literal">false</span></span>
-<span class="line">&#125;,</span>
-<span class="line marked">&#123;</span>
-<span class="line marked">    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Debug Pytest&quot;</span>,</span>
-<span class="line marked">    <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;python&quot;</span>,</span>
-<span class="line marked">    <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;test&quot;</span>,</span>
-<span class="line marked">    <span class="hljs-attr">&quot;justMyCode&quot;</span>: <span class="hljs-literal">false</span></span>
-<span class="line marked">&#125;</span>
+        <p><img src="/2022/09/28/github-README%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%BE%BD%E7%AB%A0/1.png"></p>
+<p><code>README.md</code>中添加徽章的方法</p>
+<h2 id="静态标签"><a href="#静态标签" class="headerlink" title="静态标签"></a>静态标签</h2><p>大部分标签可以再<a target="_blank" rel="noopener" href="https://shields.io/">shields.io</a>中找到并直接使用</p>
+<h2 id="代码测试覆盖率标签"><a href="#代码测试覆盖率标签" class="headerlink" title="代码测试覆盖率标签"></a>代码测试覆盖率标签</h2><p>使用<a target="_blank" rel="noopener" href="https://app.codecov.io/">codecov</a></p>
+<p>注册授权后，选择仓库，将<code>TOKEN</code>复制到<code>Github</code>的<code>Secrets</code>中。</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-yaml codeBlockLines"><span class="line"><span class="hljs-attr">name:</span> <span class="hljs-string">Coverage</span> <span class="hljs-string">upload</span> <span class="hljs-string">to</span> <span class="hljs-string">Codecov</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-attr">on:</span></span>
+<span class="line">  <span class="hljs-attr">push:</span></span>
+<span class="line">    <span class="hljs-attr">branches:</span></span>
+<span class="line">      <span class="hljs-bullet">-</span> <span class="hljs-string">master</span></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-attr">jobs:</span></span>
+<span class="line">  <span class="hljs-attr">coverage:</span></span>
+<span class="line">    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span></span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-attr">steps:</span></span>
+<span class="line">      <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v3</span></span>
+<span class="line">        <span class="hljs-attr">with:</span></span>
+<span class="line">          <span class="hljs-attr">fetch-depth:</span> <span class="hljs-number">0</span></span>
+<span class="line">      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Setup</span> <span class="hljs-string">Python</span></span>
+<span class="line">        <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-python@v4</span></span>
+<span class="line">        <span class="hljs-attr">with:</span></span>
+<span class="line">          <span class="hljs-attr">python-version:</span> <span class="hljs-string">&quot;3.x&quot;</span></span>
+<span class="line">      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">Dependencies</span></span>
+<span class="line">        <span class="hljs-attr">run:</span> <span class="hljs-string">|</span></span>
+<span class="line"><span class="hljs-string">          python -m pip install --upgrade pip</span></span>
+<span class="line"><span class="hljs-string">          pip install poetry</span></span>
+<span class="line"><span class="hljs-string">          poetry install</span></span>
+<span class="line"><span class="hljs-string"></span>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Run</span> <span class="hljs-string">Pytest</span> <span class="hljs-string">Coverage</span></span>
+<span class="line">        <span class="hljs-attr">run:</span> <span class="hljs-string">|</span></span>
+<span class="line"><span class="hljs-string">          poetry run python -m pytest --cov --cov-report xml</span></span>
+<span class="line"><span class="hljs-string"></span>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Upload</span> <span class="hljs-string">coverage</span> <span class="hljs-string">to</span> <span class="hljs-string">Codecov</span></span>
+<span class="line">        <span class="hljs-attr">uses:</span> <span class="hljs-string">codecov/codecov-action@v2</span></span>
+<span class="line">        <span class="hljs-attr">with:</span></span>
+<span class="line">          <span class="hljs-attr">token:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.CODECOV_TOKEN</span> <span class="hljs-string">&#125;&#125;</span></span>
+<span class="line">          <span class="hljs-attr">file:</span> <span class="hljs-string">./coverage.xml</span></span>
+<span class="line">          <span class="hljs-attr">flags:</span> <span class="hljs-string">unittests</span></span>
 </code></pre></div></div>
+
+<p>pull后等待action 上传 <code>coverage.xml</code>文件到<code>codecov</code>。</p>
+<p>然后到<code>codecov</code>的<code>settings/badge</code>中选择<code>markdown</code>，复制到<code>README.md</code>中。</p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
     </div>
