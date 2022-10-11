@@ -16,6 +16,14 @@ categories:
 
 大部分标签可以再[shields.io](https://shields.io/)中找到并直接使用
 
+## Github Actions 徽章
+
+- [官方参考](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge)
+
+```
+https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.svg
+```
+
 ## 代码测试覆盖率标签
 
 使用[codecov](https://app.codecov.io/)
