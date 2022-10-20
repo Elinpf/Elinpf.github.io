@@ -86,3 +86,18 @@ def test_something(caplog)
     assert caplog.messages[0] == 'This is a debug message'
     caplog.clear()
 ```
+
+或者 `unittest.mock.path` 来mock `sys.stdout`
+
+```py
+from io import StringIO
+from unittest.mock import patch
+
+def test_print():
+    expected = 'this is a message'
+
+    with path('sys.stdout', new=StringIO()) as fake_out:
+        assert fake_out.getvalue().strip() == expected
+```
+
+- [参考](https://python3-cookbook.readthedocs.io/zh_CN/latest/c14/p01_testing_output_sent_to_stdout.html)
