@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>sqlmode 学习</title>
+      <link href="/2022/10/24/sqlmodel-%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2022/10/24/sqlmodel-%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<p><code>sqlmodel</code> 是将 <code>sqlalchemy</code> 和 <code>pydantic</code> 结合起来的产物，在很多配置上与 <code>sqlalchemy</code> 一致，但是在使用上更加简单。并且做了非常好的autocomplete支持。</p><p><a href="https://github.com/tiangolo/sqlmodel">Github</a><br><a href="https://sqlmodel.tiangolo.com/">文档</a></p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">pip install pymodel</span></code></pre></div></div><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="engine-和-session-的区别"><a href="#engine-和-session-的区别" class="headerlink" title="engine 和 session 的区别"></a>engine 和 session 的区别</h3><p>engine是全局单一的，session 是每次请求都会创建一个新的。</p><blockquote><p>We would re-use the same engine in all the code, everywhere in the application (shared by all the requests). But for each request, we would create and use a new session. And once the request is done, we would close the session.</p></blockquote><h3 id="Relationship-中的-back-populates"><a href="#Relationship-中的-back-populates" class="headerlink" title="Relationship 中的 back_populates"></a>Relationship 中的 <code>back_populates</code></h3><p>意义是在commit之前，可以进行同步修改内容</p><blockquote><p><a href="https://sqlmodel.tiangolo.com/tutorial/relationship-attributes/back-populates/">解释</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> sql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>sqlalchemy 与 pydantic orm_mode</title>
       <link href="/2022/10/21/sqlalchemy-%E4%B8%8E-pydantic-orm-mode/"/>
       <url>/2022/10/21/sqlalchemy-%E4%B8%8E-pydantic-orm-mode/</url>
