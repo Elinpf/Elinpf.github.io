@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>透视关系 | Elin 的空间</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="透视关系 | Elin 的空间">
+  <title>scrapy 学习使用 | Elin 的空间</title>
+  <meta name="keywords" content=" python ">
+  <meta name="description" content="scrapy 学习使用 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="scrapy 是一个爬虫框架，首先了解这个框架的基本结构，然后针对实际使用进行学习  官方文档 []  框架结构 Scrapy Engine  引擎负责控制数据流在系统中所有组件中流动，并在相应动作发生时触发事件。 详细内容查看下面的数据流(Data Flow)部分。  相当于大脑 调度器(Scheduler)  调度器从引擎接受request并将他们入队，以便之后引擎请求他们时提供给引擎。  初">
 <meta property="og:type" content="article">
@@ -1373,9 +1373,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-透视关系" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-scrapy-学习使用" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">透视关系</h1>
+        <h1 class="article-title">scrapy 学习使用</h1>
     
     <div class="article-meta">
         
@@ -1385,15 +1385,24 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="绘画">绘画</a>
+            <a  data-rel="编程">编程</a> > 
+            
+            <a  data-rel="编程&lt;---&gt;python">python</a>
             
         </span>
         
         
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">python</a>
+            
+        </span>
+        
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-11-08 15:56:37'>2021-07-17 10:27</time>
+            发布时间 : <time class="date" title='最后更新: 2022-11-08 15:56:37'>2022-10-28 16:25</time>
         
     </div>
     <div class="article-meta">
@@ -1415,7 +1424,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E5%B9%B3%E7%BA%BF"><span class="toc-text">视平线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%BB%E9%9D%A2"><span class="toc-text">画面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E5%AE%9A%E6%B7%B1%E5%BA%A6"><span class="toc-text">测定深度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%9C%E9%9D%A2"><span class="toc-text">斜面</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84"><span class="toc-text">框架结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE"><span class="toc-text">创建爬虫项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%E7%BC%96%E5%86%99%E7%88%AC%E8%99%AB"><span class="toc-text">案例编写爬虫</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-output-%E6%A0%BC%E5%BC%8F%E4%B8%BA-utf-8"><span class="toc-text">设置 output 格式为 utf-8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%9B%BE%E7%89%87%E5%92%8C%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E4%B8%8B%E8%BD%BD"><span class="toc-text">对图片和文件进行下载</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1431,25 +1440,191 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>关于透视的教学，参考了<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV11t411m7Fk">这个视频</a>。</p>
-<p>透视中最重要的一点是确定<code>观察点</code>，有了观察点，就有了<code>视平线</code>x轴与<code>垂直线</code>y轴。</p>
-<p><img src="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/1.png"></p>
-<h2 id="视平线"><a href="#视平线" class="headerlink" title="视平线"></a>视平线</h2><p>所有平行于地面的线最终都会汇聚到视平线上 </p>
-<h2 id="画面"><a href="#画面" class="headerlink" title="画面"></a>画面</h2><p>只要是物体的线不与画面平行，那么就会发生汇聚</p>
-<h2 id="测定深度"><a href="#测定深度" class="headerlink" title="测定深度"></a>测定深度</h2><p>3种方法:</p>
+        <p><code>scrapy</code> 是一个爬虫框架，首先了解这个框架的基本结构，然后针对实际使用进行学习</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/overview.html">官方文档</a></li>
+<li>[]</li>
+</ul>
+<h2 id="框架结构"><a href="#框架结构" class="headerlink" title="框架结构"></a>框架结构</h2><p><img src="/2022/10/28/scrapy-%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/1.jpg"></p>
+<p><strong>Scrapy Engine</strong></p>
+<blockquote>
+<p>引擎负责控制数据流在系统中所有组件中流动，并在相应动作发生时触发事件。 详细内容查看下面的数据流(Data Flow)部分。</p>
+</blockquote>
+<p>相当于大脑</p>
+<p><strong>调度器(Scheduler)</strong></p>
+<blockquote>
+<p>调度器从引擎接受request并将他们入队，以便之后引擎请求他们时提供给引擎。</p>
+</blockquote>
+<p>初始的爬取URL和后续在页面中获取的待爬取的URL将放入调度器中，等待爬取。同时调度器会自动去除重复的URL（如果特定的URL不需要去重也可以通过设置实现，如post请求的URL）</p>
+<p><strong>下载器(Downloader)</strong></p>
+<blockquote>
+<p>下载器负责获取页面数据并提供给引擎，而后提供给spider。</p>
+</blockquote>
+<p><strong>Spiders</strong></p>
+<blockquote>
+<p>Spider是Scrapy用户编写用于分析response并提取item(即获取到的item)或额外跟进的URL的类。 每个spider负责处理一个特定(或一些)网站。</p>
+</blockquote>
+<p><strong>Item Pipeline</strong></p>
+<blockquote>
+<p>Item Pipeline负责处理被spider提取出来的item。典型的处理有清理、 验证及持久化(例如存取到数据库中)。</p>
+</blockquote>
+<p><strong>Spider中间件(Spider middlewares)</strong></p>
+<blockquote>
+<p>Spider中间件是在引擎及Spider之间的特定钩子(specific hook)，处理spider的输入(response)和输出(items及requests)。 其提供了一个简便的机制，通过插入自定义代码来扩展Scrapy功能。</p>
+</blockquote>
+<p><strong>下载器中间件(Downloader middlewares)</strong></p>
+<blockquote>
+<p>下载器中间件是在引擎及下载器之间的特定钩子(specific hook)，处理Downloader传递给引擎的response。 其提供了一个简便的机制，通过插入自定义代码来扩展Scrapy功能。</p>
+</blockquote>
+<p>数据流：</p>
 <ol>
-<li><p><img src="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/2.png"></p>
+<li><p>引擎打开一个网站(open a domain)，找到处理该网站的Spider并向该spider请求第一个要爬取的URL(s)。</p>
 </li>
-<li><p><img src="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/3.png"></p>
+<li><p>引擎从Spider中获取到第一个要爬取的URL并在调度器(Scheduler)以Request调度。</p>
 </li>
-<li><p><img src="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/4.png"></p>
+<li><p>引擎向调度器请求下一个要爬取的URL。</p>
 </li>
-<li><p><img src="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/5.png"></p>
+<li><p>调度器返回下一个要爬取的URL给引擎，引擎将URL通过下载中间件(请求(request)方向)转发给下载器(Downloader)。</p>
+</li>
+<li><p>一旦页面下载完毕，下载器生成一个该页面的Response，并将其通过下载中间件(返回(response)方向)发送给引擎。</p>
+</li>
+<li><p>引擎从下载器中接收到Response并通过Spider中间件(输入方向)发送给Spider处理。</p>
+</li>
+<li><p>Spider处理Response并返回爬取到的Item及(跟进的)新的Request给引擎。</p>
+</li>
+<li><p>引擎将(Spider返回的)爬取到的Item给Item Pipeline，将(Spider返回的)Request给调度器。</p>
+</li>
+<li><p>(从第二步)重复直到调度器中没有更多地request，引擎关闭该网站。</p>
 </li>
 </ol>
-<p>原理都是利用了平行线都是同一个消失点和等比三角形。</p>
-<h2 id="斜面"><a href="#斜面" class="headerlink" title="斜面"></a>斜面</h2><p>有同一个垂直消失线</p>
-<p><img src="/2021/07/17/%E9%80%8F%E8%A7%86%E5%85%B3%E7%B3%BB/6.png"></p>
+<h2 id="创建爬虫项目"><a href="#创建爬虫项目" class="headerlink" title="创建爬虫项目"></a>创建爬虫项目</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-ebnf codeBlockLines"><span class="line"><span class="hljs-attribute">scrapy startproject scrapyspider</span></span>
+</code></pre></div></div>
+
+<p>会创建以下目录和文件：</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-vim codeBlockLines"><span class="line">scrapyspider/</span>
+<span class="line">    scrapy.cfg</span>
+<span class="line">    scrapyspider/</span>
+<span class="line">        __init__.<span class="hljs-keyword">py</span></span>
+<span class="line">        <span class="hljs-built_in">items</span>.<span class="hljs-keyword">py</span></span>
+<span class="line">        pipelines.<span class="hljs-keyword">py</span></span>
+<span class="line">        settings.<span class="hljs-keyword">py</span></span>
+<span class="line">        spiders/</span>
+<span class="line">            __init__.<span class="hljs-keyword">py</span></span>
+</code></pre></div></div>
+
+<ul>
+<li>scrapy.cfg: 项目的配置文件。</li>
+<li>scrapyspider/: 该项目的python模块。之后您将在此加入代码。</li>
+<li>scrapyspider/items.py: 项目中的item文件。</li>
+<li>scrapyspider/pipelines.py: 项目中的pipelines文件。</li>
+<li>scrapyspider/settings.py: 项目的设置文件。</li>
+<li>scrapyspider/spiders/: 放置spider代码的目录。</li>
+</ul>
+<h2 id="案例编写爬虫"><a href="#案例编写爬虫" class="headerlink" title="案例编写爬虫"></a>案例编写爬虫</h2><p>执行爬虫其实是执行爬虫项目里面的Spider项目，所以首先要创建一个Spider项目。</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-mipsasm codeBlockLines"><span class="line"><span class="hljs-keyword">scrapy </span>genspider <span class="hljs-keyword">bule_item </span>www.tenholes.com</span>
+</code></pre></div></div>
+
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> scrapy</span>
+<span class="line"><span class="hljs-keyword">from</span> scrapy.http <span class="hljs-keyword">import</span> Request</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-keyword">from</span> ..items <span class="hljs-keyword">import</span> BluesItem</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BluesItemSpider</span>(<span class="hljs-params">scrapy.Spider</span>):</span></span>
+<span class="line">    name = <span class="hljs-string">&#x27;blues_item&#x27;</span></span>
+<span class="line">    allowed_domains = [<span class="hljs-string">&#x27;www.tenholes.com&#x27;</span>]</span>
+<span class="line">    start_urls = [</span>
+<span class="line">        <span class="hljs-string">&#x27;http://www.tenholes.com/tabs/catelist?id=1&amp;page=&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(i)</span>
+<span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">29</span>)</span>
+<span class="line">    ]</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">start_requests</span>(<span class="hljs-params">self</span>):</span></span>
+<span class="line">        cookies = self.get_cookies()</span>
+<span class="line">        <span class="hljs-keyword">for</span> url <span class="hljs-keyword">in</span> self.start_urls:</span>
+<span class="line">            <span class="hljs-keyword">yield</span> Request(url, cookies=cookies, dont_filter=<span class="hljs-literal">True</span>)</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse</span>(<span class="hljs-params">self, response</span>):</span></span>
+<span class="line"></br></span>
+<span class="line">        content = response.xpath(<span class="hljs-string">&#x27;//div[@class=&quot;ms-list&quot;]/a&#x27;</span>)</span>
+<span class="line"></br></span>
+<span class="line">        <span class="hljs-keyword">for</span> each <span class="hljs-keyword">in</span> content:</span>
+<span class="line">            item = BluesItem()</span>
+<span class="line"></br></span>
+<span class="line">            item[<span class="hljs-string">&#x27;name&#x27;</span>] = each.xpath(</span>
+<span class="line">                <span class="hljs-string">&#x27;./p[@class=&quot;ms-tit ellipsis&quot;]/text()&#x27;</span></span>
+<span class="line">            ).extract_first()</span>
+<span class="line">            item[<span class="hljs-string">&#x27;music_url&#x27;</span>] = each.xpath(<span class="hljs-string">&#x27;./@href&#x27;</span>).extract_first()</span>
+<span class="line"></br></span>
+<span class="line">            <span class="hljs-keyword">yield</span> (item)</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_cookies</span>(<span class="hljs-params">self</span>) -&gt; <span class="hljs-built_in">dict</span>:</span></span>
+<span class="line">        cookies_str = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;cookie&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>).read().strip()</span>
+<span class="line">        <span class="hljs-comment"># 将字符串转换为字典</span></span>
+<span class="line">        cookies = &#123;&#125;</span>
+<span class="line">        <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> cookies_str.split(<span class="hljs-string">&#x27;;&#x27;</span>):</span>
+<span class="line">            name, value = line.strip().split(<span class="hljs-string">&#x27;=&#x27;</span>, <span class="hljs-number">1</span>)</span>
+<span class="line">            cookies[name] = value</span>
+<span class="line"></br></span>
+<span class="line">        <span class="hljs-keyword">return</span> cookies</span>
+</code></pre></div></div>
+
+<p>在parse中也可用使用<code>yield scrapy.Request</code>来请求下一个页面。</p>
+<p><code>Request</code>中还可以定义<code>callback</code>来指定回调函数，<code>meta</code>来传递参数。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://codeantenna.com/a/zcHXM3XuZa">一个类似的案例</a></li>
+</ul>
+<h3 id="设置-output-格式为-utf-8"><a href="#设置-output-格式为-utf-8" class="headerlink" title="设置 output 格式为 utf-8"></a>设置 output 格式为 utf-8</h3><div class="codeBlockContainer"><div class="codeBlockTitle">settings.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">FEED_EXPORT_ENCODING = <span class="hljs-string">&#x27;utf-8&#x27;</span></span>
+</code></pre></div></div>
+
+<h3 id="对图片和文件进行下载"><a href="#对图片和文件进行下载" class="headerlink" title="对图片和文件进行下载"></a>对图片和文件进行下载</h3><p>在使用测试的时候，发现<code>MediaPipeline</code>无法进行指定<code>file_path</code>，导致无法下载后无法保存。只能用<code>FilesPipeline</code>和<code>ImagesPipeline</code></p>
+<p>首先要在<code>settings.py</code>中定义两个东西：</p>
+<ol>
+<li><code>FILES_STORE</code>或者<code>IMAGES_STORE</code>路径</li>
+<li><code>ITEM_PIPELINES</code> 需要使用Pipeline</li>
+</ol>
+<div class="codeBlockContainer"><div class="codeBlockTitle">settings.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">ITEM_PIPELINES = &#123;</span>
+<span class="line">    <span class="hljs-string">&#x27;blues.pipelines.SongImageDwonloadPipeline&#x27;</span>: <span class="hljs-number">300</span>,</span>
+<span class="line">    <span class="hljs-string">&#x27;blues.pipelines.SongSfMp3DownloadPipline&#x27;</span>: <span class="hljs-number">301</span>,</span>
+<span class="line">&#125;</span>
+<span class="line"></br></span>
+<span class="line">IMAGES_STORE = <span class="hljs-string">&#x27;download_file&#x27;</span></span>
+<span class="line">FILES_STORE = <span class="hljs-string">&#x27;download_file&#x27;</span></span>
+</code></pre></div></div>
+
+<p>然后再在<code>pipelines.py</code>文件中定义需要下载的内容。</p>
+<div class="codeBlockContainer"><div class="codeBlockTitle">pipelines.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">from</span> scrapy.pipelines.images <span class="hljs-keyword">import</span> ImagesPipeline</span>
+<span class="line"><span class="hljs-keyword">from</span> scrapy.pipelines.files <span class="hljs-keyword">import</span> FilesPipeline</span>
+<span class="line"><span class="hljs-keyword">from</span> scrapy <span class="hljs-keyword">import</span> Request</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-keyword">from</span> .func <span class="hljs-keyword">import</span> cookies</span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SongImageDwonloadPipeline</span>(<span class="hljs-params">ImagesPipeline</span>):</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_media_requests</span>(<span class="hljs-params">self, item, info</span>):</span></span>
+<span class="line">        <span class="hljs-comment"># meta里面的数据是从spider获取，然后通过meta传递给下面方法：file_path</span></span>
+<span class="line">        <span class="hljs-keyword">yield</span> Request(</span>
+<span class="line">            item[<span class="hljs-string">&#x27;song_image_url&#x27;</span>], meta=&#123;<span class="hljs-string">&#x27;name&#x27;</span>: item[<span class="hljs-string">&#x27;name&#x27;</span>]&#125;, cookies=cookies</span>
+<span class="line">        )</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-comment"># 重命名，若不重写这函数，图片名为哈希，就是一串乱七八糟的名字</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">file_path</span>(<span class="hljs-params">self, request, response=<span class="hljs-literal">None</span>, info=<span class="hljs-literal">None</span>, *, item=<span class="hljs-literal">None</span></span>):</span></span>
+<span class="line">        name = request.meta[<span class="hljs-string">&#x27;name&#x27;</span>]</span>
+<span class="line"></br></span>
+<span class="line">        <span class="hljs-keyword">return</span> name + <span class="hljs-string">&#x27;/song.jpg&#x27;</span></span>
+<span class="line"></br></span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SongSfMp3DownloadPipline</span>(<span class="hljs-params">FilesPipeline</span>):</span></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_media_requests</span>(<span class="hljs-params">self, item, info</span>):</span></span>
+<span class="line">        <span class="hljs-keyword">yield</span> Request(</span>
+<span class="line">            item[<span class="hljs-string">&#x27;song_mp3_sf_url&#x27;</span>], meta=&#123;<span class="hljs-string">&#x27;name&#x27;</span>: item[<span class="hljs-string">&#x27;name&#x27;</span>]&#125;, cookies=cookies</span>
+<span class="line">        )</span>
+<span class="line"></br></span>
+<span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">file_path</span>(<span class="hljs-params">self, request, response=<span class="hljs-literal">None</span>, info=<span class="hljs-literal">None</span>, *, item=<span class="hljs-literal">None</span></span>):</span></span>
+<span class="line">        name = request.meta[<span class="hljs-string">&#x27;name&#x27;</span>]</span>
+<span class="line">        <span class="hljs-keyword">return</span> name + <span class="hljs-string">&#x27;/示范.mp3&#x27;</span></span>
+</code></pre></div></div>
+
+
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>

@@ -6,19 +6,20 @@
   <meta name="keywords" content=" python , sql ">
   <meta name="description" content="sqlmode 学习 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="sqlmodel 是将 sqlalchemy 和 pydantic 结合起来的产物，在很多配置上与 sqlalchemy 一致，但是在使用上更加简单。并且做了非常好的autocomplete支持。 Github文档 安装pip install pymodel   介绍engine 和 session 的区别engine是全局单一的，session 是每次请求都会创建一个新的。  We would">
+<meta name="description" content="scrapy 是一个爬虫框架，首先了解这个框架的基本结构，然后针对实际使用进行学习  官方文档 []  框架结构 Scrapy Engine  引擎负责控制数据流在系统中所有组件中流动，并在相应动作发生时触发事件。 详细内容查看下面的数据流(Data Flow)部分。  相当于大脑 调度器(Scheduler)  调度器从引擎接受request并将他们入队，以便之后引擎请求他们时提供给引擎。  初">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sqlmode 学习">
-<meta property="og:url" content="http://example.com/2022/10/24/sqlmodel-%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:title" content="scrapy 学习使用">
+<meta property="og:url" content="http://example.com/2022/10/28/scrapy-%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="sqlmodel 是将 sqlalchemy 和 pydantic 结合起来的产物，在很多配置上与 sqlalchemy 一致，但是在使用上更加简单。并且做了非常好的autocomplete支持。 Github文档 安装pip install pymodel   介绍engine 和 session 的区别engine是全局单一的，session 是每次请求都会创建一个新的。  We would">
+<meta property="og:description" content="scrapy 是一个爬虫框架，首先了解这个框架的基本结构，然后针对实际使用进行学习  官方文档 []  框架结构 Scrapy Engine  引擎负责控制数据流在系统中所有组件中流动，并在相应动作发生时触发事件。 详细内容查看下面的数据流(Data Flow)部分。  相当于大脑 调度器(Scheduler)  调度器从引擎接受request并将他们入队，以便之后引擎请求他们时提供给引擎。  初">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-24T01:49:14.000Z">
-<meta property="article:modified_time" content="2022-10-24T09:34:13.577Z">
+<meta property="og:image" content="http://example.com/2022/10/28/scrapy-%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/1.jpg">
+<meta property="article:published_time" content="2022-10-28T08:25:15.000Z">
+<meta property="article:modified_time" content="2022-11-08T07:56:37.438Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="python">
-<meta property="article:tag" content="sql">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/10/28/scrapy-%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/1.jpg">
 
 
 <link rel="icon" href="https://z3.ax1x.com/2021/06/23/Rnz2UP.png">
@@ -92,7 +93,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(102)</small>
+                <small>(103)</small>
             
         </div>
     </li>
@@ -104,7 +105,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         编程
-                        <small>(43)</small>
+                        <small>(44)</small>
                         
                     </div>
                     
@@ -127,7 +128,7 @@
                                         
                                         python
                                         
-                                            <small>(37
+                                            <small>(38
                                                 )</small>
                                         
                                     </div>
@@ -365,7 +366,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="102">
+<input type="hidden" id="yelog_site_posts_number" value="103">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -568,6 +569,14 @@
            data-author="" >
             <span class="post-title" title="绘画网站推荐">绘画网站推荐</span>
             <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
+        </a>
+        
+        <a  class="全部文章 编程 python "
+           href="/2022/10/28/scrapy-%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="scrapy 学习使用">scrapy 学习使用</span>
+            <span class="post-date" title="2022-10-28 16:25:15">2022/10/28</span>
         </a>
         
         <a  class="全部文章 编程 python "
@@ -1395,7 +1404,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-10-24 17:34:13'>2022-10-24 09:49</time>
+            发布时间 : <time class="date" title='最后更新: 2022-11-08 15:56:37'>2022-10-24 09:49</time>
         
     </div>
     <div class="article-meta">
@@ -1417,7 +1426,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#engine-%E5%92%8C-session-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">engine 和 session 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Relationship-%E4%B8%AD%E7%9A%84-back-populates"><span class="toc-text">Relationship 中的 back_populates</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#engine-%E5%92%8C-session-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">engine 和 session 的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%AF%B9%E4%B8%80-%E4%B8%80%E5%AF%B9%E5%A4%9A"><span class="toc-text">多对一 一对多</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Relationship-%E4%B8%AD%E7%9A%84-back-populates"><span class="toc-text">Relationship 中的 back_populates</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%AF%B9%E5%A4%9A"><span class="toc-text">多对多</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E8%A1%A8%E5%8F%AA%E6%9C%89%E4%B8%A4%E4%B8%AA%E5%AD%97%E6%AE%B5"><span class="toc-text">中间表只有两个字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E8%A1%A8%E6%9C%89%E9%A2%9D%E5%A4%96%E7%9A%84%E5%AD%97%E6%AE%B5"><span class="toc-text">中间表有额外的字段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-text">文件结构</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1442,10 +1451,28 @@
 <blockquote>
 <p>We would re-use the same engine in all the code, everywhere in the application (shared by all the requests). But for each request, we would create and use a new session. And once the request is done, we would close the session.</p>
 </blockquote>
-<h3 id="Relationship-中的-back-populates"><a href="#Relationship-中的-back-populates" class="headerlink" title="Relationship 中的 back_populates"></a>Relationship 中的 <code>back_populates</code></h3><p>意义是在commit之前，可以进行同步修改内容</p>
+<h2 id="多对一-一对多"><a href="#多对一-一对多" class="headerlink" title="多对一 一对多"></a>多对一 一对多</h2><h3 id="Relationship-中的-back-populates"><a href="#Relationship-中的-back-populates" class="headerlink" title="Relationship 中的 back_populates"></a>Relationship 中的 <code>back_populates</code></h3><p>意义是在commit之前，可以进行同步修改内容</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://sqlmodel.tiangolo.com/tutorial/relationship-attributes/back-populates/">解释</a></p>
 </blockquote>
+<p>记忆技巧：</p>
+<p><code>back_populates</code>参数总是与自身<code>Model</code>相关</p>
+<blockquote>
+<p>A mental trick you can use to remember is that the string in back_populates is always about the current model class you are editing. 🤓</p>
+</blockquote>
+<h2 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h2><h3 id="中间表只有两个字段"><a href="#中间表只有两个字段" class="headerlink" title="中间表只有两个字段"></a>中间表只有两个字段</h3><p>多对多的要点是建立一个中间表，然后在中间表中建立两个外键。（不需要单独一列作为 primary_key）</p>
+<blockquote>
+<p>A primary key is a way to uniquely identify a particular row in a single table. But it doesn’t have to be a single column.<br>A primary key can be a group of the columns in a table, which combined are unique in this table.</p>
+</blockquote>
+<h3 id="中间表有额外的字段"><a href="#中间表有额外的字段" class="headerlink" title="中间表有额外的字段"></a>中间表有额外的字段</h3><h2 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h2><p>为了防止循环引入，建议的文件结构</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">├── project</span>
+<span class="line">    ├── __init__.py</span>
+<span class="line">    ├── app.py</span>
+<span class="line">    ├── database.py</span>
+<span class="line">    └── models.py</span>
+</code></pre></div></div>
+
+<p><code>models.py</code>存放所有的SQL模型，<code>database.py</code>存放所有的engine</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
