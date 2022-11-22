@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>kali docker apt gpg 验证失败 | Elin 的空间</title>
-  <meta name="keywords" content=" docker-kali ">
-  <meta name="description" content="kali docker apt gpg 验证失败 | Elin 的空间">
+  <title>blender建模技巧 | Elin 的空间</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="blender建模技巧 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="scrapy 是一个爬虫框架，首先了解这个框架的基本结构，然后针对实际使用进行学习  官方文档 []  框架结构 Scrapy Engine  引擎负责控制数据流在系统中所有组件中流动，并在相应动作发生时触发事件。 详细内容查看下面的数据流(Data Flow)部分。  相当于大脑 调度器(Scheduler)  调度器从引擎接受request并将他们入队，以便之后引擎请求他们时提供给引擎。  初">
 <meta property="og:type" content="article">
@@ -1381,36 +1381,19 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-kali-docker-apt-gpg-验证失败" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-blender建模技巧" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">kali docker apt gpg 验证失败</h1>
+        <h1 class="article-title">blender建模技巧</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="系统">系统</a> > 
-            
-            <a  data-rel="系统&lt;---&gt;linux">linux</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color2">docker-kali</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-11-22 11:30:37'>2022-02-18 09:59</time>
+            发布时间 : <time class="date" title='最后更新: 2022-11-22 11:30:37'>2022-09-25 09:06</time>
         
     </div>
     <div class="article-meta">
@@ -1432,7 +1415,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF"><span class="toc-text">错误信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%9D%E8%AF%951"><span class="toc-text">尝试1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%9D%E8%AF%952"><span class="toc-text">尝试2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E6%97%A0%E5%A5%88%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-text">最终无奈的选择</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Select"><span class="toc-text">Select</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E6%A0%BC"><span class="toc-text">网格</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1448,41 +1431,172 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-stata codeBlockLines"><span class="line">root@28593cafb270:/# apt <span class="hljs-keyword">update</span></span>
-<span class="line">Get:1 http:<span class="hljs-comment">//mirrors.neusoft.edu.cn/kali kali-rolling InRelease [30.6 kB]</span></span>
-<span class="line"><span class="hljs-keyword">Err</span>:1 http:<span class="hljs-comment">//mirrors.neusoft.edu.cn/kali kali-rolling InRelease</span></span>
-<span class="line">  The following signatures couldn&#x27;t be verified because the public key is not available: NO_PUBKEY ED444FF07D8D0BF6</span>
-<span class="line">Reading package lists... Done</span>
-<span class="line">W: http:<span class="hljs-comment">//http.kali.org/kali/dists/kali-rolling/InRelease: The key(s) in the keyring /etc/apt/trusted.gpg.d/debian-archive-bullseye-automatic.gpg are ignored as the file is not readable by user &#x27;_apt&#x27; executing apt-key.</span></span>
-<span class="line">...</span>
-<span class="line">W: GPG <span class="hljs-keyword">error</span>: http:<span class="hljs-comment">//mirrors.neusoft.edu.cn/kali kali-rolling InRelease: The following signatures couldn&#x27;t be verified because the public key is not available: NO_PUBKEY ED444FF07D8D0BF6</span></span>
-<span class="line"><span class="hljs-keyword">E</span>: The repository &#x27;http:<span class="hljs-comment">//http.kali.org/kali kali-rolling InRelease&#x27; is not signed.</span></span>
-<span class="line"><span class="hljs-keyword">N</span>: Updating from such a repository can&#x27;t be done securely, and is therefore disabled <span class="hljs-keyword">by</span> default.</span>
-<span class="line"><span class="hljs-keyword">N</span>: See apt-secure(8) manpage <span class="hljs-keyword">for</span> repository creation and user configuration details.</span>
-</code></pre></div></div>
-
-<h2 id="尝试1"><a href="#尝试1" class="headerlink" title="尝试1"></a>尝试1</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys ED444FF07D8D0BF6</span>
-</code></pre></div></div>
-
-<p>但是新docker没有安装<code>gnupg</code>会报<code>E: gnupg, gnupg2 and gnupg1 do not seem to be installed, but one of them is required for this operation</code>错误。</p>
-<p>要想安装<code>gnupg</code>则需要更新apt, 进入死循环</p>
-<h2 id="尝试2"><a href="#尝试2" class="headerlink" title="尝试2"></a>尝试2</h2><p>强行获取密钥然后安装</p>
-<p>方法是下载最新的<code>kali-archive-keyring</code>，由于无法使用apt，所以手动下载。<br>最新的到<code>http://http.kali.org/pool/main/k/kali-archive-keyring</code>查看</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">wget http://http.kali.org/pool/main/k/kali-archive-keyring/kali-archive-keyring_2022.1_all.deb</span>
-<span class="line">apt install ./kali-archive-keyring_2022.1_all.deb</span>
-</code></pre></div></div>
-
-<p>由于docker-kali没有wget，只能在主机下载好后挂载到docker-kali上安装。</p>
-<p>但其实官方的keyring已经是最新的了，这个尝试是无效的。</p>
-<h2 id="最终无奈的选择"><a href="#最终无奈的选择" class="headerlink" title="最终无奈的选择"></a>最终无奈的选择</h2><p>因为原因是不能验证，那么就忽略验证就可以了</p>
-<ul>
-<li>参考的是<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/74345/how-do-i-bypass-ignore-the-gpg-signature-checks-of-apt">这一篇讨论</a></li>
+        <ul>
+<li>以下参考视频来源<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1dk4y127ta/?spm_id_from=333.999.0.0&vd_source=1a94b4cd37e84a7ae7d6667c6725e380">100个建模技巧</a></li>
 </ul>
-<p>创建<code>/etc/apt/apt.conf.d/99allow_unauth</code>文件并将<code>gpg-pubkey</code>设置为忽略</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;APT &#123; Get &#123; AllowUnauthenticated &quot;1&quot;; &#125;; &#125;; Acquire &#123; AllowInsecureRepositories &quot;1&quot;; AllowDowngradeToInsecureRepositories &quot;1&quot;; &#125;;&#x27;</span> &gt; /etc/apt/apt.conf.d/99allow_unauth</span>
-</code></pre></div></div>
-
-<p>此时就可以正常使用了，只不过会有<code>Warning</code>，这也是没办法的一个办法。</p>
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>从顶点创建边/面</td>
+<td><code>f</code></td>
+</tr>
+<tr>
+<td>链接两个点</td>
+<td><code>j</code></td>
+</tr>
+<tr>
+<td>物体下应用</td>
+<td><code>Ctrl + A</code></td>
+</tr>
+<tr>
+<td>父级目标</td>
+<td><code>Ctrl + P</code></td>
+</tr>
+<tr>
+<td>镜像物体</td>
+<td><code>Ctrl + M</code> XYZ</td>
+</tr>
+<tr>
+<td>合并物体</td>
+<td><code>Ctrl + J</code></td>
+</tr>
+<tr>
+<td>只显示选中部分</td>
+<td><code>Alt + B</code></td>
+</tr>
+<tr>
+<td>四视图</td>
+<td><code>Ctrl + Alt + Q</code></td>
+</tr>
+<tr>
+<td>重显上个菜单</td>
+<td><code>F9</code></td>
+</tr>
+<tr>
+<td>批量命名</td>
+<td><code>Ctrl + F2</code></td>
+</tr>
+</tbody></table>
+<h2 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h2><table>
+<thead>
+<tr>
+<th>描述</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>增加减少选取</td>
+<td><code>Ctrl + (+) / (-)</code></td>
+</tr>
+<tr>
+<td>选择有相链接的面</td>
+<td><code>L</code></td>
+</tr>
+<tr>
+<td>反选</td>
+<td><code>Ctrl + I</code></td>
+</tr>
+<tr>
+<td>最短路径</td>
+<td><code>Ctrl + Shift + 左键</code></td>
+</tr>
+<tr>
+<td>选择相似</td>
+<td><code>Shift + G</code></td>
+</tr>
+<tr>
+<td>溶并边</td>
+<td><code>Ctrl + X</code></td>
+</tr>
+</tbody></table>
+<p>间隔式选择，可以用来做齿轮什么的</p>
+<h2 id="网格"><a href="#网格" class="headerlink" title="网格"></a>网格</h2><table>
+<thead>
+<tr>
+<th>描述</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>法向缩放(改变半径)</td>
+<td><code>Alt + S</code></td>
+</tr>
+<tr>
+<td>倒角</td>
+<td><code>Ctrl + B</code></td>
+</tr>
+<tr>
+<td>编辑模式 面菜单</td>
+<td><code>Ctrl + F</code></td>
+</tr>
+<tr>
+<td>编辑模式 边菜单</td>
+<td><code>Ctrl + E</code></td>
+</tr>
+<tr>
+<td>重新计算法线</td>
+<td><code>Shift + N</code></td>
+</tr>
+<tr>
+<td>偏移边线并滑行</td>
+<td><code>Ctrl + Shift + R</code></td>
+</tr>
+<tr>
+<td>复制软对像</td>
+<td><code>Alt + D</code></td>
+</tr>
+<tr>
+<td>关联菜单</td>
+<td><code>Ctrl + L</code></td>
+</tr>
+<tr>
+<td>快速收藏夹</td>
+<td><code>q</code></td>
+</tr>
+<tr>
+<td>重置蒙皮尺寸</td>
+<td><code>Ctrl + A</code></td>
+</tr>
+<tr>
+<td>添加镜像修改器</td>
+<td><code>Ctrl + M</code></td>
+</tr>
+<tr>
+<td>选择相连元素</td>
+<td><code>L</code></td>
+</tr>
+</tbody></table>
+<p>投影切割， 编辑模式下，<code>Ctrl</code>选中另外一个对像，在网格中选择投影切割。</p>
+<p>桥接循环边，可以方便链接两个物体，或者挖洞。</p>
+<p>平滑着色，法向自动光滑后，可以<code>边菜单</code> 标记锐边。</p>
+<p>想要折角，<code>偏移边线并滑行</code>，然后<code>Alt + S</code> 法向缩放即可。</p>
+<p>想在斜面上移动，将坐标系改为<strong>法向</strong>，然后轴心点改为<strong>活动元素</strong> (视频P1，45：50)</p>
+<p><code>Shfit + D</code> 除了复制还有移动，所以使用<code>Shfit + R</code>可以重复复制加移动这一过程，很适合做重复设计。</p>
+<p>想要吸附到表面： <strong>吸附至面 + 旋转对其目标 + 项目的单独元素</strong></p>
+<p>复制多个对像，然后<code>Ctrl + L</code> 关联菜单, <strong>关联物体数据</strong>,可以把多个对像关联起来，一起修改。</p>
+<p>如果物体是斜的，希望放到水平的原点进行修改，可以<code>Alt+D</code>关联复制出来，然后<code>Alt+R</code>取消旋转，<code>Alt+G</code>取消移动，这这个复制体上修改，完成后删除即可。</p>
+<p>还有一种复制的方法，就是作为集合，创建集合实例。</p>
+<p>想要随机变化，选中需要的，<strong>物体-&gt;变换-&gt;随机变换</strong></p>
+<p>想要将一个物体的位置，旋转信息复制到另外的物体：选中需要的，<strong>N(条目)-&gt; 对需要的数值右键 -&gt; 全部复制到选中项</strong> (视频P2 14:20)</p>
+<p>多选时，按住<code>Alt</code>再修改属性值，可以同时修改多选的对像。</p>
+<p>添加边到顶点组<code>Ctrl+G</code>里面，然后添加多个倒角修改器，使用顶点组进行精细修改</p>
+<p>如何让倒角折痕更加漂亮（视频P2 25:00）</p>
+<p>镜像修改器，如果已经好了的东西需要镜像修改，使用镜像修改器后，把<strong>切分</strong>也同样轴勾选上。</p>
+<p>在物体模式下，选择右上角选项，可以修改原点，等信息。</p>
+<p><strong>数组修改器</strong>（视频P2 32:15)</p>
+<p>可以通过<strong>数组+简易变形</strong>Z轴来达到画个圆的效果，并进行快速修改。最后用焊接器把连接处合并掉。</p>
+<p>通过<strong>数组（物体偏移）+空物体（纯轴）</strong>来实现环绕效果</p>
+<p><strong>数组（适配曲线）+曲线</strong>，可以沿着曲线自动适配。（视频P2 43：00）</p>
+<p>创建球体最好通过立方体来创建，使用<strong>表面细分 + 铸型</strong>实现，或者简单的时候extra插件的圆形立方体，选择<code>Quadsphere</code>预设即可。</p>
+<p>创建对称的管子： 线段，<strong>镜像+表面细分+蒙皮+表面细分</strong></p>
+<p>使用<code>多级精度</code>修改器，增加细分后，再进行雕刻，可以随时取消。</p>
+<p>将两个物体动态链接起来（视频P2 49：15），方法是选中需要连接物体的循环底面点，创建缩裹修改器，改为投影、Z轴。并选择目标和顶点组。</p>
+<p>快速创建线缆的方法（视频P2 59：16），创建一个曲线，修改曲线的几何数据，倒角深度加大。然后切换到编辑模式，用自由线工具直接画。 想要附着表面，在活动工具设置中的深度，设置为<em>表面</em>。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
