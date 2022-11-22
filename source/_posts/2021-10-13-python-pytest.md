@@ -32,6 +32,8 @@ pytest -v -s test_file.py
 
 ## fixture
 
+在`conftest.py`下，可以实现数据共享，不需要 import 就能自动找到一些配置
+
 fixture函数如下：
 ```
 fixture（scope='function'，params=None，autouse=False，ids=None，name=None）
@@ -39,7 +41,7 @@ fixture（scope='function'，params=None，autouse=False，ids=None，name=None�
 
 - scope参数可以控制fixture的作用范围，scope：有四个级别参数"function"（默认），"class"，"module"，"session
 - params：一个可选的参数列表，每个参数执行一遍，相当于for循环
-- autouse：如果True，则为所有测试激活fixture func可以看到它。
+- autouse：如果True，则为所有测试激活fixture func可以看到它。 **可以作为默认执行的测试使用**
 - ids：每个字符串id的列表，每个字符串对应于params这样他们就是测试ID的一部分。如果没有提供ID它们将从params自动生成
 - name：fixture的名称。
 
@@ -50,6 +52,9 @@ scope作用范围： session>module>class>function
 - module：每一个.py文件调用一次，该文件内又有多个function和class
 - session：是多个文件调用一次，可以跨.py文件调用，每个.py文件就是module
 
+使用方法是在测试用例里面直接写方法名就可以了
+
+另外可以使用`pytest --fixtures` 查看所有固件
 
 ## pytest.ini
 
@@ -86,3 +91,18 @@ def test_something(caplog)
     assert caplog.messages[0] == 'This is a debug message'
     caplog.clear()
 ```
+
+或者 `unittest.mock.path` 来mock `sys.stdout`
+
+```py
+from io import StringIO
+from unittest.mock import patch
+
+def test_print():
+    expected = 'this is a message'
+
+    with path('sys.stdout', new=StringIO()) as fake_out:
+        assert fake_out.getvalue().strip() == expected
+```
+
+- [参考](https://python3-cookbook.readthedocs.io/zh_CN/latest/c14/p01_testing_output_sent_to_stdout.html)
