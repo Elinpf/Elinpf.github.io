@@ -15,7 +15,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/10/28/scrapy-%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/1.jpg">
 <meta property="article:published_time" content="2022-10-28T08:25:15.000Z">
-<meta property="article:modified_time" content="2022-11-22T03:30:37.095Z">
+<meta property="article:modified_time" content="2022-11-23T15:36:10.687Z">
 <meta property="article:author" content="Elin">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
@@ -1408,7 +1408,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-11-22 11:30:37'>2021-09-07 15:33</time>
+            发布时间 : <time class="date" title='最后更新: 2022-11-23 23:36:10'>2021-09-07 15:33</time>
         
     </div>
     <div class="article-meta">
@@ -1491,6 +1491,11 @@
 </ul>
 <p><code>git fetch origin master:&lt;new_branch&gt;</code></p>
 <h3 id="pull"><a href="#pull" class="headerlink" title="pull"></a>pull</h3><p><code>git pull</code> 在大多数情况下它的含义是一个 <code>git fetch</code> 紧接着一个 <code>git merge</code> 命令</p>
+<p>fork的仓库，拉取主仓内容</p>
+<p><code>git pull &lt;主仓地址&gt; &lt;branch&gt;</code></p>
+<p>例如：</p>
+<p><code>git pull https://github.com/networktocode/ntc-templates.git master</code></p>
+<p>也可以单独对某个commit进行拉取</p>
 <h2 id="退回与恢复"><a href="#退回与恢复" class="headerlink" title="退回与恢复"></a>退回与恢复</h2><h3 id="恢复的方法"><a href="#恢复的方法" class="headerlink" title="恢复的方法"></a>恢复的方法</h3><p>重点在于列出所有的commit<br><code>git reflog</code></p>
 <p>然后<code>checkout</code>到commit-id上就可以了</p>
 <h3 id="回退的两种方法"><a href="#回退的两种方法" class="headerlink" title="回退的两种方法"></a>回退的两种方法</h3><p>两种回退方式应该是<code>reset</code>和<code>revert</code>，其中<code>reset</code>是本地退后，本质是checkout，而<code>revert</code>的本质是将要退的地方提交一个新的commit。</p>
