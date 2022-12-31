@@ -4,6 +4,52 @@
   
     
     <entry>
+      <title>如何创建readthedoc</title>
+      <link href="/2022/12/19/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BAreadthedoc/"/>
+      <url>/2022/12/19/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BAreadthedoc/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://docs.readthedocs.io/en/stable/tutorial/index.html">readthedocs官方教程文档</a><br><a href="https://www.sphinx-doc.org/zh_CN/master/usage/index.html">sphinx中文文档</a><br><a href="https://rst-tutorial-elinpf.readthedocs.io/en/latest/">reStructuredText 教程</a></p><h2 id="在项目中创建"><a href="#在项目中创建" class="headerlink" title="在项目中创建"></a>在项目中创建</h2><p>一般使用的是shpinx, 在项目根目录中创建<code>docs</code>文件夹</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-built_in">cd</span> docs</span><span class="line">sphinx-quickstart</span></code></pre></div></div><p><strong>推荐还是将 <code>build</code> 和 <code>source</code> 分开</strong></p><h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><p>推荐使用<code>sphinx_rtd_theme</code>主题，首先需要安装</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-cmake codeBlockLines"><span class="line">pip <span class="hljs-keyword">install</span> sphinx-rtd-theme</span></code></pre></div></div><p>然后在<code>conf.py</code>中使用</p><div class="codeBlockContainer"><div class="codeBlockTitle">conf.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> sphinx_rtd_theme</span><span class="line"></br></span><span class="line">html_theme = <span class="hljs-string">&#x27;sphinx_rtd_theme&#x27;</span></span></code></pre></div></div><h2 id="autodoc"><a href="#autodoc" class="headerlink" title="autodoc"></a>autodoc</h2><p><a href="https://www.sphinx-doc.org/zh_CN/master/usage/extensions/autodoc.html">中文文档</a></p><ol><li>在<code>docs/requirements.txt</code> 文件中定义需要的python包</li></ol><div class="codeBlockContainer"><div class="codeBlockTitle">docs/requirements.txt</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">alabaster==0.7.12</span><span class="line">Sphinx==5.3.0</span><span class="line">sphinx-rtd-theme==1.1.1</span><span class="line">sphinx-copybutton==0.5.0</span></code></pre></div></div><ol start="2"><li>在<code>conf.py</code>中引入，然后进行扩展定义</li></ol><div class="codeBlockContainer"><div class="codeBlockTitle">conf.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line"><span class="hljs-keyword">import</span> os</span><span class="line"><span class="hljs-keyword">import</span> sys</span><span class="line">sys.path.insert(<span class="hljs-number">0</span>, os.path.abspath(<span class="hljs-string">&#x27;..&#x27;</span>))</span><span class="line"></br></span><span class="line">extensions = [</span><span class="line">    <span class="hljs-string">&#x27;sphinx.ext.autodoc&#x27;</span>,</span><span class="line">    <span class="hljs-string">&quot;sphinx.ext.viewcode&quot;</span>,</span><span class="line">    <span class="hljs-string">&quot;sphinx.ext.napoleon&quot;</span>,</span><span class="line">    <span class="hljs-string">&quot;sphinx.ext.intersphinx&quot;</span>,</span><span class="line">    <span class="hljs-string">&quot;sphinx.ext.autosectionlabel&quot;</span>,</span><span class="line">    <span class="hljs-string">&#x27;sphinx_copybutton&#x27;</span>,</span><span class="line">]</span></code></pre></div></div><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-plaintext codeBlockLines"><span class="line">.. autoclass:: net_inspect.NetInspect</span><span class="line">   :members: </span><span class="line">   :undoc-members:</span></code></pre></div></div><p>如果构建不成功，去<a href="https://readthedocs.org/">readthedocs</a> 构建里面查看原因，有可能是因为有些模块没有引入，<br>这时候就需要在<code>docs/requirements.txt</code>中加入这个模块即可。</p><p><a href="https://stackoverflow.com/questions/10324393/sphinx-build-fail-autodoc-cant-import-find-module">构建不成功参考问答</a></p><h2 id="定义开始文件为-index"><a href="#定义开始文件为-index" class="headerlink" title="定义开始文件为 index"></a>定义开始文件为 index</h2><div class="codeBlockContainer"><div class="codeBlockTitle">conf.py</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-python codeBlockLines"><span class="line">master = <span class="hljs-string">&#x27;index&#x27;</span></span></code></pre></div></div><h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p><a href="https://readthedocs.org/dashboard/">readthedocs</a> 中导入项目即可，成功后每次github上面有更新，readthedocs会自动更新</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数通遇到问题解决方案</title>
+      <link href="/2022/11/09/%E6%95%B0%E9%80%9A%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+      <url>/2022/11/09/%E6%95%B0%E9%80%9A%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+      
+        <content type="html"><![CDATA[<h2 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h2><h3 id="ACL-方向问题"><a href="#ACL-方向问题" class="headerlink" title="ACL 方向问题"></a>ACL 方向问题</h3><p>如果是硬接口，那么就按流量方向匹配即可</p><p>如果是VLAN, 那么</p><ol><li><code>in</code> 方向： 源地址必然是vlan的ip网段</li><li><code>out</code>方向： 目的地址必然是vlan的ip网段</li></ol><h2 id="Ruijie"><a href="#Ruijie" class="headerlink" title="Ruijie"></a>Ruijie</h2><h3 id="ACL-如何计数"><a href="#ACL-如何计数" class="headerlink" title="ACL 如何计数"></a>ACL 如何计数</h3><p>锐捷需要开启</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-ada codeBlockLines"><span class="line">[config]ip <span class="hljs-keyword">access</span>-list counter &lt;acl&gt;</span></code></pre></div></div><ul><li><a href="https://www.ruijie.com.cn/Fu/Article/1c62b7e8-3689-461a-be73-a58dc88a5e78/RG-S5750H%E7%B3%BB%E5%88%97%E4%BA%A4%E6%8D%A2%E6%9C%BARGOS%2012.2(2)B0602%E7%89%88%E6%9C%AC%E9%85%8D%E7%BD%AE%E6%89%8B%E5%86%8C(V1.0)/PDF/00-pdf/07-ACL%E5%92%8CQoS.pdf">参考文档 ACL&amp;QoS</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数通 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>scrapy 学习使用</title>
       <link href="/2022/10/28/scrapy-%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/"/>
       <url>/2022/10/28/scrapy-%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/</url>
