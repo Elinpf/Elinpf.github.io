@@ -87,6 +87,12 @@ extensions = [
 master = 'index'
 ```
 
+## 本地创建 html
+
+```bash
+./make.bat clean ; ./make.bat html
+```
+
 ## 发布
 
 [readthedocs](https://readthedocs.org/dashboard/) 中导入项目即可，成功后每次github上面有更新，readthedocs会自动更新
