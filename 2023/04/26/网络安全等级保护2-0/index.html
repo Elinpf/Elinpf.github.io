@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>javascript 的export导出方式 | Elin 的空间</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="javascript 的export导出方式 | Elin 的空间">
+  <title>网络安全等级保护2.0 | Elin 的空间</title>
+  <meta name="keywords" content=" mind ">
+  <meta name="description" content="网络安全等级保护2.0 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络安全等级保护2.0">
@@ -1453,9 +1453,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-js-module-export" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-网络安全等级保护2-0" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">javascript 的export导出方式</h1>
+        <h1 class="article-title">网络安全等级保护2.0</h1>
     
     <div class="article-meta">
         
@@ -1465,17 +1465,22 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="编程">编程</a> > 
-            
-            <a  data-rel="编程&lt;---&gt;javascript">javascript</a>
+            <a  data-rel="数通">数通</a>
             
         </span>
         
         
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">mind</a>
+            
+        </span>
+        
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-04-26 09:39:39'>2021-07-15 09:26</time>
+            发布时间 : <time class="date" title='最后更新: 2023-04-26 09:39:40'>2023-04-26 09:38</time>
         
     </div>
     <div class="article-meta">
@@ -1497,7 +1502,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#javascript-%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A0%BC%E5%BC%8F"><span class="toc-text">javascript 的两种格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CJS-%E7%9A%84%E5%BC%95%E5%85%A5"><span class="toc-text">CJS 的引入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#module-exports"><span class="toc-text">module.exports</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exports"><span class="toc-text">exports</span></a></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -1513,35 +1518,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="javascript-的两种格式"><a href="#javascript-的两种格式" class="headerlink" title="javascript 的两种格式"></a>javascript 的两种格式</h2><p>javascript 中有两种格式模块</p>
-<ol>
-<li>Nodejs 的 <code>CommonJS</code>模块，简称<code>CJS</code></li>
-<li>ES6模块，简称<code>ESM</code></li>
-</ol>
-<p>引入的方式区别如下：</p>
-<p><img src="/2021/07/15/js-module-export/1.png"></p>
-<p>CJS的导出都是<code>exports</code>，而<code>ESM</code>的导出都是<code>export</code></p>
-<h2 id="CJS-的引入"><a href="#CJS-的引入" class="headerlink" title="CJS 的引入"></a>CJS 的引入</h2><p>使用两个文件来做测试，<code>utils.js</code> 和 <code>test.js</code></p>
-<h3 id="module-exports"><a href="#module-exports" class="headerlink" title="module.exports"></a>module.exports</h3><div class="codeBlockContainer"><div class="codeBlockTitle">utils.js</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="hljs-keyword">const</span> a = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> x + y;</span>
-<span class="line"><span class="hljs-keyword">const</span> b = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> x + y;</span>
-<span class="line"><span class="hljs-built_in">module</span>.exports = a;</span>
-<span class="line"><span class="hljs-built_in">module</span>.exports = b;</span>
-</code></pre></div></div>
-
-<div class="codeBlockContainer"><div class="codeBlockTitle">test.js</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="hljs-keyword">const</span> utils = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./utils&#x27;</span>);</span>
-<span class="line"><span class="hljs-built_in">console</span>.log(utils); <span class="hljs-comment">// [Function: b]</span></span>
-</code></pre></div></div>
-
-<p>可以看到，这种方法只能导出一个函数</p>
-<h3 id="exports"><a href="#exports" class="headerlink" title="exports"></a>exports</h3><div class="codeBlockContainer"><div class="codeBlockTitle">utils.js</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="hljs-built_in">exports</span>.a = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> x + y;</span>
-<span class="line"><span class="hljs-built_in">exports</span>.b = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> x - y;</span>
-</code></pre></div></div>
-
-<div class="codeBlockContainer"><div class="codeBlockTitle">test.js</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-javascript codeBlockLines"><span class="line"><span class="hljs-keyword">const</span> utils = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./utils&#x27;</span>);</span>
-<span class="line"><span class="hljs-built_in">console</span>.log(utils); <span class="hljs-comment">//&#123; a: [Function (anonymous)], b: [Function (anonymous)] &#125;</span></span>
-</code></pre></div></div>
-
-<p>这种方法可以导出多个函数</p>
+        <iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:800px;height:900px;" src="https://www.zhixi.com/embed/43581548#"></iframe>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
