@@ -1,5 +1,5 @@
 ---
-title: python execl模块
+title: python excel模块
 date: 2021-10-25 16:14:50
 tags:
 - python
