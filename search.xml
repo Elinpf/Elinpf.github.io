@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>防火墙与网闸的区别</title>
+      <link href="/2023/05/19/%E9%98%B2%E7%81%AB%E5%A2%99%E4%B8%8E%E7%BD%91%E9%97%B8%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+      <url>/2023/05/19/%E9%98%B2%E7%81%AB%E5%A2%99%E4%B8%8E%E7%BD%91%E9%97%B8%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+      
+        <content type="html"><![CDATA[<p><strong>防火墙</strong>的实现方式：对包进行过滤、状态进行检测，是基于二层和三层的防护。</p><p><strong>网闸</strong>的实现方式：通过固态开关读写机制，连接两端主机的安全设备。使主机系统之间不存在通讯的物理连接、逻辑连接和信息传输协议， 只有以数据形式进行的无协议摆渡。</p><p><img src="/2023/05/19/%E9%98%B2%E7%81%AB%E5%A2%99%E4%B8%8E%E7%BD%91%E9%97%B8%E7%9A%84%E5%8C%BA%E5%88%AB/1.png"></p><p><strong>总体来说，防火墙是保证网络层安全的边界安全工具，而网闸重点是保护内部网络的安全。产品定位不同，因此两种产品是不能相互取代的。</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数通 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>网络安全等级保护2.0</title>
       <link href="/2023/04/26/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%AD%89%E7%BA%A7%E4%BF%9D%E6%8A%A42-0/"/>
       <url>/2023/04/26/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%AD%89%E7%BA%A7%E4%BF%9D%E6%8A%A42-0/</url>
