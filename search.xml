@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>VirtualBox 与 Hper-V 互斥的问题，导致HCL无法启动设备</title>
+      <link href="/2023/06/12/VirtualBox-%E4%B8%8E-Hper-V-%E4%BA%92%E6%96%A5%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E5%AF%BC%E8%87%B4HCL%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E8%AE%BE%E5%A4%87/"/>
+      <url>/2023/06/12/VirtualBox-%E4%B8%8E-Hper-V-%E4%BA%92%E6%96%A5%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E5%AF%BC%E8%87%B4HCL%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E8%AE%BE%E5%A4%87/</url>
+      
+        <content type="html"><![CDATA[<p>遇到问题记录一下，以后再遇到就不用再去查了。</p><p>在使用华三模拟器的时候，发现无法启动设备。</p><p>检查发现在VBox里面，他新建了<code>Simware_Base</code>这个虚拟机，但是无法启动，报错如下：</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">Call to WHvSetupPartition failed: ERROR_SUCCESS (Last=0xc000000d/87) (VERR_NEM_VM_CREATE_FAILED).</span></code></pre></div></div><p>在网上查了一下，发现是因为Hyper-V和VBox的互斥问题，解决办法是禁用Hyper-V。</p><ul><li><a href="https://superuser.com/questions/1502529/call-to-whvsetuppartition-failed-error-success-last-0xc000000d-87-verr-nem-v">相同问题的文章</a></li></ul><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-cmake codeBlockLines"><span class="line">bcdedit /<span class="hljs-keyword">set</span> hypervisorlaunchtype <span class="hljs-keyword">off</span></span></code></pre></div></div><p>但是我发现其实可以不用将Hyper-V禁用，只需要修改一下ViretualBox的配置就可以了。</p><ul><li><a href="https://forums.virtualbox.org/viewtopic.php?f=6&t=90853&start=120">参考这篇文章</a></li></ul><p>在 <code>%userprofile%\.VirtualBox\VirtualBox.xml</code> 中的<code>ExtraDataItem</code>中添加如下配置即可：</p><div class="codeBlockContainer"><div class="codeBlockTitle">%userprofile%\.VirtualBox\VirtualBox.xml</div><div class="codeBlockContent"><pre class="highlight"><code class=" language-routeros codeBlockLines"><span class="line">&lt;ExtraDataItem <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;VBoxInternal/NEM/UseRing0Runloop&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-string">&quot;0&quot;</span>/&gt;</span></code></pre></div></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数通 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> debug </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>zabbix 测试踩坑收集</title>
+      <link href="/2023/06/05/zabbix-%E6%B5%8B%E8%AF%95%E8%B8%A9%E5%9D%91%E6%94%B6%E9%9B%86/"/>
+      <url>/2023/06/05/zabbix-%E6%B5%8B%E8%AF%95%E8%B8%A9%E5%9D%91%E6%94%B6%E9%9B%86/</url>
+      
+        <content type="html"><![CDATA[<h2 id="yum-无法update"><a href="#yum-无法update" class="headerlink" title="yum 无法update"></a>yum 无法update</h2><p>出现如下错误：</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">[root@autocontroller ~]<span class="hljs-comment"># yum update</span></span><span class="line">CentOS-8 - AppStream 70 B/s | 38 B 00:00</span><span class="line">Error: Failed to download metadata <span class="hljs-keyword">for</span> repo <span class="hljs-string">&#x27;AppStream&#x27;</span>: Cannot prepare internal mirrorlist: No URLs <span class="hljs-keyword">in</span> mirrorlist</span></code></pre></div></div><p>解决办法：</p><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-built_in">cd</span> /etc/yum.repos.d/</span><span class="line">sed -i <span class="hljs-string">&#x27;s/mirrorlist/#mirrorlist/g&#x27;</span> /etc/yum.repos.d/CentOS-*</span><span class="line">sed -i <span class="hljs-string">&#x27;s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g&#x27;</span> /etc/yum.repos.d/CentOS-*</span></code></pre></div></div><ul><li><a href="https://techglimpse.com/failed-metadata-repo-appstream-centos-8/">参考文章</a></li></ul><h2 id="加入zabbix源"><a href="#加入zabbix源" class="headerlink" title="加入zabbix源"></a>加入zabbix源</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">rpm -Uvh https://mirrors.aliyun.com/zabbix/zabbix/5.0/rhel/7/x86_64/zabbix-release-5.0-1.el7.noarch.rpm</span></code></pre></div></div><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">dnf install zabbix-agent</span></code></pre></div></div>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>防火墙与网闸的区别</title>
       <link href="/2023/05/19/%E9%98%B2%E7%81%AB%E5%A2%99%E4%B8%8E%E7%BD%91%E9%97%B8%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
       <url>/2023/05/19/%E9%98%B2%E7%81%AB%E5%A2%99%E4%B8%8E%E7%BD%91%E9%97%B8%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
@@ -1377,7 +1415,7 @@
       <link href="/2021/12/28/%E6%95%B0%E9%80%9A%E9%AB%98%E4%BB%B7%E5%80%BC%E7%BD%91%E7%AB%99%E6%95%B4%E7%90%86/"/>
       <url>/2021/12/28/%E6%95%B0%E9%80%9A%E9%AB%98%E4%BB%B7%E5%80%BC%E7%BD%91%E7%AB%99%E6%95%B4%E7%90%86/</url>
       
-        <content type="html"><![CDATA[<blockquote><ul><li><a href="https://software.cisco.com/download">cisco IOS 官方版本下载</a></li><li><a href="https://tfr.org/cisco-ios/">cisco IOS 旧版非官方下载</a></li></ul></blockquote><hr><p>华为 <a href="https://info.support.huawei.com/info-finder/zh/enterprise/index">Info-Finder</a> 是一个工具平台，该工具支持通过产品系列和型号查找关键产品信息，如软件规格、生命周期和硬件等基本信息，以及产品的License、告警、日志、命令和MIB等操作维护信息。跟硬件相关的工具主要如下：</p><p><strong>产品图库</strong>：基于产品型号提供照片库，不仅让您多角度了解产品外观，而且在做设计图、组网图时可以自由下载使用，制作更专业的网络图。</p><p><strong>硬件查询</strong>：支持通过BOM编码、产品型号、模块类型进行搜索，查看各机型与电源模块、风扇模块、光模块等各部件间的配套关系及详细规格信息。</p><p><strong>硬件配置</strong>：支持通过自由选择部件等实现自动生成硬件配置图，并计算重量、功耗和热耗等。</p><p><strong>硬件中心</strong>：提供整机和部件的技术指标，以及整机、部件、版本之间配套关系，助你快速掌握硬件全貌。</p><p>3D模型：提供产品原始视图、产品简介、产品组件的插拔动画及其信息介绍等功能，助您一站式速查产品全量信息。</p><blockquote><ul><li><a href="https://support.huawei.com/enterprise/zh/doc/EDOC1000069491/d8160bc3">华为典型案例库</a></li><li><a href="https://support.huawei.com/enterprise/zh/doc/EDOC1000178157/6ddf44f8">华为 ACL应用模块的ACL默认动作和处理机制</a></li><li><a href="https://info.support.huawei.com/info-finder/search-center/zh/enterprise/routers/NE20E-S-pid-19896202/alarms?version=NE20E-S%20V800R013C00SPC100">华为一站式信息速查</a></li><li><a href="https://info.support.huawei.com/network/hdcfg/index">华为硬件配置中心</a></li></ul></blockquote><blockquote><ul><li><a href="https://support.huawei.com/enterprise/zh/doc/EDOC1000052631/d9e85c62">华为CE系列 TOP10故障排查宝典</a></li></ul></blockquote><hr><blockquote><ul><li><a href="https://support.huawei.com/enterprise/ecareWechat?lang=zh">华为维保查询</a></li></ul></blockquote><blockquote><ul><li><a href="https://es.h3c.com/entitlement/?locale=zh_CN">华三维保查询</a></li></ul></blockquote><blockquote><ul><li><a href="https://repair.maipu.com/CustomerRepair/Warranty">迈普维保查询</a></li></ul></blockquote><ul><li>厂商系统日志搜索</li></ul><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-vala codeBlockLines"><span class="line"><span class="hljs-meta"># huawei</span></span><span class="line">日志参考 <span class="hljs-string">&quot;NE08E&quot;</span> site:huawei.com</span><span class="line"></br></span><span class="line"><span class="hljs-meta"># h3c</span></span><span class="line">日志信息参考 site:h3c.com</span><span class="line"></br></span><span class="line"><span class="hljs-meta"># cisco</span></span><span class="line">Messages Reference <span class="hljs-string">&quot;3560&quot;</span> site:cisco.com</span></code></pre></div></div>]]></content>
+        <content type="html"><![CDATA[<blockquote><ul><li><a href="https://software.cisco.com/download">cisco IOS 官方版本下载</a></li><li><a href="https://tfr.org/cisco-ios/">cisco IOS 旧版非官方下载</a></li></ul></blockquote><hr><p>华为 <a href="https://info.support.huawei.com/info-finder/zh/enterprise/index">Info-Finder</a> 是一个工具平台，该工具支持通过产品系列和型号查找关键产品信息，如软件规格、生命周期和硬件等基本信息，以及产品的License、告警、日志、命令和MIB等操作维护信息。跟硬件相关的工具主要如下：</p><p><strong>产品图库</strong>：基于产品型号提供照片库，不仅让您多角度了解产品外观，而且在做设计图、组网图时可以自由下载使用，制作更专业的网络图。</p><p><strong>硬件查询</strong>：支持通过BOM编码、产品型号、模块类型进行搜索，查看各机型与电源模块、风扇模块、光模块等各部件间的配套关系及详细规格信息。</p><p><strong>硬件配置</strong>：支持通过自由选择部件等实现自动生成硬件配置图，并计算重量、功耗和热耗等。</p><p><strong>硬件中心</strong>：提供整机和部件的技术指标，以及整机、部件、版本之间配套关系，助你快速掌握硬件全貌。</p><p>3D模型：提供产品原始视图、产品简介、产品组件的插拔动画及其信息介绍等功能，助您一站式速查产品全量信息。</p><blockquote><ul><li><a href="https://support.huawei.com/enterprise/zh/doc/EDOC1000069491/d8160bc3">华为典型案例库</a></li><li><a href="https://support.huawei.com/enterprise/zh/doc/EDOC1000178157/6ddf44f8">华为 ACL应用模块的ACL默认动作和处理机制</a></li><li><a href="https://info.support.huawei.com/info-finder/search-center/zh/enterprise/routers/NE20E-S-pid-19896202/alarms?version=NE20E-S%20V800R013C00SPC100">华为一站式信息速查</a></li><li><a href="https://info.support.huawei.com/network/hdcfg/index">华为硬件配置中心</a></li><li><a href="https://support.huawei.com/enterprise/zh/doc/EDOC1000052631/d9e85c62">华为CE系列 TOP10故障排查宝典</a></li></ul></blockquote><hr><p><strong>H3C</strong></p><blockquote><ul><li><a href="https://www.h3c.com/cn/Service/Document_Software/Document_Center/Home/Switches/01-Public/Learn_Technologies/Technologies/Routers_Switches_ZLBD/#">华三手册使用宝典</a></li><li><a href="https://www.h3c.com/cn/Service/Document_Software/Document_Center/Switches/">华三交换机文档中心</a></li></ul></blockquote><hr><p><strong>维保查询</strong></p><blockquote><ul><li><a href="https://support.huawei.com/enterprise/ecareWechat?lang=zh">华为维保查询</a></li><li><a href="https://es.h3c.com/entitlement/?locale=zh_CN">华三维保查询</a></li><li><a href="https://repair.maipu.com/CustomerRepair/Warranty">迈普维保查询</a></li></ul></blockquote><ul><li>厂商系统日志搜索</li></ul><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-vala codeBlockLines"><span class="line"><span class="hljs-meta"># huawei</span></span><span class="line">日志参考 <span class="hljs-string">&quot;NE08E&quot;</span> site:huawei.com</span><span class="line"></br></span><span class="line"><span class="hljs-meta"># h3c</span></span><span class="line">日志信息参考 site:h3c.com</span><span class="line"></br></span><span class="line"><span class="hljs-meta"># cisco</span></span><span class="line">Messages Reference <span class="hljs-string">&quot;3560&quot;</span> site:cisco.com</span></code></pre></div></div>]]></content>
       
       
       <categories>
