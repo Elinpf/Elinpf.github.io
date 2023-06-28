@@ -2,7 +2,9 @@
 title: VirtualBox 与 Hper-V 互斥的问题，导致HCL无法启动设备
 date: 2023-06-12 12:43:37
 tags:
+- debug
 categories:
+- 数通
 ---
 
 遇到问题记录一下，以后再遇到就不用再去查了。
