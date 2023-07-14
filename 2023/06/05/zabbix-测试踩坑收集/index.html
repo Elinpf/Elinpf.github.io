@@ -6,17 +6,16 @@
   <meta name="keywords" content="">
   <meta name="description" content="zabbix 测试踩坑收集 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="遇到问题记录一下，以后再遇到就不用再去查了。 在使用华三模拟器的时候，发现无法启动设备。 检查发现在VBox里面，他新建了Simware_Base这个虚拟机，但是无法启动，报错如下： Call to WHvSetupPartition failed: ERROR_SUCCESS (Last&#x3D;0xc000000d&#x2F;87) (VERR_NEM_VM_CREATE_FAILED).   在网上查了一下，">
+<meta name="description" content="环境检查[root@localhost ~]# cat &#x2F;etc&#x2F;centos-release CentOS Linux release 7.9.2009 (Core)  [root@localhost ~]# uname -r 3.10.0-1160.el7.x86_64  # 关闭SELinux   vi &#x2F;etc&#x2F;selinux&#x2F;config SELINUX&#x3D;disabled reboot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VirtualBox 与 Hper-V 互斥的问题，导致HCL无法启动设备">
-<meta property="og:url" content="http://example.com/2023/06/12/VirtualBox-%E4%B8%8E-Hper-V-%E4%BA%92%E6%96%A5%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E5%AF%BC%E8%87%B4HCL%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E8%AE%BE%E5%A4%87/index.html">
+<meta property="og:title" content="CentOS 7 安装 zabbix proxy">
+<meta property="og:url" content="http://example.com/2023/07/14/CentOS-7-%E5%AE%89%E8%A3%85-zabbix-proxy/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="遇到问题记录一下，以后再遇到就不用再去查了。 在使用华三模拟器的时候，发现无法启动设备。 检查发现在VBox里面，他新建了Simware_Base这个虚拟机，但是无法启动，报错如下： Call to WHvSetupPartition failed: ERROR_SUCCESS (Last&#x3D;0xc000000d&#x2F;87) (VERR_NEM_VM_CREATE_FAILED).   在网上查了一下，">
+<meta property="og:description" content="环境检查[root@localhost ~]# cat &#x2F;etc&#x2F;centos-release CentOS Linux release 7.9.2009 (Core)  [root@localhost ~]# uname -r 3.10.0-1160.el7.x86_64  # 关闭SELinux   vi &#x2F;etc&#x2F;selinux&#x2F;config SELINUX&#x3D;disabled reboot">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-06-12T04:43:37.000Z">
-<meta property="article:modified_time" content="2023-06-28T06:55:25.475Z">
+<meta property="article:published_time" content="2023-07-14T08:12:47.000Z">
+<meta property="article:modified_time" content="2023-07-14T10:59:44.773Z">
 <meta property="article:author" content="Elin">
-<meta property="article:tag" content="debug">
 <meta name="twitter:card" content="summary">
 
 
@@ -91,7 +90,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(116)</small>
+                <small>(120)</small>
             
         </div>
     </li>
@@ -284,7 +283,7 @@
                     <div data-rel="数通">
                         
                         数通
-                        <small>(14)</small>
+                        <small>(15)</small>
                         
                     </div>
                     
@@ -364,7 +363,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="116">
+<input type="hidden" id="yelog_site_posts_number" value="120">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -575,6 +574,38 @@
            data-author="" >
             <span class="post-title" title="绘画网站推荐">绘画网站推荐</span>
             <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
+        </a>
+        
+        <a  class="全部文章 "
+           href="/2023/07/14/CentOS-7-%E5%AE%89%E8%A3%85-zabbix-proxy/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CentOS 7 安装 zabbix proxy">CentOS 7 安装 zabbix proxy</span>
+            <span class="post-date" title="2023-07-14 16:12:47">2023/07/14</span>
+        </a>
+        
+        <a  class="全部文章 "
+           href="/2023/07/14/CentOS-7-%E5%AE%89%E8%A3%85-zabbix-5-0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CentOS 7 安装 zabbix 5.0">CentOS 7 安装 zabbix 5.0</span>
+            <span class="post-date" title="2023-07-14 11:18:28">2023/07/14</span>
+        </a>
+        
+        <a  class="全部文章 "
+           href="/2023/07/14/CentOS-7-%E5%BC%80%E5%B1%80%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CentOS 7 开局配置">CentOS 7 开局配置</span>
+            <span class="post-date" title="2023-07-14 10:59:14">2023/07/14</span>
+        </a>
+        
+        <a  class="全部文章 数通 "
+           href="/2023/07/07/HCL%E6%A8%A1%E6%8B%9F%E5%99%A8%E4%B8%8EVMware%E4%BA%92%E9%80%9A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HCL模拟器与VMware互通">HCL模拟器与VMware互通</span>
+            <span class="post-date" title="2023-07-07 12:40:56">2023/07/07</span>
         </a>
         
         <a  class="全部文章 数通 "
@@ -1495,7 +1526,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-06-28 14:55:25'>2023-06-05 17:05</time>
+            发布时间 : <time class="date" title='最后更新: 2023-07-14 18:59:44'>2023-06-05 17:05</time>
         
     </div>
     <div class="article-meta">
@@ -1517,7 +1548,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#yum-%E6%97%A0%E6%B3%95update"><span class="toc-text">yum 无法update</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%85%A5zabbix%E6%BA%90"><span class="toc-text">加入zabbix源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8F%91%E7%8E%B0%E5%8A%9F%E8%83%BD%E7%9A%84%E5%BB%B6%E8%BF%9F"><span class="toc-text">自动发现功能的延迟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8F%91%E7%8E%B0%E7%9A%84%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="toc-text">自动发现的主机名</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1533,25 +1564,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="yum-无法update"><a href="#yum-无法update" class="headerlink" title="yum 无法update"></a>yum 无法update</h2><p>出现如下错误：</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">[root@autocontroller ~]<span class="hljs-comment"># yum update</span></span>
-<span class="line">CentOS-8 - AppStream 70 B/s | 38 B 00:00</span>
-<span class="line">Error: Failed to download metadata <span class="hljs-keyword">for</span> repo <span class="hljs-string">&#x27;AppStream&#x27;</span>: Cannot prepare internal mirrorlist: No URLs <span class="hljs-keyword">in</span> mirrorlist</span>
-</code></pre></div></div>
-
-<p>解决办法：</p>
-<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-built_in">cd</span> /etc/yum.repos.d/</span>
-<span class="line">sed -i <span class="hljs-string">&#x27;s/mirrorlist/#mirrorlist/g&#x27;</span> /etc/yum.repos.d/CentOS-*</span>
-<span class="line">sed -i <span class="hljs-string">&#x27;s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g&#x27;</span> /etc/yum.repos.d/CentOS-*</span>
-</code></pre></div></div>
-
-<ul>
-<li><a target="_blank" rel="noopener" href="https://techglimpse.com/failed-metadata-repo-appstream-centos-8/">参考文章</a></li>
-</ul>
-<h2 id="加入zabbix源"><a href="#加入zabbix源" class="headerlink" title="加入zabbix源"></a>加入zabbix源</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">rpm -Uvh https://mirrors.aliyun.com/zabbix/zabbix/5.0/rhel/7/x86_64/zabbix-release-5.0-1.el7.noarch.rpm</span>
-</code></pre></div></div>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">dnf install zabbix-agent</span>
+        <h2 id="自动发现功能的延迟"><a href="#自动发现功能的延迟" class="headerlink" title="自动发现功能的延迟"></a>自动发现功能的延迟</h2><p>zabbix会对自动发现中的IP地址进行逐个扫描，并对有snmp反应的主机进行自动发现。<br>这个扫描过程非常慢，而且没有进度条，所以很容易让人误以为是没设置好<br>按照一个C段的IP地址，大概需要1个小时左右的时间，才能完成自动发现的过程。<br>所以将IP地址段尽量设置小,符合预期的时间就可以了。</p>
+<h2 id="自动发现的主机名"><a href="#自动发现的主机名" class="headerlink" title="自动发现的主机名"></a>自动发现的主机名</h2><p>使用</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-apache codeBlockLines"><span class="line"><span class="hljs-attribute">SNMPv2</span>-MIB::sysName.<span class="hljs-number">0</span></span>
 </code></pre></div></div>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>
