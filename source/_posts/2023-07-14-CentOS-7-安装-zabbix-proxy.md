@@ -53,10 +53,15 @@ mysql -u root -pdb_password -e "grant all on zabbix_proxy.* to zabbix@'localhost
 # 8. 导入数据库
 zcat /usr/share/doc/zabbix-proxy-mysql*/schema.sql.gz | mysql -u root -pdb_password zabbix_proxy
 
-# 10. 修改zabbix_proxy配置文件，需要确定代理名称和服务器IP
+# 9. 修改zabbix_proxy配置文件，需要确定代理名称和服务器IP
 HostName="Zabbix proxy"
 ServerIP="192.168.56.20"
 sed -i.ori "s/^Hostname=.*/Hostname=$HostName/g; s/Server=127.0.0.1/Server=$ServerIP/g; 196a DBPassword=db_password" /etc/zabbix/zabbix_proxy.conf
+
+# 10. 安装snmp监控程序
+yum install net-snmp net-snmp-utils -y
+sed -i.ori "56a view    systemview    included   .1" /etc/snmp/snmpd.conf 
+systemctl enable --now snmpd.service
 
 # 11. 启动zabbix_proxy
 systemctl enable --now zabbix-proxy.service
