@@ -1,11 +1,15 @@
 ---
-title: CentOS 7 安装 zabbix 5.0
+title: CentOS 7 安装 zabbix
 date: 2023-07-14 11:18:28
 tags:
+- zabbix
 categories:
+- 数通
 ---
 
-## 环境检查
+## 二进制安装 zabbix 5.0
+
+### 环境检查
 
 ```bash
 [root@localhost ~]# cat /etc/centos-release
@@ -25,7 +29,7 @@ firewall-cmd --add-service=http --permanent
 firewall-cmd --add-port=10051/tcp --permanent
 firewall-cmd --reload
 ```
-## 安装zabbix 5.0
+### 安装zabbix 5.0
 
 ```bash
 # 0. 如果是使用自建yum源，设置解析
@@ -103,3 +107,143 @@ Password: zabbix"
 2. 在 `Configure DB connection` 中，填写数据库密码(db_password)
 
 3. 后面的都直接下一步即可
+
+
+## Docker 安装 zabbix 6.0
+
+### 安装环境配置
+
+```bash
+zabbix_pwd="3ZBTY4UjYXxb8J9j" && \
+root_pwd="2wApkfuGQycTjxsnwVLs" && \
+zabbix_server_name="Hoopox Zabbix Server" && \
+server_dir="/opt/zabbix" && \
+zabbix_http_port="8081" && \
+mkdir -p ${server_dir}/server/{alertscripts,externalscripts,modules} && \
+mkdir -p ${server_dir}/agent2/modules
+```
+
+### 创建网络
+
+```bash
+docker network create --subnet 172.20.0.0/16 --ip-range 172.20.100.0/20 zabbix-net
+```
+
+### 创建 mysql8 数据库
+
+```bash
+docker run -v /etc/localtime:/etc/localtime \
+      --name mysql-server -t \
+      -e MYSQL_DATABASE="zabbix" \
+      -e MYSQL_USER="zabbix" \
+      -e MYSQL_PASSWORD=${zabbix_pwd} \
+      -e MYSQL_ROOT_PASSWORD=${root_pwd} \
+      --network=zabbix-net \
+      --restart unless-stopped \
+      -d mysql:8.0 \
+      --character-set-server=utf8 --collation-server=utf8_bin \
+      --default-authentication-plugin=mysql_native_password
+```
+
+### 创建zabbix-java-gateway
+
+```bash
+docker run -v /etc/localtime:/etc/localtime \
+      --name zabbix-java-gateway -t \
+      --network=zabbix-net \
+      --restart unless-stopped \
+      -d zabbix/zabbix-java-gateway:ubuntu-6.0-latest
+```
+
+### 创建 zabbix-web-server
+
+```bash
+docker run -v /etc/localtime:/etc/localtime \
+      --name zabbix-web-service -t \
+      -e ZBX_ALLOWEDIP="zabbix-server-mysql" \
+      -v /opt/zabbix/web-service:/etc/zabbix \
+      --cap-add=SYS_ADMIN --network=zabbix-net \
+      -d zabbix/zabbix-web-service:ubuntu-6.0-latest
+```
+
+### 启动 zabbx-server
+
+启动 `Zabbix server` 实例，并将其关联到已创建的 `mysql-server` 实例
+
+```bash
+docker volume create zabbix-server-volume
+
+docker run -v /etc/localtime:/etc/localtime \
+      --name zabbix-server-mysql -t \
+      --link zabbix-web-service:zabbix-web-service \
+      -e DB_SERVER_HOST="mysql-server" \
+      -e MYSQL_DATABASE="zabbix" \
+      -e MYSQL_USER="zabbix" \
+      -e MYSQL_PASSWORD=${zabbix_pwd} \
+      -e MYSQL_ROOT_PASSWORD=${root_pwd} \
+      -e ZBX_JAVAGATEWAY="zabbix-java-gateway" \
+      -e ZBX_STARTREPORTWRITERS="2" \
+      -e ZBX_WEBSERVICEURL="http://zabbix-web-service:10053/report" \
+      -v zabbix-server-volume:/etc/zabbix \
+      -v ${server_dir}/server/alertscripts:/usr/lib/zabbix/alertscripts \
+      -v ${server_dir}/server/externalscripts:/usr/lib/zabbix/externalscripts \
+      -v ${server_dir}/server/modules:/usr/lib/zabbix/modules \
+      --network=zabbix-net \
+      -p 10051:10051 \
+      --restart unless-stopped \
+      -d zabbix/zabbix-server-mysql:ubuntu-6.0-latest
+```
+
+### 启动 zabbix-web 界面
+
+启动 `Zabbix Web` 界面，并将其关联到已创建的 `mysql-server` 实例 和 `zabbix-server-mysql` 实例
+
+```bash
+docker run -v /etc/localtime:/etc/localtime \
+      --name zabbix-web-nginx-mysql -t \
+      -e ZBX_SERVER_HOST="zabbix-server-mysql" \
+      -e DB_SERVER_HOST="mysql-server" \
+      -e MYSQL_DATABASE="zabbix" \
+      -e MYSQL_USER="zabbix" \
+      -e PHP_TZ="Asia/Shanghai" \
+      -e MYSQL_PASSWORD=${zabbix_pwd} \
+      -e MYSQL_ROOT_PASSWORD=${root_pwd} \
+      -e ZBX_SERVER_NAME="${zabbix_server_name}" \
+      --network=zabbix-net \
+      -p ${zabbix_http_port}:8080 \
+      --restart unless-stopped \
+      -d zabbix/zabbix-web-nginx-mysql:ubuntu-6.0-latest
+```
+
+- 默认用户名密码： `Admin/zabbix`
+
+### 启动 Zabbix agent2 服务
+
+1. `Zabbix server` 主机安装 `Zabbix agent2` 服务
+
+```bash
+docker volume create zabbix-agent2-volume
+
+docker run -v /etc/localtime:/etc/localtime \
+      --name zabbix-agent2 \
+      -v zabbix-agent2-volume:/etc/zabbix \
+      -e ZBX_HOSTNAME="zabbix-server" \
+      -e ZBX_SERVER_HOST="zabbix-server-mysql" \
+      -e ZBX_SERVER_PORT=10051 \
+      -p 10050:10050 \
+      -v ${server_dir}/agent2/modules:/var/lib/zabbix/modules \
+      --privileged \
+      --network=zabbix-net \
+      --restart unless-stopped \
+      -d zabbix/zabbix-agent2:ubuntu-6.0-latest
+
+# 查询 zabbix agent2 ip
+docker inspect zabbix-agent2 | grep -w "IPAddress"
+```
+
+### 解决 Zabbix 乱码问题
+
+```bash
+yum install -y wqy-microhei-fonts
+docker cp /usr/share/fonts/wqy-microhei/wqy-microhei.ttc zabbix-web-nginx-mysql:/usr/share/fonts/dejavu/DejaVuSans.ttf
+```
