@@ -2,10 +2,14 @@
 title: CentOS 7 安装 zabbix proxy
 date: 2023-07-14 16:12:47
 tags:
+- zabbix
 categories:
+- 数通
 ---
 
-## 环境检查
+## 二进制配置 zabbix proxy
+
+### 环境检查
 
 ```bash
 [root@localhost ~]# cat /etc/centos-release
@@ -21,7 +25,7 @@ SELINUX=disabled
 reboot
 ```
 
-## 安装 zabbix proxy
+### 安装 zabbix proxy
 
 ```bash
 # 0. 如果是使用自建yum源，设置解析
@@ -65,4 +69,16 @@ systemctl enable --now snmpd.service
 
 # 11. 启动zabbix_proxy
 systemctl enable --now zabbix-proxy.service
+```
+
+## Docker 配置 zabbix-proxy 6.0
+
+```bash
+docker run --name zabbix-proxy-mysql \
+      -e DB_SERVER_HOST="mysql-server" \
+      -e MYSQL_USER="user" \
+      -e MYSQL_PASSWORD="db_password" \
+      -e ZBX_HOSTNAME=some-hostname \
+      -e ZBX_SERVER_HOST=some-zabbix-server \
+      -d zabbix/zabbix-proxy-mysql:ubuntu-6.0-latest
 ```
