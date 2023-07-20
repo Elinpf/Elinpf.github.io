@@ -2,20 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CentOS 7 安装 zabbix 5.0 | Elin 的空间</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="CentOS 7 安装 zabbix 5.0 | Elin 的空间">
+  <title>CentOS 7 安装 zabbix | Elin 的空间</title>
+  <meta name="keywords" content=" zabbix ">
+  <meta name="description" content="CentOS 7 安装 zabbix | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="环境检查[root@localhost ~]# cat &#x2F;etc&#x2F;centos-release CentOS Linux release 7.9.2009 (Core)  [root@localhost ~]# uname -r 3.10.0-1160.el7.x86_64  # 关闭SELinux   vi &#x2F;etc&#x2F;selinux&#x2F;config SELINUX&#x3D;disabled reboot">
+<meta name="description" content="二进制配置 zabbix proxy环境检查[root@localhost ~]# cat &#x2F;etc&#x2F;centos-release CentOS Linux release 7.9.2009 (Core)  [root@localhost ~]# uname -r 3.10.0-1160.el7.x86_64  # 关闭SELinux   vi &#x2F;etc&#x2F;selinux&#x2F;config SELINU">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 7 安装 zabbix proxy">
 <meta property="og:url" content="http://example.com/2023/07/14/CentOS-7-%E5%AE%89%E8%A3%85-zabbix-proxy/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="环境检查[root@localhost ~]# cat &#x2F;etc&#x2F;centos-release CentOS Linux release 7.9.2009 (Core)  [root@localhost ~]# uname -r 3.10.0-1160.el7.x86_64  # 关闭SELinux   vi &#x2F;etc&#x2F;selinux&#x2F;config SELINUX&#x3D;disabled reboot">
+<meta property="og:description" content="二进制配置 zabbix proxy环境检查[root@localhost ~]# cat &#x2F;etc&#x2F;centos-release CentOS Linux release 7.9.2009 (Core)  [root@localhost ~]# uname -r 3.10.0-1160.el7.x86_64  # 关闭SELinux   vi &#x2F;etc&#x2F;selinux&#x2F;config SELINU">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-14T08:12:47.000Z">
-<meta property="article:modified_time" content="2023-07-14T10:59:44.773Z">
+<meta property="article:modified_time" content="2023-07-20T11:06:25.754Z">
 <meta property="article:author" content="Elin">
+<meta property="article:tag" content="zabbix">
 <meta name="twitter:card" content="summary">
 
 
@@ -283,7 +284,7 @@
                     <div data-rel="数通">
                         
                         数通
-                        <small>(15)</small>
+                        <small>(17)</small>
                         
                     </div>
                     
@@ -298,7 +299,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         系统
-                        <small>(4)</small>
+                        <small>(5)</small>
                         
                     </div>
                     
@@ -525,6 +526,10 @@
                 <i class="iconfont icon-tag"></i><a>windows</a>
             </li>
         
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>zabbix</a>
+            </li>
+        
     </div>
 
 </div>
@@ -576,23 +581,23 @@
             <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
         </a>
         
-        <a  class="全部文章 "
+        <a  class="全部文章 数通 "
            href="/2023/07/14/CentOS-7-%E5%AE%89%E8%A3%85-zabbix-proxy/"
-           data-tag=""
+           data-tag="zabbix"
            data-author="" >
             <span class="post-title" title="CentOS 7 安装 zabbix proxy">CentOS 7 安装 zabbix proxy</span>
             <span class="post-date" title="2023-07-14 16:12:47">2023/07/14</span>
         </a>
         
-        <a  class="全部文章 "
+        <a  class="全部文章 数通 "
            href="/2023/07/14/CentOS-7-%E5%AE%89%E8%A3%85-zabbix-5-0/"
-           data-tag=""
+           data-tag="zabbix"
            data-author="" >
-            <span class="post-title" title="CentOS 7 安装 zabbix 5.0">CentOS 7 安装 zabbix 5.0</span>
+            <span class="post-title" title="CentOS 7 安装 zabbix">CentOS 7 安装 zabbix</span>
             <span class="post-date" title="2023-07-14 11:18:28">2023/07/14</span>
         </a>
         
-        <a  class="全部文章 "
+        <a  class="全部文章 系统 "
            href="/2023/07/14/CentOS-7-%E5%BC%80%E5%B1%80%E9%85%8D%E7%BD%AE/"
            data-tag=""
            data-author="" >
@@ -1516,17 +1521,32 @@
     <div class="pjax">
         <article id="post-CentOS-7-安装-zabbix-5-0" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CentOS 7 安装 zabbix 5.0</h1>
+        <h1 class="article-title">CentOS 7 安装 zabbix</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="数通">数通</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">zabbix</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-07-14 18:59:44'>2023-07-14 11:18</time>
+            发布时间 : <time class="date" title='最后更新: 2023-07-20 19:06:25'>2023-07-14 11:18</time>
         
     </div>
     <div class="article-meta">
@@ -1548,7 +1568,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%A3%80%E6%9F%A5"><span class="toc-text">环境检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85zabbix-5-0"><span class="toc-text">安装zabbix 5.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web%E5%AE%89%E8%A3%85"><span class="toc-text">web安装</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E8%A3%85-zabbix-5-0"><span class="toc-text">二进制安装 zabbix 5.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%A3%80%E6%9F%A5"><span class="toc-text">环境检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85zabbix-5-0"><span class="toc-text">安装zabbix 5.0</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web%E5%AE%89%E8%A3%85"><span class="toc-text">web安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%AE%89%E8%A3%85-zabbix-6-0"><span class="toc-text">Docker 安装 zabbix 6.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">安装环境配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BD%91%E7%BB%9C"><span class="toc-text">创建网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-mysql8-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">创建 mysql8 数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAzabbix-java-gateway"><span class="toc-text">创建zabbix-java-gateway</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-zabbix-web-server"><span class="toc-text">创建 zabbix-web-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-zabbx-server"><span class="toc-text">启动 zabbx-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-zabbix-web-%E7%95%8C%E9%9D%A2"><span class="toc-text">启动 zabbix-web 界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-Zabbix-agent2-%E6%9C%8D%E5%8A%A1"><span class="toc-text">启动 Zabbix agent2 服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3-Zabbix-%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98"><span class="toc-text">解决 Zabbix 乱码问题</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1564,7 +1584,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="环境检查"><a href="#环境检查" class="headerlink" title="环境检查"></a>环境检查</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">[root@localhost ~]<span class="hljs-comment"># cat /etc/centos-release</span></span>
+        <h2 id="二进制安装-zabbix-5-0"><a href="#二进制安装-zabbix-5-0" class="headerlink" title="二进制安装 zabbix 5.0"></a>二进制安装 zabbix 5.0</h2><h3 id="环境检查"><a href="#环境检查" class="headerlink" title="环境检查"></a>环境检查</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">[root@localhost ~]<span class="hljs-comment"># cat /etc/centos-release</span></span>
 <span class="line">CentOS Linux release 7.9.2009 (Core)</span>
 <span class="line"></br></span>
 <span class="line">[root@localhost ~]<span class="hljs-comment"># uname -r</span></span>
@@ -1581,7 +1601,7 @@
 <span class="line">firewall-cmd --add-port=10051/tcp --permanent</span>
 <span class="line">firewall-cmd --reload</span>
 </code></pre></div></div>
-<h2 id="安装zabbix-5-0"><a href="#安装zabbix-5-0" class="headerlink" title="安装zabbix 5.0"></a>安装zabbix 5.0</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-comment"># 0. 如果是使用自建yum源，设置解析</span></span>
+<h3 id="安装zabbix-5-0"><a href="#安装zabbix-5-0" class="headerlink" title="安装zabbix 5.0"></a>安装zabbix 5.0</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line"><span class="hljs-comment"># 0. 如果是使用自建yum源，设置解析</span></span>
 <span class="line"><span class="hljs-comment"># echo &#x27;10.0.0.1 mirrors.aliyuncs.com mirrors.aliyun.com repo.zabbix.com&#x27; &gt;&gt; /etc/hosts</span></span>
 <span class="line"></br></span>
 <span class="line"><span class="hljs-comment"># 1. 获取zabbix 5.0 官方源</span></span>
@@ -1656,6 +1676,115 @@
 <li><p>后面的都直接下一步即可</p>
 </li>
 </ol>
+<h2 id="Docker-安装-zabbix-6-0"><a href="#Docker-安装-zabbix-6-0" class="headerlink" title="Docker 安装 zabbix 6.0"></a>Docker 安装 zabbix 6.0</h2><h3 id="安装环境配置"><a href="#安装环境配置" class="headerlink" title="安装环境配置"></a>安装环境配置</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">zabbix_pwd=<span class="hljs-string">&quot;3ZBTY4UjYXxb8J9j&quot;</span> &amp;&amp; \</span>
+<span class="line">root_pwd=<span class="hljs-string">&quot;2wApkfuGQycTjxsnwVLs&quot;</span> &amp;&amp; \</span>
+<span class="line">zabbix_server_name=<span class="hljs-string">&quot;Hoopox Zabbix Server&quot;</span> &amp;&amp; \</span>
+<span class="line">server_dir=<span class="hljs-string">&quot;/opt/zabbix&quot;</span> &amp;&amp; \</span>
+<span class="line">zabbix_http_port=<span class="hljs-string">&quot;8081&quot;</span> &amp;&amp; \</span>
+<span class="line">mkdir -p <span class="hljs-variable">$&#123;server_dir&#125;</span>/server/&#123;alertscripts,externalscripts,modules&#125; &amp;&amp; \</span>
+<span class="line">mkdir -p <span class="hljs-variable">$&#123;server_dir&#125;</span>/agent2/modules</span>
+</code></pre></div></div>
+
+<h3 id="创建网络"><a href="#创建网络" class="headerlink" title="创建网络"></a>创建网络</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">docker network create --subnet 172.20.0.0/16 --ip-range 172.20.100.0/20 zabbix-net</span>
+</code></pre></div></div>
+
+<h3 id="创建-mysql8-数据库"><a href="#创建-mysql8-数据库" class="headerlink" title="创建 mysql8 数据库"></a>创建 mysql8 数据库</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">docker run -v /etc/localtime:/etc/localtime \</span>
+<span class="line">      --name mysql-server -t \</span>
+<span class="line">      -e MYSQL_DATABASE=<span class="hljs-string">&quot;zabbix&quot;</span> \</span>
+<span class="line">      -e MYSQL_USER=<span class="hljs-string">&quot;zabbix&quot;</span> \</span>
+<span class="line">      -e MYSQL_PASSWORD=<span class="hljs-variable">$&#123;zabbix_pwd&#125;</span> \</span>
+<span class="line">      -e MYSQL_ROOT_PASSWORD=<span class="hljs-variable">$&#123;root_pwd&#125;</span> \</span>
+<span class="line">      --network=zabbix-net \</span>
+<span class="line">      --restart unless-stopped \</span>
+<span class="line">      -d mysql:8.0 \</span>
+<span class="line">      --character-set-server=utf8 --collation-server=utf8_bin \</span>
+<span class="line">      --default-authentication-plugin=mysql_native_password</span>
+</code></pre></div></div>
+
+<h3 id="创建zabbix-java-gateway"><a href="#创建zabbix-java-gateway" class="headerlink" title="创建zabbix-java-gateway"></a>创建zabbix-java-gateway</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">docker run -v /etc/localtime:/etc/localtime \</span>
+<span class="line">      --name zabbix-java-gateway -t \</span>
+<span class="line">      --network=zabbix-net \</span>
+<span class="line">      --restart unless-stopped \</span>
+<span class="line">      -d zabbix/zabbix-java-gateway:ubuntu-6.0-latest</span>
+</code></pre></div></div>
+
+<h3 id="创建-zabbix-web-server"><a href="#创建-zabbix-web-server" class="headerlink" title="创建 zabbix-web-server"></a>创建 zabbix-web-server</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">docker run -v /etc/localtime:/etc/localtime \</span>
+<span class="line">      --name zabbix-web-service -t \</span>
+<span class="line">      -e ZBX_ALLOWEDIP=<span class="hljs-string">&quot;zabbix-server-mysql&quot;</span> \</span>
+<span class="line">      -v /opt/zabbix/web-service:/etc/zabbix \</span>
+<span class="line">      --cap-add=SYS_ADMIN --network=zabbix-net \</span>
+<span class="line">      -d zabbix/zabbix-web-service:ubuntu-6.0-latest</span>
+</code></pre></div></div>
+
+<h3 id="启动-zabbx-server"><a href="#启动-zabbx-server" class="headerlink" title="启动 zabbx-server"></a>启动 zabbx-server</h3><p>启动 <code>Zabbix server</code> 实例，并将其关联到已创建的 <code>mysql-server</code> 实例</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">docker volume create zabbix-server-volume</span>
+<span class="line"></br></span>
+<span class="line">docker run -v /etc/localtime:/etc/localtime \</span>
+<span class="line">      --name zabbix-server-mysql -t \</span>
+<span class="line">      --link zabbix-web-service:zabbix-web-service \</span>
+<span class="line">      -e DB_SERVER_HOST=<span class="hljs-string">&quot;mysql-server&quot;</span> \</span>
+<span class="line">      -e MYSQL_DATABASE=<span class="hljs-string">&quot;zabbix&quot;</span> \</span>
+<span class="line">      -e MYSQL_USER=<span class="hljs-string">&quot;zabbix&quot;</span> \</span>
+<span class="line">      -e MYSQL_PASSWORD=<span class="hljs-variable">$&#123;zabbix_pwd&#125;</span> \</span>
+<span class="line">      -e MYSQL_ROOT_PASSWORD=<span class="hljs-variable">$&#123;root_pwd&#125;</span> \</span>
+<span class="line">      -e ZBX_JAVAGATEWAY=<span class="hljs-string">&quot;zabbix-java-gateway&quot;</span> \</span>
+<span class="line">      -e ZBX_STARTREPORTWRITERS=<span class="hljs-string">&quot;2&quot;</span> \</span>
+<span class="line">      -e ZBX_WEBSERVICEURL=<span class="hljs-string">&quot;http://zabbix-web-service:10053/report&quot;</span> \</span>
+<span class="line">      -v zabbix-server-volume:/etc/zabbix \</span>
+<span class="line">      -v <span class="hljs-variable">$&#123;server_dir&#125;</span>/server/alertscripts:/usr/lib/zabbix/alertscripts \</span>
+<span class="line">      -v <span class="hljs-variable">$&#123;server_dir&#125;</span>/server/externalscripts:/usr/lib/zabbix/externalscripts \</span>
+<span class="line">      -v <span class="hljs-variable">$&#123;server_dir&#125;</span>/server/modules:/usr/lib/zabbix/modules \</span>
+<span class="line">      --network=zabbix-net \</span>
+<span class="line">      -p 10051:10051 \</span>
+<span class="line">      --restart unless-stopped \</span>
+<span class="line">      -d zabbix/zabbix-server-mysql:ubuntu-6.0-latest</span>
+</code></pre></div></div>
+
+<h3 id="启动-zabbix-web-界面"><a href="#启动-zabbix-web-界面" class="headerlink" title="启动 zabbix-web 界面"></a>启动 zabbix-web 界面</h3><p>启动 <code>Zabbix Web</code> 界面，并将其关联到已创建的 <code>mysql-server</code> 实例 和 <code>zabbix-server-mysql</code> 实例</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">docker run -v /etc/localtime:/etc/localtime \</span>
+<span class="line">      --name zabbix-web-nginx-mysql -t \</span>
+<span class="line">      -e ZBX_SERVER_HOST=<span class="hljs-string">&quot;zabbix-server-mysql&quot;</span> \</span>
+<span class="line">      -e DB_SERVER_HOST=<span class="hljs-string">&quot;mysql-server&quot;</span> \</span>
+<span class="line">      -e MYSQL_DATABASE=<span class="hljs-string">&quot;zabbix&quot;</span> \</span>
+<span class="line">      -e MYSQL_USER=<span class="hljs-string">&quot;zabbix&quot;</span> \</span>
+<span class="line">      -e PHP_TZ=<span class="hljs-string">&quot;Asia/Shanghai&quot;</span> \</span>
+<span class="line">      -e MYSQL_PASSWORD=<span class="hljs-variable">$&#123;zabbix_pwd&#125;</span> \</span>
+<span class="line">      -e MYSQL_ROOT_PASSWORD=<span class="hljs-variable">$&#123;root_pwd&#125;</span> \</span>
+<span class="line">      -e ZBX_SERVER_NAME=<span class="hljs-string">&quot;<span class="hljs-variable">$&#123;zabbix_server_name&#125;</span>&quot;</span> \</span>
+<span class="line">      --network=zabbix-net \</span>
+<span class="line">      -p <span class="hljs-variable">$&#123;zabbix_http_port&#125;</span>:8080 \</span>
+<span class="line">      --restart unless-stopped \</span>
+<span class="line">      -d zabbix/zabbix-web-nginx-mysql:ubuntu-6.0-latest</span>
+</code></pre></div></div>
+
+<ul>
+<li>默认用户名密码： <code>Admin/zabbix</code></li>
+</ul>
+<h3 id="启动-Zabbix-agent2-服务"><a href="#启动-Zabbix-agent2-服务" class="headerlink" title="启动 Zabbix agent2 服务"></a>启动 Zabbix agent2 服务</h3><ol>
+<li><code>Zabbix server</code> 主机安装 <code>Zabbix agent2</code> 服务</li>
+</ol>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">docker volume create zabbix-agent2-volume</span>
+<span class="line"></br></span>
+<span class="line">docker run -v /etc/localtime:/etc/localtime \</span>
+<span class="line">      --name zabbix-agent2 \</span>
+<span class="line">      -v zabbix-agent2-volume:/etc/zabbix \</span>
+<span class="line">      -e ZBX_HOSTNAME=<span class="hljs-string">&quot;zabbix-server&quot;</span> \</span>
+<span class="line">      -e ZBX_SERVER_HOST=<span class="hljs-string">&quot;zabbix-server-mysql&quot;</span> \</span>
+<span class="line">      -e ZBX_SERVER_PORT=10051 \</span>
+<span class="line">      -p 10050:10050 \</span>
+<span class="line">      -v <span class="hljs-variable">$&#123;server_dir&#125;</span>/agent2/modules:/var/lib/zabbix/modules \</span>
+<span class="line">      --privileged \</span>
+<span class="line">      --network=zabbix-net \</span>
+<span class="line">      --restart unless-stopped \</span>
+<span class="line">      -d zabbix/zabbix-agent2:ubuntu-6.0-latest</span>
+<span class="line"></br></span>
+<span class="line"><span class="hljs-comment"># 查询 zabbix agent2 ip</span></span>
+<span class="line">docker inspect zabbix-agent2 | grep -w <span class="hljs-string">&quot;IPAddress&quot;</span></span>
+</code></pre></div></div>
+
+<h3 id="解决-Zabbix-乱码问题"><a href="#解决-Zabbix-乱码问题" class="headerlink" title="解决 Zabbix 乱码问题"></a>解决 Zabbix 乱码问题</h3><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">yum install -y wqy-microhei-fonts</span>
+<span class="line">docker cp /usr/share/fonts/wqy-microhei/wqy-microhei.ttc zabbix-web-nginx-mysql:/usr/share/fonts/dejavu/DejaVuSans.ttf</span>
+</code></pre></div></div>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 365433079@qq.com </span>

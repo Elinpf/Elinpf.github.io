@@ -6,16 +6,17 @@
   <meta name="keywords" content=" docker ">
   <meta name="description" content="Docker 技术 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="环境检查[root@localhost ~]# cat &#x2F;etc&#x2F;centos-release CentOS Linux release 7.9.2009 (Core)  [root@localhost ~]# uname -r 3.10.0-1160.el7.x86_64  # 关闭SELinux   vi &#x2F;etc&#x2F;selinux&#x2F;config SELINUX&#x3D;disabled reboot">
+<meta name="description" content="二进制配置 zabbix proxy环境检查[root@localhost ~]# cat &#x2F;etc&#x2F;centos-release CentOS Linux release 7.9.2009 (Core)  [root@localhost ~]# uname -r 3.10.0-1160.el7.x86_64  # 关闭SELinux   vi &#x2F;etc&#x2F;selinux&#x2F;config SELINU">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 7 安装 zabbix proxy">
 <meta property="og:url" content="http://example.com/2023/07/14/CentOS-7-%E5%AE%89%E8%A3%85-zabbix-proxy/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="环境检查[root@localhost ~]# cat &#x2F;etc&#x2F;centos-release CentOS Linux release 7.9.2009 (Core)  [root@localhost ~]# uname -r 3.10.0-1160.el7.x86_64  # 关闭SELinux   vi &#x2F;etc&#x2F;selinux&#x2F;config SELINUX&#x3D;disabled reboot">
+<meta property="og:description" content="二进制配置 zabbix proxy环境检查[root@localhost ~]# cat &#x2F;etc&#x2F;centos-release CentOS Linux release 7.9.2009 (Core)  [root@localhost ~]# uname -r 3.10.0-1160.el7.x86_64  # 关闭SELinux   vi &#x2F;etc&#x2F;selinux&#x2F;config SELINU">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-14T08:12:47.000Z">
-<meta property="article:modified_time" content="2023-07-14T10:59:44.773Z">
+<meta property="article:modified_time" content="2023-07-20T11:06:25.754Z">
 <meta property="article:author" content="Elin">
+<meta property="article:tag" content="zabbix">
 <meta name="twitter:card" content="summary">
 
 
@@ -283,7 +284,7 @@
                     <div data-rel="数通">
                         
                         数通
-                        <small>(15)</small>
+                        <small>(17)</small>
                         
                     </div>
                     
@@ -298,7 +299,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         系统
-                        <small>(4)</small>
+                        <small>(5)</small>
                         
                     </div>
                     
@@ -525,6 +526,10 @@
                 <i class="iconfont icon-tag"></i><a>windows</a>
             </li>
         
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>zabbix</a>
+            </li>
+        
     </div>
 
 </div>
@@ -576,23 +581,23 @@
             <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
         </a>
         
-        <a  class="全部文章 "
+        <a  class="全部文章 数通 "
            href="/2023/07/14/CentOS-7-%E5%AE%89%E8%A3%85-zabbix-proxy/"
-           data-tag=""
+           data-tag="zabbix"
            data-author="" >
             <span class="post-title" title="CentOS 7 安装 zabbix proxy">CentOS 7 安装 zabbix proxy</span>
             <span class="post-date" title="2023-07-14 16:12:47">2023/07/14</span>
         </a>
         
-        <a  class="全部文章 "
+        <a  class="全部文章 数通 "
            href="/2023/07/14/CentOS-7-%E5%AE%89%E8%A3%85-zabbix-5-0/"
-           data-tag=""
+           data-tag="zabbix"
            data-author="" >
-            <span class="post-title" title="CentOS 7 安装 zabbix 5.0">CentOS 7 安装 zabbix 5.0</span>
+            <span class="post-title" title="CentOS 7 安装 zabbix">CentOS 7 安装 zabbix</span>
             <span class="post-date" title="2023-07-14 11:18:28">2023/07/14</span>
         </a>
         
-        <a  class="全部文章 "
+        <a  class="全部文章 系统 "
            href="/2023/07/14/CentOS-7-%E5%BC%80%E5%B1%80%E9%85%8D%E7%BD%AE/"
            data-tag=""
            data-author="" >
@@ -1541,7 +1546,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-07-14 18:59:44'>2021-07-06 09:51</time>
+            发布时间 : <time class="date" title='最后更新: 2023-07-20 19:06:25'>2021-07-06 09:51</time>
         
     </div>
     <div class="article-meta">
@@ -1563,7 +1568,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">Docker 是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%A0%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">几个基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-%E5%9C%A8windows%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">docker 在windows下的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#windows%E4%B8%8B%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-text">windows下的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE"><span class="toc-text">修改存储位置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Eimage%E5%88%B0%E5%BA%95%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-text">关于image到底存在哪里</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">docker 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-text">获取镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%95%9C%E5%83%8F"><span class="toc-text">创建自己的镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B"><span class="toc-text">查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-text">容器执行命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Commit%E5%AE%B9%E5%99%A8"><span class="toc-text">Commit容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-text">杂项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%AE%B9%E5%99%A8%E9%97%B4%E7%9A%84%E9%80%9A%E8%AE%AF"><span class="toc-text">Docker 容器间的通讯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Compose"><span class="toc-text">Docker Compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E5%B7%A7"><span class="toc-text">技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E4%BF%AE%E6%94%B9"><span class="toc-text">Docker 容器的端口修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-%E8%BF%9E%E6%8E%A5-hackthebox"><span class="toc-text">docker 连接 hackthebox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-kali-connect-to-hackthebox"><span class="toc-text">Docker kali connect to hackthebox</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">Docker 是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%A0%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">几个基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-%E5%9C%A8windows%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">docker 在windows下的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#windows%E4%B8%8B%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-text">windows下的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE"><span class="toc-text">修改存储位置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Eimage%E5%88%B0%E5%BA%95%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-text">关于image到底存在哪里</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CentOS7-%E5%AE%89%E8%A3%85-docker"><span class="toc-text">CentOS7 安装 docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">docker 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-text">获取镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%95%9C%E5%83%8F"><span class="toc-text">创建自己的镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B"><span class="toc-text">查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-text">容器执行命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Commit%E5%AE%B9%E5%99%A8"><span class="toc-text">Commit容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-text">杂项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%AE%B9%E5%99%A8%E9%97%B4%E7%9A%84%E9%80%9A%E8%AE%AF"><span class="toc-text">Docker 容器间的通讯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Compose"><span class="toc-text">Docker Compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E5%B7%A7"><span class="toc-text">技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E4%BF%AE%E6%94%B9"><span class="toc-text">Docker 容器的端口修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-%E8%BF%9E%E6%8E%A5-hackthebox"><span class="toc-text">docker 连接 hackthebox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-kali-connect-to-hackthebox"><span class="toc-text">Docker kali connect to hackthebox</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1598,6 +1603,12 @@
 <p>windows是按照虚拟机的方式存储，而要进入这个虚拟机是通过各个images，命令如下：</p>
 <p><code>docker run -it --privileged --pid=host &lt;image&gt; nsenter -t 1 -m -u -i bash</code></p>
 <p>而每个image其实是通过底下一层image叠加上来的，所以可以找到<code>/var/lib/docker/overlay2</code>中每一层叠加的内容</p>
+<h2 id="CentOS7-安装-docker"><a href="#CentOS7-安装-docker" class="headerlink" title="CentOS7 安装 docker"></a>CentOS7 安装 docker</h2><div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</span>
+</code></pre></div></div>
+<p>使用官方脚本自动安装</p>
+<div class="codeBlockContainer"><div class="codeBlockContent"><pre class="highlight"><code class=" language-bash codeBlockLines"><span class="line">systemctl <span class="hljs-built_in">enable</span> --now docker</span>
+</code></pre></div></div>
+
 <h2 id="docker-常用命令"><a href="#docker-常用命令" class="headerlink" title="docker 常用命令"></a>docker 常用命令</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-command-manual.html">这里</a>是常用命令大全</li>
 </ul>
