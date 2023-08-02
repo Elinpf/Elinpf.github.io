@@ -7,6 +7,8 @@ categories:
 - 数通
 ---
 
+分别使用`二进制`和`docker`来安装 `zabbix 5.0` 和 `zabbix 6.0`
+
 ## 二进制安装 zabbix 5.0
 
 ### 环境检查
@@ -30,6 +32,8 @@ firewall-cmd --add-port=10051/tcp --permanent
 firewall-cmd --reload
 ```
 ### 安装zabbix 5.0
+
+bash脚本一键部署
 
 ```bash
 # 0. 如果是使用自建yum源，设置解析
@@ -114,9 +118,9 @@ Password: zabbix"
 ### 安装环境配置
 
 ```bash
-zabbix_pwd="3ZBTY4UjYXxb8J9j" && \
-root_pwd="2wApkfuGQycTjxsnwVLs" && \
-zabbix_server_name="Hoopox Zabbix Server" && \
+zabbix_pwd="zabbix_pwd" && \
+root_pwd="root_pwd" && \
+zabbix_server_name="Zabbix Server" && \
 server_dir="/opt/zabbix" && \
 zabbix_http_port="8081" && \
 mkdir -p ${server_dir}/server/{alertscripts,externalscripts,modules} && \
