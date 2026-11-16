@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@v4
       with:
         persist-credentials: false
     - name: Install and Build
@@ -16,9 +16,9 @@ jobs:
         npm install
         node_modules/hexo/bin/hexo generate
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: public
-        BUILD_SCRIPT: npm install && node_modules/hexo/bin/hexo generate
+        token: ${{ secrets.ACCESS_TOKEN }}
+        branch: gh-pages
+        folder: public
+        build-script: npm install && node_modules/hexo/bin/hexo generate
