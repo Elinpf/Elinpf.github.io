@@ -6,18 +6,19 @@
   <meta name="keywords" content=" mind ">
   <meta name="description" content="网络安全等级保护2.0 | Elin 的空间">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="减脂逻辑 “用力量训练创造肌肉需求和糖原缺口，用控制碳水迫使身体燃烧脂肪填补缺口，用蛋白质确保缺口不从肌肉拆补，用脂肪确保激素环境支持这一切运转，用少量有氧作为额外的热量消耗而不破坏系统平衡。”                        减脂系统循环图 (Text Diagram)                       &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta name="description" content="排查总结：服务器 gpu-node-02 第 7 块 NVMe 盘”丢失”一、问题这台服务器应有 7 块 NVMe 盘，但系统里只显示 6 块。 二、定位过程与结论 确认缺盘   系统侧只有 nvme0&#x2F;1&#x2F;3&#x2F;4&#x2F;5&#x2F;6，缺 nvme2 但 nvme2 控制器在（PCIe 0000:72:00.0，链路 x4&#x2F;16GT&#x2F;s 正常），驱动已加载，state&#x3D;live   根因（OS 侧 SMART">
 <meta property="og:type" content="article">
-<meta property="og:title" content="科学减脂">
-<meta property="og:url" content="http://example.com/2026/03/05/%E7%A7%91%E5%AD%A6%E5%87%8F%E8%84%82/index.html">
+<meta property="og:title" content="服务器第 7 块 NVMe 盘丢失的排查">
+<meta property="og:url" content="http://example.com/2026/09/16/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AC%AC-7-%E5%9D%97-NVMe-%E7%9B%98%E4%B8%A2%E5%A4%B1%E7%9A%84%E6%8E%92%E6%9F%A5/index.html">
 <meta property="og:site_name" content="Elin 的空间">
-<meta property="og:description" content="减脂逻辑 “用力量训练创造肌肉需求和糖原缺口，用控制碳水迫使身体燃烧脂肪填补缺口，用蛋白质确保缺口不从肌肉拆补，用脂肪确保激素环境支持这一切运转，用少量有氧作为额外的热量消耗而不破坏系统平衡。”                        减脂系统循环图 (Text Diagram)                       &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:description" content="排查总结：服务器 gpu-node-02 第 7 块 NVMe 盘”丢失”一、问题这台服务器应有 7 块 NVMe 盘，但系统里只显示 6 块。 二、定位过程与结论 确认缺盘   系统侧只有 nvme0&#x2F;1&#x2F;3&#x2F;4&#x2F;5&#x2F;6，缺 nvme2 但 nvme2 控制器在（PCIe 0000:72:00.0，链路 x4&#x2F;16GT&#x2F;s 正常），驱动已加载，state&#x3D;live   根因（OS 侧 SMART">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-03-05T10:35:26.000Z">
-<meta property="article:modified_time" content="2026-11-16T08:20:23.189Z">
+<meta property="article:published_time" content="2026-09-16T03:46:13.000Z">
+<meta property="article:modified_time" content="2026-11-17T02:56:51.487Z">
 <meta property="article:author" content="Elin">
-<meta property="article:tag" content="减脂">
-<meta property="article:tag" content="饮食">
+<meta property="article:tag" content="nvme">
+<meta property="article:tag" content="硬件">
+<meta property="article:tag" content="排查">
 <meta name="twitter:card" content="summary">
 
 
@@ -92,7 +93,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(155)</small>
+                <small>(169)</small>
             
         </div>
     </li>
@@ -422,7 +423,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         运维
-                        <small>(17)</small>
+                        <small>(31)</small>
                         
                     </div>
                     
@@ -445,7 +446,7 @@
                                         
                                         Ceph
                                         
-                                            <small>(4
+                                            <small>(10
                                                 )</small>
                                         
                                     </div>
@@ -457,7 +458,19 @@
                                         
                                         K8S
                                         
-                                            <small>(8
+                                            <small>(10
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="运维<--->RDMA">
+                                        
+                                        RDMA
+                                        
+                                            <small>(1
                                                 )</small>
                                         
                                     </div>
@@ -467,6 +480,10 @@
                         </ul>
                     
                 </li>
+            
+        
+    
+        
             
         
     
@@ -527,7 +544,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="155">
+<input type="hidden" id="yelog_site_posts_number" value="169">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -578,11 +595,27 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>复盘</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>故障</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>减脂</a>
             </li>
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>镜像</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>排查</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>驱动</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -610,6 +643,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>虚拟化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>学习</a>
             </li>
         
@@ -619,6 +656,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>饮食</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>硬件</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -642,11 +683,23 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cephfs</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cilium</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>configmap</a>
             </li>
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>console</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cors</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -714,7 +767,15 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ib</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>ipam</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ipoib</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -734,6 +795,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mds</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>metallb</a>
             </li>
         
@@ -743,6 +808,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>netbox</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nvme</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -759,6 +828,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>pvc</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>pve</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -786,6 +859,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>scrub</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>server</a>
             </li>
         
@@ -803,6 +880,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>sqlalchemy</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ssd</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -904,12 +985,100 @@
             <span class="post-date" title="2021-08-09 18:27:42">2021/08/09</span>
         </a>
         
+        <a  class="全部文章 运维 "
+           href="/2026/09/16/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AC%AC-7-%E5%9D%97-NVMe-%E7%9B%98%E4%B8%A2%E5%A4%B1%E7%9A%84%E6%8E%92%E6%9F%A5/"
+           data-tag="nvme,硬件,排查"
+           data-author="" >
+            <span class="post-title" title="服务器第 7 块 NVMe 盘丢失的排查">服务器第 7 块 NVMe 盘丢失的排查</span>
+            <span class="post-date" title="2026-09-16 11:46:13">2026/09/16</span>
+        </a>
+        
+        <a  class="全部文章 运维 Ceph "
+           href="/2026/09/10/Ceph-scrub-%E5%8E%8B%E5%8A%9B%E5%AF%BC%E8%87%B4%E4%B8%9A%E5%8A%A1%E4%B8%AD%E6%96%AD/"
+           data-tag="ceph,故障,scrub"
+           data-author="" >
+            <span class="post-title" title="Ceph scrub 压力导致业务中断">Ceph scrub 压力导致业务中断</span>
+            <span class="post-date" title="2026-09-10 13:37:43">2026/09/10</span>
+        </a>
+        
+        <a  class="全部文章 运维 K8S "
+           href="/2026/07/29/Cilium-Pod-%E7%BD%91%E6%AE%B5%E4%B8%8E-Ceph-MON-%E5%9C%B0%E5%9D%80%E5%86%B2%E7%AA%81/"
+           data-tag="k8s,故障,cilium"
+           data-author="" >
+            <span class="post-title" title="Cilium Pod 网段与 Ceph MON 地址冲突">Cilium Pod 网段与 Ceph MON 地址冲突</span>
+            <span class="post-date" title="2026-07-29 09:04:01">2026/07/29</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2026/06/22/PVE-%E9%9B%86%E7%BE%A4%E9%87%8D%E5%90%AF-corosync-token-ring-%E4%B8%8E-watchdog/"
+           data-tag="pve,虚拟化"
+           data-author="" >
+            <span class="post-title" title="PVE 集群重启：corosync token ring 与 watchdog">PVE 集群重启：corosync token ring 与 watchdog</span>
+            <span class="post-date" title="2026-06-22 19:16:13">2026/06/22</span>
+        </a>
+        
+        <a  class="全部文章 运维 Ceph "
+           href="/2026/05/16/%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E6%8D%9F%E5%9D%8F%E5%90%8E%E5%9C%A8-Ceph-%E4%B8%AD%E5%AE%89%E5%85%A8%E7%A7%BB%E9%99%A4/"
+           data-tag="ceph,硬件,ssd"
+           data-author="" >
+            <span class="post-title" title="固态硬盘损坏后在 Ceph 中安全移除">固态硬盘损坏后在 Ceph 中安全移除</span>
+            <span class="post-date" title="2026-05-16 11:09:24">2026/05/16</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2026/05/09/NVMe-%E8%AF%AF%E6%8B%94%E5%AF%BC%E8%87%B4%E7%B3%BB%E7%BB%9F%E7%9B%98%E4%B8%A2%E5%A4%B1%E7%9A%84%E5%A4%8D%E7%9B%98/"
+           data-tag="nvme,硬件,复盘"
+           data-author="" >
+            <span class="post-title" title="NVMe 误拔导致系统盘丢失的复盘">NVMe 误拔导致系统盘丢失的复盘</span>
+            <span class="post-date" title="2026-05-09 16:43:15">2026/05/09</span>
+        </a>
+        
+        <a  class="全部文章 运维 K8S "
+           href="/2026/04/02/K8S-PVC-Pending-%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86/"
+           data-tag="k8s,pvc,故障"
+           data-author="" >
+            <span class="post-title" title="K8S PVC Pending 故障处理">K8S PVC Pending 故障处理</span>
+            <span class="post-date" title="2026-04-02 12:05:35">2026/04/02</span>
+        </a>
+        
         <a  class="全部文章 健身 "
            href="/2026/03/05/%E7%A7%91%E5%AD%A6%E5%87%8F%E8%84%82/"
            data-tag="减脂,饮食"
            data-author="" >
             <span class="post-title" title="科学减脂">科学减脂</span>
             <span class="post-date" title="2026-03-05 18:35:26">2026/03/05</span>
+        </a>
+        
+        <a  class="全部文章 运维 RDMA "
+           href="/2026/02/28/IB-%E7%BD%91%E5%8D%A1%E8%AF%86%E5%88%AB%E4%B8%8D%E5%88%B0-ib_ipoib-%E6%A8%A1%E5%9D%97%E6%9C%AA%E5%8A%A0%E8%BD%BD/"
+           data-tag="rdma,ib,ipoib"
+           data-author="" >
+            <span class="post-title" title="IB 网卡识别不到：ib_ipoib 模块未加载">IB 网卡识别不到：ib_ipoib 模块未加载</span>
+            <span class="post-date" title="2026-02-28 10:14:24">2026/02/28</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2026/02/10/B200-%E6%9C%8D%E5%8A%A1%E5%99%A8-CUDA-%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E6%8E%92%E6%9F%A5/"
+           data-tag="gpu,cuda,驱动"
+           data-author="" >
+            <span class="post-title" title="B200 服务器 CUDA 无法启动的排查">B200 服务器 CUDA 无法启动的排查</span>
+            <span class="post-date" title="2026-02-10 14:34:12">2026/02/10</span>
+        </a>
+        
+        <a  class="全部文章 运维 Ceph "
+           href="/2026/02/09/CephFS-%E5%85%83%E6%95%B0%E6%8D%AE%E6%8D%9F%E5%9D%8F%E7%9A%84%E4%BF%AE%E5%A4%8D/"
+           data-tag="故障,cephfs,mds"
+           data-author="" >
+            <span class="post-title" title="CephFS 元数据损坏的修复">CephFS 元数据损坏的修复</span>
+            <span class="post-date" title="2026-02-09 21:56:03">2026/02/09</span>
+        </a>
+        
+        <a  class="全部文章 运维 Ceph "
+           href="/2026/01/13/Ceph-RGW-%E8%B7%A8%E5%9F%9F-CORS%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/"
+           data-tag="ceph,rgw,cors"
+           data-author="" >
+            <span class="post-title" title="Ceph RGW 跨域（CORS）问题处理">Ceph RGW 跨域（CORS）问题处理</span>
+            <span class="post-date" title="2026-01-13 10:43:47">2026/01/13</span>
         </a>
         
         <a  class="全部文章 运维 Ceph "
@@ -928,6 +1097,14 @@
             <span class="post-date" title="2025-12-30 09:45:33">2025/12/30</span>
         </a>
         
+        <a  class="全部文章 运维 Ceph "
+           href="/2025/12/29/CephFS-MDS-%E6%9C%8D%E5%8A%A1%E7%BB%88%E6%AD%A2%E7%9A%84%E5%A4%84%E7%90%86/"
+           data-tag="ceph,cephfs,mds"
+           data-author="" >
+            <span class="post-title" title="CephFS MDS 服务终止的处理">CephFS MDS 服务终止的处理</span>
+            <span class="post-date" title="2025-12-29 09:50:25">2025/12/29</span>
+        </a>
+        
         <a  class="全部文章 系统 工具 "
            href="/2025/12/19/tmux-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/"
            data-tag="linux,tmux"
@@ -942,6 +1119,22 @@
            data-author="" >
             <span class="post-title" title="SSH 后台运行方法">SSH 后台运行方法</span>
             <span class="post-date" title="2025-12-17 00:05:08">2025/12/17</span>
+        </a>
+        
+        <a  class="全部文章 运维 Ceph "
+           href="/2025/11/12/Ceph-%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E9%9B%86/"
+           data-tag="ceph,故障"
+           data-author="" >
+            <span class="post-title" title="Ceph 故障处理集">Ceph 故障处理集</span>
+            <span class="post-date" title="2025-11-12 09:34:41">2025/11/12</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2025/11/03/NVIDIA-%E9%A9%B1%E5%8A%A8%E4%B8%8E-CUDA-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%89%8B%E5%86%8C/"
+           data-tag="gpu,cuda,驱动"
+           data-author="" >
+            <span class="post-title" title="NVIDIA 驱动与 CUDA 故障排查手册">NVIDIA 驱动与 CUDA 故障排查手册</span>
+            <span class="post-date" title="2025-11-03 11:40:23">2025/11/03</span>
         </a>
         
         <a  class="全部文章 运维 Ceph "
@@ -2149,7 +2342,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2026-11-16 16:20:23'>2023-04-26 09:38</time>
+            发布时间 : <time class="date" title='最后更新: 2026-11-17 10:56:51'>2023-04-26 09:38</time>
         
     </div>
     <div class="article-meta">
